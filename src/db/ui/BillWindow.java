@@ -173,6 +173,11 @@ public class BillWindow extends javax.swing.JFrame {
 
         exitButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exitButton.setText("EXIT");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
         addBillsTab.add(exitButton);
         exitButton.setBounds(440, 260, 160, 70);
 
@@ -188,6 +193,11 @@ public class BillWindow extends javax.swing.JFrame {
 
         clearButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         clearButton.setText("CLEAR");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
         addBillsTab.add(clearButton);
         clearButton.setBounds(240, 260, 160, 70);
 
@@ -393,6 +403,21 @@ public class BillWindow extends javax.swing.JFrame {
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         runQueryBasedOnReferenceNo();
     }//GEN-LAST:event_viewButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        referenceNoTextField.setText("");
+        townIDTextField.setText("");
+        tourCodeTextField.setText("");
+        numberOfIndvidualsTextField.setText("");
+        amountTextField.setText("");
+        billDateTextField.setText("");
+        hotelIDtextField.setText("");
+        
+    }//GEN-LAST:event_clearButtonActionPerformed
 
     /**
      * @param args the command line arguments
