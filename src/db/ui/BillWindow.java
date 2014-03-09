@@ -27,24 +27,28 @@ public class BillWindow extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         billsTab = new javax.swing.JTabbedPane();
         addBillsTab = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        tourCodeLabel = new javax.swing.JLabel();
+        referenceNoLabel = new javax.swing.JLabel();
+        amountLabel = new javax.swing.JLabel();
+        townIDTextField = new javax.swing.JTextField();
+        numberOfIndvidualsTextField = new javax.swing.JTextField();
+        amountTextField = new javax.swing.JTextField();
+        hotelIDLabel = new javax.swing.JLabel();
+        billDateLabel = new javax.swing.JLabel();
+        numberOfIndvidualsLabel = new javax.swing.JLabel();
+        tourCodeTextField = new javax.swing.JTextField();
+        hotelIDtextField = new javax.swing.JTextField();
+        townIDLabel = new javax.swing.JLabel();
+        billDateTextField = new javax.swing.JTextField();
+        referenceNoTextField = new javax.swing.JTextField();
+        exitButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
         editBillsTab = new javax.swing.JPanel();
         deleteBillsTab = new javax.swing.JPanel();
         viewBillsTab = new javax.swing.JPanel();
@@ -62,139 +66,106 @@ public class BillWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Reference No");
+        addBillsTab.setLayout(null);
 
-        jLabel3.setText("Tour Code");
+        tourCodeLabel.setText("Tour Code");
+        addBillsTab.add(tourCodeLabel);
+        tourCodeLabel.setBounds(360, 30, 101, 30);
 
-        jLabel4.setText("Town ID");
+        referenceNoLabel.setText("Reference No");
+        addBillsTab.add(referenceNoLabel);
+        referenceNoLabel.setBounds(30, 30, 101, 25);
 
-        jLabel6.setText("Amount");
+        amountLabel.setText("Amount");
+        addBillsTab.add(amountLabel);
+        amountLabel.setBounds(30, 180, 101, 38);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        townIDTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                townIDTextFieldActionPerformed(evt);
             }
         });
+        addBillsTab.add(townIDTextField);
+        townIDTextField.setBounds(190, 80, 124, 28);
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        numberOfIndvidualsTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                numberOfIndvidualsTextFieldActionPerformed(evt);
             }
         });
+        addBillsTab.add(numberOfIndvidualsTextField);
+        numberOfIndvidualsTextField.setBounds(490, 130, 124, 33);
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        amountTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                amountTextFieldActionPerformed(evt);
             }
         });
+        addBillsTab.add(amountTextField);
+        amountTextField.setBounds(190, 180, 124, 33);
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        hotelIDLabel.setText("Hotel ID");
+        addBillsTab.add(hotelIDLabel);
+        hotelIDLabel.setBounds(360, 80, 101, 30);
+
+        billDateLabel.setText("Bill date");
+        addBillsTab.add(billDateLabel);
+        billDateLabel.setBounds(30, 130, 101, 30);
+
+        numberOfIndvidualsLabel.setText("Number of Individuals");
+        addBillsTab.add(numberOfIndvidualsLabel);
+        numberOfIndvidualsLabel.setBounds(360, 140, 110, 14);
+
+        tourCodeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                tourCodeTextFieldActionPerformed(evt);
             }
         });
+        addBillsTab.add(tourCodeTextField);
+        tourCodeTextField.setBounds(490, 30, 124, 28);
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        hotelIDtextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                hotelIDtextFieldActionPerformed(evt);
             }
         });
+        addBillsTab.add(hotelIDtextField);
+        hotelIDtextField.setBounds(490, 80, 124, 28);
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        townIDLabel.setText("Town ID");
+        addBillsTab.add(townIDLabel);
+        townIDLabel.setBounds(30, 80, 101, 25);
+
+        billDateTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                billDateTextFieldActionPerformed(evt);
             }
         });
+        addBillsTab.add(billDateTextField);
+        billDateTextField.setBounds(190, 130, 124, 28);
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        referenceNoTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                referenceNoTextFieldActionPerformed(evt);
             }
         });
+        addBillsTab.add(referenceNoTextField);
+        referenceNoTextField.setBounds(190, 30, 124, 28);
 
-        jLabel8.setText("Hotel ID");
+        exitButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        exitButton.setText("EXIT");
+        addBillsTab.add(exitButton);
+        exitButton.setBounds(450, 260, 160, 70);
 
-        jLabel9.setText("Hotel ID");
+        addButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        addButton.setText("ADD");
+        addBillsTab.add(addButton);
+        addButton.setBounds(40, 260, 160, 70);
 
-        jLabel10.setText("Number of Individuals");
-
-        javax.swing.GroupLayout addBillsTabLayout = new javax.swing.GroupLayout(addBillsTab);
-        addBillsTab.setLayout(addBillsTabLayout);
-        addBillsTabLayout.setHorizontalGroup(
-            addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addBillsTabLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(125, 125, 125)
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(265, Short.MAX_VALUE))
-        );
-
-        addBillsTabLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField1, jTextField2, jTextField3, jTextField4, jTextField5, jTextField6, jTextField7});
-
-        addBillsTabLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel10, jLabel2, jLabel3, jLabel4, jLabel6, jLabel8, jLabel9});
-
-        addBillsTabLayout.setVerticalGroup(
-            addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addBillsTabLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addGroup(addBillsTabLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                        .addGap(8, 8, 8)))
-                .addGap(18, 18, 18)
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addGroup(addBillsTabLayout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                        .addGap(8, 8, 8)))
-                .addGap(18, 18, 18)
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addGroup(addBillsTabLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addGroup(addBillsTabLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(addBillsTabLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                    .addGroup(addBillsTabLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(8, 8, 8)
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(addBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addBillsTabLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                        .addGap(44, 44, 44))
-                    .addGroup(addBillsTabLayout.createSequentialGroup()
-                        .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                        .addGap(51, 51, 51))))
-        );
+        clearButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        clearButton.setText("CLEAR");
+        addBillsTab.add(clearButton);
+        clearButton.setBounds(240, 260, 160, 70);
 
         billsTab.addTab("ADD", addBillsTab);
 
@@ -206,7 +177,7 @@ public class BillWindow extends javax.swing.JFrame {
         );
         editBillsTabLayout.setVerticalGroup(
             editBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addGap(0, 389, Short.MAX_VALUE)
         );
 
         billsTab.addTab("EDIT", editBillsTab);
@@ -219,7 +190,7 @@ public class BillWindow extends javax.swing.JFrame {
         );
         deleteBillsTabLayout.setVerticalGroup(
             deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addGap(0, 389, Short.MAX_VALUE)
         );
 
         billsTab.addTab("DELETE", deleteBillsTab);
@@ -232,7 +203,7 @@ public class BillWindow extends javax.swing.JFrame {
         );
         viewBillsTabLayout.setVerticalGroup(
             viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addGap(0, 389, Short.MAX_VALUE)
         );
 
         billsTab.addTab("VIEW", viewBillsTab);
@@ -251,33 +222,33 @@ public class BillWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void amountTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_amountTextFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void townIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townIDTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_townIDTextFieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void tourCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tourCodeTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_tourCodeTextFieldActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void hotelIDtextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelIDtextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_hotelIDtextFieldActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void numberOfIndvidualsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberOfIndvidualsTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_numberOfIndvidualsTextFieldActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void billDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billDateTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_billDateTextFieldActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void referenceNoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_referenceNoTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_referenceNoTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,24 +287,27 @@ public class BillWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addBillsTab;
+    private javax.swing.JButton addButton;
+    private javax.swing.JLabel amountLabel;
+    private javax.swing.JTextField amountTextField;
+    private javax.swing.JLabel billDateLabel;
+    private javax.swing.JTextField billDateTextField;
     private javax.swing.JTabbedPane billsTab;
+    private javax.swing.JButton clearButton;
     private javax.swing.JPanel deleteBillsTab;
     private javax.swing.JPanel editBillsTab;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JLabel hotelIDLabel;
+    private javax.swing.JTextField hotelIDtextField;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JLabel numberOfIndvidualsLabel;
+    private javax.swing.JTextField numberOfIndvidualsTextField;
+    private javax.swing.JLabel referenceNoLabel;
+    private javax.swing.JTextField referenceNoTextField;
+    private javax.swing.JLabel tourCodeLabel;
+    private javax.swing.JTextField tourCodeTextField;
+    private javax.swing.JLabel townIDLabel;
+    private javax.swing.JTextField townIDTextField;
     private javax.swing.JPanel viewBillsTab;
     // End of variables declaration//GEN-END:variables
 }
