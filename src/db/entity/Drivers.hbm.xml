@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 9, 2014 1:58:00 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="db.entity.Drivers" table="drivers" catalog="cakephp">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="30" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="100" not-null="true" />
+        </property>
+        <property name="tpNo" type="string">
+            <column name="tp_no" length="10" not-null="true" unique="true" />
+        </property>
+        <set name="routeses" table="driver_routes" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="driver_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="db.entity.Routes">
+                <column name="route_id" not-null="true" unique="true" />
+            </many-to-many>
+        </set>
+        <set name="tourses" table="tours" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="driver_id" />
+            </key>
+            <one-to-many class="db.entity.Tours" />
+        </set>
+    </class>
+</hibernate-mapping>

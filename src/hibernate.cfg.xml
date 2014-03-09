@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cakephp?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <mapping resource="db/entity/Bills.hbm.xml"/>
+    <mapping resource="db/entity/Customers.hbm.xml"/>
+    <mapping resource="db/entity/Tours.hbm.xml"/>
+    <mapping resource="db/entity/Coaches.hbm.xml"/>
+    <mapping resource="db/entity/Routes.hbm.xml"/>
+    <mapping resource="db/entity/Towns.hbm.xml"/>
+    <mapping resource="db/entity/Drivers.hbm.xml"/>
+    <mapping resource="db/entity/Hotels.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
