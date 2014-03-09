@@ -6,6 +6,12 @@
 
 package db.ui;
 
+import db.entity.Drivers;
+import db.util.HibernateUtil;
+import javax.swing.JOptionPane;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 /**
  *
  * @author Pranavan
@@ -43,6 +49,9 @@ public class DriverWindow extends javax.swing.JFrame {
         save = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         editDriverTab = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        idTextFieldEdit = new javax.swing.JTextField();
+        goEdit = new javax.swing.JButton();
         deleteDriverTab = new javax.swing.JPanel();
         viewDriverTab = new javax.swing.JPanel();
 
@@ -153,6 +162,7 @@ public class DriverWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 46, 0, 0);
         addDriverTab.add(telephoneNoTextField, gridBagConstraints);
 
+        clear.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         clear.setText("Clear");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +179,13 @@ public class DriverWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(53, 20, 29, 0);
         addDriverTab.add(clear, gridBagConstraints);
 
+        save.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 7;
@@ -179,6 +195,7 @@ public class DriverWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(53, 46, 29, 0);
         addDriverTab.add(save, gridBagConstraints);
 
+        exit.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exit.setText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,15 +213,44 @@ public class DriverWindow extends javax.swing.JFrame {
 
         driverTab.addTab("ADD", addDriverTab);
 
+        jLabel1.setText("ID");
+
+        idTextFieldEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idTextFieldEditActionPerformed(evt);
+            }
+        });
+
+        goEdit.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        goEdit.setText("Go");
+        goEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goEditActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout editDriverTabLayout = new javax.swing.GroupLayout(editDriverTab);
         editDriverTab.setLayout(editDriverTabLayout);
         editDriverTabLayout.setHorizontalGroup(
             editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGroup(editDriverTabLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(idTextFieldEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(goEdit)
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         editDriverTabLayout.setVerticalGroup(
             editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 301, Short.MAX_VALUE)
+            .addGroup(editDriverTabLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idTextFieldEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(goEdit))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         driverTab.addTab("EDIT", editDriverTab);
@@ -213,7 +259,7 @@ public class DriverWindow extends javax.swing.JFrame {
         deleteDriverTab.setLayout(deleteDriverTabLayout);
         deleteDriverTabLayout.setHorizontalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
         deleteDriverTabLayout.setVerticalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +272,7 @@ public class DriverWindow extends javax.swing.JFrame {
         viewDriverTab.setLayout(viewDriverTabLayout);
         viewDriverTabLayout.setHorizontalGroup(
             viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 573, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
         viewDriverTabLayout.setVerticalGroup(
             viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,6 +324,37 @@ public class DriverWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_exitActionPerformed
 
+    private void idTextFieldEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextFieldEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idTextFieldEditActionPerformed
+
+    private void goEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goEditActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_goEditActionPerformed
+
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        // TODO add your handling code here:
+         Session session = HibernateUtil.getSessionFactory().openSession();
+     
+         try {  
+           
+            org.hibernate.Transaction tx = session.beginTransaction();  
+            Drivers   driver = new Drivers();
+            driver.setId(Integer.parseInt(idTextField.getText()));  
+            driver.setName(nameTextField.getText());
+            driver.setAddress(addressTextField.getText());  
+            driver.setTpNo(telephoneNoTextField.getText());
+            tx.commit();
+             JOptionPane.showMessageDialog(clear,"Success!!");
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            session.flush();  
+            session.close();  
+        }  
+    }//GEN-LAST:event_saveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -322,8 +399,11 @@ public class DriverWindow extends javax.swing.JFrame {
     private javax.swing.JTabbedPane driverTab;
     private javax.swing.JPanel editDriverTab;
     private javax.swing.JButton exit;
+    private javax.swing.JButton goEdit;
     private javax.swing.JLabel idLabel;
     private javax.swing.JTextField idTextField;
+    private javax.swing.JTextField idTextFieldEdit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton save;
