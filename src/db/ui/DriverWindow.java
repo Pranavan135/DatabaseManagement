@@ -46,9 +46,9 @@ public class DriverWindow extends javax.swing.JFrame {
         nameTextField = new javax.swing.JTextField();
         addressTextField = new javax.swing.JTextField();
         telephoneNoTextField = new javax.swing.JTextField();
-        clear = new javax.swing.JButton();
-        save = new javax.swing.JButton();
-        exit = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         editDriverTab = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         idTextFieldEdit = new javax.swing.JTextField();
@@ -163,11 +163,11 @@ public class DriverWindow extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 46, 0, 0);
         addDriverTab.add(telephoneNoTextField, gridBagConstraints);
 
-        clear.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
-        clear.setText("Clear");
-        clear.addActionListener(new java.awt.event.ActionListener() {
+        clearButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearActionPerformed(evt);
+                clearButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -178,13 +178,13 @@ public class DriverWindow extends javax.swing.JFrame {
         gridBagConstraints.ipady = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(53, 20, 29, 0);
-        addDriverTab.add(clear, gridBagConstraints);
+        addDriverTab.add(clearButton, gridBagConstraints);
 
-        save.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
-        save.setText("Save");
-        save.addActionListener(new java.awt.event.ActionListener() {
+        saveButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveActionPerformed(evt);
+                saveButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -194,13 +194,13 @@ public class DriverWindow extends javax.swing.JFrame {
         gridBagConstraints.ipady = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(53, 46, 29, 0);
-        addDriverTab.add(save, gridBagConstraints);
+        addDriverTab.add(saveButton, gridBagConstraints);
 
-        exit.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
-        exit.setText("Exit");
-        exit.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -210,7 +210,7 @@ public class DriverWindow extends javax.swing.JFrame {
         gridBagConstraints.ipady = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(53, 39, 29, 167);
-        addDriverTab.add(exit, gridBagConstraints);
+        addDriverTab.add(exitButton, gridBagConstraints);
 
         driverTab.addTab("ADD", addDriverTab);
 
@@ -317,13 +317,13 @@ public class DriverWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_telephoneNoTextFieldActionPerformed
 
-    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_clearActionPerformed
+    }//GEN-LAST:event_clearButtonActionPerformed
 
-    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_exitActionPerformed
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     private void idTextFieldEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextFieldEditActionPerformed
         // TODO add your handling code here:
@@ -334,7 +334,7 @@ public class DriverWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_goEditActionPerformed
 
-    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
         Session sess = null;
         Transaction tran = null;
@@ -351,7 +351,7 @@ public class DriverWindow extends javax.swing.JFrame {
             driver.setTpNo(telephoneNoTextField.getText());
             sess.save(driver);
             tran.commit();
-            JOptionPane.showMessageDialog(clear, "Success!!");
+            JOptionPane.showMessageDialog(clearButton, "Success!!");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -359,18 +359,18 @@ public class DriverWindow extends javax.swing.JFrame {
             sess.close();
         }
 
-    }//GEN-LAST:event_saveActionPerformed
+    }//GEN-LAST:event_saveButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addDriverTab;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JTextField addressTextField;
-    private javax.swing.JButton clear;
+    private javax.swing.JButton clearButton;
     private javax.swing.JPanel deleteDriverTab;
     private javax.swing.JTabbedPane driverTab;
     private javax.swing.JPanel editDriverTab;
-    private javax.swing.JButton exit;
+    private javax.swing.JButton exitButton;
     private javax.swing.JButton goEdit;
     private javax.swing.JLabel idLabel;
     private javax.swing.JTextField idTextField;
@@ -378,7 +378,7 @@ public class DriverWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JButton save;
+    private javax.swing.JButton saveButton;
     private javax.swing.JLabel telephoneNoLabel;
     private javax.swing.JTextField telephoneNoTextField;
     private javax.swing.JPanel viewDriverTab;
