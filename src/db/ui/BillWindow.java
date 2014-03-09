@@ -51,7 +51,13 @@ public class BillWindow extends javax.swing.JFrame {
         clearButton = new javax.swing.JButton();
         editBillsTab = new javax.swing.JPanel();
         deleteBillsTab = new javax.swing.JPanel();
+        deleteReferenceLabel = new javax.swing.JLabel();
+        deleteReferenceTextField = new javax.swing.JTextField();
+        deleteButton = new javax.swing.JButton();
         viewBillsTab = new javax.swing.JPanel();
+        viewReferenceLabel = new javax.swing.JLabel();
+        editReferenceTextField = new javax.swing.JTextField();
+        viewButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,28 +188,68 @@ public class BillWindow extends javax.swing.JFrame {
 
         billsTab.addTab("EDIT", editBillsTab);
 
+        deleteReferenceLabel.setText("Reference No");
+
+        deleteReferenceTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteReferenceTextFieldActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setText("Delete");
+
         javax.swing.GroupLayout deleteBillsTabLayout = new javax.swing.GroupLayout(deleteBillsTab);
         deleteBillsTab.setLayout(deleteBillsTabLayout);
         deleteBillsTabLayout.setHorizontalGroup(
             deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGroup(deleteBillsTabLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(deleteReferenceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(deleteReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(deleteButton)
+                .addGap(59, 59, 59))
         );
         deleteBillsTabLayout.setVerticalGroup(
             deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
+            .addGroup(deleteBillsTabLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteReferenceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton))
+                .addContainerGap(341, Short.MAX_VALUE))
         );
 
         billsTab.addTab("DELETE", deleteBillsTab);
+
+        viewReferenceLabel.setText("Reference No");
+
+        viewButton.setText("View");
 
         javax.swing.GroupLayout viewBillsTabLayout = new javax.swing.GroupLayout(viewBillsTab);
         viewBillsTab.setLayout(viewBillsTabLayout);
         viewBillsTabLayout.setHorizontalGroup(
             viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
+            .addGroup(viewBillsTabLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(viewReferenceLabel)
+                .addGap(101, 101, 101)
+                .addComponent(editReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(viewButton)
+                .addGap(61, 61, 61))
         );
         viewBillsTabLayout.setVerticalGroup(
             viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
+            .addGroup(viewBillsTabLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewReferenceLabel)
+                    .addComponent(editReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewButton))
+                .addContainerGap(341, Short.MAX_VALUE))
         );
 
         billsTab.addTab("VIEW", viewBillsTab);
@@ -250,6 +296,10 @@ public class BillWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_referenceNoTextFieldActionPerformed
 
+    private void deleteReferenceTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteReferenceTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteReferenceTextFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -295,7 +345,11 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JTabbedPane billsTab;
     private javax.swing.JButton clearButton;
     private javax.swing.JPanel deleteBillsTab;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel deleteReferenceLabel;
+    private javax.swing.JTextField deleteReferenceTextField;
     private javax.swing.JPanel editBillsTab;
+    private javax.swing.JTextField editReferenceTextField;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel hotelIDLabel;
     private javax.swing.JTextField hotelIDtextField;
@@ -309,5 +363,7 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JLabel townIDLabel;
     private javax.swing.JTextField townIDTextField;
     private javax.swing.JPanel viewBillsTab;
+    private javax.swing.JButton viewButton;
+    private javax.swing.JLabel viewReferenceLabel;
     // End of variables declaration//GEN-END:variables
 }
