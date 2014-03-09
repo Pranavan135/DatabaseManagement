@@ -67,6 +67,7 @@ public class DriverWindow extends javax.swing.JFrame {
         resultTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 354));
 
         addDriverTab.setLayout(new java.awt.GridBagLayout());
 
@@ -246,7 +247,7 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addComponent(idTextFieldEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(goEdit)
-                .addContainerGap(521, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         editDriverTabLayout.setVerticalGroup(
             editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +266,7 @@ public class DriverWindow extends javax.swing.JFrame {
         deleteDriverTab.setLayout(deleteDriverTabLayout);
         deleteDriverTabLayout.setHorizontalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 943, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
         deleteDriverTabLayout.setVerticalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,7 +314,7 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addGroup(viewDriverTabLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(436, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         viewDriverTabLayout.setVerticalGroup(
             viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,8 +341,7 @@ public class DriverWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(driverTab)
-                .addGap(519, 519, 519))
+                .addComponent(driverTab))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,6 +389,7 @@ public class DriverWindow extends javax.swing.JFrame {
     private void viewGoButtonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGoButtonFieldActionPerformed
         // TODO add your handling code here:
         if ( !viewGoButtonField.getText().trim().equals("")){
+            System.out.println("Pranavan You are here");
             runQueryBasedOnID();
         }
         
@@ -397,7 +398,7 @@ public class DriverWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_viewGoButtonFieldActionPerformed
 
-    private static String QUERY_BASED_ON_ID = "from drivers a where a.id like '";
+    private static String QUERY_BASED_ON_ID = "from drivers a where a.name like '";
 
     private void runQueryBasedOnID() {
         executeHQLQuery(QUERY_BASED_ON_ID + idViewTextField.getText() + "%'");
