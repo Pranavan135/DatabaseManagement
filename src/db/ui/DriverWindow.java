@@ -349,6 +349,7 @@ public class DriverWindow extends javax.swing.JFrame {
             driver.setName(nameTextField.getText());
             driver.setAddress(addressTextField.getText());
             driver.setTpNo(telephoneNoTextField.getText());
+            sess.save(driver);
             tran.commit();
             JOptionPane.showMessageDialog(clear, "Success!!");
         } catch (Exception e) {
