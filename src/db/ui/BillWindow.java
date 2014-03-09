@@ -6,6 +6,15 @@
 
 package db.ui;
 
+import db.entity.Bills;
+import db.entity.Tours;
+import db.entity.Towns;
+import java.util.Date;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 /**
  *
  * @author DELL
@@ -27,7 +36,6 @@ public class BillWindow extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
         billsTab = new javax.swing.JTabbedPane();
@@ -161,10 +169,15 @@ public class BillWindow extends javax.swing.JFrame {
         exitButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exitButton.setText("EXIT");
         addBillsTab.add(exitButton);
-        exitButton.setBounds(450, 260, 160, 70);
+        exitButton.setBounds(440, 260, 160, 70);
 
         addButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         addButton.setText("ADD");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
         addBillsTab.add(addButton);
         addButton.setBounds(40, 260, 160, 70);
 
@@ -267,7 +280,34 @@ public class BillWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void addData()  {
+         Session sess = null;
+         Transaction tran = null;
+         
+         try{
+            SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
+            sess = sessFact.openSession();
+            tran = sess.beginTransaction();
+            Bills bill = new Bills();
+//            Towns town = new Towns(Integer.parseInt(townIDTextField.getText()));
+  //          Tours tour = new Tours(Integer.parseInt(tourCodeTextField.getText()));
+            bill.setRefNo(Integer.parseInt(referenceNoTextField.getText()));
+            //bill.setTours(tour);
+            //bill.setTowns(town);
+            bill.setAmount(Double.parseDouble(amountTextField.getText()));
+           // bill.setBillDate(Date.parse(billDateTextField.getText()));
+            sess.save(bill);
+            tran.commit();
+    }
+    catch(Exception ex){
+      if (tran !=null) 
+          tran.rollback();
+      ex.printStackTrace();
+    }
+    finally{
+      sess.close();
+    }
+    }
     private void amountTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_amountTextFieldActionPerformed
@@ -300,41 +340,13 @@ public class BillWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteReferenceTextFieldActionPerformed
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        addData();
+    }//GEN-LAST:event_addButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BillWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BillWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BillWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BillWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BillWindow().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addBillsTab;
     private javax.swing.JButton addButton;
