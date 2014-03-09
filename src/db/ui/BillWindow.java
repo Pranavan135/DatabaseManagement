@@ -9,7 +9,10 @@ package db.ui;
 import db.entity.Bills;
 import db.entity.Tours;
 import db.entity.Towns;
+import db.util.HibernateUtil;
 import java.util.Date;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -64,8 +67,10 @@ public class BillWindow extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         viewBillsTab = new javax.swing.JPanel();
         viewReferenceLabel = new javax.swing.JLabel();
-        editReferenceTextField = new javax.swing.JTextField();
+        viewReferenceTextField = new javax.swing.JTextField();
         viewButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        viewTextArea = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -240,6 +245,16 @@ public class BillWindow extends javax.swing.JFrame {
         viewReferenceLabel.setText("Reference No");
 
         viewButton.setText("View");
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
+
+        viewTextArea.setEditable(false);
+        viewTextArea.setColumns(20);
+        viewTextArea.setRows(5);
+        jScrollPane1.setViewportView(viewTextArea);
 
         javax.swing.GroupLayout viewBillsTabLayout = new javax.swing.GroupLayout(viewBillsTab);
         viewBillsTab.setLayout(viewBillsTabLayout);
@@ -247,12 +262,17 @@ public class BillWindow extends javax.swing.JFrame {
             viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewBillsTabLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addComponent(viewReferenceLabel)
-                .addGap(101, 101, 101)
-                .addComponent(editReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addComponent(viewButton)
-                .addGap(61, 61, 61))
+                .addGroup(viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewBillsTabLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(viewBillsTabLayout.createSequentialGroup()
+                        .addComponent(viewReferenceLabel)
+                        .addGap(101, 101, 101)
+                        .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addComponent(viewButton)
+                        .addGap(61, 61, 61))))
         );
         viewBillsTabLayout.setVerticalGroup(
             viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,9 +280,11 @@ public class BillWindow extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewReferenceLabel)
-                    .addComponent(editReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewButton))
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         billsTab.addTab("VIEW", viewBillsTab);
@@ -308,6 +330,30 @@ public class BillWindow extends javax.swing.JFrame {
       sess.close();
     }
     }
+    
+    private static String QUERY_BASED_ON_REFERENCE_NO = "from Actor a where a.firstName like '";
+//    private static String QUERY_BASED_ON_LAST_NAME = "from Actor a where a.lastName like '";
+
+    private void runQueryBasedOnReferenceNo() {
+        viewBills(QUERY_BASED_ON_REFERENCE_NO + viewReferenceTextField.getText());
+    }
+    private void viewBills(String hql) {
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query q = session.createQuery(hql);
+            java.util.List resultList = q.list();
+            
+            for (Object o : resultList) {
+            Bills bill = (Bills) o;
+            viewTextArea.append("Reference No : " + bill.getRefNo() + "\n Tour Code:" + bill.getTours().getTourCode() + "\nTown ID : " + bill.getTowns().getId() + "\nHotel ID : " + bill.getHotels().getId() + "\nBillDate : " + bill.getBillDate() + "\nNumber Of Individuals : " + bill.getNumberOfIndividuals() + "\nAmount : " + bill.getAmount());
+        }
+            session.getTransaction().commit();
+        } catch (HibernateException he) {
+            he.printStackTrace();
+        }
+    }
+    
     private void amountTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_amountTextFieldActionPerformed
@@ -344,6 +390,10 @@ public class BillWindow extends javax.swing.JFrame {
         addData();
     }//GEN-LAST:event_addButtonActionPerformed
 
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        runQueryBasedOnReferenceNo();
+    }//GEN-LAST:event_viewButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -361,11 +411,11 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JLabel deleteReferenceLabel;
     private javax.swing.JTextField deleteReferenceTextField;
     private javax.swing.JPanel editBillsTab;
-    private javax.swing.JTextField editReferenceTextField;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel hotelIDLabel;
     private javax.swing.JTextField hotelIDtextField;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel numberOfIndvidualsLabel;
     private javax.swing.JTextField numberOfIndvidualsTextField;
     private javax.swing.JLabel referenceNoLabel;
@@ -377,5 +427,7 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JPanel viewBillsTab;
     private javax.swing.JButton viewButton;
     private javax.swing.JLabel viewReferenceLabel;
+    private javax.swing.JTextField viewReferenceTextField;
+    private javax.swing.JTextArea viewTextArea;
     // End of variables declaration//GEN-END:variables
 }
