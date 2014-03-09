@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package db.ui;
 
 import db.entity.Drivers;
@@ -11,6 +10,8 @@ import db.util.HibernateUtil;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -330,29 +331,33 @@ public class DriverWindow extends javax.swing.JFrame {
 
     private void goEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goEditActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_goEditActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
-         Session session = HibernateUtil.getSessionFactory().openSession();
-     
-         try {  
-           
-            org.hibernate.Transaction tx = session.beginTransaction();  
-            Drivers   driver = new Drivers();
-            driver.setId(Integer.parseInt(idTextField.getText()));  
+        Session sess = null;
+        Transaction tran = null;
+
+        try {
+            SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
+            sess = sessFact.openSession();
+            tran = sess.beginTransaction();
+            //org.hibernate.Transaction tx = session.beginTransaction();  
+            Drivers driver = new Drivers();
+            driver.setId(Integer.parseInt(idTextField.getText()));
             driver.setName(nameTextField.getText());
-            driver.setAddress(addressTextField.getText());  
+            driver.setAddress(addressTextField.getText());
             driver.setTpNo(telephoneNoTextField.getText());
-            tx.commit();
-             JOptionPane.showMessageDialog(clear,"Success!!");
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        } finally {  
-            session.flush();  
-            session.close();  
-        }  
+            tran.commit();
+            JOptionPane.showMessageDialog(clear, "Success!!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sess.flush();
+            sess.close();
+        }
+
     }//GEN-LAST:event_saveActionPerformed
 
     /**
@@ -381,6 +386,7 @@ public class DriverWindow extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DriverWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
