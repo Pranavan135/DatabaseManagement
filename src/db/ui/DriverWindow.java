@@ -56,7 +56,7 @@ public class DriverWindow extends javax.swing.JFrame {
         deleteDriverTab = new javax.swing.JPanel();
         viewDriverTab = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         addDriverTab.setLayout(new java.awt.GridBagLayout());
 
