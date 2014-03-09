@@ -41,6 +41,11 @@ public class MainWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         driversTextField.setText("Drivers");
+        driversTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                driversTextFieldActionPerformed(evt);
+            }
+        });
 
         coachesTextField.setText("Coaches");
         coachesTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +137,11 @@ public class MainWindow extends javax.swing.JFrame {
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
         new BillWindow().setVisible(true);
     }//GEN-LAST:event_billsTextFieldActionPerformed
+
+    private void driversTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driversTextFieldActionPerformed
+        // TODO add your handling code here:
+        new DriverWindow().setVisible(true);
+    }//GEN-LAST:event_driversTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
