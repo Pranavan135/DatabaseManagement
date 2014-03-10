@@ -34,7 +34,7 @@ public class MainWindow extends javax.swing.JFrame {
         townsTextField = new javax.swing.JButton();
         hotelsTextField = new javax.swing.JButton();
         routesTextField = new javax.swing.JButton();
-        customersTextField = new javax.swing.JButton();
+        passengersTextField = new javax.swing.JButton();
         billsTextField = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -77,7 +77,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         routesTextField.setText("Routes");
 
-        customersTextField.setText("Customers");
+        passengersTextField.setText("Passengers");
+        passengersTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passengersTextFieldActionPerformed(evt);
+            }
+        });
 
         billsTextField.setText("Bills");
         billsTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +111,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hotelsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(customersTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                .addComponent(passengersTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                                 .addComponent(routesTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(billsTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -128,7 +133,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(hotelsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(customersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(passengersTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(coachesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,6 +176,11 @@ public class MainWindow extends javax.swing.JFrame {
       new TourWindow().setVisible(true);
     }//GEN-LAST:event_toursTextFieldActionPerformed
 
+    private void passengersTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengersTextFieldActionPerformed
+        // TODO add your handling code here:
+        new PassengerWindow().setVisible(true);
+    }//GEN-LAST:event_passengersTextFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -209,10 +219,10 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton billsTextField;
     private javax.swing.JButton coachesTextField;
-    private javax.swing.JButton customersTextField;
     private javax.swing.JButton driversTextField;
     private javax.swing.JButton hotelsTextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton passengersTextField;
     private javax.swing.JButton routesTextField;
     private javax.swing.JButton toursTextField;
     private javax.swing.JButton townsTextField;

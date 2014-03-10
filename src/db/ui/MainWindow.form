@@ -39,7 +39,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="hotelsTextField" min="-2" pref="115" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="customersTextField" alignment="0" pref="115" max="32767" attributes="0"/>
+                              <Component id="passengersTextField" alignment="0" pref="115" max="32767" attributes="0"/>
                               <Component id="routesTextField" alignment="0" max="32767" attributes="0"/>
                               <Component id="billsTextField" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -69,7 +69,7 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="hotelsTextField" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="customersTextField" min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="passengersTextField" min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -135,10 +135,13 @@
         <Property name="text" type="java.lang.String" value="Routes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="customersTextField">
+    <Component class="javax.swing.JButton" name="passengersTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Customers"/>
+        <Property name="text" type="java.lang.String" value="Passengers"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passengersTextFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="billsTextField">
       <Properties>
