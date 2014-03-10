@@ -101,7 +101,6 @@ public class PassengerWindow extends javax.swing.JFrame {
         btnViewExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(400, 250));
 
         tabPassengerAdd.setToolTipText("");
         tabPassengerAdd.setName(""); // NOI18N
