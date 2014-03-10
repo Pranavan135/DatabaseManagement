@@ -131,7 +131,7 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void coachesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coachesTextFieldActionPerformed
-        // TODO add your handling code here:
+        new CoachWindow().setVisible(true);
     }//GEN-LAST:event_coachesTextFieldActionPerformed
 
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
