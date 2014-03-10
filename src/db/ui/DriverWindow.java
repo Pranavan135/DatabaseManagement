@@ -415,8 +415,11 @@ public class DriverWindow extends javax.swing.JFrame {
             driver.setName(nameTextField.getText().trim());
             driver.setAddress(addressTextField.getText().trim());
             driver.setTpNo(telephoneNoTextField.getText().trim());
+            //driver.setRouteses(null);
+            //driver.setTourses(null);
             sess.save(driver);
             tran.commit();
+            JOptionPane.showMessageDialog(null, "Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
