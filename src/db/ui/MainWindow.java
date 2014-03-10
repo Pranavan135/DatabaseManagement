@@ -59,6 +59,11 @@ public class MainWindow extends javax.swing.JFrame {
         townsTextField.setText("Towns");
 
         hotelsTextField.setText("Hotels");
+        hotelsTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hotelsTextFieldActionPerformed(evt);
+            }
+        });
 
         routesTextField.setText("Routes");
 
@@ -142,6 +147,11 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         new DriverWindow().setVisible(true);
     }//GEN-LAST:event_driversTextFieldActionPerformed
+
+    private void hotelsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelsTextFieldActionPerformed
+        // TODO add your handling code here:
+        new HotelsWindow().setVisible(true);
+    }//GEN-LAST:event_hotelsTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
