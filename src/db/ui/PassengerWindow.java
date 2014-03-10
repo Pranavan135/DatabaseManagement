@@ -40,12 +40,12 @@ public class PassengerWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+     /*   java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new PassengerWindow().setVisible(true);
             }
-        });
+        });*/
         
         initComponents();
     }
