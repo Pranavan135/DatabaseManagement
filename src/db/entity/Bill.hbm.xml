@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 9, 2014 1:58:00 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated Mar 10, 2014 2:55:00 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="db.entity.Bills" table="bills" catalog="cakephp">
+    <class name="db.entity.Bill" table="bill" catalog="tourmanagement">
         <id name="refNo" type="int">
             <column name="ref_no" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="towns" class="db.entity.Towns" fetch="select">
+        <many-to-one name="town" class="db.entity.Town" fetch="select">
             <column name="town_id" />
         </many-to-one>
-        <many-to-one name="tours" class="db.entity.Tours" fetch="select">
+        <many-to-one name="tour" class="db.entity.Tour" fetch="select">
             <column name="tour_code" />
         </many-to-one>
-        <many-to-one name="hotels" class="db.entity.Hotels" fetch="select">
+        <many-to-one name="hotel" class="db.entity.Hotel" fetch="select">
             <column name="hotel_id" />
         </many-to-one>
         <property name="billDate" type="date">

@@ -6,9 +6,9 @@
 
 package db.ui;
 
-import db.entity.Bills;
-import db.entity.Tours;
-import db.entity.Towns;
+import db.entity.Bill;
+import db.entity.Tour;
+import db.entity.Town;
 import db.util.HibernateUtil;
 import java.util.Date;
 import org.hibernate.HibernateException;
@@ -320,7 +320,7 @@ public class BillWindow extends javax.swing.JFrame {
             SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
             sess = sessFact.openSession();
             tran = sess.beginTransaction();
-            Bills bill = new Bills();
+            Bill bill = new Bill();
 //            Towns town = new Towns(Integer.parseInt(townIDTextField.getText()));
   //          Tours tour = new Tours(Integer.parseInt(tourCodeTextField.getText()));
             bill.setRefNo(Integer.parseInt(referenceNoTextField.getText()));
@@ -355,8 +355,8 @@ public class BillWindow extends javax.swing.JFrame {
             java.util.List resultList = q.list();
             
             for (Object o : resultList) {
-            Bills bill = (Bills) o;
-            viewTextArea.append("Reference No : " + bill.getRefNo() + "\n Tour Code:" + bill.getTours().getTourCode() + "\nTown ID : " + bill.getTowns().getId() + "\nHotel ID : " + bill.getHotels().getId() + "\nBillDate : " + bill.getBillDate() + "\nNumber Of Individuals : " + bill.getNumberOfIndividuals() + "\nAmount : " + bill.getAmount());
+            Bill bill = (Bill) o;
+            viewTextArea.append("Reference No : " + bill.getRefNo() + "\n Tour Code:" + bill.getTour().getTourCode() + "\nTown ID : " + bill.getTown().getId() + "\nHotel ID : " + bill.getHotel().getId() + "\nBillDate : " + bill.getBillDate() + "\nNumber Of Individuals : " + bill.getNumberOfIndividuals() + "\nAmount : " + bill.getAmount());
         }
             session.getTransaction().commit();
         } catch (HibernateException he) {

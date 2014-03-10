@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
-  <schema-selection match-catalog="cakephp"/>
-  <table-filter match-name="customers"/>
-  <table-filter match-name="towns"/>
-  <table-filter match-name="coaches"/>
-  <table-filter match-name="routes"/>
-  <table-filter match-name="hotels"/>
-  <table-filter match-name="drivers"/>
-  <table-filter match-name="tours"/>
-  <table-filter match-name="bills"/>
-  <table-filter match-name="driver_routes"/>
-  <table-filter match-name="route_towns"/>
+  <schema-selection match-catalog="tourmanagement"/>
+  <table-filter match-name="route_town"/>
+  <table-filter match-name="passenger"/>
+  <table-filter match-name="hotel"/>
+  <table-filter match-name="town"/>
+  <table-filter match-name="driver_route"/>
+  <table-filter match-name="bill"/>
+  <table-filter match-name="coach"/>
+  <table-filter match-name="tour"/>
+  <table-filter match-name="route"/>
+  <table-filter match-name="driver"/>
 </hibernate-reverse-engineering>

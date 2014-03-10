@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 10, 2014 2:55:00 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="db.entity.RouteTown" table="route_town" catalog="tourmanagement">
+        <composite-id name="id" class="db.entity.RouteTownId">
+            <key-property name="routeId" type="java.lang.Integer">
+                <column name="route_id" />
+            </key-property>
+            <key-property name="townId" type="java.lang.Integer">
+                <column name="town_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="route" class="db.entity.Route" update="false" insert="false" fetch="select">
+            <column name="route_id" />
+        </many-to-one>
+        <many-to-one name="town" class="db.entity.Town" update="false" insert="false" fetch="select">
+            <column name="town_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

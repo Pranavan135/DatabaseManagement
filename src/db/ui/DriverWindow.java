@@ -5,8 +5,9 @@
  */
 package db.ui;
 
-import db.entity.Bills;
-import db.entity.Drivers;
+import db.entity.Bill;
+import db.entity.Driver;
+import db.entity.DriverId;
 import db.util.HibernateUtil;
 import java.util.List;
 import java.util.Vector;
@@ -410,9 +411,11 @@ public class DriverWindow extends javax.swing.JFrame {
             SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
             sess = sessFact.openSession();
             tran = sess.beginTransaction();
-            Drivers driver = new Drivers();
-            driver.setId(Integer.parseInt(idTextField.getText().trim()));
-            driver.setName(nameTextField.getText().trim());
+            Driver driver = new Driver();
+            DriverId driverId = new DriverId();
+            driverId.setId(Integer.parseInt(idTextField.getText().trim()));
+            driverId.setName(nameTextField.getText().trim());
+            driver.setId(driverId);
             driver.setAddress(addressTextField.getText().trim());
             driver.setTpNo(telephoneNoTextField.getText().trim());
             //driver.setRouteses(null);
@@ -456,10 +459,10 @@ private static String QUERY_BASED_ON_Name = "from drivers a where a.name like '"
         tableHeaders.add("TelephoneNumber");
 
         for (Object o : resultList) {
-            Drivers driver = (Drivers) o;
+            Driver driver = (Driver) o;
             Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(driver.getId());
-            oneRow.add(driver.getName());
+            oneRow.add(driver.getId().getId());
+            oneRow.add(driver.getId().getName());
             oneRow.add(driver.getAddress());
             oneRow.add(driver.getTpNo());
             tableData.add(oneRow);

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 9, 2014 1:58:00 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated Mar 10, 2014 2:55:00 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="db.entity.Routes" table="routes" catalog="cakephp">
+    <class name="db.entity.Route" table="route" catalog="tourmanagement">
         <id name="id" type="int">
             <column name="id" />
             <generator class="assigned" />
@@ -17,27 +17,23 @@
         <property name="distance" type="java.lang.Integer">
             <column name="distance" />
         </property>
-        <set name="townses" table="route_towns" inverse="false" lazy="true" fetch="select">
-            <key>
-                <column name="route_id" not-null="true" />
-            </key>
-            <many-to-many entity-name="db.entity.Towns">
-                <column name="town_id" not-null="true" />
-            </many-to-many>
-        </set>
-        <set name="tourses" table="tours" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="route_id" />
-            </key>
-            <one-to-many class="db.entity.Tours" />
-        </set>
-        <set name="driverses" table="driver_routes" inverse="false" lazy="true" fetch="select">
+        <set name="driverRoutes" table="driver_route" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="route_id" not-null="true" unique="true" />
             </key>
-            <many-to-many entity-name="db.entity.Drivers">
-                <column name="driver_id" not-null="true" />
-            </many-to-many>
+            <one-to-many class="db.entity.DriverRoute" />
+        </set>
+        <set name="tours" table="tour" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="route_id" />
+            </key>
+            <one-to-many class="db.entity.Tour" />
+        </set>
+        <set name="routeTowns" table="route_town" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="route_id" />
+            </key>
+            <one-to-many class="db.entity.RouteTown" />
         </set>
     </class>
 </hibernate-mapping>

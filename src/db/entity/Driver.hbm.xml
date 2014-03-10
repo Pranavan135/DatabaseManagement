@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 10, 2014 2:55:00 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="db.entity.Driver" table="driver" catalog="tourmanagement">
+        <composite-id name="id" class="db.entity.DriverId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="name" type="string">
+                <column name="name" length="30" />
+            </key-property>
+        </composite-id>
+        <property name="address" type="string">
+            <column name="address" length="100" not-null="true" />
+        </property>
+        <property name="tpNo" type="string">
+            <column name="tp_no" length="10" not-null="true" unique="true" />
+        </property>
+        <set name="driverRoutes" table="driver_route" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="driver_id" not-null="true" />
+                <column name="driver_name" length="30" not-null="true" />
+            </key>
+            <one-to-many class="db.entity.DriverRoute" />
+        </set>
+        <set name="tours" table="tour" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="driver_id" />
+                <column name="driver_name" length="30" not-null="true" />
+            </key>
+            <one-to-many class="db.entity.Tour" />
+        </set>
+    </class>
+</hibernate-mapping>

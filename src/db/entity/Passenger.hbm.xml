@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 9, 2014 1:58:00 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated Mar 10, 2014 2:55:00 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="db.entity.Customers" table="customers" catalog="cakephp">
+    <class name="db.entity.Passenger" table="passenger" catalog="tourmanagement">
         <id name="id" type="int">
             <column name="id" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="tour" class="db.entity.Tour" fetch="select">
+            <column name="tour_code" />
+        </many-to-one>
         <property name="name" type="string">
-            <column name="name" length="30" not-null="true" />
+            <column name="name" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

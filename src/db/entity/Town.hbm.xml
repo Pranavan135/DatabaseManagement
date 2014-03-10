@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 9, 2014 1:58:00 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated Mar 10, 2014 2:55:00 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="db.entity.Towns" table="towns" catalog="cakephp">
+    <class name="db.entity.Town" table="town" catalog="tourmanagement">
         <id name="id" type="int">
             <column name="id" />
             <generator class="assigned" />
@@ -11,25 +11,26 @@
         <property name="name" type="string">
             <column name="name" length="20" not-null="true" />
         </property>
-        <set name="routeses" table="route_towns" inverse="false" lazy="true" fetch="select">
-            <key>
-                <column name="town_id" not-null="true" />
-            </key>
-            <many-to-many entity-name="db.entity.Routes">
-                <column name="route_id" not-null="true" />
-            </many-to-many>
-        </set>
-        <set name="billses" table="bills" inverse="true" lazy="true" fetch="select">
+        <property name="overNightStop" type="java.lang.Boolean">
+            <column name="overNightStop" />
+        </property>
+        <set name="bills" table="bill" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="town_id" />
             </key>
-            <one-to-many class="db.entity.Bills" />
+            <one-to-many class="db.entity.Bill" />
         </set>
-        <set name="hotelses" table="hotels" inverse="true" lazy="true" fetch="select">
+        <set name="routeTowns" table="route_town" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="town_id" />
+            </key>
+            <one-to-many class="db.entity.RouteTown" />
+        </set>
+        <set name="hotels" table="hotel" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="town_id" unique="true" />
             </key>
-            <one-to-many class="db.entity.Hotels" />
+            <one-to-many class="db.entity.Hotel" />
         </set>
     </class>
 </hibernate-mapping>
