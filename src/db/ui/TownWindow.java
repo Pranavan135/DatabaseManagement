@@ -30,87 +30,271 @@ public class TownWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        tabbedPanelMain = new javax.swing.JTabbedPane();
+        panelAdd = new javax.swing.JScrollPane();
+        panelMain = new javax.swing.JPanel();
+        panelBills = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        lstBillsLeft = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstBillsRight = new javax.swing.JList();
+        panelRouteTowns = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lstRouteTowsnLeft = new javax.swing.JList();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        lstRouteTownsRight = new javax.swing.JList();
+        panelHotels = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        lstHotelsLeft = new javax.swing.JList();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        lstHotelsRight = new javax.swing.JList();
+        panelBills1 = new javax.swing.JPanel();
+        lblTownID = new javax.swing.JLabel();
+        lblTownName = new javax.swing.JLabel();
+        lblOvernightStop = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        panelControlls = new javax.swing.JPanel();
+        btnReset = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 659, Short.MAX_VALUE)
+        panelBills.setBorder(javax.swing.BorderFactory.createTitledBorder("Bills"));
+        panelBills.setName(""); // NOI18N
+        panelBills.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
+
+        jScrollPane1.setViewportView(lstBillsLeft);
+
+        panelBills.add(jScrollPane1);
+
+        lstBillsRight.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(lstBillsRight);
+
+        panelBills.add(jScrollPane2);
+
+        panelRouteTowns.setBorder(javax.swing.BorderFactory.createTitledBorder("Route Towns"));
+        panelRouteTowns.setName(""); // NOI18N
+        panelRouteTowns.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
+
+        lstRouteTowsnLeft.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(lstRouteTowsnLeft);
+
+        panelRouteTowns.add(jScrollPane3);
+
+        lstRouteTownsRight.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(lstRouteTownsRight);
+
+        panelRouteTowns.add(jScrollPane4);
+
+        panelHotels.setBorder(javax.swing.BorderFactory.createTitledBorder("Hotels"));
+        panelHotels.setName(""); // NOI18N
+        panelHotels.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
+
+        lstHotelsLeft.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(lstHotelsLeft);
+
+        panelHotels.add(jScrollPane5);
+
+        lstHotelsRight.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        lstHotelsRight.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstHotelsRightMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(lstHotelsRight);
+
+        panelHotels.add(jScrollPane6);
+
+        panelBills1.setBorder(javax.swing.BorderFactory.createTitledBorder("Details"));
+        panelBills1.setName(""); // NOI18N
+
+        lblTownID.setText("Town ID");
+
+        lblTownName.setText("Town Name");
+
+        lblOvernightStop.setText("Overnight Stop");
+
+        jCheckBox1.setText("Allowed");
+
+        javax.swing.GroupLayout panelBills1Layout = new javax.swing.GroupLayout(panelBills1);
+        panelBills1.setLayout(panelBills1Layout);
+        panelBills1Layout.setHorizontalGroup(
+            panelBills1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBills1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBills1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBills1Layout.createSequentialGroup()
+                        .addComponent(lblTownID)
+                        .addGap(73, 73, 73)
+                        .addComponent(jTextField1))
+                    .addGroup(panelBills1Layout.createSequentialGroup()
+                        .addGroup(panelBills1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTownName)
+                            .addComponent(lblOvernightStop))
+                        .addGap(40, 40, 40)
+                        .addGroup(panelBills1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelBills1Layout.createSequentialGroup()
+                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE))))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+        panelBills1Layout.setVerticalGroup(
+            panelBills1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBills1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelBills1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTownID)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelBills1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTownName)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelBills1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOvernightStop)
+                    .addComponent(jCheckBox1)))
         );
 
-        jTabbedPane1.addTab("Add", jPanel1);
+        panelControlls.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        btnReset.setText("Reset");
+
+        btnSave.setText("Save");
+
+        javax.swing.GroupLayout panelControllsLayout = new javax.swing.GroupLayout(panelControlls);
+        panelControlls.setLayout(panelControllsLayout);
+        panelControllsLayout.setHorizontalGroup(
+            panelControllsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelControllsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSave)
+                .addGap(18, 18, 18)
+                .addComponent(btnReset)
+                .addContainerGap())
+        );
+        panelControllsLayout.setVerticalGroup(
+            panelControllsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelControllsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelControllsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReset)
+                    .addComponent(btnSave))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
+        panelMain.setLayout(panelMainLayout);
+        panelMainLayout.setHorizontalGroup(
+            panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelBills, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelRouteTowns, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelHotels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelBills1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelControlls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelMainLayout.setVerticalGroup(
+            panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMainLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(panelBills1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelBills, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelRouteTowns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelHotels, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelControlls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        panelAdd.setViewportView(panelMain);
+
+        tabbedPanelMain.addTab("Add", panelAdd);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 659, Short.MAX_VALUE)
+            .addGap(0, 922, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 691, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Edit", jPanel2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 659, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab3", jPanel3);
+        tabbedPanelMain.addTab("Edit", jPanel2);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 659, Short.MAX_VALUE)
+            .addGap(0, 922, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 691, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab4", jPanel4);
+        tabbedPanelMain.addTab("tab4", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(tabbedPanelMain)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addComponent(tabbedPanelMain)
+                .addGap(0, 0, 0))
         );
 
-        jTabbedPane1.getAccessibleContext().setAccessibleName("Add");
+        tabbedPanelMain.getAccessibleContext().setAccessibleName("Add");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lstHotelsRightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstHotelsRightMouseClicked
+        if(evt.getClickCount()==2) {
+            
+        }
+    }//GEN-LAST:event_lstHotelsRightMouseClicked
 
     /**
      * @param args the command line arguments
@@ -143,10 +327,35 @@ public class TownWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblOvernightStop;
+    private javax.swing.JLabel lblTownID;
+    private javax.swing.JLabel lblTownName;
+    private javax.swing.JList lstBillsLeft;
+    private javax.swing.JList lstBillsRight;
+    private javax.swing.JList lstHotelsLeft;
+    private javax.swing.JList lstHotelsRight;
+    private javax.swing.JList lstRouteTownsRight;
+    private javax.swing.JList lstRouteTowsnLeft;
+    private javax.swing.JScrollPane panelAdd;
+    private javax.swing.JPanel panelBills;
+    private javax.swing.JPanel panelBills1;
+    private javax.swing.JPanel panelControlls;
+    private javax.swing.JPanel panelHotels;
+    private javax.swing.JPanel panelMain;
+    private javax.swing.JPanel panelRouteTowns;
+    private javax.swing.JTabbedPane tabbedPanelMain;
     // End of variables declaration//GEN-END:variables
 }
