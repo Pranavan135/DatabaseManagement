@@ -5,6 +5,7 @@
  */
 package db.ui;
 
+import db.entity.Bills;
 import db.entity.Drivers;
 import db.util.HibernateUtil;
 import java.util.List;
@@ -193,6 +194,11 @@ public class DriverWindow extends javax.swing.JFrame {
 
         save.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         save.setText("Save");
+        save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 7;
@@ -375,7 +381,7 @@ public class DriverWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_clearActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_exitActionPerformed
 
     private void idTextFieldEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextFieldEditActionPerformed
@@ -389,20 +395,39 @@ public class DriverWindow extends javax.swing.JFrame {
 
     private void viewGoButtonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGoButtonFieldActionPerformed
         // TODO add your handling code here:
-        if ( !viewGoButtonField.getText().trim().equals("")){
+        if (!viewGoButtonField.getText().trim().equals("")) {
             System.out.println("Pranavan You are here");
             runQueryBasedOnID();
-        }
-        
-        else {
-            JOptionPane.showMessageDialog(null, "Searching Drivers", QUERY_BASED_ON_ID, JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Searching Drivers", QUERY_BASED_ON_Name, JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_viewGoButtonFieldActionPerformed
 
-    private static String QUERY_BASED_ON_ID = "from drivers a where a.name like '";
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
+        Session sess = null;
+        Transaction tran = null;
+        try {
+            SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
+            sess = sessFact.openSession();
+            tran = sess.beginTransaction();
+            Drivers driver = new Drivers();
+            driver.setId(Integer.parseInt(idTextField.getText().trim()));
+            driver.setName(nameTextField.getText().trim());
+            driver.setAddress(addressTextField.getText().trim());
+            driver.setTpNo(telephoneNoTextField.getText().trim());
+            sess.save(driver);
+            tran.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            sess.close();
+        }
+    }//GEN-LAST:event_saveActionPerformed
+
+private static String QUERY_BASED_ON_Name = "from drivers a where a.name like '";
 
     private void runQueryBasedOnID() {
-        executeHQLQuery(QUERY_BASED_ON_ID + idViewTextField.getText() + "%'");
+        executeHQLQuery(QUERY_BASED_ON_Name + idViewTextField.getText().trim() + "%'");
     }
 
     private void executeHQLQuery(String hql) {
