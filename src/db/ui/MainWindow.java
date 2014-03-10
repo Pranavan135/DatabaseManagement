@@ -55,8 +55,18 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         toursTextField.setText("Tours");
+        toursTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toursTextFieldActionPerformed(evt);
+            }
+        });
 
         townsTextField.setText("Towns");
+        townsTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                townsTextFieldActionPerformed(evt);
+            }
+        });
 
         hotelsTextField.setText("Hotels");
         hotelsTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +162,14 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         new HotelsWindow().setVisible(true);
     }//GEN-LAST:event_hotelsTextFieldActionPerformed
+
+    private void townsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townsTextFieldActionPerformed
+        new TownWindow().setVisible(true);
+    }//GEN-LAST:event_townsTextFieldActionPerformed
+
+    private void toursTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toursTextFieldActionPerformed
+      new TourWindow().setVisible(true);
+    }//GEN-LAST:event_toursTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
