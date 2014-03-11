@@ -8,7 +8,7 @@ package db.ui;
 import db.entity.Bill;
 import db.entity.Driver;
 import db.entity.DriverId;
-import db.ui.dao.DriverDAO;
+import db.dao.DriverDAO;
 import db.util.HibernateUtil;
 import java.util.List;
 import java.util.Vector;

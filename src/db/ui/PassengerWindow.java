@@ -8,8 +8,8 @@ package db.ui;
 
 import db.entity.Passenger;
 import db.entity.Tour;
-import db.ui.dao.PassengerDAO;
-import db.ui.dao.TourDAO;
+import db.dao.PassengerDAO;
+import db.dao.TourDAO;
 
 /**
  *
