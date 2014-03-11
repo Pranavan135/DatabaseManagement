@@ -72,10 +72,52 @@ public class PassengerDAO {
         }
         Transaction transaction = null;
         try {
-            String HQLQuery = "FROM Town t ";
+            String HQLQuery = "FROM Passenger p ";
             Query query = session.createQuery(HQLQuery);
-            List<Passenger> towns = query.list();
-            return towns;
+            List<Passenger> passenger = query.list();
+            return passenger;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public List<Passenger> getPassenger(String name) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Passenger p WHERE p.name= "+name;
+            Query query = session.createQuery(HQLQuery);
+            List<Passenger> passenger = query.list();
+            return passenger;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public List<Passenger> getPassenger(int ID) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Passenger p WHERE p.id= "+ID;
+            Query query = session.createQuery(HQLQuery);
+            List<Passenger> passenger = query.list();
+            return passenger;
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
