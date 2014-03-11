@@ -6,19 +6,34 @@
 
 package db.ui;
 
+import db.ui.panels.TownEditPanel;
+import db.ui.panels.TownSearchPanel;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
  * @author Gobinath
  */
 public class TownWindow extends javax.swing.JFrame {
-
+    private TownEditPanel townEditPanel;
+    private TownSearchPanel townSearchPanel;
+    
     /**
      * Creates new form TownWindow
      */
     public TownWindow() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex){
+            
+        }
         initComponents();
+        townEditPanel = new TownEditPanel();
+        townSearchPanel = new TownSearchPanel();
+        panelAdd.add(townEditPanel);
+        panelSearch.add(townSearchPanel);
+        setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
     }
 
     /**
@@ -36,30 +51,15 @@ public class TownWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout panelAddLayout = new javax.swing.GroupLayout(panelAdd);
-        panelAdd.setLayout(panelAddLayout);
-        panelAddLayout.setHorizontalGroup(
-            panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 922, Short.MAX_VALUE)
-        );
-        panelAddLayout.setVerticalGroup(
-            panelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
-        );
-
+        panelAdd.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                panelAddComponentShown(evt);
+            }
+        });
+        panelAdd.setLayout(new javax.swing.BoxLayout(panelAdd, javax.swing.BoxLayout.LINE_AXIS));
         tabbedPanelMain.addTab("Add New Town", panelAdd);
 
-        javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
-        panelSearch.setLayout(panelSearchLayout);
-        panelSearchLayout.setHorizontalGroup(
-            panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 922, Short.MAX_VALUE)
-        );
-        panelSearchLayout.setVerticalGroup(
-            panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
-        );
-
+        panelSearch.setLayout(new javax.swing.BoxLayout(panelSearch, javax.swing.BoxLayout.LINE_AXIS));
         tabbedPanelMain.addTab("Search & Edit", panelSearch);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -84,6 +84,10 @@ public class TownWindow extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void panelAddComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelAddComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panelAddComponentShown
 
     /**
      * @param args the command line arguments
