@@ -93,7 +93,7 @@ public class PassengerDAO {
         }
         Transaction transaction = null;
         try {
-            String HQLQuery = "FROM Passenger p WHERE p.name= "+name;
+            String HQLQuery = "FROM Passenger p WHERE p.name like '"+name+"%'";
             Query query = session.createQuery(HQLQuery);
             List<Passenger> passenger = query.list();
             return passenger;

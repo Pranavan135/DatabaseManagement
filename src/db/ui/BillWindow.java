@@ -7,7 +7,8 @@
 package db.ui;
 
 import db.entity.Bill;
-import db.ui.dao.BillDAO;
+import db.dao.BillDAO;
+import db.validate.BillValidate;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -21,7 +22,8 @@ public class BillWindow extends javax.swing.JFrame {
     /**
      * Creates new form BillWindow
      */
-    private BillDAO billDAO = new BillDAO();
+    private BillDAO billDAO = BillDAO.create();
+    private BillValidate billValidate = BillValidate.create();
     private static BillWindow billWindow = null;
     
     public BillWindow() {
@@ -362,8 +364,13 @@ public class BillWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void validateAddData()  {
+    private void addData()  {
+        String referenceNo = referenceNoTextField.getText();
+        boolean referencNovalidate = billValidate.validatReferenceNo(referenceNo);
+        
+        
         Bill bill = new Bill();
+        
         billDAO.addBill(bill);
     }
     
@@ -403,7 +410,7 @@ public class BillWindow extends javax.swing.JFrame {
     }
     
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        validateAddData();
+        addData();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
@@ -434,13 +441,13 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_showButtonActionPerformed
 
     private void editClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClearButtonActionPerformed
-        referenceNoTextField.setText("");
-        townIDTextField.setText("");
-        tourCodeTextField.setText("");
-        numberOfIndvidualsTextField.setText("");
-        amountTextField.setText("");
-        billDateTextField.setText("");
-        hotelIDtextField.setText("");
+        editReferenceNoTextField.setText("");
+        editTownIDTextField.setText("");
+        editTourCodeTextField.setText("");
+        editNumberOfIndividualsTextField.setText("");
+        editAmountTextField.setText("");
+        editBillDateTextField.setText("");
+        editHotelIDTextField.setText("");
     }//GEN-LAST:event_editClearButtonActionPerformed
 
     private void editEditButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEditButton1ActionPerformed

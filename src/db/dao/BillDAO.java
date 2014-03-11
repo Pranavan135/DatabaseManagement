@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 
-package db.ui.dao;
+package db.dao;
 
 import db.entity.Bill;
 import db.entity.Town;
+import db.ui.BillWindow;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
 import static java.sql.Types.NULL;
@@ -26,7 +27,15 @@ import org.hibernate.cfg.Configuration;
  */
 public class BillDAO {
     private static String QUERY_BASED_ON_REFERENCE_NO = "from bill b where b.refno like '"; 
+    private static BillDAO billDAO = null;
     
+     public static BillDAO create()  {
+        if (billDAO == null) {
+              billDAO = new BillDAO();
+        }
+            return billDAO;
+    }
+     
     public boolean addBill(Bill bill) {
          Session session = HibernateUtil.getSessionFactory().openSession();
          Transaction transaction = null;
@@ -75,7 +84,7 @@ public class BillDAO {
     }
     
     public List searchOnReferenceNo(String referenceNo) {
-        List list = viewBills(QUERY_BASED_ON_REFERENCE_NO + referenceNo);
+        List list = viewBills(QUERY_BASED_ON_REFERENCE_NO + referenceNo + "%'");
         return list;
     }
     
@@ -98,5 +107,14 @@ public class BillDAO {
             he.printStackTrace();
         }
         return null;
+    }
+    
+    public boolean isUnique(String referenceNo)    {
+        List list = viewBills(QUERY_BASED_ON_REFERENCE_NO +  referenceNo);
+        
+        if (list.isEmpty())
+            return true;
+        else 
+            return false;
     }
 }
