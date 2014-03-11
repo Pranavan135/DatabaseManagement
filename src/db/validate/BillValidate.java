@@ -12,9 +12,17 @@ import db.dao.BillDAO;
  *
  * @author 110592A
  */
-public class ValidateBill {
-    public BillDAO billDAO = new BillDAO();
+public class BillValidate {
+    public BillDAO billDAO = BillDAO.create();
     
+    private static BillValidate billValidate = null;
+    
+     public static BillValidate create()  {
+        if (billValidate == null) {
+              billValidate = new BillValidate();
+        }
+            return billValidate;
+    }
     public boolean validatReferenceNo(String referenceNo)   {
         if (referenceNo.length() == 4)  {
             try {

@@ -6,6 +6,7 @@
 
 package db.ui;
 
+import db.dao.BillDAO;
 /**
  *
  * @author DELL
@@ -156,6 +157,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
         BillWindow.create().setVisible(true);
+            
     }//GEN-LAST:event_billsTextFieldActionPerformed
 
     private void driversTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driversTextFieldActionPerformed

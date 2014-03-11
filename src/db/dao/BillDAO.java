@@ -8,6 +8,7 @@ package db.dao;
 
 import db.entity.Bill;
 import db.entity.Town;
+import db.ui.BillWindow;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
 import static java.sql.Types.NULL;
@@ -26,7 +27,15 @@ import org.hibernate.cfg.Configuration;
  */
 public class BillDAO {
     private static String QUERY_BASED_ON_REFERENCE_NO = "from bill b where b.refno like '"; 
+    private static BillDAO billDAO = null;
     
+     public static BillDAO create()  {
+        if (billDAO == null) {
+              billDAO = new BillDAO();
+        }
+            return billDAO;
+    }
+     
     public boolean addBill(Bill bill) {
          Session session = HibernateUtil.getSessionFactory().openSession();
          Transaction transaction = null;

@@ -8,6 +8,7 @@ package db.ui;
 
 import db.entity.Bill;
 import db.dao.BillDAO;
+import db.validate.BillValidate;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -21,7 +22,8 @@ public class BillWindow extends javax.swing.JFrame {
     /**
      * Creates new form BillWindow
      */
-    private BillDAO billDAO = new BillDAO();
+    private BillDAO billDAO = BillDAO.create();
+    private BillValidate billValidate = BillValidate.create();
     private static BillWindow billWindow = null;
     
     public BillWindow() {
