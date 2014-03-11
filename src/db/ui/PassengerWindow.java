@@ -8,8 +8,8 @@ package db.ui;
 
 import db.entity.Passenger;
 import db.entity.Tour;
-import db.ui.DAPassengerDAO;
-import db.ui.dao.TourDAO;
+import db.dao.PassengerDAO;
+import db.dao.TourDAO;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -627,12 +627,12 @@ public class PassengerWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(comboDelSearchCategory.getSelectedIndex()==0){
             String name = txtDelKeyword.getText().trim();
-            List<Passenger> result = passengerDAO.getPassenger(name);
-            createDelTable(result);            
+            //List<Passenger> result = passengerDAO.getPassenger(name);
+            //createDelTable(result);            
         } else {
             int ID = Integer.parseInt(txtDelKeyword.getText().trim());
-            List<Passenger> result = passengerDAO.getPassenger(ID);
-            createDelTable(result);
+           // List<Passenger> result = passengerDAO.getPassenger(ID);
+            //createDelTable(result);
         }
     }//GEN-LAST:event_btnDelFindActionPerformed
 
@@ -640,12 +640,12 @@ public class PassengerWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(comboViewSearchCategory.getSelectedIndex()==0){
             String name = txtViewKeyword.getText().trim();
-            List<Passenger> result = passengerDAO.getPassenger(name);
-            createViewTable(result);
+           // List<Passenger> result = passengerDAO.getPassenger(name);
+            //createViewTable(result);
         } else {
             int ID = Integer.parseInt(txtViewKeyword.getText().trim());
-            List<Passenger> result = passengerDAO.getPassenger(ID);
-            createViewTable(result);
+           // List<Passenger> result = passengerDAO.getPassenger(ID);
+           // createViewTable(result);
         }
     }//GEN-LAST:event_btnViewFindActionPerformed
 
