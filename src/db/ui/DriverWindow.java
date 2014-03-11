@@ -415,11 +415,11 @@ public class DriverWindow extends javax.swing.JFrame {
 
     private void viewGoButtonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGoButtonFieldActionPerformed
         // TODO add your handling code here:
-        if (!viewGoButtonField.getText().trim().equals("")) {
+        if (!idViewTextField.getText().trim().equals("")) {
             System.out.println("Pranavan You are here");
-            runQueryBasedOnID();
+            DriverDAO.(idViewTextField.getText().trim());
         } else {
-            JOptionPane.showMessageDialog(null, "Searching Drivers", QUERY_BASED_ON_Name, JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Searching Drivers", "", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_viewGoButtonFieldActionPerformed
 
@@ -431,45 +431,7 @@ public class DriverWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_exitEditButtonActionPerformed
 
-private static String QUERY_BASED_ON_Name = "from drivers a where a.name like '";
-
-    private void runQueryBasedOnID() {
-        executeHQLQuery(QUERY_BASED_ON_Name + idViewTextField.getText().trim() + "%'");
-    }
-
-    private void executeHQLQuery(String hql) {
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            Query q = session.createQuery(hql);
-            java.util.List resultList = q.list();
-            displayResult(resultList);
-            session.getTransaction().commit();
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-    }
-
-
-    private void displayResult(List resultList) {
-        Vector<String> tableHeaders = new Vector<String>();
-        Vector tableData = new Vector();
-        tableHeaders.add("Id");
-        tableHeaders.add("Name");
-        tableHeaders.add("Address");
-        tableHeaders.add("TelephoneNumber");
-
-        for (Object o : resultList) {
-            Driver driver = (Driver) o;
-            Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(driver.getId().getId());
-            oneRow.add(driver.getId().getName());
-            oneRow.add(driver.getAddress());
-            oneRow.add(driver.getTpNo());
-            tableData.add(oneRow);
-        }
-        resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addDriverTab;
