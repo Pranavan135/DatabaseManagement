@@ -6,6 +6,11 @@
 
 package db.ui;
 
+import db.entity.Passenger;
+import db.entity.Tour;
+import db.ui.dao.PassengerDAO;
+import db.ui.dao.TourDAO;
+
 /**
  *
  * @author Vishnuvathsasarma
@@ -15,6 +20,9 @@ public class PassengerWindow extends javax.swing.JFrame {
     /**
      * Creates new form PassengerWindow
      */
+    PassengerDAO passengerDAO = new PassengerDAO();
+    TourDAO tourDAO = new TourDAO();
+    
     public PassengerWindow() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -39,14 +47,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-     /*   java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new PassengerWindow().setVisible(true);
-            }
-        });*/
-        
+        /* Create and display the form */        
         initComponents();
     }
 
@@ -113,10 +114,25 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnAddAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAddAdd.setText("ADD");
+        btnAddAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddAddActionPerformed(evt);
+            }
+        });
 
         btnAddClear.setText("Clear");
+        btnAddClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddClearActionPerformed(evt);
+            }
+        });
 
         btnAddExit.setText("Exit");
+        btnAddExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabPassengerAddLayout = new javax.swing.GroupLayout(tabPassengerAdd);
         tabPassengerAdd.setLayout(tabPassengerAddLayout);
@@ -177,10 +193,25 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnEditUpdate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnEditUpdate.setText("UPDATE");
+        btnEditUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditUpdateActionPerformed(evt);
+            }
+        });
 
         btnEditClear.setText("Clear");
+        btnEditClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditClearActionPerformed(evt);
+            }
+        });
 
         btnEditExit.setText("Exit");
+        btnEditExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabPassengerEditLayout = new javax.swing.GroupLayout(tabPassengerEdit);
         tabPassengerEdit.setLayout(tabPassengerEditLayout);
@@ -235,7 +266,7 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         lblDelSaerch.setText("Search by:");
 
-        comboDelSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboDelSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "ID" }));
 
         btnDelFind.setText("Find");
 
@@ -253,11 +284,26 @@ public class PassengerWindow extends javax.swing.JFrame {
         scrollPaneDel.setViewportView(tableDel);
 
         btnDelClear.setText("Clear");
+        btnDelClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelClearActionPerformed(evt);
+            }
+        });
 
         btnDelDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnDelDelete.setText("DELETE");
+        btnDelDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelDeleteActionPerformed(evt);
+            }
+        });
 
         btnDelExit.setText("Exit");
+        btnDelExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabPassengerDeleteLayout = new javax.swing.GroupLayout(tabPassengerDelete);
         tabPassengerDelete.setLayout(tabPassengerDeleteLayout);
@@ -311,7 +357,7 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         lblViewSaerch.setText("Search by:");
 
-        comboViewSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboViewSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "ID" }));
 
         btnViewFind.setText("Find");
 
@@ -329,8 +375,18 @@ public class PassengerWindow extends javax.swing.JFrame {
         scrollPaneView.setViewportView(tableView);
 
         btnViewClear.setText("Clear");
+        btnViewClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewClearActionPerformed(evt);
+            }
+        });
 
         btnViewExit.setText("Exit");
+        btnViewExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabPassengerViewLayout = new javax.swing.GroupLayout(tabPassengerView);
         tabPassengerView.setLayout(tabPassengerViewLayout);
@@ -394,6 +450,82 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnAddExitActionPerformed
+
+    private void btnEditExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnEditExitActionPerformed
+
+    private void btnDelExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnDelExitActionPerformed
+
+    private void btnViewExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewExitActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnViewExitActionPerformed
+
+    private void btnAddClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddClearActionPerformed
+        // TODO add your handling code here:
+        txtAddName.setText("");
+        txtAddID.setText("");
+        txtAddTourCode.setText("");
+    }//GEN-LAST:event_btnAddClearActionPerformed
+
+    private void btnEditClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditClearActionPerformed
+        // TODO add your handling code here:
+        txtEditName.setText("");
+        txtEditID.setText("");
+        txtEditTourCode.setText("");
+    }//GEN-LAST:event_btnEditClearActionPerformed
+
+    private void btnDelClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelClearActionPerformed
+        // TODO add your handling code here:
+        txtDelKeyword.setText("");
+        tableDel.removeAll();        
+    }//GEN-LAST:event_btnDelClearActionPerformed
+
+    private void btnViewClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewClearActionPerformed
+        // TODO add your handling code here:
+        txtViewKeyword.setText("");
+        tableView.removeAll();
+    }//GEN-LAST:event_btnViewClearActionPerformed
+
+    private void btnDelDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDelDeleteActionPerformed
+
+    private void btnAddAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAddActionPerformed
+        // TODO add your handling code here:
+        
+        int ID = Integer.parseInt(txtAddID.getText());
+        int tourCode = Integer.parseInt(txtAddTourCode.getText());
+        String name = txtAddName.getText();
+        Tour tour = new Tour();
+       //  tour = tourDAO.getTour(tourCode);
+        Passenger instance = new Passenger(ID, tour, name);
+        boolean success = passengerDAO.addPassenger(instance);
+        
+    }//GEN-LAST:event_btnAddAddActionPerformed
+
+    private void btnEditUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUpdateActionPerformed
+        // TODO add your handling code here:
+        
+        int ID = Integer.parseInt(txtEditID.getText());
+        int tourCode = Integer.parseInt(txtEditTourCode.getText());
+        String name = txtEditName.getText();
+        Tour tour = new Tour();
+       //  tour = tourDAO.getTour(tourCode);
+        Passenger instance = new Passenger(ID, tour, name);
+        boolean success = passengerDAO.updatePassenger(instance);
+        
+    }//GEN-LAST:event_btnEditUpdateActionPerformed
 
     /**
      * @param args the command line arguments
