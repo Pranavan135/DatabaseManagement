@@ -22,8 +22,17 @@ public class BillWindow extends javax.swing.JFrame {
      * Creates new form BillWindow
      */
     private BillDAO billDAO = new BillDAO();
+    private static BillWindow billWindow = null;
+    
     public BillWindow() {
         initComponents();
+    }
+    
+    public static BillWindow create()  {
+        if (billWindow == null) {
+             billWindow = new BillWindow();
+        }
+            return billWindow;
     }
 
     @SuppressWarnings("unchecked")
@@ -50,16 +59,6 @@ public class BillWindow extends javax.swing.JFrame {
         exitButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
-        deleteBillsTab = new javax.swing.JPanel();
-        deleteReferenceLabel = new javax.swing.JLabel();
-        deleteReferenceTextField = new javax.swing.JTextField();
-        deleteButton = new javax.swing.JButton();
-        viewBillsTab = new javax.swing.JPanel();
-        viewReferenceLabel = new javax.swing.JLabel();
-        viewReferenceTextField = new javax.swing.JTextField();
-        viewButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        viewTable = new javax.swing.JTable();
         editBillsTab = new javax.swing.JPanel();
         editTourCodeLabel = new javax.swing.JLabel();
         editReferenceLabel = new javax.swing.JLabel();
@@ -79,6 +78,16 @@ public class BillWindow extends javax.swing.JFrame {
         showButton = new javax.swing.JButton();
         editClearButton = new javax.swing.JButton();
         editEditButton1 = new javax.swing.JButton();
+        deleteBillsTab = new javax.swing.JPanel();
+        deleteReferenceLabel = new javax.swing.JLabel();
+        deleteReferenceTextField = new javax.swing.JTextField();
+        deleteButton = new javax.swing.JButton();
+        viewBillsTab = new javax.swing.JPanel();
+        viewReferenceLabel = new javax.swing.JLabel();
+        viewReferenceTextField = new javax.swing.JTextField();
+        viewButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        viewTable = new javax.swing.JTable();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -169,91 +178,6 @@ public class BillWindow extends javax.swing.JFrame {
 
         billsTab.addTab("ADD", addBillsTab);
 
-        deleteReferenceLabel.setText("Reference No");
-
-        deleteButton.setText("Delete");
-
-        javax.swing.GroupLayout deleteBillsTabLayout = new javax.swing.GroupLayout(deleteBillsTab);
-        deleteBillsTab.setLayout(deleteBillsTabLayout);
-        deleteBillsTabLayout.setHorizontalGroup(
-            deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deleteBillsTabLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(deleteReferenceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(deleteReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(deleteButton)
-                .addGap(59, 59, 59))
-        );
-        deleteBillsTabLayout.setVerticalGroup(
-            deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deleteBillsTabLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteReferenceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton))
-                .addContainerGap(381, Short.MAX_VALUE))
-        );
-
-        billsTab.addTab("DELETE", deleteBillsTab);
-
-        viewReferenceLabel.setText("Reference No");
-
-        viewButton.setText("View");
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
-            }
-        });
-
-        viewTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(viewTable);
-
-        javax.swing.GroupLayout viewBillsTabLayout = new javax.swing.GroupLayout(viewBillsTab);
-        viewBillsTab.setLayout(viewBillsTabLayout);
-        viewBillsTabLayout.setHorizontalGroup(
-            viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewBillsTabLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(viewBillsTabLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(viewBillsTabLayout.createSequentialGroup()
-                        .addComponent(viewReferenceLabel)
-                        .addGap(101, 101, 101)
-                        .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                        .addComponent(viewButton)
-                        .addGap(61, 61, 61))))
-        );
-        viewBillsTabLayout.setVerticalGroup(
-            viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewBillsTabLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewReferenceLabel)
-                    .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
-        );
-
-        billsTab.addTab("VIEW", viewBillsTab);
-
         editBillsTab.setLayout(null);
 
         editTourCodeLabel.setText("Tour Code");
@@ -340,6 +264,91 @@ public class BillWindow extends javax.swing.JFrame {
 
         billsTab.addTab("EDIT", editBillsTab);
 
+        deleteReferenceLabel.setText("Reference No");
+
+        deleteButton.setText("Delete");
+
+        javax.swing.GroupLayout deleteBillsTabLayout = new javax.swing.GroupLayout(deleteBillsTab);
+        deleteBillsTab.setLayout(deleteBillsTabLayout);
+        deleteBillsTabLayout.setHorizontalGroup(
+            deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteBillsTabLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(deleteReferenceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(deleteReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addComponent(deleteButton)
+                .addGap(59, 59, 59))
+        );
+        deleteBillsTabLayout.setVerticalGroup(
+            deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteBillsTabLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteReferenceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton))
+                .addContainerGap(381, Short.MAX_VALUE))
+        );
+
+        billsTab.addTab("DELETE", deleteBillsTab);
+
+        viewReferenceLabel.setText("Reference No");
+
+        viewButton.setText("View");
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
+
+        viewTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(viewTable);
+
+        javax.swing.GroupLayout viewBillsTabLayout = new javax.swing.GroupLayout(viewBillsTab);
+        viewBillsTab.setLayout(viewBillsTabLayout);
+        viewBillsTabLayout.setHorizontalGroup(
+            viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewBillsTabLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewBillsTabLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(viewBillsTabLayout.createSequentialGroup()
+                        .addComponent(viewReferenceLabel)
+                        .addGap(101, 101, 101)
+                        .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addComponent(viewButton)
+                        .addGap(61, 61, 61))))
+        );
+        viewBillsTabLayout.setVerticalGroup(
+            viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewBillsTabLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewReferenceLabel)
+                    .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
+        );
+
+        billsTab.addTab("VIEW", viewBillsTab);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -417,7 +426,7 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void editExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editExitButtonActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_editExitButtonActionPerformed
 
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
