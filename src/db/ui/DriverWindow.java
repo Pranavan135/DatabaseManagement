@@ -413,11 +413,40 @@ public class DriverWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_goEditActionPerformed
 
+    private void viewTable(List list){
+        String referenceNo = idViewTextField.getText().trim();
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        
+        tableHeaders.add("ID");
+        tableHeaders.add("Name");
+        tableHeaders.add("Address");
+        tableHeaders.add("Tele No");
+
+        
+        if (list != null)     {
+            for (Object o : list) {
+                Driver driver = (Driver) o;
+                
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(driver.getId().getId());
+                oneRow.add(driver.getId().getName());
+                oneRow.add(driver.getAddress());
+                oneRow.add(driver.getTpNo());
+                
+                tableData.add(oneRow);
+            }
+        resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        }
+        else {
+            
+        }
+    }
     private void viewGoButtonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGoButtonFieldActionPerformed
         // TODO add your handling code here:
         if (!idViewTextField.getText().trim().equals("")) {
             System.out.println("Pranavan You are here");
-            DriverDAO.runQueryBasedOnName(idViewTextField.getText().trim());
+            viewTable(DriverDAO.viewDrivers(idViewTextField.getText().trim()));
         } else {
             JOptionPane.showMessageDialog(null, "Searching Drivers", "", JOptionPane.INFORMATION_MESSAGE);
         }
