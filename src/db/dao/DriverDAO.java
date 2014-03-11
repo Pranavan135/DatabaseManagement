@@ -9,6 +9,7 @@ package db.dao;
 import db.entity.Driver;
 import db.entity.DriverId;
 import db.util.HibernateUtil;
+import java.awt.HeadlessException;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -65,45 +66,25 @@ public class DriverDAO {
     }
     
 
-    public static JTable runQueryBasedOnName(String name) {
-       return executeHQLQuery(QUERY_BASED_ON_Name +"'"+ name + "%'");
-    }
-
-    private static JTable executeHQLQuery(String hql) {
+   public static List viewDrivers(String name){
+       Session session = null;
+        Transaction transaction = null;
+        String hql = "from Driver d where d.name like '" + name + "%'";
+        
         try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
             Query q = session.createQuery(hql);
-            java.util.List resultList = q.list();
-            JTable jTable =displayResult(resultList);
+            List resultList = q.list();
             session.getTransaction().commit();
-            return jTable;
-        } catch (HibernateException he) {
+            return resultList;
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
             he.printStackTrace();
         }
         return null;
-    }
-
-
-    private static JTable displayResult(List resultList) {
-        Vector<String> tableHeaders = new Vector<String>();
-        Vector tableData = new Vector();
-        tableHeaders.add("Id");
-        tableHeaders.add("Name");
-        tableHeaders.add("Address");
-        tableHeaders.add("TelephoneNumber");
-
-        for (Object o : resultList) {
-            Driver driver = (Driver) o;
-            Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(driver.getId().getId());
-            oneRow.add(driver.getId().getName());
-            oneRow.add(driver.getAddress());
-            oneRow.add(driver.getTpNo());
-            tableData.add(oneRow);
-        }
-        JTable jTable=null;
-        jTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-        return jTable;
-    }
+   }
 }
