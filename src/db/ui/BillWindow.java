@@ -7,7 +7,7 @@
 package db.ui;
 
 import db.entity.Bill;
-import db.ui.dao.BillDAO;
+import db.dao.BillDAO;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -362,8 +362,11 @@ public class BillWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void validateAddData()  {
+    private void addData()  {
+        
+        
         Bill bill = new Bill();
+        
         billDAO.addBill(bill);
     }
     
@@ -403,7 +406,7 @@ public class BillWindow extends javax.swing.JFrame {
     }
     
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        validateAddData();
+        addData();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed

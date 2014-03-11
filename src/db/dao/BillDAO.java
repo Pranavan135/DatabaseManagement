@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package db.ui.dao;
+package db.dao;
 
 import db.entity.Bill;
 import db.entity.Town;
@@ -75,7 +75,7 @@ public class BillDAO {
     }
     
     public List searchOnReferenceNo(String referenceNo) {
-        List list = viewBills(QUERY_BASED_ON_REFERENCE_NO + referenceNo);
+        List list = viewBills(QUERY_BASED_ON_REFERENCE_NO + referenceNo + "%'");
         return list;
     }
     
@@ -98,5 +98,14 @@ public class BillDAO {
             he.printStackTrace();
         }
         return null;
+    }
+    
+    public boolean isUnique(String referenceNo)    {
+        List list = viewBills(QUERY_BASED_ON_REFERENCE_NO +  referenceNo);
+        
+        if (list.isEmpty())
+            return true;
+        else 
+            return false;
     }
 }

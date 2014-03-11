@@ -155,7 +155,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_coachesTextFieldActionPerformed
 
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
-        new BillWindow().setVisible(true);
+        BillWindow.create().setVisible(true);
     }//GEN-LAST:event_billsTextFieldActionPerformed
 
     private void driversTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driversTextFieldActionPerformed
