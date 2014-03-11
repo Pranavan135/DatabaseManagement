@@ -69,7 +69,7 @@ public class DriverDAO {
    public static List viewDrivers(String name){
        Session session = null;
         Transaction transaction = null;
-        String hql = "from Driver d where d.name like '" + name + "%'";
+        String hql = "from Driver d where d.id.name like '"+name + "%'";
         
         try {
             session = HibernateUtil.getSessionFactory().openSession();
