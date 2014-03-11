@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package db.ui;
-
+import db.validate.RouteVallidate;
 /**
  *
  * @author userr
@@ -77,6 +77,11 @@ public class RouteWindow extends javax.swing.JFrame {
 
         addAddButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         addAddButton.setText("Add");
+        addAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAddButtonActionPerformed(evt);
+            }
+        });
 
         cleaAddrButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cleaAddrButton.setText("Clear");
@@ -88,6 +93,11 @@ public class RouteWindow extends javax.swing.JFrame {
 
         exitButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout AddJPanelLayout = new javax.swing.GroupLayout(AddJPanel);
         AddJPanel.setLayout(AddJPanelLayout);
@@ -325,12 +335,25 @@ public class RouteWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cleaAddrButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleaAddrButtonActionPerformed
-        // TODO add your handling code here:
+        routeIDTextField.setText("");
+        routeNameTextField.setText("");
+        routeDaysTextField.setText("");
+        routeDistanceTextField.setText("");
+        
     }//GEN-LAST:event_cleaAddrButtonActionPerformed
 
     private void clearEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearEditButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clearEditButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void addAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAddButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addAddButtonActionPerformed
 
     /**
      * @param args the command line arguments
