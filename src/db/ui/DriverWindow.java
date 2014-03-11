@@ -8,6 +8,7 @@ package db.ui;
 import db.entity.Bill;
 import db.entity.Driver;
 import db.entity.DriverId;
+import db.ui.dao.DriverDAO;
 import db.util.HibernateUtil;
 import java.util.List;
 import java.util.Vector;
@@ -60,6 +61,7 @@ public class DriverWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         idTextFieldEdit = new javax.swing.JTextField();
         goEdit = new javax.swing.JButton();
+        exitEditButton = new javax.swing.JButton();
         deleteDriverTab = new javax.swing.JPanel();
         viewDriverTab = new javax.swing.JPanel();
         idViewLabel = new javax.swing.JLabel();
@@ -243,6 +245,14 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
+        exitEditButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        exitEditButton.setText("EXIT");
+        exitEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitEditButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout editDriverTabLayout = new javax.swing.GroupLayout(editDriverTab);
         editDriverTab.setLayout(editDriverTabLayout);
         editDriverTabLayout.setHorizontalGroup(
@@ -255,6 +265,10 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addComponent(goEdit)
                 .addContainerGap(186, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         editDriverTabLayout.setVerticalGroup(
             editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +278,9 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idTextFieldEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(goEdit))
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
         driverTab.addTab("EDIT", editDriverTab);
@@ -405,30 +421,12 @@ public class DriverWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_viewGoButtonFieldActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        Session sess = null;
-        Transaction tran = null;
-        try {
-            SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
-            sess = sessFact.openSession();
-            tran = sess.beginTransaction();
-            Driver driver = new Driver();
-            DriverId driverId = new DriverId();
-            driverId.setId(Integer.parseInt(idTextField.getText().trim()));
-            driverId.setName(nameTextField.getText().trim());
-            driver.setId(driverId);
-            driver.setAddress(addressTextField.getText().trim());
-            driver.setTpNo(telephoneNoTextField.getText().trim());
-            //driver.setRouteses(null);
-            //driver.setTourses(null);
-            sess.save(driver);
-            tran.commit();
-            JOptionPane.showMessageDialog(null, "Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            sess.close();
-        }
+        DriverDAO.addData(Integer.parseInt(idTextField.getText().trim()),nameTextField.getText().trim(),addressTextField.getText().trim(),telephoneNoTextField.getText().trim());
     }//GEN-LAST:event_saveActionPerformed
+
+    private void exitEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitEditButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_exitEditButtonActionPerformed
 
 private static String QUERY_BASED_ON_Name = "from drivers a where a.name like '";
 
@@ -479,6 +477,7 @@ private static String QUERY_BASED_ON_Name = "from drivers a where a.name like '"
     private javax.swing.JTabbedPane driverTab;
     private javax.swing.JPanel editDriverTab;
     private javax.swing.JButton exit;
+    private javax.swing.JButton exitEditButton;
     private javax.swing.JButton goEdit;
     private javax.swing.JLabel idLabel;
     private javax.swing.JTextField idTextField;
