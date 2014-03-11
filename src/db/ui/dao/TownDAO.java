@@ -1,4 +1,4 @@
-package db.dao;
+package db.ui.dao;
 
 import db.entity.Town;
 import db.util.HibernateUtil;
