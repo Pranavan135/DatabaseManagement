@@ -33,7 +33,6 @@ public class TownWindow extends javax.swing.JFrame {
         tabbedPanelMain = new javax.swing.JTabbedPane();
         panelAdd = new javax.swing.JPanel();
         panelSearch = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,23 +49,15 @@ public class TownWindow extends javax.swing.JFrame {
 
         tabbedPanelMain.addTab("Add New Town", panelAdd);
 
-        jButton1.setText("jButton1");
-
         javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
         panelSearch.setLayout(panelSearchLayout);
         panelSearchLayout.setHorizontalGroup(
             panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSearchLayout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(jButton1)
-                .addContainerGap(744, Short.MAX_VALUE))
+            .addGap(0, 922, Short.MAX_VALUE)
         );
         panelSearchLayout.setVerticalGroup(
             panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSearchLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(jButton1)
-                .addContainerGap(556, Short.MAX_VALUE))
+            .addGap(0, 691, Short.MAX_VALUE)
         );
 
         tabbedPanelMain.addTab("Search & Edit", panelSearch);
@@ -99,7 +90,6 @@ public class TownWindow extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel panelAdd;
     private javax.swing.JPanel panelSearch;
     private javax.swing.JTabbedPane tabbedPanelMain;
