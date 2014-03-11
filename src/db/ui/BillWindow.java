@@ -365,6 +365,8 @@ public class BillWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void addData()  {
+        String referenceNo = referenceNoTextField.getText();
+        boolean referencNovalidate = billValidate.validatReferenceNo(referenceNo);
         
         
         Bill bill = new Bill();
@@ -439,13 +441,13 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_showButtonActionPerformed
 
     private void editClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClearButtonActionPerformed
-        referenceNoTextField.setText("");
-        townIDTextField.setText("");
-        tourCodeTextField.setText("");
-        numberOfIndvidualsTextField.setText("");
-        amountTextField.setText("");
-        billDateTextField.setText("");
-        hotelIDtextField.setText("");
+        editReferenceNoTextField.setText("");
+        editTownIDTextField.setText("");
+        editTourCodeTextField.setText("");
+        editNumberOfIndividualsTextField.setText("");
+        editAmountTextField.setText("");
+        editBillDateTextField.setText("");
+        editHotelIDTextField.setText("");
     }//GEN-LAST:event_editClearButtonActionPerformed
 
     private void editEditButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEditButton1ActionPerformed
