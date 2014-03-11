@@ -8,6 +8,9 @@ import db.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import db.entity.Route;
+import java.util.List;
+import org.hibernate.Query;
 /**
  *
  * @author userr
@@ -18,7 +21,7 @@ public class RouteDAO {
     private static RouteDAO routeDAO = null;
     Transaction transaction = null;
     
-    public RouteDAO create(){
+    public static RouteDAO create(){
         if (routeDAO == null){
              routeDAO = new RouteDAO();
         }
@@ -26,7 +29,7 @@ public class RouteDAO {
         
     }
     
-    public boolean addRoute(){
+    public boolean addRoute(Route route){
         
             Session session = HibernateUtil.getSessionFactory().openSession();
             
@@ -50,7 +53,7 @@ public class RouteDAO {
             return false;
     }
     
-    public boolean updateRoute(){
+    public boolean updateRoute(Route route){
         Session session = HibernateUtil.getSessionFactory().openSession();
         
         if (session == null)
@@ -73,7 +76,32 @@ public class RouteDAO {
        
     }
     
-    public boolean view(){
+    public List executeViewRouteData(int id){
         
+        Session session = HibernateUtil.getSessionFactory().openSession();
+       
+        try{
+            session.beginTransaction();
+            Query query = session.createQuery(QUERY_BASED_ON_ROUTE_ID + id + "%'");
+            List result = query.list();
+            transaction.commit();
+            return result;
+        }
+        catch(HibernateException he){
+            if (transaction != null && transaction.wasCommitted())
+                transaction.rollback();
+        }
+        finally{
+            session.close();
+        }
+        return null;
+    }
+    
+    public boolean isUnique(int id){
+       List output =  executeViewRouteData(id);
+       if (output.isEmpty())
+           return true;
+       else
+           return false;  
     }
 }
