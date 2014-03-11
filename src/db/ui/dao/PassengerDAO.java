@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package db.dao;
+package db.ui.dao;
 
 
 import db.entity.Passenger;

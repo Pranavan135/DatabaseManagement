@@ -8,7 +8,7 @@ package db.ui;
 
 import db.entity.Passenger;
 import db.entity.Tour;
-import db.ui.DAPassengerDAO;
+import db.ui.dao.PassengerDAO;
 import db.ui.dao.TourDAO;
 import java.awt.Color;
 import java.awt.Component;
