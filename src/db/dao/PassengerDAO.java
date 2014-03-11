@@ -74,8 +74,8 @@ public class PassengerDAO {
         try {
             String HQLQuery = "FROM Passenger p ";
             Query query = session.createQuery(HQLQuery);
-            List<Passenger> towns = query.list();
-            return towns;
+            List<Passenger> passenger = query.list();
+            return passenger;
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
@@ -95,8 +95,8 @@ public class PassengerDAO {
         try {
             String HQLQuery = "FROM Passenger p WHERE p.name= "+name;
             Query query = session.createQuery(HQLQuery);
-            List<Passenger> towns = query.list();
-            return towns;
+            List<Passenger> passenger = query.list();
+            return passenger;
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
@@ -116,8 +116,8 @@ public class PassengerDAO {
         try {
             String HQLQuery = "FROM Passenger p WHERE p.id= "+ID;
             Query query = session.createQuery(HQLQuery);
-            List<Passenger> towns = query.list();
-            return towns;
+            List<Passenger> passenger = query.list();
+            return passenger;
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
