@@ -436,6 +436,8 @@ public class DriverWindow extends javax.swing.JFrame {
                 
                 tableData.add(oneRow);
             }
+            
+            System.out.println("I am here");
         resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
         }
         else {
