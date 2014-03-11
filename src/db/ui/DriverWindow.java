@@ -8,6 +8,7 @@ package db.ui;
 import db.entity.Bill;
 import db.entity.Driver;
 import db.entity.DriverId;
+import db.ui.dao.DriverDAO;
 import db.util.HibernateUtil;
 import java.util.List;
 import java.util.Vector;
@@ -420,29 +421,7 @@ public class DriverWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_viewGoButtonFieldActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        Session sess = null;
-        Transaction tran = null;
-        try {
-            SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
-            sess = sessFact.openSession();
-            tran = sess.beginTransaction();
-            Driver driver = new Driver();
-            DriverId driverId = new DriverId();
-            driverId.setId(Integer.parseInt(idTextField.getText().trim()));
-            driverId.setName(nameTextField.getText().trim());
-            driver.setId(driverId);
-            driver.setAddress(addressTextField.getText().trim());
-            driver.setTpNo(telephoneNoTextField.getText().trim());
-            //driver.setRouteses(null);
-            //driver.setTourses(null);
-            sess.save(driver);
-            tran.commit();
-            JOptionPane.showMessageDialog(null, "Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            sess.close();
-        }
+        DriverDAO.addData(Integer.parseInt(idTextField.getText().trim()),nameTextField.getText().trim(),addressTextField.getText().trim(),telephoneNoTextField.getText().trim());
     }//GEN-LAST:event_saveActionPerformed
 
     private void exitEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitEditButtonActionPerformed

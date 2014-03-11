@@ -6,10 +6,19 @@
 
 package db.ui.dao;
 
+import db.entity.Driver;
+import db.entity.DriverId;
+import javax.swing.JOptionPane;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 /**
  *
  * @author Pranavan
  */
 public class CoachDAO {
+    
     
 }
