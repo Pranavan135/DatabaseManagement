@@ -417,7 +417,7 @@ public class DriverWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!idViewTextField.getText().trim().equals("")) {
             System.out.println("Pranavan You are here");
-            DriverDAO.(idViewTextField.getText().trim());
+            DriverDAO.runQueryBasedOnName(idViewTextField.getText().trim());
         } else {
             JOptionPane.showMessageDialog(null, "Searching Drivers", "", JOptionPane.INFORMATION_MESSAGE);
         }
