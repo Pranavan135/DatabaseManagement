@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package db.ui.dao;
+package db.dao;
 
 import db.entity.Driver;
 import db.entity.DriverId;
