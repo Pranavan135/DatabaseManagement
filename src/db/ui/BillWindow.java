@@ -8,6 +8,8 @@ package db.ui;
 
 import db.entity.Bill;
 import db.dao.BillDAO;
+import db.entity.Hotel;
+import db.entity.Town;
 import db.validate.BillValidate;
 import java.util.Date;
 import java.util.List;
@@ -367,6 +369,9 @@ public class BillWindow extends javax.swing.JFrame {
     private void addData()  {
         String referenceNo = referenceNoTextField.getText();
         String date = billDateTextField.getText();
+        String tourCode = tourCodeTextField.getText();
+        String townID = townIDTextField.getText();
+        String hotelID = hotelIDtextField.getText();
         String numberOfIndividuals = numberOfIndvidualsTextField.getText();
         String amount = amountTextField.getText();
       
@@ -385,6 +390,10 @@ public class BillWindow extends javax.swing.JFrame {
         else if (!billValidate.validateAmount(amount)) { 
             amountTextField.setText("");
             amount = "";
+        }
+        else {
+            
+            billDAO.addBill(new Bill(referenceNo), new Town(townID), new Town(tourCode), new Hotel(hotelID,))
         }
     }
         
