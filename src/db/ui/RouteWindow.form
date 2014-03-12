@@ -71,19 +71,11 @@
                       <Component id="cleaAddrButton" min="-2" pref="84" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="routeDistanceTextField" min="-2" pref="127" max="-2" attributes="0"/>
-                                  <Component id="routeDaysTextField" min="-2" pref="127" max="-2" attributes="0"/>
-                                  <Component id="routeNameTextField" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
-                                  <Component id="routeIDTextField" min="-2" pref="127" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="46" max="32767" attributes="0"/>
-                              <Component id="exitButton" min="-2" pref="89" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="routeDistanceTextField" min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="routeDaysTextField" min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="routeNameTextField" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="routeIDTextField" min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="exitButton" alignment="1" min="-2" pref="89" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
