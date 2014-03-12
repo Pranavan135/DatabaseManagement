@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package db.ui;
-import db.validate.RouteVallidate;
+//import db.validate.RouteVallidate;
 import db.dao.RouteDAO;
 /**
  *
@@ -11,7 +11,7 @@ import db.dao.RouteDAO;
  */
 public class RouteWindow extends javax.swing.JFrame {
 
-    private RouteVallidate routeValidate = RouteVallidate.createInstance();
+    //private RouteVallidate routeValidate = RouteVallidate.createInstance();
     private RouteDAO routeDAO = RouteDAO.create();
     private static RouteWindow routeWindow = null;
     private String routeID, routeName, days, distance;
