@@ -28,19 +28,20 @@ public class CoachWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         coachTabbedPane = new javax.swing.JTabbedPane();
         addPanel = new javax.swing.JPanel();
         coachRegNoAddLabel = new javax.swing.JLabel();
         coachCapacityAddLabel = new javax.swing.JLabel();
         coachLastServiceDateAddLabel = new javax.swing.JLabel();
         coachLastServiceMileageAddLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        clearAddButton = new javax.swing.JButton();
+        saveAddButton = new javax.swing.JButton();
+        exitAddButton = new javax.swing.JButton();
         coachRegNoAddTextField = new javax.swing.JTextField();
         coachCapacityAddTextField = new javax.swing.JTextField();
-        coachLastServiceDateAddTextField = new javax.swing.JTextField();
         coachLastServiceMileageAddTextField = new javax.swing.JTextField();
+        coachLastServiceDate = new com.toedter.calendar.JDateChooser();
         editPanel = new javax.swing.JPanel();
         deletePanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -49,71 +50,78 @@ public class CoachWindow extends javax.swing.JFrame {
 
         coachRegNoAddLabel.setText("Reg No");
 
-        coachCapacityAddLabel.setText("jLabel2");
+        coachCapacityAddLabel.setText("Capacity");
 
-        coachLastServiceDateAddLabel.setText("jLabel3");
+        coachLastServiceDateAddLabel.setText("Service Date");
 
-        coachLastServiceMileageAddLabel.setText("jLabel4");
+        coachLastServiceMileageAddLabel.setText("Service Mileage");
 
-        jButton1.setText("Clear");
+        clearAddButton.setText("Clear");
+        clearAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearAddButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Save");
+        saveAddButton.setText("Save");
 
-        jButton3.setText("Exit");
+        exitAddButton.setText("Exit");
+        exitAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitAddButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
         addPanelLayout.setHorizontalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addPanelLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(coachLastServiceDateAddLabel)
+                    .addComponent(coachLastServiceMileageAddLabel)
+                    .addComponent(coachRegNoAddLabel)
+                    .addComponent(clearAddButton)
+                    .addComponent(coachCapacityAddLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton1))
-                    .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(coachLastServiceMileageAddLabel)
-                            .addComponent(coachLastServiceDateAddLabel)
-                            .addComponent(coachCapacityAddLabel)
-                            .addComponent(coachRegNoAddLabel))))
-                .addGap(18, 18, 18)
-                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addPanelLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addComponent(coachRegNoAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(coachCapacityAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(coachLastServiceDateAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(coachLastServiceMileageAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(154, Short.MAX_VALUE))
+                        .addGap(55, 55, 55)
+                        .addComponent(saveAddButton)
+                        .addGap(77, 77, 77)
+                        .addComponent(exitAddButton))
+                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(coachRegNoAddTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(coachLastServiceMileageAddTextField)
+                        .addComponent(coachLastServiceDate, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                    .addComponent(coachCapacityAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(140, 197, Short.MAX_VALUE))
         );
         addPanelLayout.setVerticalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addPanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(coachRegNoAddLabel)
-                            .addComponent(coachRegNoAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(coachCapacityAddLabel))
-                    .addComponent(coachCapacityAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(coachRegNoAddLabel)
+                    .addComponent(coachRegNoAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(coachCapacityAddLabel)
+                    .addComponent(coachCapacityAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(coachLastServiceDateAddLabel)
-                    .addComponent(coachLastServiceDateAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(coachLastServiceDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(coachLastServiceMileageAddLabel)
                     .addComponent(coachLastServiceMileageAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(clearAddButton)
+                    .addComponent(saveAddButton)
+                    .addComponent(exitAddButton))
                 .addGap(35, 35, 35))
         );
 
@@ -123,11 +131,11 @@ public class CoachWindow extends javax.swing.JFrame {
         editPanel.setLayout(editPanelLayout);
         editPanelLayout.setHorizontalGroup(
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
         editPanelLayout.setVerticalGroup(
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGap(0, 285, Short.MAX_VALUE)
         );
 
         coachTabbedPane.addTab("Edit", editPanel);
@@ -136,11 +144,11 @@ public class CoachWindow extends javax.swing.JFrame {
         deletePanel.setLayout(deletePanelLayout);
         deletePanelLayout.setHorizontalGroup(
             deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
         deletePanelLayout.setVerticalGroup(
             deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGap(0, 285, Short.MAX_VALUE)
         );
 
         coachTabbedPane.addTab("Delete", deletePanel);
@@ -149,11 +157,11 @@ public class CoachWindow extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 385, Short.MAX_VALUE)
+            .addGap(0, 568, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGap(0, 285, Short.MAX_VALUE)
         );
 
         coachTabbedPane.addTab("View", jPanel4);
@@ -177,16 +185,29 @@ public class CoachWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void exitAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitAddButtonActionPerformed
+        this.dispose();
+                
+    }//GEN-LAST:event_exitAddButtonActionPerformed
+
+    private void clearAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearAddButtonActionPerformed
+       coachRegNoAddTextField.setText("");
+       coachCapacityAddTextField.setText("");
+       coachLastServiceDate.setDate(null);
+       coachLastServiceMileageAddTextField.setText("");
+    }//GEN-LAST:event_clearAddButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addPanel;
+    private javax.swing.JButton clearAddButton;
     private javax.swing.JLabel coachCapacityAddLabel;
     private javax.swing.JTextField coachCapacityAddTextField;
+    private com.toedter.calendar.JDateChooser coachLastServiceDate;
     private javax.swing.JLabel coachLastServiceDateAddLabel;
-    private javax.swing.JTextField coachLastServiceDateAddTextField;
     private javax.swing.JLabel coachLastServiceMileageAddLabel;
     private javax.swing.JTextField coachLastServiceMileageAddTextField;
     private javax.swing.JLabel coachRegNoAddLabel;
@@ -194,9 +215,9 @@ public class CoachWindow extends javax.swing.JFrame {
     private javax.swing.JTabbedPane coachTabbedPane;
     private javax.swing.JPanel deletePanel;
     private javax.swing.JPanel editPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton exitAddButton;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton saveAddButton;
     // End of variables declaration//GEN-END:variables
 }
