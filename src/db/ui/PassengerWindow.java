@@ -9,7 +9,7 @@ package db.ui;
 import db.entity.Passenger;
 import db.entity.Tour;
 import db.dao.PassengerDAO;
-import db.dao.TourDAO;
+import db.validate.PassengerValidator;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -23,12 +23,21 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author Vishnuvathsasarma
  */
 public class PassengerWindow extends javax.swing.JFrame {
-
     /**
      * Creates new form PassengerWindow
      */
-    PassengerDAO passengerDAO = new PassengerDAO();
-    TourDAO tourDAO = new TourDAO();
+    private PassengerDAO passengerDAO = new PassengerDAO();
+    private PassengerValidator passengerValidator = new PassengerValidator();
+    
+    private final String tourCodeLengthErrorMessage= "Entered Tour Code is not valid\nTour Code should contain " + passengerValidator.getTourCodeLength() + " digits";
+    private final String tourCodeFormatErrorMessage= "Entered Tour Code is not valid\nTour Code shuold be numeric whole number";
+    private final String idLengthErrorMessage= "Entered ID is not valid\nID should contain " + passengerValidator.getIdLength() + " digits";
+    private final String idFormatErrorMessage= "Entered ID is not valid\nID shuold be numeric whole number";
+    private final String nameFormatLengthErrorMessage= "Entered Name is not valid\n"
+            + "You can enter charactors from [A-Z], [a-z], and '.' only\n"
+            + "Name should contain only " + passengerValidator.getMinNameLength() + " - " + passengerValidator.getMaxNameLength() + " number of charactors";
+    private final String nameFormatErrorMessage= "Entered Name is not valid\n"
+            + "You can enter charactors from [A-Z], [a-z], and '.' only\n";
     
     public PassengerWindow() {
         /* Set the Nimbus look and feel */
@@ -56,6 +65,8 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         /* Create and display the form */        
         initComponents();
+        //to make the table cells non-editable
+        tableDel.setDefaultEditor(tableDel.getColumnClass(0), null);
     }
     
     public void createDelTable(List<Passenger> passenger) {
@@ -98,32 +109,29 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
     }
     
-    public void createViewTable(List<Passenger> passenger) {
+    public void createDelTable(Passenger passenger) {
         
         ArrayList<Object[]> data = new ArrayList<>();
-        try{
-        for (int i = 0; i < passenger.size(); i++) {
-            
-            Object[] row = new Object[]{passenger.get(i).getId(),
-                passenger.get(i).getName(),
-                passenger.get(i).getTour().getTourCode()};
-            data.add(row);
-        }
+        
+        Object[] row = new Object[]{passenger.getId(),
+            passenger.getName(),
+            passenger.getTour().getTourCode()};
+        data.add(row);        
         
         Object[][] passengerData = data.toArray(new Object[data.size()][]);
         
-        tableView.setModel(new javax.swing.table.DefaultTableModel(passengerData, new String[]{"ID", "Name", "Tour"}));
+        tableDel.setModel(new javax.swing.table.DefaultTableModel(passengerData, new String[]{"ID", "Name", "Tour"}));
         setVisible(true);
-        scrollPaneView.getViewport().setBackground(Color.LIGHT_GRAY);
+        scrollPaneDel.getViewport().setBackground(Color.LIGHT_GRAY);
         setVisible(true);
         
-        tableView.setAutoscrolls(true);
-        tableView.setFillsViewportHeight(true);
-        tableView.setPreferredScrollableViewportSize(new java.awt.Dimension(800, 300));
-        tableView.setGridColor(new java.awt.Color(0, 204, 153));
-        tableView.setName("Passenger Detail");
+        tableDel.setAutoscrolls(true);
+        tableDel.setFillsViewportHeight(true);
+        tableDel.setPreferredScrollableViewportSize(new java.awt.Dimension(800, 300));
+        tableDel.setGridColor(new java.awt.Color(0, 204, 153));
+        tableDel.setName("Passenger Detail");
         
-        tableView.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        tableDel.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table,
                     Object value, boolean isSelected, boolean hasFocus,
@@ -136,9 +144,84 @@ public class PassengerWindow extends javax.swing.JFrame {
                 
             }
         });
-        } catch (Exception e){e.printStackTrace();}
     }
+     
+    public void createViewTable(List<Passenger> passenger) {
+        
+        ArrayList<Object[]> data = new ArrayList<>();
 
+        for (int i = 0; i < passenger.size(); i++) {
+
+            Object[] row = new Object[]{passenger.get(i).getId(),
+                passenger.get(i).getName(),
+                passenger.get(i).getTour().getTourCode()};
+            data.add(row);
+        }
+
+        Object[][] passengerData = data.toArray(new Object[data.size()][]);
+        tableView.setModel(new javax.swing.table.DefaultTableModel(passengerData, new String[]{"ID", "Name", "Tour"}));
+
+        setVisible(true);
+        scrollPaneView.getViewport().setBackground(Color.LIGHT_GRAY);
+        setVisible(true);
+
+        tableView.setAutoscrolls(true);
+        tableView.setFillsViewportHeight(true);
+        tableView.setPreferredScrollableViewportSize(new java.awt.Dimension(800, 300));
+        tableView.setGridColor(new java.awt.Color(0, 204, 153));
+        tableView.setName("Passenger Detail");
+
+        tableView.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+
+                Component c = super.getTableCellRendererComponent(table,
+                        value, isSelected, hasFocus, row, column);
+                c.setBackground(row % 2 == 0 ? new java.awt.Color(0, 204, 153) : Color.GRAY);
+                return c;
+
+            }
+        });
+    }
+        
+    public void createViewTable(Passenger passenger) {
+        
+        ArrayList<Object[]> data = new ArrayList<>();
+        Object[] row = new Object[]{passenger.getId(),
+                passenger.getName(),
+                passenger.getTour().getTourCode()};
+            data.add(row);
+
+        Object[][] passengerData = data.toArray(new Object[data.size()][]);
+        tableView.setModel(new javax.swing.table.DefaultTableModel(passengerData, new String[]{"ID", "Name", "Tour"}));
+
+        setVisible(true);
+        scrollPaneView.getViewport().setBackground(Color.LIGHT_GRAY);
+        setVisible(true);
+
+        tableView.setAutoscrolls(true);
+        tableView.setFillsViewportHeight(true);
+        tableView.setPreferredScrollableViewportSize(new java.awt.Dimension(800, 300));
+        tableView.setGridColor(new java.awt.Color(0, 204, 153));
+        tableView.setName("Passenger Detail");
+
+        tableView.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+
+                Component c = super.getTableCellRendererComponent(table,
+                        value, isSelected, hasFocus, row, column);
+                c.setBackground(row % 2 == 0 ? new java.awt.Color(0, 204, 153) : Color.GRAY);
+                return c;
+
+            }
+        });        
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -394,7 +477,12 @@ public class PassengerWindow extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableDel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tableDel.setName("tableDelList"); // NOI18N
+        tableDel.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableDel.getTableHeader().setReorderingAllowed(false);
         scrollPaneDel.setViewportView(tableDel);
+        tableDel.getAccessibleContext().setAccessibleName("tableDelList");
 
         btnDelClear.setText("Clear");
         btnDelClear.addActionListener(new java.awt.event.ActionListener() {
@@ -495,7 +583,10 @@ public class PassengerWindow extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableView.setEnabled(false);
+        tableView.setName("tableViewList"); // NOI18N
         scrollPaneView.setViewportView(tableView);
+        tableView.getAccessibleContext().setAccessibleName("tableViewList");
 
         btnViewClear.setText("Clear");
         btnViewClear.addActionListener(new java.awt.event.ActionListener() {
@@ -604,6 +695,7 @@ public class PassengerWindow extends javax.swing.JFrame {
 
     private void btnEditClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditClearActionPerformed
         // TODO add your handling code here:
+        txtEditID.setEnabled(true);
         txtEditName.setText("");
         txtEditName.setEnabled(false);
         txtEditID.setText("");
@@ -614,49 +706,106 @@ public class PassengerWindow extends javax.swing.JFrame {
     private void btnDelClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelClearActionPerformed
         // TODO add your handling code here:
         txtDelKeyword.setText("");
-        tableDel.removeAll();
+        tableDel.setModel(new javax.swing.table.DefaultTableModel(null, new String[]{"ID", "Name", "Tour"}));
     }//GEN-LAST:event_btnDelClearActionPerformed
 
     private void btnViewClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewClearActionPerformed
         // TODO add your handling code here:
         txtViewKeyword.setText("");
-        tableView.removeAll();
+        tableView.setModel(new javax.swing.table.DefaultTableModel(null, new String[]{"ID", "Name", "Tour"}));
     }//GEN-LAST:event_btnViewClearActionPerformed
 
     private void btnDelDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelDeleteActionPerformed
         // TODO add your handling code here:
-        //tableView.remove(tableView.getSelectedRowCount());
+        Passenger instance = new Passenger();
+        instance.setId((Integer)tableDel.getValueAt(tableDel.getSelectedRow(),0));
+        instance.setName((String)tableDel.getValueAt(tableDel.getSelectedRow(),1));
+        Tour tour = new Tour();
+        tour.setTourCode((Integer)tableDel.getValueAt(tableDel.getSelectedRow(),2));
+        instance.setTour(tour);
+        if (passengerDAO.deletePassenger(instance)){
+            JOptionPane.showMessageDialog(this, "Successfully deleted", "Success", WIDTH);
+            //remove table row     
+            //efficient way
+           /* tableDel.setValueAt(null, tableDel.getSelectedRow(),0);
+            tableDel.setValueAt(null, tableDel.getSelectedRow(),1);
+            tableDel.setValueAt(null, tableDel.getSelectedRow(),2); */
+            //easy way
+            tableDel.setModel(new javax.swing.table.DefaultTableModel(null, new String[]{"ID", "Name", "Tour"}));
+            btnDelFind.doClick();
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Database Error", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDelDeleteActionPerformed
 
     private void btnAddAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAddActionPerformed
         // TODO add your handling code here:
-        
-        int ID = Integer.parseInt(txtAddID.getText());
-        int tourCode = Integer.parseInt(txtAddTourCode.getText());
-        String name = txtAddName.getText();
-        Tour tour = new Tour();
-        tour.setTourCode(tourCode);
-        Passenger instance = new Passenger(ID, tour, name);
-        if (passengerDAO.addPassenger(instance)){
-            JOptionPane.showMessageDialog(this, "Successfully added", "Success", WIDTH);
-        } else {
-            JOptionPane.showMessageDialog(this, "Database Error", "Error", WIDTH);
+        try {
+            int ID = Integer.parseInt(txtAddID.getText().trim());
+            if(passengerValidator.isValidID(ID)){
+                String name = txtAddName.getText().trim();
+                if(passengerValidator.isValidName(name)){
+                    try {
+                        int tourCode = Integer.parseInt(txtAddTourCode.getText().trim());
+                        if(passengerValidator.isValidTourCode(tourCode)){
+                            Tour tour = new Tour();
+                            tour.setTourCode(tourCode);
+                            Passenger instance = new Passenger(ID, tour, name);
+                            if (passengerDAO.addPassenger(instance)){
+                                JOptionPane.showMessageDialog(this, "Successfully added", "Success", WIDTH);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Database Error", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, tourCodeLengthErrorMessage, "Tour Code Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (NumberFormatException numEx){
+                        JOptionPane.showMessageDialog(this, tourCodeFormatErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, nameFormatLengthErrorMessage, "Name Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, idLengthErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException numEx){
+                JOptionPane.showMessageDialog(this, idFormatErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAddAddActionPerformed
 
     private void btnEditUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUpdateActionPerformed
         // TODO add your handling code here:
-        
-        int ID = Integer.parseInt(txtEditID.getText());
-        int tourCode = Integer.parseInt(txtEditTourCode.getText());
-        String name = txtEditName.getText();
-        Tour tour = new Tour();
-        tour.setTourCode(tourCode);
-        Passenger instance = new Passenger(ID, tour, name);
-        if (passengerDAO.updatePassenger(instance)){
-            JOptionPane.showMessageDialog(this, "Successfully updated", "Success", WIDTH);
-        } else {
-            JOptionPane.showMessageDialog(this, "Database Error", "Error", WIDTH);
+        try {
+            int ID = Integer.parseInt(txtEditID.getText().trim());
+            if(passengerValidator.isValidID(ID)){
+                String name = txtEditName.getText().trim();
+                if(passengerValidator.isValidName(name)){
+                    try {
+                        int tourCode = Integer.parseInt(txtEditTourCode.getText().trim());
+                        if(passengerValidator.isValidTourCode(tourCode)){
+                            Tour tour = new Tour();
+                            tour.setTourCode(tourCode);
+                            Passenger instance = new Passenger(ID, tour, name);
+                            if (passengerDAO.updatePassenger(instance)){
+                                JOptionPane.showMessageDialog(this, "Successfully Updated", "Success", WIDTH);
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Database Error", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, tourCodeLengthErrorMessage, "Tour Code Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (NumberFormatException numEx){
+                        JOptionPane.showMessageDialog(this, tourCodeFormatErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, nameFormatLengthErrorMessage, "Name Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, idLengthErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException numEx){
+                JOptionPane.showMessageDialog(this, idFormatErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEditUpdateActionPerformed
 
@@ -664,20 +813,32 @@ public class PassengerWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(comboDelSearchCategory.getSelectedIndex()==0){
             String name = txtDelKeyword.getText().trim();
-            List<Passenger> result = passengerDAO.getPassenger(name);
-            if (result==null){
-                JOptionPane.showMessageDialog(this, "No data found", "Error", ERROR);
+            if(passengerValidator.isAlphabet(name)){
+                List<Passenger> result = passengerDAO.getPassenger(name);
+                if (result.isEmpty()){
+                    JOptionPane.showMessageDialog(this, "No data found relevant to given Name", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    createDelTable(result);
+                }           
             } else {
-                createDelTable(result);
-            }           
+                JOptionPane.showMessageDialog(this, nameFormatErrorMessage, "Name Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            int ID = Integer.parseInt(txtDelKeyword.getText().trim());
-            List<Passenger> result = passengerDAO.getPassenger(ID);
-            if (result==null){
-                JOptionPane.showMessageDialog(this, "No data found", "Error", ERROR);
-            } else {
-                createDelTable(result);
-            }  
+            try {
+                int ID = Integer.parseInt(txtDelKeyword.getText().trim());
+                if(passengerValidator.isValidID(ID)){
+                    Passenger result = passengerDAO.getPassenger(ID);
+                    if (result==null){
+                        JOptionPane.showMessageDialog(this, "No data found on given ID", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        createDelTable(result);
+                    }  
+                } else {
+                    JOptionPane.showMessageDialog(this, idLengthErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException numEx){
+                JOptionPane.showMessageDialog(this, idFormatErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnDelFindActionPerformed
 
@@ -685,31 +846,56 @@ public class PassengerWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(comboViewSearchCategory.getSelectedIndex()==0){
             String name = txtViewKeyword.getText().trim();
-            List<Passenger> result = passengerDAO.getPassenger(name);
-            if (result==null){
-                JOptionPane.showMessageDialog(this, "No data found", "Error", ERROR);
+            if(passengerValidator.isAlphabet(name)){
+                List<Passenger> result = passengerDAO.getPassenger(name);
+                if (result.isEmpty() || result == null){
+                    JOptionPane.showMessageDialog(this, "No data found relevant to given Name", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    createViewTable(result);
+                } 
             } else {
-                createViewTable(result);
-            }  
+                JOptionPane.showMessageDialog(this, nameFormatErrorMessage, "Name Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            int ID = Integer.parseInt(txtViewKeyword.getText().trim());
-            List<Passenger> result = passengerDAO.getPassenger(ID);
-            if (result==null){
-                JOptionPane.showMessageDialog(this, "No data found", "Error", ERROR);
-            } else {
-                createViewTable(result);
-            } 
+            try {
+                int ID = Integer.parseInt(txtViewKeyword.getText().trim());
+                if(passengerValidator.isValidID(ID)){
+                    Passenger result = passengerDAO.getPassenger(ID);
+                    if (result==null){
+                        JOptionPane.showMessageDialog(this, "No data found on given ID", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        createViewTable(result);
+                    } 
+                } else {
+                    JOptionPane.showMessageDialog(this, idLengthErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException numEx){
+                JOptionPane.showMessageDialog(this, idFormatErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnViewFindActionPerformed
 
     private void btnEditGetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGetActionPerformed
         // TODO add your handling code here:
-        int ID = Integer.parseInt(txtEditID.getText());
-        Passenger passenger = new PassengerDAO().getPassenger(ID).get(0);
-        txtEditName.setText(passenger.getName());
-        txtEditTourCode.setText(String.valueOf(passenger.getTour().getTourCode()));
-        txtEditName.setEnabled(true);
-        txtEditTourCode.setEnabled(true);
+        try {
+            int ID = Integer.parseInt(txtEditID.getText().trim());
+            if(passengerValidator.isValidID(ID)){
+                Passenger result = passengerDAO.getPassenger(ID);
+                if(result == null) {
+                    JOptionPane.showMessageDialog(this, "No data found on given ID", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    txtEditID.setEnabled(false);
+                    txtEditName.setText(result.getName());
+                    txtEditTourCode.setText(String.valueOf(result.getTour().getTourCode()));
+                    txtEditName.setEnabled(true);
+                    txtEditTourCode.setEnabled(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, idLengthErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException numEx){
+                JOptionPane.showMessageDialog(this, idFormatErrorMessage, "ID Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEditGetActionPerformed
 
     /**

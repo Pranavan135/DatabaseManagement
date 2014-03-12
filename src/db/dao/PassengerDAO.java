@@ -93,8 +93,9 @@ public class PassengerDAO {
         }
         Transaction transaction = null;
         try {
-            String HQLQuery = "FROM Passenger p WHERE p.name like '"+name+"%'";
+            String HQLQuery = "FROM Passenger p WHERE p.name like :nameValue";
             Query query = session.createQuery(HQLQuery);
+            query.setParameter("nameValue", "%" + name + "%");
             List<Passenger> passenger = query.list();
             return passenger;
         } catch (HibernateException | HeadlessException ex) {
@@ -106,18 +107,23 @@ public class PassengerDAO {
         }
         return null;
     }
-
-    public List<Passenger> getPassenger(int ID) {
+      
+    public Passenger getPassenger(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         if (session == null) {
             return null;
         }
         Transaction transaction = null;
         try {
-            String HQLQuery = "FROM Passenger p WHERE p.id= "+ID;
+            String HQLQuery = "FROM Passenger p WHERE p.id = :idValue";
+
             Query query = session.createQuery(HQLQuery);
-            List<Passenger> passenger = query.list();
-            return passenger;
+            query.setParameter("idValue", id);
+            Object passenger = query.uniqueResult();
+
+            if (passenger != null && passenger instanceof Passenger) {
+                return (Passenger) passenger;
+            }
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
@@ -126,5 +132,27 @@ public class PassengerDAO {
             session.close();
         }
         return null;
+    }
+    
+    public boolean deletePassenger(Passenger passenger){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return false;
+        }
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.delete(passenger);
+            session.flush();
+            transaction.commit();
+            return true;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return false;
     }
 }
