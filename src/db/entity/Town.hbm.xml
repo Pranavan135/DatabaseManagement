@@ -14,19 +14,19 @@
         <property name="overNightStop" type="java.lang.Boolean">
             <column name="overNightStop" />
         </property>
-        <set name="bills" table="bill" inverse="true" lazy="true" fetch="select">
+        <set name="bills" table="bill" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="town_id" />
             </key>
             <one-to-many class="db.entity.Bill" />
         </set>
-        <set name="routeTowns" table="route_town" inverse="true" lazy="true" fetch="select">
+        <set name="routeTowns" table="route_town" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="town_id" />
             </key>
             <one-to-many class="db.entity.RouteTown" />
         </set>
-        <set name="hotels" table="hotel" inverse="true" lazy="true" fetch="select">
+        <set name="hotels" table="hotel" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="town_id" unique="true" />
             </key>
