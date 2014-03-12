@@ -356,12 +356,12 @@ public class RouteWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_routeIDTextFieldActionPerformed
 
     private void addRouteData(){
-       if ( routeValidate.IDValidation(routeID) && routeValidate.nameValidation(routeName) 
-               && routeValidate.daysValidation(days) && routeValidate.distanceValidation(distance)  ){
+      // if ( routeValidate.IDValidation(routeID) && routeValidate.nameValidation(routeName) 
+               //&& routeValidate.daysValidation(days) && routeValidate.distanceValidation(distance)  ){
            
-           routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
+         //  routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
            
-       }
+       //}
            
     }
     
