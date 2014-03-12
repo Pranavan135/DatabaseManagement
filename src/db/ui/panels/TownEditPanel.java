@@ -48,14 +48,18 @@ public class TownEditPanel extends javax.swing.JPanel {
             txtTownID.setText("" + town.getId());
             txtTownName.setText(town.getName());
             chkAllowed.setSelected(town.getOverNightStop());
-            
+
             DefaultTableModel modelBills = (DefaultTableModel) tblBillRight.getModel();
             DefaultTableModel modelRoutes = (DefaultTableModel) tblBillRight.getModel();
             DefaultTableModel modelHotels = (DefaultTableModel) tblBillRight.getModel();
-            /*for (Object obj : town.getBills()) {
-                Vector vector = (Vector) obj;
-                modelBills.addRow(vector.toArray());
-            }*/
+
+            while (modelBills.getRowCount() != 0) {
+                modelBills.removeRow(0);
+            }
+            for (Object obj : town.getBills()) {
+                Bill bill = (Bill) obj;
+                modelBills.addRow(new Object[]{bill.getRefNo(), bill.getBillDate()});
+            }
 
         }
         viewHotels(townDAO.getAllHotels());
