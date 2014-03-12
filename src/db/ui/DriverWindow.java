@@ -81,7 +81,7 @@ public class DriverWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
 
         driverTab.setPreferredSize(new java.awt.Dimension(613, 400));
