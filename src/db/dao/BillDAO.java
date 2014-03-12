@@ -13,9 +13,11 @@ import db.entity.Town;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
@@ -24,7 +26,7 @@ import org.hibernate.cfg.Configuration;
  * @author 110592A
  */
 public class BillDAO {
-    private static String QUERY_BASED_ON_REFERENCE_NO = "from Bill b where b.refno like '"; 
+    private static String QUERY_BASED_ON_REFERENCE_NO = "from Bill b where b.refNo like '"; 
     private static BillDAO billDAO = null;
     
      public static BillDAO create()  {
@@ -96,6 +98,7 @@ public class BillDAO {
             Query q = session.createQuery(hql);
             List resultList = q.list();
             session.getTransaction().commit();
+//            System.out.println("xxxxxxx");
             return resultList;
         }
         catch (HibernateException|HeadlessException he) {
@@ -108,12 +111,36 @@ public class BillDAO {
     }
     
     public boolean isUnique(String referenceNo)    {
-        List list = viewBills(QUERY_BASED_ON_REFERENCE_NO +  referenceNo);
+        Session session = null;
+        Transaction transaction = null;
         
-        if (list.isEmpty())
-            return true;
-        else 
-            return false;
+        try {
+            session =  HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            String HQL = "from Bill b where b.refNo ='" + referenceNo +"'";
+           
+            Query q = session.createQuery(HQL) ;
+            Bill b= (Bill)q.uniqueResult();
+
+            session.getTransaction().commit();
+            //JOptionPane.showMessageDialog(null,, "ERROR", JOptionPane.ERROR_MESSAGE);
+            
+           if (b == null)   {
+                return true;
+           }
+            //session.getTransaction().commit();
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        return false;
+ 
     }
     
     public Town getTown(String townId)  {
@@ -123,7 +150,7 @@ public class BillDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query q = session.createQuery("from Town where id = :townId") ;
+            Query q = session.createQuery("from Town where id = '" + townId +"'") ;
             Town t = (Town) q.uniqueResult();
             session.getTransaction().commit();
             return t;
@@ -144,9 +171,10 @@ public class BillDAO {
          try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query q = session.createQuery("from Tour where tour_code = :tourCode") ;
+            Query q = session.createQuery("from Tour where tourCode ='" + tourCode + "'") ;
             Tour t = (Tour)q.uniqueResult();
             session.getTransaction().commit();
+            return t;
         }
         catch (HibernateException|HeadlessException he) {
             if (transaction != null && transaction.wasCommitted()) {
@@ -164,7 +192,7 @@ public class BillDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query q = session.createQuery("from Hotel where id = :hotelId") ;
+            Query q = session.createQuery("from Hotel where id = '" +hotelId+"'") ;
             Hotel t = (Hotel)q.uniqueResult();
             session.getTransaction().commit();
             

@@ -106,4 +106,33 @@ public class BillValidate {
           }
          
      }
+     
+     public boolean validateTour(String tourCode)   {
+         if(billDAO.getTour(tourCode) != null)
+             return true;
+         else   {
+               JOptionPane.showMessageDialog(null, "Tour code is not valid", "ERROR", JOptionPane.ERROR_MESSAGE);
+               return false;
+         }
+             
+     }
+     
+      public boolean validateTown(String townId)   {
+         if(billDAO.getTown(townId) != null)
+             return true;
+         else   {
+               JOptionPane.showMessageDialog(null, "Town ID is not valid", "ERROR", JOptionPane.ERROR_MESSAGE);
+               return false;
+         }
+             
+     }
+       public boolean validateHotel(String hotelId)   {
+         if(billDAO.getHotel(hotelId) != null)
+             return true;
+         else   {
+               JOptionPane.showMessageDialog(null, "Hotel ID is not valid", "ERROR", JOptionPane.ERROR_MESSAGE);
+               return false;
+         }
+             
+     }
 }
