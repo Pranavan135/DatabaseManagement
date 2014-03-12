@@ -42,7 +42,6 @@ public class DriverWindow extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         driverTab = new javax.swing.JTabbedPane();
         addDriverTab = new javax.swing.JPanel();
@@ -85,110 +84,39 @@ public class DriverWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
 
-        addDriverTab.setLayout(new java.awt.GridBagLayout());
+        driverTab.setPreferredSize(new java.awt.Dimension(613, 400));
 
         idLabel.setText("ID");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(32, 20, 0, 0);
-        addDriverTab.add(idLabel, gridBagConstraints);
 
         nameLabel.setText("Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 39;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
-        addDriverTab.add(nameLabel, gridBagConstraints);
 
         addressLabel.setText("Address");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 27;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 20, 0, 0);
-        addDriverTab.add(addressLabel, gridBagConstraints);
 
         telephoneNoLabel.setText("Telephone No");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 20, 0, 0);
-        addDriverTab.add(telephoneNoLabel, gridBagConstraints);
 
         idTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idTextFieldActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 103;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 46, 0, 0);
-        addDriverTab.add(idTextField, gridBagConstraints);
 
         nameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameTextFieldActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 103;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 46, 0, 0);
-        addDriverTab.add(nameTextField, gridBagConstraints);
 
         addressTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addressTextFieldActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 103;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 46, 0, 0);
-        addDriverTab.add(addressTextField, gridBagConstraints);
 
         telephoneNoTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 telephoneNoTextFieldActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 103;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 46, 0, 0);
-        addDriverTab.add(telephoneNoTextField, gridBagConstraints);
 
         clear.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         clear.setText("Clear");
@@ -197,15 +125,6 @@ public class DriverWindow extends javax.swing.JFrame {
                 clearActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 44;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(53, 20, 29, 0);
-        addDriverTab.add(clear, gridBagConstraints);
 
         save.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         save.setText("Save");
@@ -214,14 +133,6 @@ public class DriverWindow extends javax.swing.JFrame {
                 saveActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 41;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(53, 46, 29, 0);
-        addDriverTab.add(save, gridBagConstraints);
 
         exit.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exit.setText("Exit");
@@ -230,14 +141,69 @@ public class DriverWindow extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 40;
-        gridBagConstraints.ipady = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(53, 39, 29, 167);
-        addDriverTab.add(exit, gridBagConstraints);
+
+        javax.swing.GroupLayout addDriverTabLayout = new javax.swing.GroupLayout(addDriverTab);
+        addDriverTab.setLayout(addDriverTabLayout);
+        addDriverTabLayout.setHorizontalGroup(
+            addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addDriverTabLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addDriverTabLayout.createSequentialGroup()
+                        .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addDriverTabLayout.createSequentialGroup()
+                            .addComponent(telephoneNoLabel)
+                            .addGap(101, 101, 101)
+                            .addComponent(telephoneNoTextField))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addDriverTabLayout.createSequentialGroup()
+                            .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(101, 101, 101)
+                            .addComponent(addressTextField))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addDriverTabLayout.createSequentialGroup()
+                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(101, 101, 101)
+                            .addComponent(nameTextField))
+                        .addGroup(addDriverTabLayout.createSequentialGroup()
+                            .addComponent(idLabel)
+                            .addGap(156, 156, 156)
+                            .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        );
+        addDriverTabLayout.setVerticalGroup(
+            addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addDriverTabLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addDriverTabLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(idLabel))
+                    .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addDriverTabLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(nameLabel))
+                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addDriverTabLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(telephoneNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telephoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         driverTab.addTab("ADD", addDriverTab);
 
@@ -355,6 +321,11 @@ public class DriverWindow extends javax.swing.JFrame {
 
         deleteDeleteButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         deleteDeleteButton.setText("Delete");
+        deleteDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteDeleteButtonActionPerformed(evt);
+            }
+        });
 
         exitDeleteButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exitDeleteButton.setText("Exit");
@@ -371,16 +342,16 @@ public class DriverWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteDriverTabLayout.createSequentialGroup()
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(deleteDriverTabLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exitDeleteButton))
+                    .addGroup(deleteDriverTabLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(idDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(idDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addComponent(deleteDeleteButton))
-                    .addGroup(deleteDriverTabLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exitDeleteButton)))
-                .addGap(231, 231, 231))
+                        .addComponent(idDeleteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
+                        .addComponent(deleteDeleteButton)))
+                .addGap(188, 188, 188))
         );
         deleteDriverTabLayout.setVerticalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,11 +359,11 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteDeleteButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(exitDeleteButton)
-                .addGap(55, 55, 55))
+                .addGap(52, 52, 52))
         );
 
         driverTab.addTab("DELETE", deleteDriverTab);
@@ -409,10 +380,7 @@ public class DriverWindow extends javax.swing.JFrame {
 
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Name", "Address", "Tele No"
@@ -564,6 +532,10 @@ public class DriverWindow extends javax.swing.JFrame {
     private void exitDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitDeleteButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitDeleteButtonActionPerformed
+
+    private void deleteDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDeleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteDeleteButtonActionPerformed
 
     
 
