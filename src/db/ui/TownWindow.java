@@ -86,6 +86,10 @@ public class TownWindow extends javax.swing.JFrame {
 
     private void panelAddComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelAddComponentShown
         townEditPanel.refersh(null);
+        panelAdd.removeAll();
+        panelAdd.add(TownEditPanel.getInstance());
+        panelAdd.repaint();
+        panelAdd.validate();
     }//GEN-LAST:event_panelAddComponentShown
 
     private void panelSearchComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelSearchComponentShown
