@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package db.ui;
 
 import db.ui.panels.TownEditPanel;
@@ -16,8 +10,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Gobinath
  */
 public class TownWindow extends javax.swing.JFrame {
-    private TownEditPanel townEditPanel;
-    private TownSearchPanel townSearchPanel;
+    private final TownEditPanel townEditPanel;
+    private final TownSearchPanel townSearchPanel;
     
     /**
      * Creates new form TownWindow
@@ -29,8 +23,8 @@ public class TownWindow extends javax.swing.JFrame {
             
         }
         initComponents();
-        townEditPanel = new TownEditPanel();
-        townSearchPanel = new TownSearchPanel();
+        townEditPanel = TownEditPanel.getInstance();
+        townSearchPanel = TownSearchPanel.getInstance();
         panelAdd.add(townEditPanel);
         panelSearch.add(townSearchPanel);
         setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
@@ -49,7 +43,7 @@ public class TownWindow extends javax.swing.JFrame {
         panelAdd = new javax.swing.JPanel();
         panelSearch = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         panelAdd.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -59,6 +53,11 @@ public class TownWindow extends javax.swing.JFrame {
         panelAdd.setLayout(new javax.swing.BoxLayout(panelAdd, javax.swing.BoxLayout.LINE_AXIS));
         tabbedPanelMain.addTab("Add New Town", panelAdd);
 
+        panelSearch.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                panelSearchComponentShown(evt);
+            }
+        });
         panelSearch.setLayout(new javax.swing.BoxLayout(panelSearch, javax.swing.BoxLayout.LINE_AXIS));
         tabbedPanelMain.addTab("Search & Edit", panelSearch);
 
@@ -68,14 +67,14 @@ public class TownWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(tabbedPanelMain)
+                .addComponent(tabbedPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(tabbedPanelMain)
+                .addComponent(tabbedPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -86,8 +85,15 @@ public class TownWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelAddComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelAddComponentShown
-        // TODO add your handling code here:
+        townEditPanel.refersh(null);
     }//GEN-LAST:event_panelAddComponentShown
+
+    private void panelSearchComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelSearchComponentShown
+        panelSearch.removeAll();
+        panelSearch.add(TownSearchPanel.getInstance());
+        panelSearch.repaint();
+        panelSearch.validate();
+    }//GEN-LAST:event_panelSearchComponentShown
 
     /**
      * @param args the command line arguments
