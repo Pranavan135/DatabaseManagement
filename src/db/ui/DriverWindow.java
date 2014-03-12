@@ -8,6 +8,7 @@ package db.ui;
 import db.entity.Bill;
 import db.entity.Driver;
 import db.entity.DriverId;
+import db.dao.DriverDAO;
 import db.util.HibernateUtil;
 import java.util.List;
 import java.util.Vector;
@@ -70,7 +71,7 @@ public class DriverWindow extends javax.swing.JFrame {
         resultTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 354));
+        setPreferredSize(new java.awt.Dimension(600, 400));
 
         addDriverTab.setLayout(new java.awt.GridBagLayout());
 
@@ -263,11 +264,11 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addComponent(idTextFieldEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(goEdit)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(148, 148, 148))
         );
         editDriverTabLayout.setVerticalGroup(
             editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,9 +278,9 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idTextFieldEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(goEdit))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGap(51, 51, 51))
         );
 
         driverTab.addTab("EDIT", editDriverTab);
@@ -288,11 +289,11 @@ public class DriverWindow extends javax.swing.JFrame {
         deleteDriverTab.setLayout(deleteDriverTabLayout);
         deleteDriverTabLayout.setHorizontalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 608, Short.MAX_VALUE)
+            .addGap(0, 672, Short.MAX_VALUE)
         );
         deleteDriverTabLayout.setVerticalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 301, Short.MAX_VALUE)
+            .addGap(0, 330, Short.MAX_VALUE)
         );
 
         driverTab.addTab("DELETE", deleteDriverTab);
@@ -336,7 +337,7 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addGroup(viewDriverTabLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         viewDriverTabLayout.setVerticalGroup(
             viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,7 +351,7 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addGroup(viewDriverTabLayout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(viewGoButtonField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
@@ -363,11 +364,14 @@ public class DriverWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(driverTab))
+                .addComponent(driverTab, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(driverTab, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(driverTab, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 59, Short.MAX_VALUE))
         );
 
         pack();
@@ -409,85 +413,56 @@ public class DriverWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_goEditActionPerformed
 
+    private void viewTable(List list){
+        String referenceNo = idViewTextField.getText().trim();
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        
+        tableHeaders.add("ID");
+        tableHeaders.add("Name");
+        tableHeaders.add("Address");
+        tableHeaders.add("Tele No");
+
+        
+        if (list != null)     {
+            for (Object o : list) {
+                Driver driver = (Driver) o;
+                
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(driver.getId().getId());
+                oneRow.add(driver.getId().getName());
+                oneRow.add(driver.getAddress());
+                oneRow.add(driver.getTpNo());
+                
+                tableData.add(oneRow);
+            }
+            
+            System.out.println("I am here");
+        resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        }
+        else {
+            
+        }
+    }
     private void viewGoButtonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGoButtonFieldActionPerformed
         // TODO add your handling code here:
-        if (!viewGoButtonField.getText().trim().equals("")) {
+        if (!idViewTextField.getText().trim().equals("")) {
             System.out.println("Pranavan You are here");
-            runQueryBasedOnID();
+            viewTable(DriverDAO.viewDrivers(idViewTextField.getText().trim()));
         } else {
-            JOptionPane.showMessageDialog(null, "Searching Drivers", QUERY_BASED_ON_Name, JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Searching Drivers", "", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_viewGoButtonFieldActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        Session sess = null;
-        Transaction tran = null;
-        try {
-            SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
-            sess = sessFact.openSession();
-            tran = sess.beginTransaction();
-            Driver driver = new Driver();
-            DriverId driverId = new DriverId();
-            driverId.setId(Integer.parseInt(idTextField.getText().trim()));
-            driverId.setName(nameTextField.getText().trim());
-            driver.setId(driverId);
-            driver.setAddress(addressTextField.getText().trim());
-            driver.setTpNo(telephoneNoTextField.getText().trim());
-            //driver.setRouteses(null);
-            //driver.setTourses(null);
-            sess.save(driver);
-            tran.commit();
-            JOptionPane.showMessageDialog(null, "Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            sess.close();
-        }
+        DriverDAO.addData(Integer.parseInt(idTextField.getText().trim()),nameTextField.getText().trim(),addressTextField.getText().trim(),telephoneNoTextField.getText().trim());
     }//GEN-LAST:event_saveActionPerformed
 
     private void exitEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitEditButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitEditButtonActionPerformed
 
-private static String QUERY_BASED_ON_Name = "from drivers a where a.name like '";
-
-    private void runQueryBasedOnID() {
-        executeHQLQuery(QUERY_BASED_ON_Name + idViewTextField.getText().trim() + "%'");
-    }
-
-    private void executeHQLQuery(String hql) {
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            Query q = session.createQuery(hql);
-            java.util.List resultList = q.list();
-            displayResult(resultList);
-            session.getTransaction().commit();
-        } catch (HibernateException he) {
-            he.printStackTrace();
-        }
-    }
-
-
-    private void displayResult(List resultList) {
-        Vector<String> tableHeaders = new Vector<String>();
-        Vector tableData = new Vector();
-        tableHeaders.add("Id");
-        tableHeaders.add("Name");
-        tableHeaders.add("Address");
-        tableHeaders.add("TelephoneNumber");
-
-        for (Object o : resultList) {
-            Driver driver = (Driver) o;
-            Vector<Object> oneRow = new Vector<Object>();
-            oneRow.add(driver.getId().getId());
-            oneRow.add(driver.getId().getName());
-            oneRow.add(driver.getAddress());
-            oneRow.add(driver.getTpNo());
-            tableData.add(oneRow);
-        }
-        resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addDriverTab;

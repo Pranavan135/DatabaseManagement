@@ -8,8 +8,15 @@ package db.ui;
 
 import db.entity.Passenger;
 import db.entity.Tour;
-import db.ui.dao.PassengerDAO;
-import db.ui.dao.TourDAO;
+import db.dao.PassengerDAO;
+import db.dao.TourDAO;
+import java.awt.Color;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -49,6 +56,87 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         /* Create and display the form */        
         initComponents();
+    }
+    
+    public void createDelTable(List<Passenger> passenger) {
+        
+        ArrayList<Object[]> data = new ArrayList<>();
+        
+        for (int i = 0; i < passenger.size(); i++) {
+            
+            Object[] row = new Object[]{passenger.get(i).getId(),
+                passenger.get(i).getName(),
+                passenger.get(i).getTour().getTourCode()};
+            data.add(row);
+        }
+        
+        Object[][] passengerData = data.toArray(new Object[data.size()][]);
+        
+        tableDel.setModel(new javax.swing.table.DefaultTableModel(passengerData, new String[]{"ID", "Name", "Tour"}));
+        setVisible(true);
+        scrollPaneDel.getViewport().setBackground(Color.LIGHT_GRAY);
+        setVisible(true);
+        
+        tableDel.setAutoscrolls(true);
+        tableDel.setFillsViewportHeight(true);
+        tableDel.setPreferredScrollableViewportSize(new java.awt.Dimension(800, 300));
+        tableDel.setGridColor(new java.awt.Color(0, 204, 153));
+        tableDel.setName("Passenger Detail");
+        
+        tableDel.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+                
+                Component c = super.getTableCellRendererComponent(table,
+                        value, isSelected, hasFocus, row, column);
+                c.setBackground(row % 2 == 0 ? new java.awt.Color(0, 204, 153) : Color.GRAY);
+                return c;
+                
+            }
+        });
+    }
+    
+    public void createViewTable(List<Passenger> passenger) {
+        
+        ArrayList<Object[]> data = new ArrayList<>();
+        try{
+        for (int i = 0; i < passenger.size(); i++) {
+            
+            Object[] row = new Object[]{passenger.get(i).getId(),
+                passenger.get(i).getName(),
+                passenger.get(i).getTour().getTourCode()};
+            data.add(row);
+        }
+        
+        Object[][] passengerData = data.toArray(new Object[data.size()][]);
+        
+        tableView.setModel(new javax.swing.table.DefaultTableModel(passengerData, new String[]{"ID", "Name", "Tour"}));
+        setVisible(true);
+        scrollPaneView.getViewport().setBackground(Color.LIGHT_GRAY);
+        setVisible(true);
+        
+        tableView.setAutoscrolls(true);
+        tableView.setFillsViewportHeight(true);
+        tableView.setPreferredScrollableViewportSize(new java.awt.Dimension(800, 300));
+        tableView.setGridColor(new java.awt.Color(0, 204, 153));
+        tableView.setName("Passenger Detail");
+        
+        tableView.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus,
+                    int row, int column) {
+                
+                Component c = super.getTableCellRendererComponent(table,
+                        value, isSelected, hasFocus, row, column);
+                c.setBackground(row % 2 == 0 ? new java.awt.Color(0, 204, 153) : Color.GRAY);
+                return c;
+                
+            }
+        });
+        } catch (Exception e){e.printStackTrace();}
     }
 
     /**
@@ -269,18 +357,28 @@ public class PassengerWindow extends javax.swing.JFrame {
         comboDelSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "ID" }));
 
         btnDelFind.setText("Find");
+        btnDelFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelFindActionPerformed(evt);
+            }
+        });
 
         tableDel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Name", "Tour Code"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         scrollPaneDel.setViewportView(tableDel);
 
         btnDelClear.setText("Clear");
@@ -360,18 +458,28 @@ public class PassengerWindow extends javax.swing.JFrame {
         comboViewSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "ID" }));
 
         btnViewFind.setText("Find");
+        btnViewFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewFindActionPerformed(evt);
+            }
+        });
 
         tableView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Name", "Tour Code"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         scrollPaneView.setViewportView(tableView);
 
         btnViewClear.setText("Clear");
@@ -488,7 +596,7 @@ public class PassengerWindow extends javax.swing.JFrame {
     private void btnDelClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelClearActionPerformed
         // TODO add your handling code here:
         txtDelKeyword.setText("");
-        tableDel.removeAll();        
+        tableDel.removeAll();
     }//GEN-LAST:event_btnDelClearActionPerformed
 
     private void btnViewClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewClearActionPerformed
@@ -499,6 +607,7 @@ public class PassengerWindow extends javax.swing.JFrame {
 
     private void btnDelDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelDeleteActionPerformed
         // TODO add your handling code here:
+        //tableView.remove(tableView.getSelectedRowCount());
     }//GEN-LAST:event_btnDelDeleteActionPerformed
 
     private void btnAddAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAddActionPerformed
@@ -508,10 +617,13 @@ public class PassengerWindow extends javax.swing.JFrame {
         int tourCode = Integer.parseInt(txtAddTourCode.getText());
         String name = txtAddName.getText();
         Tour tour = new Tour();
-       //  tour = tourDAO.getTour(tourCode);
+        tour.setTourCode(tourCode);
         Passenger instance = new Passenger(ID, tour, name);
-        boolean success = passengerDAO.addPassenger(instance);
-        
+        if (passengerDAO.addPassenger(instance)){
+            JOptionPane.showMessageDialog(this, "Successfully added", "Success", WIDTH);
+        } else {
+            JOptionPane.showMessageDialog(this, "Database Error", "Error", WIDTH);
+        }
     }//GEN-LAST:event_btnAddAddActionPerformed
 
     private void btnEditUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUpdateActionPerformed
@@ -521,11 +633,56 @@ public class PassengerWindow extends javax.swing.JFrame {
         int tourCode = Integer.parseInt(txtEditTourCode.getText());
         String name = txtEditName.getText();
         Tour tour = new Tour();
-       //  tour = tourDAO.getTour(tourCode);
+        tour.setTourCode(tourCode);
         Passenger instance = new Passenger(ID, tour, name);
-        boolean success = passengerDAO.updatePassenger(instance);
-        
+        if (passengerDAO.updatePassenger(instance)){
+            JOptionPane.showMessageDialog(this, "Successfully updated", "Success", WIDTH);
+        } else {
+            JOptionPane.showMessageDialog(this, "Database Error", "Error", WIDTH);
+        }
     }//GEN-LAST:event_btnEditUpdateActionPerformed
+
+    private void btnDelFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelFindActionPerformed
+        // TODO add your handling code here:
+        if(comboDelSearchCategory.getSelectedIndex()==0){
+            String name = txtDelKeyword.getText().trim();
+            List<Passenger> result = passengerDAO.getPassenger(name);
+            if (result==null){
+                JOptionPane.showMessageDialog(this, "No data found", "Error", ERROR);
+            } else {
+                createDelTable(result);
+            }           
+        } else {
+            int ID = Integer.parseInt(txtDelKeyword.getText().trim());
+            List<Passenger> result = passengerDAO.getPassenger(ID);
+            if (result==null){
+                JOptionPane.showMessageDialog(this, "No data found", "Error", ERROR);
+            } else {
+                createDelTable(result);
+            }  
+        }
+    }//GEN-LAST:event_btnDelFindActionPerformed
+
+    private void btnViewFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewFindActionPerformed
+        // TODO add your handling code here:
+        if(comboViewSearchCategory.getSelectedIndex()==0){
+            String name = txtViewKeyword.getText().trim();
+            List<Passenger> result = passengerDAO.getPassenger(name);
+            if (result==null){
+                JOptionPane.showMessageDialog(this, "No data found", "Error", ERROR);
+            } else {
+                createViewTable(result);
+            }  
+        } else {
+            int ID = Integer.parseInt(txtViewKeyword.getText().trim());
+            List<Passenger> result = passengerDAO.getPassenger(ID);
+            if (result==null){
+                JOptionPane.showMessageDialog(this, "No data found", "Error", ERROR);
+            } else {
+                createViewTable(result);
+            } 
+        }
+    }//GEN-LAST:event_btnViewFindActionPerformed
 
     /**
      * @param args the command line arguments
