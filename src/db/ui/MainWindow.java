@@ -76,6 +76,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         routesTextField.setText("Routes");
+        routesTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routesTextFieldActionPerformed(evt);
+            }
+        });
 
         passengersTextField.setText("Passengers");
         passengersTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +185,10 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         new PassengerWindow().setVisible(true);
     }//GEN-LAST:event_passengersTextFieldActionPerformed
+
+    private void routesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesTextFieldActionPerformed
+       
+    }//GEN-LAST:event_routesTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
