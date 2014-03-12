@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 10, 2014 2:55:00 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated Mar 12, 2014 5:01:44 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="db.entity.Town" table="town" catalog="tourmanagement">
         <id name="id" type="int">
@@ -14,19 +14,19 @@
         <property name="overNightStop" type="java.lang.Boolean">
             <column name="overNightStop" />
         </property>
-        <set name="bills" table="bill" inverse="true" lazy="false" fetch="select">
+        <set name="bills" table="bill" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="town_id" />
             </key>
             <one-to-many class="db.entity.Bill" />
         </set>
-        <set name="routeTowns" table="route_town" inverse="true" lazy="false" fetch="select">
+        <set name="routeTowns" table="route_town" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="town_id" />
             </key>
             <one-to-many class="db.entity.RouteTown" />
         </set>
-        <set name="hotels" table="hotel" inverse="true" lazy="false" fetch="select">
+        <set name="hotels" table="hotel" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="town_id" unique="true" />
             </key>

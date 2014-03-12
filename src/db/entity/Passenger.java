@@ -1,5 +1,5 @@
 package db.entity;
-// Generated Mar 10, 2014 2:54:58 PM by Hibernate Tools 3.6.0
+// Generated Mar 12, 2014 5:01:43 PM by Hibernate Tools 3.6.0
 
 
 
