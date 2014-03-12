@@ -3,8 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package db.ui.panels;
+
+import db.dao.TownDAO;
+import db.entity.Town;
+import java.awt.Container;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +18,52 @@ package db.ui.panels;
  */
 public class TownSearchPanel extends javax.swing.JPanel {
 
+    private TownDAO townDAO;
+    private static TownSearchPanel instance;
+
     /**
      * Creates new form TownSearchPanel
      */
-    public TownSearchPanel() {
+    private TownSearchPanel() {
         initComponents();
+        townDAO = new TownDAO();
+    }
+
+    public static TownSearchPanel getInstance() {
+        if (instance == null) {
+            instance = new TownSearchPanel();
+        }
+        return instance;
+    }
+
+    private void createViewTable(List<Town> towns) {
+        ArrayList<Object[]> data = new ArrayList<>();
+        try {
+            for (int i = 0; i < towns.size(); i++) {
+                Object[] row = new Object[]{towns.get(i).getId(),
+                    towns.get(i).getName(), towns.get(i).getOverNightStop(), towns.get(i).getBills().size(), towns.get(i).getRouteTowns().size(), towns.get(i).getHotels().size()};
+                data.add(row);
+            }
+            Object[][] passengerData = data.toArray(new Object[0][]);
+            tableView.setModel(new javax.swing.table.DefaultTableModel(
+                    passengerData,
+                    new String[]{
+                        "ID", "Name", "Overnight Stop", "No Of Bills", "No Of Route Towns", "No Of Hotels"
+                    }
+            ) {
+                boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false
+                };
+
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
+            tableView.setAutoscrolls(true);
+            tableView.setFillsViewportHeight(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -33,16 +80,14 @@ public class TownSearchPanel extends javax.swing.JPanel {
         panelDetails = new javax.swing.JPanel();
         lblTownID = new javax.swing.JLabel();
         lblTownName = new javax.swing.JLabel();
-        lblOvernightStop = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        txtTownId = new javax.swing.JTextField();
+        txtTownName = new javax.swing.JTextField();
         panelBills = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableView = new javax.swing.JTable();
         panelControlls = new javax.swing.JPanel();
-        btnReset = new javax.swing.JButton();
-        btnSave = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -52,10 +97,6 @@ public class TownSearchPanel extends javax.swing.JPanel {
         lblTownID.setText("Town ID");
 
         lblTownName.setText("Town Name");
-
-        lblOvernightStop.setText("Overnight Stop");
-
-        jCheckBox1.setText("Allowed");
 
         javax.swing.GroupLayout panelDetailsLayout = new javax.swing.GroupLayout(panelDetails);
         panelDetails.setLayout(panelDetailsLayout);
@@ -67,17 +108,11 @@ public class TownSearchPanel extends javax.swing.JPanel {
                     .addGroup(panelDetailsLayout.createSequentialGroup()
                         .addComponent(lblTownID)
                         .addGap(73, 73, 73)
-                        .addComponent(jTextField1))
+                        .addComponent(txtTownId))
                     .addGroup(panelDetailsLayout.createSequentialGroup()
-                        .addGroup(panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTownName)
-                            .addComponent(lblOvernightStop))
-                        .addGap(40, 40, 40)
-                        .addGroup(panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDetailsLayout.createSequentialGroup()
-                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))))
+                        .addComponent(lblTownName)
+                        .addGap(57, 57, 57)
+                        .addComponent(txtTownName, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelDetailsLayout.setVerticalGroup(
@@ -86,41 +121,58 @@ public class TownSearchPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTownID)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTownId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTownName)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblOvernightStop)
-                    .addComponent(jCheckBox1)))
+                    .addComponent(txtTownName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
 
-        panelBills.setBorder(javax.swing.BorderFactory.createTitledBorder("Bills"));
+        panelBills.setBorder(javax.swing.BorderFactory.createTitledBorder("Result"));
         panelBills.setName(""); // NOI18N
         panelBills.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Town ID", "Name", "Overnight Stop", "Bills", "Route Towns", "Hotels"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableViewMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableView);
 
         panelBills.add(jScrollPane1);
 
         panelControlls.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btnReset.setText("Reset");
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
-        btnSave.setText("Save");
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelControllsLayout = new javax.swing.GroupLayout(panelControlls);
         panelControlls.setLayout(panelControllsLayout);
@@ -128,9 +180,9 @@ public class TownSearchPanel extends javax.swing.JPanel {
             panelControllsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelControllsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSave)
+                .addComponent(btnClear)
                 .addGap(18, 18, 18)
-                .addComponent(btnReset)
+                .addComponent(btnSearch)
                 .addContainerGap())
         );
         panelControllsLayout.setVerticalGroup(
@@ -138,8 +190,8 @@ public class TownSearchPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelControllsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelControllsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReset)
-                    .addComponent(btnSave))
+                    .addComponent(btnSearch)
+                    .addComponent(btnClear))
                 .addContainerGap())
         );
 
@@ -159,9 +211,9 @@ public class TownSearchPanel extends javax.swing.JPanel {
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelBills, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(panelBills, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
                 .addGap(5, 5, 5)
                 .addComponent(panelControlls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5))
@@ -172,16 +224,54 @@ public class TownSearchPanel extends javax.swing.JPanel {
         add(panelScroll);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        tableView.setModel(new javax.swing.table.DefaultTableModel(null, new String[]{"ID", "Name", "Overnight Stop", "No Of Bills", "No Of Route Towns", "No Of Hotels"}));
+        txtTownId.setText("");
+        txtTownName.setText("");
+        txtTownId.requestFocus();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String strID = txtTownId.getText();
+        String name = txtTownName.getText().trim();
+
+        Integer id = null;
+        if (!strID.equals("")) {
+            try {
+                id = Integer.valueOf(strID);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Please enter valid numbers", "Warning", JOptionPane.WARNING_MESSAGE);
+                txtTownId.selectAll();
+                txtTownId.requestFocus();
+                return;
+            }
+        }
+        List<Town> result = townDAO.getTowns(id, name);
+        if (result == null) {
+            JOptionPane.showMessageDialog(this, "No data found", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            createViewTable(result);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void tableViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViewMouseClicked
+        if (evt.getClickCount() == 2) {
+            int id = Integer.parseInt(tableView.getValueAt(tableView.getSelectedRow(), 0).toString());
+            TownEditPanel panel = TownEditPanel.getInstance();
+            panel.refersh(townDAO.getTown(id));
+            Container container = this.getParent();
+            container.removeAll();
+            container.add(panel);
+            container.repaint();
+            container.validate();
+        }
+    }//GEN-LAST:event_tableViewMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JLabel lblOvernightStop;
     private javax.swing.JLabel lblTownID;
     private javax.swing.JLabel lblTownName;
     private javax.swing.JPanel panelBills;
@@ -189,5 +279,8 @@ public class TownSearchPanel extends javax.swing.JPanel {
     private javax.swing.JPanel panelDetails;
     private javax.swing.JPanel panelMain;
     private javax.swing.JScrollPane panelScroll;
+    private javax.swing.JTable tableView;
+    private javax.swing.JTextField txtTownId;
+    private javax.swing.JTextField txtTownName;
     // End of variables declaration//GEN-END:variables
 }
