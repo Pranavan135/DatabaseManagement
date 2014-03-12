@@ -61,8 +61,6 @@ public class CoachWindow extends javax.swing.JFrame {
 
         jButton3.setText("Exit");
 
-        coachLastServiceMileageAddTextField.setText("jTextField4");
-
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
         addPanelLayout.setHorizontalGroup(
