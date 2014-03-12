@@ -46,7 +46,7 @@ public class CoachWindow extends javax.swing.JFrame {
         deletePanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         coachRegNoAddLabel.setText("Reg No");
 
