@@ -393,7 +393,7 @@ public class BillWindow extends javax.swing.JFrame {
         }
         else {
             
-            billDAO.addBill(new Bill(referenceNo), new Town(townID), new Town(tourCode), new Hotel(hotelID,))
+            //billDAO.addBill(new Bill(referenceNo), new Town(townID), new Town(tourCode), new Hotel(hotelID,))
         }
     }
         
