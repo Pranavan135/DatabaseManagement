@@ -190,7 +190,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_passengersTextFieldActionPerformed
 
     private void routesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesTextFieldActionPerformed
-       
+        new RouteWindow().setVisible(true);
     }//GEN-LAST:event_routesTextFieldActionPerformed
 
     /**
