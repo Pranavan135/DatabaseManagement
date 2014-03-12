@@ -7,17 +7,15 @@
 package db.dao;
 
 import db.entity.Bill;
+import db.entity.Hotel;
+import db.entity.Tour;
 import db.entity.Town;
-import db.ui.BillWindow;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
-import static java.sql.Types.NULL;
-import static java.util.Collections.list;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
@@ -26,7 +24,7 @@ import org.hibernate.cfg.Configuration;
  * @author 110592A
  */
 public class BillDAO {
-    private static String QUERY_BASED_ON_REFERENCE_NO = "from bill b where b.refno like '"; 
+    private static String QUERY_BASED_ON_REFERENCE_NO = "from Bill b where b.refno like '"; 
     private static BillDAO billDAO = null;
     
      public static BillDAO create()  {
@@ -116,5 +114,68 @@ public class BillDAO {
             return true;
         else 
             return false;
+    }
+    
+    public Town getTown(String townId)  {
+        Session session = null;
+        Transaction transaction = null;
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            Query q = session.createQuery("from Town where id = :townId") ;
+            Town t = (Town) q.uniqueResult();
+            session.getTransaction().commit();
+            return t;
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Tour getTour(String tourCode)  {
+        Session session = null;
+        Transaction transaction = null;
+       
+         try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            Query q = session.createQuery("from Tour where tour_code = :tourCode") ;
+            Tour t = (Tour)q.uniqueResult();
+            session.getTransaction().commit();
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Hotel getHotel(String hotelId)  {
+        Session session = null;
+        Transaction transaction = null;
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            Query q = session.createQuery("from Hotel where id = :hotelId") ;
+            Hotel t = (Hotel)q.uniqueResult();
+            session.getTransaction().commit();
+            
+            return t;
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        return null;
     }
 }

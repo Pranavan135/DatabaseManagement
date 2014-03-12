@@ -169,6 +169,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         btnEditUpdate = new javax.swing.JButton();
         btnEditClear = new javax.swing.JButton();
         btnEditExit = new javax.swing.JButton();
+        btnEditGet = new javax.swing.JButton();
         tabPassengerDelete = new javax.swing.JPanel();
         lblDelSaerch = new javax.swing.JLabel();
         comboDelSearchCategory = new javax.swing.JComboBox();
@@ -189,7 +190,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         btnViewClear = new javax.swing.JButton();
         btnViewExit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabPassengerAdd.setToolTipText("");
         tabPassengerAdd.setName(""); // NOI18N
@@ -243,7 +244,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtAddName)
-                            .addComponent(txtAddID)
+                            .addComponent(txtAddID, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtAddTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
@@ -252,17 +253,17 @@ public class PassengerWindow extends javax.swing.JFrame {
             .addGroup(tabPassengerAddLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAddName)
-                    .addComponent(txtAddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAddID)
                     .addComponent(txtAddID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAddName)
+                    .addComponent(txtAddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAddTourCode)
                     .addComponent(txtAddTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddAdd)
                     .addComponent(btnAddClear)
@@ -274,6 +275,10 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPassengerAdd.getAccessibleContext().setAccessibleName("tabPassengerAdd");
 
         lblEditName.setText("Name");
+
+        txtEditName.setEnabled(false);
+
+        txtEditTourCode.setEnabled(false);
 
         lblEditTourCode.setText("Tour Code");
 
@@ -301,6 +306,13 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        btnEditGet.setText("Get");
+        btnEditGet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditGetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabPassengerEditLayout = new javax.swing.GroupLayout(tabPassengerEdit);
         tabPassengerEdit.setLayout(tabPassengerEditLayout);
         tabPassengerEditLayout.setHorizontalGroup(
@@ -322,21 +334,24 @@ public class PassengerWindow extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEditName)
-                            .addComponent(txtEditID)
+                            .addComponent(txtEditID, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtEditTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEditGet)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         tabPassengerEditLayout.setVerticalGroup(
             tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerEditLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(33, 33, 33)
+                .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEditID)
+                    .addComponent(txtEditID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditGet))
+                .addGap(18, 18, 18)
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEditName)
                     .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEditID)
-                    .addComponent(txtEditID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEditTourCode)
@@ -442,7 +457,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                     .addComponent(btnDelFind))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneDel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelDelete)
                     .addComponent(btnDelExit)
@@ -533,7 +548,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                     .addComponent(btnViewFind))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneView, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnViewExit)
                     .addComponent(btnViewClear))
@@ -557,6 +572,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPanePassenger.getAccessibleContext().setAccessibleName("tabPanePassenger");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddExitActionPerformed
@@ -589,8 +605,10 @@ public class PassengerWindow extends javax.swing.JFrame {
     private void btnEditClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditClearActionPerformed
         // TODO add your handling code here:
         txtEditName.setText("");
+        txtEditName.setEnabled(false);
         txtEditID.setText("");
         txtEditTourCode.setText("");
+        txtEditTourCode.setEnabled(false);
     }//GEN-LAST:event_btnEditClearActionPerformed
 
     private void btnDelClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelClearActionPerformed
@@ -684,6 +702,16 @@ public class PassengerWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnViewFindActionPerformed
 
+    private void btnEditGetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGetActionPerformed
+        // TODO add your handling code here:
+        int ID = Integer.parseInt(txtEditID.getText());
+        Passenger passenger = new PassengerDAO().getPassenger(ID).get(0);
+        txtEditName.setText(passenger.getName());
+        txtEditTourCode.setText(String.valueOf(passenger.getTour().getTourCode()));
+        txtEditName.setEnabled(true);
+        txtEditTourCode.setEnabled(true);
+    }//GEN-LAST:event_btnEditGetActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -699,6 +727,7 @@ public class PassengerWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnDelFind;
     private javax.swing.JButton btnEditClear;
     private javax.swing.JButton btnEditExit;
+    private javax.swing.JButton btnEditGet;
     private javax.swing.JButton btnEditUpdate;
     private javax.swing.JButton btnViewClear;
     private javax.swing.JButton btnViewExit;

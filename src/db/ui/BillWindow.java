@@ -8,6 +8,8 @@ package db.ui;
 
 import db.entity.Bill;
 import db.dao.BillDAO;
+import db.entity.Hotel;
+import db.entity.Town;
 import db.validate.BillValidate;
 import java.util.Date;
 import java.util.List;
@@ -128,9 +130,9 @@ public class BillWindow extends javax.swing.JFrame {
         addBillsTab.add(hotelIDLabel);
         hotelIDLabel.setBounds(360, 80, 101, 30);
 
-        billDateLabel.setText("Bill date");
+        billDateLabel.setText("Bill date (dd-MM-yyyy)");
         addBillsTab.add(billDateLabel);
-        billDateLabel.setBounds(30, 130, 101, 30);
+        billDateLabel.setBounds(30, 130, 110, 30);
 
         numberOfIndvidualsLabel.setText("Number of Individuals");
         addBillsTab.add(numberOfIndvidualsLabel);
@@ -366,13 +368,36 @@ public class BillWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void addData()  {
         String referenceNo = referenceNoTextField.getText();
-        boolean referencNovalidate = billValidate.validatReferenceNo(referenceNo);
-        
-        
-        Bill bill = new Bill();
-        
-        billDAO.addBill(bill);
+        String date = billDateTextField.getText();
+        String tourCode = tourCodeTextField.getText();
+        String townID = townIDTextField.getText();
+        String hotelID = hotelIDtextField.getText();
+        String numberOfIndividuals = numberOfIndvidualsTextField.getText();
+        String amount = amountTextField.getText();
+      
+        if (!billValidate.validatReferenceNo(referenceNo)) {
+            referenceNoTextField.setText("");
+            referenceNo = "";
+        }
+        else if (!billValidate.validateDate(date))   {
+            billDateTextField.setText("");
+            date = "";
+        }
+        else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
+            numberOfIndvidualsTextField.setText("");
+            numberOfIndividuals = "";
+        }
+        else if (!billValidate.validateAmount(amount)) { 
+            amountTextField.setText("");
+            amount = "";
+        }
+        else {
+            
+            billDAO.addBill(new Bill(referenceNo), new Town(townID), new Town(tourCode), new Hotel(hotelID,))
+        }
     }
+        
+    
     
     private void viewBills() {
         String referenceNo = viewReferenceTextField.getText();

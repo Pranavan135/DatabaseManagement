@@ -130,11 +130,11 @@
             </Component>
             <Component class="javax.swing.JLabel" name="billDateLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Bill date"/>
+                <Property name="text" type="java.lang.String" value="Bill date (dd-MM-yyyy)"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="30" y="130" width="101" height="30"/>
+                  <AbsoluteConstraints x="30" y="130" width="110" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
