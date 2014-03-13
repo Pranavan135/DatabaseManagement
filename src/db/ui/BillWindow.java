@@ -128,6 +128,8 @@ public class BillWindow extends javax.swing.JFrame {
         amountLabel.setText("Amount");
         addBillsTab.add(amountLabel);
         amountLabel.setBounds(30, 80, 101, 38);
+
+        townIDTextField.setEditable(false);
         addBillsTab.add(townIDTextField);
         townIDTextField.setBounds(550, 310, 80, 30);
         addBillsTab.add(numberOfIndvidualsTextField);
@@ -146,8 +148,12 @@ public class BillWindow extends javax.swing.JFrame {
         numberOfIndvidualsLabel.setText("Number of Individuals");
         addBillsTab.add(numberOfIndvidualsLabel);
         numberOfIndvidualsLabel.setBounds(350, 90, 110, 14);
+
+        tourCodeTextField.setEditable(false);
         addBillsTab.add(tourCodeTextField);
         tourCodeTextField.setBounds(380, 180, 80, 30);
+
+        hotelIDtextField.setEditable(false);
         addBillsTab.add(hotelIDtextField);
         hotelIDtextField.setBounds(440, 310, 80, 30);
         addBillsTab.add(referenceNoTextField);
@@ -560,10 +566,12 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_editEditButton1ActionPerformed
 
     private void tourCodelistValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_tourCodelistValueChanged
-         tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
-         Tour tour = billDAO.getTour(tourCodeTextField.getText());
-         Set<Hotel> hotels = billDAO.getAllHotels(tour);
-         changeTable(hotels);
+        if (!tourCodelist.isSelectionEmpty()) { 
+            tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
+            Tour tour = billDAO.getTour(tourCodeTextField.getText());
+            Set<Hotel> hotels = billDAO.getAllHotels(tour);
+            changeTable(hotels);
+        }
     }//GEN-LAST:event_tourCodelistValueChanged
 
     private void changeTable(Set<Hotel> hotels) {
