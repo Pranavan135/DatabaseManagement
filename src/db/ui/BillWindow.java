@@ -14,6 +14,7 @@ import db.entity.Town;
 import db.validate.BillValidate;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -127,7 +128,7 @@ public class BillWindow extends javax.swing.JFrame {
         addBillsTab.add(amountLabel);
         amountLabel.setBounds(30, 80, 101, 38);
         addBillsTab.add(townIDTextField);
-        townIDTextField.setBounds(530, 310, 80, 30);
+        townIDTextField.setBounds(550, 310, 80, 30);
         addBillsTab.add(numberOfIndvidualsTextField);
         numberOfIndvidualsTextField.setBounds(490, 80, 124, 33);
         addBillsTab.add(amountTextField);
@@ -147,7 +148,7 @@ public class BillWindow extends javax.swing.JFrame {
         addBillsTab.add(tourCodeTextField);
         tourCodeTextField.setBounds(380, 180, 80, 30);
         addBillsTab.add(hotelIDtextField);
-        hotelIDtextField.setBounds(390, 310, 80, 30);
+        hotelIDtextField.setBounds(440, 310, 80, 30);
         addBillsTab.add(referenceNoTextField);
         referenceNoTextField.setBounds(190, 30, 124, 28);
 
@@ -200,7 +201,13 @@ public class BillWindow extends javax.swing.JFrame {
         jScrollPane6.setViewportView(hotelTownTable);
 
         addBillsTab.add(jScrollPane6);
-        jScrollPane6.setBounds(30, 290, 320, 80);
+        jScrollPane6.setBounds(30, 290, 400, 80);
+
+        jScrollPane5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane5MouseClicked(evt);
+            }
+        });
 
         tourCodelist.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -510,6 +517,8 @@ public class BillWindow extends javax.swing.JFrame {
         amountTextField.setText("");
         billDateChooser.setDate(null);
         hotelIDtextField.setText("");
+        tourCodelist.clearSelection();
+        hotelTownTable.clearSelection();
         
     }//GEN-LAST:event_clearButtonActionPerformed
 
@@ -537,13 +546,49 @@ public class BillWindow extends javax.swing.JFrame {
 
     private void tourCodelistValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_tourCodelistValueChanged
          tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
-         
+         Tour tour = billDAO.getTour(tourCodeTextField.getText());
+         Set<Hotel> hotels = billDAO.getAllHotels(tour);
+         changeTable(hotels);
     }//GEN-LAST:event_tourCodelistValueChanged
 
+    private void changeTable(Set<Hotel> hotels) {
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        
+        tableHeaders.add("Hotel ID");
+        tableHeaders.add("Hotel Name");
+        tableHeaders.add("Town ID");
+        tableHeaders.add("Town Name");
+      
+        
+        if (hotels != null) {
+            for (Hotel h : hotels) {
+               
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(h.getId());
+                oneRow.add(h.getName());
+                oneRow.add(h.getTown().getId());
+                oneRow.add(h.getTown().getName());
+                tableData.add(oneRow);
+            }
+        hotelTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        }
+        else {
+            
+        }
+        
+    }  
     private void hotelTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hotelTownTableMouseClicked
        hotelIDtextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 0).toString());
        townIDTextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 0).toString());
     }//GEN-LAST:event_hotelTownTableMouseClicked
+
+    private void jScrollPane5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane5MouseClicked
+        tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
+         Tour tour = billDAO.getTour(tourCodeTextField.getText());
+         Set<Hotel> hotels = billDAO.getAllHotels(tour);
+         changeTable(hotels);
+    }//GEN-LAST:event_jScrollPane5MouseClicked
 
     /**
      * @param args the command line arguments

@@ -103,7 +103,7 @@
             <Component class="javax.swing.JTextField" name="townIDTextField">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="530" y="310" width="80" height="30"/>
+                  <AbsoluteConstraints x="550" y="310" width="80" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -161,7 +161,7 @@
             <Component class="javax.swing.JTextField" name="hotelIDtextField">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="390" y="310" width="80" height="30"/>
+                  <AbsoluteConstraints x="440" y="310" width="80" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -233,7 +233,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="30" y="290" width="320" height="80"/>
+                  <AbsoluteConstraints x="30" y="290" width="400" height="80"/>
                 </Constraint>
               </Constraints>
 
@@ -287,6 +287,9 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jScrollPane5MouseClicked"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
