@@ -160,7 +160,13 @@ public class RouteDAO {
            return false;  
     }
     
-   
+   public boolean isExist(String id){
+       Route output = getRoute(id);
+       if (output != null)
+           return true;
+       else
+       return false;
+   }
     
    
     
