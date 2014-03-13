@@ -8,11 +8,15 @@ package db.dao;
 
 import db.entity.Bill;
 import db.entity.Hotel;
+import db.entity.Route;
+import db.entity.RouteTown;
 import db.entity.Tour;
 import db.entity.Town;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -205,5 +209,45 @@ public class BillDAO {
             he.printStackTrace();
         }
         return null;
+    }
+    
+     public List getAllTours() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Tour t ";
+            Query query = session.createQuery(HQLQuery);
+            List tours = query.list();
+            return tours;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+     
+     public Set<Hotel> getAllHotels(Tour tour) {
+        Set<RouteTown> route = tour.getRoute().getRouteTowns();
+        
+        Set<Hotel> hotel = new HashSet<Hotel>();
+        
+        for (RouteTown r : route)   {
+            Town t = r.getTown();
+            if (t.getOverNightStop()) {
+                if (t.getHotel() != null) {
+                    
+                    hotel.add(t.getHotel()); 
+                }
+                
+                }
+        }
+            
+        return hotel;
     }
 }

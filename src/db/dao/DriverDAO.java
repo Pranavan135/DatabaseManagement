@@ -65,11 +65,35 @@ public class DriverDAO {
         return true;
     }
     
+    public static boolean deleteData(Integer id){
+        Session sess = null;
+        Transaction tran = null;
+        try {
+            SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
+            sess = sessFact.openSession();
+            tran = sess.beginTransaction();
+            String hql = "DELETE FROM Driver d "  + "WHERE d.id.id = :id";
+            Query query = sess.createQuery(hql);
+            query.setParameter("id", id);
+            int result = query.executeUpdate();
+            System.out.println("Rows affected: " + result);
+            tran.commit();
+            //JOptionPane.showMessageDialog(null, "Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            sess.flush();
+            sess.close();
+        }
+    }
+    
 
-   public static List viewDrivers(String name){
+   public static List viewDrivers(String name,Integer id){
        Session session = null;
         Transaction transaction = null;
-        String hql = "from Driver d where d.id.name like '"+name + "%'";
+        String hql = "from Driver d where d.id.name like '"+name + "%' and d.id.id like '" + id+"%'";
         
         try {
             session = HibernateUtil.getSessionFactory().openSession();

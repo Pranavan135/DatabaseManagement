@@ -97,7 +97,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Copyright 2014 Ayata Solutiona");
+        jLabel1.setText("Copyright 2014 Ayata Solutions");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
