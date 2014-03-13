@@ -128,6 +128,8 @@ public class BillWindow extends javax.swing.JFrame {
         amountLabel.setText("Amount");
         addBillsTab.add(amountLabel);
         amountLabel.setBounds(30, 80, 101, 38);
+
+        townIDTextField.setEditable(false);
         addBillsTab.add(townIDTextField);
         townIDTextField.setBounds(550, 310, 80, 30);
         addBillsTab.add(numberOfIndvidualsTextField);
@@ -146,8 +148,12 @@ public class BillWindow extends javax.swing.JFrame {
         numberOfIndvidualsLabel.setText("Number of Individuals");
         addBillsTab.add(numberOfIndvidualsLabel);
         numberOfIndvidualsLabel.setBounds(350, 90, 110, 14);
+
+        tourCodeTextField.setEditable(false);
         addBillsTab.add(tourCodeTextField);
         tourCodeTextField.setBounds(380, 180, 80, 30);
+
+        hotelIDtextField.setEditable(false);
         addBillsTab.add(hotelIDtextField);
         hotelIDtextField.setBounds(440, 310, 80, 30);
         addBillsTab.add(referenceNoTextField);
@@ -183,7 +189,7 @@ public class BillWindow extends javax.swing.JFrame {
         addBillsTab.add(clearButton);
         clearButton.setBounds(450, 390, 140, 30);
         addBillsTab.add(billDateChooser);
-        billDateChooser.setBounds(490, 30, 130, 20);
+        billDateChooser.setBounds(490, 30, 130, 30);
         billDateChooser.setMaxSelectableDate(new Date());
 
         hotelTownTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -359,13 +365,10 @@ public class BillWindow extends javax.swing.JFrame {
 
         viewTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(viewTable);
@@ -376,17 +379,16 @@ public class BillWindow extends javax.swing.JFrame {
             viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewBillsTabLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
-                .addGroup(viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(viewBillsTabLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(viewBillsTabLayout.createSequentialGroup()
-                        .addComponent(viewReferenceLabel)
-                        .addGap(101, 101, 101)
-                        .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                        .addComponent(viewButton)
-                        .addGap(61, 61, 61))))
+                .addComponent(viewReferenceLabel)
+                .addGap(101, 101, 101)
+                .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(viewButton)
+                .addGap(61, 61, 61))
+            .addGroup(viewBillsTabLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         viewBillsTabLayout.setVerticalGroup(
             viewBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,9 +398,9 @@ public class BillWindow extends javax.swing.JFrame {
                     .addComponent(viewReferenceLabel)
                     .addComponent(viewReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
         );
 
         billsTab.addTab("VIEW", viewBillsTab);
@@ -453,16 +455,14 @@ public class BillWindow extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         else    {
-             try    {
-                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-
-                Date d = sdf.parse(date);
-                billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), d, Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
+             boolean response = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), billDateChooser.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
+             
+             if (response)  {
+                 JOptionPane.showMessageDialog(null, "You have successfully added the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                 clearAdd();
              }
-             catch (Exception e)    {
-                 
-             }
-      
+             else
+                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
         
@@ -492,7 +492,7 @@ public class BillWindow extends javax.swing.JFrame {
         tableHeaders.add("Town Name");
         tableHeaders.add("Hotel Name");
         tableHeaders.add("Bill date");
-        tableHeaders.add("Number of People");
+        tableHeaders.add("Person Count");
         tableHeaders.add("Amount");
         
         List resultList = billDAO.searchOnReferenceNo(referenceNo);
@@ -507,6 +507,7 @@ public class BillWindow extends javax.swing.JFrame {
                 oneRow.add(bill.getTown().getName());
                 oneRow.add(bill.getHotel().getName());
                 oneRow.add(bill.getBillDate());
+                oneRow.add(bill.getNumberOfIndividuals());
                 oneRow.add(bill.getAmount());
                 tableData.add(oneRow);
             }
@@ -515,6 +516,19 @@ public class BillWindow extends javax.swing.JFrame {
         else {
             
         }
+    }
+    
+    private void clearAdd() {
+         referenceNoTextField.setText("");
+        townIDTextField.setText("");
+        tourCodeTextField.setText("");
+        numberOfIndvidualsTextField.setText("");
+        amountTextField.setText("");
+        billDateChooser.setDate(null);
+        hotelIDtextField.setText("");
+        tourCodelist.clearSelection();
+        hotelTownTable.clearSelection();
+        billDateChooser.cleanup();
     }
     
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -530,18 +544,7 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-        referenceNoTextField.setText("");
-        townIDTextField.setText("");
-        tourCodeTextField.setText("");
-        numberOfIndvidualsTextField.setText("");
-        amountTextField.setText("");
-        billDateChooser.setDate(null);
-        hotelIDtextField.setText("");
-        tourCodelist.clearSelection();
-        hotelTownTable.clearSelection();
-        billDateChooser.cleanup();
-        
-        
+       clearAdd();
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void editExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editExitButtonActionPerformed
@@ -567,10 +570,12 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_editEditButton1ActionPerformed
 
     private void tourCodelistValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_tourCodelistValueChanged
-         tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
-         Tour tour = billDAO.getTour(tourCodeTextField.getText());
-         Set<Hotel> hotels = billDAO.getAllHotels(tour);
-         changeTable(hotels);
+        if (!tourCodelist.isSelectionEmpty()) { 
+            tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
+            Tour tour = billDAO.getTour(tourCodeTextField.getText());
+            Set<Hotel> hotels = billDAO.getAllHotels(tour);
+            changeTable(hotels);
+        }
     }//GEN-LAST:event_tourCodelistValueChanged
 
     private void changeTable(Set<Hotel> hotels) {
@@ -583,7 +588,7 @@ public class BillWindow extends javax.swing.JFrame {
         tableHeaders.add("Town Name");
       
         
-        if (hotels != null) {
+        if (!hotels.isEmpty()) {
             for (Hotel h : hotels) {
                
                 Vector<Object> oneRow = new Vector<Object>();
@@ -598,6 +603,8 @@ public class BillWindow extends javax.swing.JFrame {
         else {
             JOptionPane.showMessageDialog(null, "There are no overnight stops please try again with another tour code", "ERROR", JOptionPane.ERROR_MESSAGE);
             tourCodelist.clearSelection();
+            tourCodeTextField.setText("");
+            
            
         }
         
