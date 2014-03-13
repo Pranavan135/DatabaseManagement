@@ -12,6 +12,7 @@ import db.entity.Hotel;
 import db.entity.Tour;
 import db.entity.Town;
 import db.validate.BillValidate;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -180,9 +181,10 @@ public class BillWindow extends javax.swing.JFrame {
             }
         });
         addBillsTab.add(clearButton);
-        clearButton.setBounds(450, 390, 130, 30);
+        clearButton.setBounds(450, 390, 140, 30);
         addBillsTab.add(billDateChooser);
         billDateChooser.setBounds(490, 30, 130, 20);
+        billDateChooser.setMaxSelectableDate(new Date());
 
         hotelTownTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -431,19 +433,37 @@ public class BillWindow extends javax.swing.JFrame {
         }
         else if (!billValidate.validateNotNull(date))   {
              JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
-            numberOfIndvidualsTextField.setText("");
-            numberOfIndividuals = "";
+             billDateChooser.cleanup();
         }
         else if (!billValidate.validateAmount(amount)) { 
             amountTextField.setText("");
             amount = "";
         }
-        //else if ((!billValidate.validateNotNull(hotelID)){
-          
-            //billDAO.addBill(new Bill(referenceNo), new Town(townID), new Town(tourCode), new Hotel(hotelID,))
-      // }
+        else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
+            numberOfIndvidualsTextField.setText("");
+            numberOfIndividuals = "";
+        }
+        else if (!billValidate.validateNotNull(tourCode))   {
+             JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+         else if (!billValidate.validateNotNull(townID))   {
+             JOptionPane.showMessageDialog(null, "Please Select a town", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+         else if (!billValidate.validateNotNull(hotelID))   {
+             JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        else    {
+             try    {
+                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+                Date d = sdf.parse(date);
+                billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), d, Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
+             }
+             catch (Exception e)    {
+                 
+             }
+      
+        }
     }
         
     private void getTours() {
@@ -519,6 +539,8 @@ public class BillWindow extends javax.swing.JFrame {
         hotelIDtextField.setText("");
         tourCodelist.clearSelection();
         hotelTownTable.clearSelection();
+        billDateChooser.cleanup();
+        
         
     }//GEN-LAST:event_clearButtonActionPerformed
 
@@ -574,13 +596,15 @@ public class BillWindow extends javax.swing.JFrame {
         hotelTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
         }
         else {
-            
+            JOptionPane.showMessageDialog(null, "There are no overnight stops please try again with another tour code", "ERROR", JOptionPane.ERROR_MESSAGE);
+            tourCodelist.clearSelection();
+           
         }
         
     }  
     private void hotelTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hotelTownTableMouseClicked
        hotelIDtextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 0).toString());
-       townIDTextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 0).toString());
+       townIDTextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 2).toString());
     }//GEN-LAST:event_hotelTownTableMouseClicked
 
     private void jScrollPane5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane5MouseClicked

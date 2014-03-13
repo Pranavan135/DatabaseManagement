@@ -9,6 +9,7 @@ package db.validate;
 import db.dao.BillDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,11 +58,16 @@ public class BillValidate {
             return false;
         }
     }
-    
-  /*  public boolean validateDate(String date) {
+        
+    /*public boolean validateDate(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            sdf.parse(date);
+            Date d = sdf.parse(date);
+            if (d.after(new Date()))    {
+                JOptionPane.showMessageDialog(null, "Please E", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            
             return true;
         }
         catch(ParseException ex) {
