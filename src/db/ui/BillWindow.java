@@ -189,7 +189,7 @@ public class BillWindow extends javax.swing.JFrame {
         addBillsTab.add(clearButton);
         clearButton.setBounds(450, 390, 140, 30);
         addBillsTab.add(billDateChooser);
-        billDateChooser.setBounds(490, 30, 130, 20);
+        billDateChooser.setBounds(490, 30, 130, 30);
         billDateChooser.setMaxSelectableDate(new Date());
 
         hotelTownTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -459,9 +459,14 @@ public class BillWindow extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         else    {
+             boolean response = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), billDateChooser.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
              
-                billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), billDateChooser.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
-        
+             if (response)  {
+                 JOptionPane.showMessageDialog(null, "You have successfully added the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                 clearAdd();
+             }
+             else
+                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
         
@@ -506,6 +511,7 @@ public class BillWindow extends javax.swing.JFrame {
                 oneRow.add(bill.getTown().getName());
                 oneRow.add(bill.getHotel().getName());
                 oneRow.add(bill.getBillDate());
+                oneRow.add(bill.getNumberOfIndividuals());
                 oneRow.add(bill.getAmount());
                 tableData.add(oneRow);
             }
@@ -514,6 +520,19 @@ public class BillWindow extends javax.swing.JFrame {
         else {
             
         }
+    }
+    
+    private void clearAdd() {
+         referenceNoTextField.setText("");
+        townIDTextField.setText("");
+        tourCodeTextField.setText("");
+        numberOfIndvidualsTextField.setText("");
+        amountTextField.setText("");
+        billDateChooser.setDate(null);
+        hotelIDtextField.setText("");
+        tourCodelist.clearSelection();
+        hotelTownTable.clearSelection();
+        billDateChooser.cleanup();
     }
     
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -529,18 +548,7 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-        referenceNoTextField.setText("");
-        townIDTextField.setText("");
-        tourCodeTextField.setText("");
-        numberOfIndvidualsTextField.setText("");
-        amountTextField.setText("");
-        billDateChooser.setDate(null);
-        hotelIDtextField.setText("");
-        tourCodelist.clearSelection();
-        hotelTownTable.clearSelection();
-        billDateChooser.cleanup();
-        
-        
+       clearAdd();
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void editExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editExitButtonActionPerformed
@@ -584,7 +592,7 @@ public class BillWindow extends javax.swing.JFrame {
         tableHeaders.add("Town Name");
       
         
-        if (hotels != null) {
+        if (!hotels.isEmpty()) {
             for (Hotel h : hotels) {
                
                 Vector<Object> oneRow = new Vector<Object>();
@@ -599,6 +607,8 @@ public class BillWindow extends javax.swing.JFrame {
         else {
             JOptionPane.showMessageDialog(null, "There are no overnight stops please try again with another tour code", "ERROR", JOptionPane.ERROR_MESSAGE);
             tourCodelist.clearSelection();
+            tourCodeTextField.setText("");
+            
            
         }
         
