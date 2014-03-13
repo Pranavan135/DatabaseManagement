@@ -318,28 +318,41 @@ public class PassengerWindow extends javax.swing.JFrame {
         btnViewExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Passenger Management");
         setMinimumSize(new java.awt.Dimension(700, 500));
+        setName("passengerFrame"); // NOI18N
         setPreferredSize(new java.awt.Dimension(700, 500));
 
         tabPanePassenger.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tabPanePassenger.setForeground(new java.awt.Color(51, 0, 51));
+        tabPanePassenger.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         tabPassengerAdd.setToolTipText("");
         tabPassengerAdd.setName(""); // NOI18N
 
         lblAddName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblAddName.setForeground(new java.awt.Color(0, 51, 51));
         lblAddName.setText("Name");
 
         lblAddID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblAddID.setForeground(new java.awt.Color(0, 51, 51));
         lblAddID.setText("ID");
 
         lblAddTourCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblAddTourCode.setForeground(new java.awt.Color(0, 51, 51));
         lblAddTourCode.setText("Tour Code");
 
+        txtAddID.setBackground(new java.awt.Color(250, 250, 250));
         txtAddID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtAddID.setForeground(new java.awt.Color(51, 51, 0));
 
+        txtAddName.setBackground(new java.awt.Color(250, 250, 250));
         txtAddName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtAddName.setForeground(new java.awt.Color(51, 51, 0));
 
         btnAddAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAddAdd.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add copy.png"))); // NOI18N
         btnAddAdd.setText("ADD");
         btnAddAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,6 +361,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnAddClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnAddClear.setForeground(new java.awt.Color(51, 51, 51));
         btnAddClear.setText("Clear");
         btnAddClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,6 +370,8 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnAddExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnAddExit.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit copy.png"))); // NOI18N
         btnAddExit.setText("Exit");
         btnAddExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,7 +379,9 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        comboAddTourCode.setBackground(new java.awt.Color(250, 250, 250));
         comboAddTourCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        comboAddTourCode.setForeground(new java.awt.Color(51, 51, 0));
 
         javax.swing.GroupLayout tabPassengerAddLayout = new javax.swing.GroupLayout(tabPassengerAdd);
         tabPassengerAdd.setLayout(tabPassengerAddLayout);
@@ -417,17 +435,25 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPassengerAdd.getAccessibleContext().setAccessibleName("tabPassengerAdd");
 
         lblEditName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblEditName.setForeground(new java.awt.Color(0, 51, 51));
         lblEditName.setText("Name");
 
+        txtEditName.setForeground(new java.awt.Color(51, 51, 0));
         txtEditName.setEnabled(false);
 
+        txtEditID.setForeground(new java.awt.Color(51, 51, 0));
+
         lblEditTourCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblEditTourCode.setForeground(new java.awt.Color(0, 51, 51));
         lblEditTourCode.setText("Tour Code");
 
         lblEditID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblEditID.setForeground(new java.awt.Color(0, 51, 51));
         lblEditID.setText("ID");
 
         btnEditUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEditUpdate.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update copy.png"))); // NOI18N
         btnEditUpdate.setText("UPDATE");
         btnEditUpdate.setEnabled(false);
         btnEditUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -437,6 +463,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnEditClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnEditClear.setForeground(new java.awt.Color(51, 51, 51));
         btnEditClear.setText("Clear");
         btnEditClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,6 +472,8 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnEditExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnEditExit.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit copy.png"))); // NOI18N
         btnEditExit.setText("Exit");
         btnEditExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -453,6 +482,8 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnEditGet.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnEditGet.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditGet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update copy.png"))); // NOI18N
         btnEditGet.setText("Get");
         btnEditGet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -460,6 +491,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        comboEditTourCode.setForeground(new java.awt.Color(51, 51, 0));
         comboEditTourCode.setEnabled(false);
 
         javax.swing.GroupLayout tabPassengerEditLayout = new javax.swing.GroupLayout(tabPassengerEdit);
@@ -498,15 +530,15 @@ public class PassengerWindow extends javax.swing.JFrame {
                     .addComponent(txtEditID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEditID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditGet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEditName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(comboEditTourCode)
                     .addComponent(lblEditTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditClear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -518,14 +550,18 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPassengerEdit.getAccessibleContext().setAccessibleName("tabPassengerEdit");
 
         lblDelSaerch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblDelSaerch.setForeground(new java.awt.Color(0, 51, 51));
         lblDelSaerch.setText("Search by:");
 
         comboDelSearchCategory.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        comboDelSearchCategory.setForeground(new java.awt.Color(51, 51, 0));
         comboDelSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "ID" }));
 
         txtDelKeyword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtDelKeyword.setForeground(new java.awt.Color(51, 51, 0));
 
         btnDelFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnDelFind.setForeground(new java.awt.Color(51, 51, 51));
         btnDelFind.setText("Find");
         btnDelFind.setPreferredSize(new java.awt.Dimension(60, 30));
         btnDelFind.addActionListener(new java.awt.event.ActionListener() {
@@ -535,6 +571,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         tableDel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tableDel.setForeground(new java.awt.Color(51, 0, 51));
         tableDel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -559,6 +596,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         tableDel.getAccessibleContext().setAccessibleName("tableDelList");
 
         btnDelClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnDelClear.setForeground(new java.awt.Color(51, 51, 51));
         btnDelClear.setText("Clear");
         btnDelClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -567,6 +605,8 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnDelDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnDelDelete.setForeground(new java.awt.Color(51, 51, 51));
+        btnDelDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete2 copy.png"))); // NOI18N
         btnDelDelete.setText("DELETE");
         btnDelDelete.setEnabled(false);
         btnDelDelete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -581,6 +621,8 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnDelExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnDelExit.setForeground(new java.awt.Color(51, 51, 51));
+        btnDelExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit copy.png"))); // NOI18N
         btnDelExit.setText("Exit");
         btnDelExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -608,7 +650,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                                 .addComponent(btnDelFind, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(tabPassengerDeleteLayout.createSequentialGroup()
-                        .addComponent(btnDelDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnDelClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -640,14 +682,18 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPassengerDelete.getAccessibleContext().setAccessibleName("tabPassengerDelete");
 
         lblViewSaerch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblViewSaerch.setForeground(new java.awt.Color(0, 51, 51));
         lblViewSaerch.setText("Search by:");
 
         comboViewSearchCategory.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        comboViewSearchCategory.setForeground(new java.awt.Color(51, 51, 0));
         comboViewSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "ID" }));
 
         txtViewKeyword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtViewKeyword.setForeground(new java.awt.Color(51, 51, 0));
 
         btnViewFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnViewFind.setForeground(new java.awt.Color(51, 51, 51));
         btnViewFind.setText("Find");
         btnViewFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -656,6 +702,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         tableView.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tableView.setForeground(new java.awt.Color(51, 0, 51));
         tableView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -678,6 +725,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         tableView.getAccessibleContext().setAccessibleName("tableViewList");
 
         btnViewClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnViewClear.setForeground(new java.awt.Color(51, 51, 51));
         btnViewClear.setText("Clear");
         btnViewClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -686,6 +734,8 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnViewExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnViewExit.setForeground(new java.awt.Color(51, 51, 51));
+        btnViewExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit copy.png"))); // NOI18N
         btnViewExit.setText("Exit");
         btnViewExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
