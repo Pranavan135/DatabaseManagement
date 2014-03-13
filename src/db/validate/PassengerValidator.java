@@ -6,6 +6,8 @@
 
 package db.validate;
 
+import db.dao.PassengerDAO;
+
 /**
  *
  * @author Vishnuvathsasarma
@@ -15,6 +17,7 @@ public class PassengerValidator {
     private final int minNameLength = 3;
     private final int maxNameLength = 45;
     private final int tourCodeLength = 6;
+    private PassengerDAO passengerDAO = new PassengerDAO();
 
     public int getIdLength() {
         return idLength;
@@ -34,6 +37,10 @@ public class PassengerValidator {
     
     public boolean isValidID(int ID) {
         return String.valueOf(ID).length()==idLength;
+    }
+    
+    public boolean isDuplicateID(int ID){
+        return (passengerDAO.getPassenger(ID)== null);
     }
     
     public boolean isValidName(String name){

@@ -96,10 +96,11 @@ public class Tour  implements java.io.Serializable {
     public void setPassengers(Set passengers) {
         this.passengers = passengers;
     }
-
-
-
-
+    
+    @Override
+    public String toString() {
+        return "" + tourCode;
+    }
 }
 
 
