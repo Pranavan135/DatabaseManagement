@@ -67,12 +67,12 @@
                           <Component id="routeIDTextField" min="-2" pref="127" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cleaAddrButton" min="-2" pref="84" max="-2" attributes="0"/>
-                          <Component id="exitButton" min="-2" pref="89" max="-2" attributes="0"/>
-                          <Component id="addAddButton" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="exitButton" pref="89" max="32767" attributes="0"/>
+                          <Component id="cleaAddrButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="addAddButton" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -83,7 +83,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="routeIDTextField" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="routeIDLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="addAddButton" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="addAddButton" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -92,20 +92,20 @@
                                   <Component id="routeNameTextField" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="routeNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="routeDaysTextField" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="routeDaysLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Component id="cleaAddrButton" min="-2" pref="39" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="cleaAddrButton" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="routeDistanceTextField" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="routeDistanceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -113,10 +113,10 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Component id="exitButton" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="exitButton" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="207" max="32767" attributes="0"/>
+                      <EmptySpace pref="201" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -165,7 +165,7 @@
             <Component class="javax.swing.JButton" name="addAddButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Andalus" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
@@ -176,7 +176,7 @@
             <Component class="javax.swing.JButton" name="cleaAddrButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Andalus" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
@@ -187,7 +187,7 @@
             <Component class="javax.swing.JButton" name="exitButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Andalus" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
@@ -209,11 +209,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -223,30 +223,34 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
+                                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="showEditButton" min="-2" pref="86" max="-2" attributes="0"/>
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="editEditButton" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="routeDaysEditTextField" min="-2" pref="117" max="-2" attributes="0"/>
-                                  <Component id="routeDistanceEditTextField" min="-2" pref="117" max="-2" attributes="0"/>
-                                  <Component id="routeNameEditTextField" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                  <Component id="routeIDEditTextField" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="routeDistanceEditTextField" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Component id="routeDaysEditTextField" alignment="1" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Component id="routeNameEditTextField" alignment="1" min="-2" pref="117" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="routeIDEditTextField" min="-2" pref="117" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="65" max="32767" attributes="0"/>
-                              <Component id="showEditButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="editEditButton" min="-2" pref="59" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="clearEditButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="exitEditButton" min="-2" pref="66" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="clearEditButton" min="-2" pref="76" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="exitEditButton" min="-2" pref="76" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="82" pref="82" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -275,12 +279,12 @@
                       </Group>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="showEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="editEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="clearEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="exitEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="showEditButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="editEditButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="clearEditButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="exitEditButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="120" max="32767" attributes="0"/>
+                      <EmptySpace pref="112" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -328,6 +332,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="editEditButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Andalus" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
               <Events>
@@ -336,6 +343,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="clearEditButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Andalus" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
@@ -344,6 +354,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="exitEditButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Andalus" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -352,6 +365,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="showEditButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Andalus" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Show"/>
                 <Property name="toolTipText" type="java.lang.String" value="Show the route details"/>
               </Properties>
@@ -361,7 +377,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="clearDeleteButton">
+        <Container class="javax.swing.JPanel" name="DeleteJPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Delete">
@@ -425,7 +441,7 @@
             <Component class="javax.swing.JButton" name="DeleteButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Andalus" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
@@ -436,7 +452,7 @@
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Andalus" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
@@ -447,7 +463,7 @@
             <Component class="javax.swing.JButton" name="exitDeleteButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Andalus" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
@@ -473,7 +489,7 @@
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="routeIDViewLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="routeIDViewTextField" pref="114" max="32767" attributes="0"/>
+                      <Component id="routeIDViewTextField" pref="89" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="showVIewButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -503,7 +519,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="303" max="-2" attributes="0"/>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -516,6 +532,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="showVIewButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Andalus" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Show"/>
               </Properties>
               <Events>
@@ -550,6 +569,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="showAllRouteViewTextField">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Andalus" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Show All Route"/>
               </Properties>
             </Component>
