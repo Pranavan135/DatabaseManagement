@@ -5,21 +5,12 @@
  */
 package db.ui;
 
-import db.entity.Bill;
 import db.entity.Driver;
-import db.entity.DriverId;
 import db.dao.DriverDAO;
-import db.util.HibernateUtil;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 /**
  *
