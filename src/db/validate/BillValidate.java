@@ -34,7 +34,7 @@ public class BillValidate {
                 int reference = Integer.parseInt(referenceNo);
                 
                 if (reference > 0)  {
-                    if (billDAO.isUnique(referenceNo))    {
+                    if (billDAO.isUnique(referenceNo) == null)    {
                         return true;
                     }
                     else {
