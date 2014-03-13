@@ -131,11 +131,9 @@ public class DriverDAO {
                 String hql = "FROM Driver d WHERE d.id.id = :id";
                 Query query = session.createQuery(hql);
                 query.setParameter("id", id);
-                Query q = session.createQuery(hql);
-                List resultList = q.list();
+                List resultList = query.list();
                 session.getTransaction().commit();
                 driver = (Driver) resultList.get(0);
-                System.out.println(driver.getId().getName());
                 return driver;
             } catch (HibernateException hibernateException) {
                 hibernateException.printStackTrace();
