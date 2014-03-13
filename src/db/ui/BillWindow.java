@@ -492,7 +492,7 @@ public class BillWindow extends javax.swing.JFrame {
         tableHeaders.add("Town Name");
         tableHeaders.add("Hotel Name");
         tableHeaders.add("Bill date");
-        tableHeaders.add("Number of People");
+        tableHeaders.add("Person Count");
         tableHeaders.add("Amount");
         
         List resultList = billDAO.searchOnReferenceNo(referenceNo);
