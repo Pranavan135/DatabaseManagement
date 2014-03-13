@@ -66,7 +66,7 @@
                               <Component id="btnAddAdd" min="-2" pref="80" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnAddClear" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="72" max="32767" attributes="0"/>
                               <Component id="btnAddExit" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -77,9 +77,9 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtAddName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtAddName" alignment="0" pref="210" max="32767" attributes="0"/>
                                   <Component id="txtAddID" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtAddTourCode" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="comboAddTourCode" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -103,9 +103,9 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblAddTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtAddTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboAddTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                      <EmptySpace pref="64" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnAddAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnAddClear" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -131,8 +131,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tour Code"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtAddTourCode">
             </Component>
             <Component class="javax.swing.JTextField" name="txtAddID">
             </Component>
@@ -165,6 +163,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddExitActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JComboBox" name="comboAddTourCode">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="tabPassengerEdit">
@@ -189,7 +194,7 @@
                               <Component id="btnEditUpdate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnEditClear" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="75" max="32767" attributes="0"/>
                               <Component id="btnEditExit" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -200,9 +205,9 @@
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtEditName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtEditName" alignment="0" pref="210" max="32767" attributes="0"/>
                                   <Component id="txtEditID" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtEditTourCode" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                                  <Component id="comboEditTourCode" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -229,9 +234,9 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblEditTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEditTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboEditTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="55" max="32767" attributes="0"/>
+                      <EmptySpace pref="67" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnEditUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnEditClear" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -255,11 +260,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtEditID">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtEditTourCode">
-              <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="lblEditTourCode">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tour Code"/>
@@ -276,6 +276,7 @@
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="UPDATE"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditUpdateActionPerformed"/>
@@ -304,6 +305,14 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditGetActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboEditTourCode">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -367,7 +376,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="scrollPaneDel" min="-2" pref="91" max="-2" attributes="0"/>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnDelDelete" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnDelExit" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -543,7 +552,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="scrollPaneView" min="-2" pref="91" max="-2" attributes="0"/>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnViewExit" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnViewClear" alignment="3" min="-2" max="-2" attributes="0"/>
