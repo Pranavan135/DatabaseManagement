@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import db.dao.RouteDAO;
 import javax.swing.JDialog;
 
+
 /**
  *
  * @author userr
@@ -29,10 +30,15 @@ public class RouteVallidate {
     public boolean IDValidation(String id){
         
         
+        
         int length = id.length();
+        if (length == 0){
+            JOptionPane.showMessageDialog(null, "Please enter the route ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
         try{
            int r_id =  Integer.parseInt(id);
-           if ( length < 11 ){
+           if ( length < 11 && length ==5 ){
                if (r_id > 0){
                    if (routeDAO.isUnique(id)){
                        return true;
@@ -43,8 +49,8 @@ public class RouteVallidate {
                         return false;
                     }
                 }
-               else{
-               JOptionPane.showMessageDialog(null, "Route ID must be greater than zero", "ERROR", JOptionPane.ERROR_MESSAGE);
+                else{
+                JOptionPane.showMessageDialog(null, "Route ID must be greater than zero", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
            }
@@ -61,12 +67,27 @@ public class RouteVallidate {
     
     public boolean nameValidation(String name){
         
-        return true;
+        String condition = "[a-zA-Z_]";
+        if (name.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please Enter the Name", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else if (!name.matches(condition)){
+            JOptionPane.showMessageDialog(null, "Name should contain only alphabets and underscore", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        else
+            return true;
+
     }
     
     public boolean daysValidation(String days){
         try{
            int r_days =  Integer.parseInt(days);
+           if (r_days == 0){
+               JOptionPane.showMessageDialog(null, "Please enter the route days", "ERROR", JOptionPane.ERROR_MESSAGE);
+               return false;
+           }
                if (r_days > 0){
                    return true;
                 }
@@ -84,6 +105,10 @@ public class RouteVallidate {
     public boolean distanceValidation(String distance){
         try{
            int r_distance =  Integer.parseInt(distance);
+            if (r_distance == 0){
+               JOptionPane.showMessageDialog(null, "Please enter the route distance", "ERROR", JOptionPane.ERROR_MESSAGE);
+               return false;
+            }
                if (r_distance > 0){
                    return true;
                 }
