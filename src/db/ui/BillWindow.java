@@ -453,16 +453,9 @@ public class BillWindow extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         else    {
-             try    {
-                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-
-                Date d = sdf.parse(date);
-                billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), d, Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
-             }
-             catch (Exception e)    {
-                 
-             }
-      
+             
+                billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), billDateChooser.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
+        
         }
     }
         
