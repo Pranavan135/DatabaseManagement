@@ -581,14 +581,17 @@ public class DriverWindow extends javax.swing.JFrame {
             idEditTextField.setVisible(true);
             idEditTextField.setText(id.toString());
             idEditTextField.setEditable(false);
+            idEditTextField.setEnabled(false);
+            Driver driver = DriverDAO.getDriver(id);
+            System.out.println(driver.getId().getName());
             nameEditLabel.setVisible(true);
             nameEditTextField.setVisible(true);
             addressEditLabel.setVisible(true);
             addressEditTextField.setVisible(true);
             telenoEditLabel.setVisible(true);
             teleNoEditTextField.setVisible(true);
-            DriverDAO.updateData(id, nameEditTextField.getText().trim(), addressEditTextField.getText().trim(), teleNoEditTextField.getText().trim());
-            JOptionPane.showMessageDialog(null, "Record updated", null, JOptionPane.INFORMATION_MESSAGE);
+           // DriverDAO.updateData(id, nameEditTextField.getText().trim(), addressEditTextField.getText().trim(), teleNoEditTextField.getText().trim());
+            //JOptionPane.showMessageDialog(null, "Record updated", null, JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "There is no coach with given id", "Error", JOptionPane.ERROR_MESSAGE);
         }
