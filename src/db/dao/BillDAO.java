@@ -241,9 +241,8 @@ public class BillDAO {
             Town t = r.getTown();
             if (t.getOverNightStop()) {
                 if (t.getHotel() != null) {
-                    JOptionPane.showMessageDialog(null, t.getHotel(), "ERROR", JOptionPane.ERROR_MESSAGE);
-                    hotel.add(t.getHotel());
-                     
+                    
+                    hotel.add(t.getHotel()); 
                 }
                 
                 }
