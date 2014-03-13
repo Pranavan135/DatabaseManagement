@@ -78,8 +78,8 @@ public class PassengerWindow extends javax.swing.JFrame {
         passenger = new Passenger();
         tour = new Tour();
 
-        idLengthWarningMessage = "Entered ID is not valid\nID should contain " + passengerValidator.getIdLength() + " digits";
-        idFormatWarningMessage = "Entered ID is not valid\nID shuold be numeric whole number";
+        idLengthWarningMessage = "Please enter a valid ID\nID should contain " + passengerValidator.getIdLength() + " digits";
+        idFormatWarningMessage = "Please enter a valid ID\nID shuold be numeric whole number";
         nameFormatLengthWarningMessage = "Entered Name is not valid\n"
                 + "You can enter charactors from [A-Z], [a-z], and '.' only\n"
                 + "Name should contain only " + passengerValidator.getMinNameLength() + " - " + passengerValidator.getMaxNameLength() + " number of charactors";
@@ -90,7 +90,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         columnHeaders = new String[]{"ID", "Name", "Tour"};
 
         passengerTableModel = new DefaultTableModel(null, columnHeaders);
-        gridColour1 = new Color(0, 204, 153);
+        gridColour1 = new Color(104, 136, 170);
         tableCellRenderer = new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table,
@@ -99,7 +99,7 @@ public class PassengerWindow extends javax.swing.JFrame {
 
                 Component c = super.getTableCellRendererComponent(table,
                         value, isSelected, hasFocus, row, column);
-                c.setBackground(row % 2 == 0 ? gridColour1 : Color.GRAY);
+                c.setBackground(row % 2 == 0 ? gridColour1 : new Color(138, 154, 91));
                 return c;
 
             }
@@ -155,7 +155,7 @@ public class PassengerWindow extends javax.swing.JFrame {
     }
 
     public void createDelTable(List<Passenger> passenger) {
-        
+
         data.removeAll(data);
 
         for (int i = 0; i < passenger.size(); i++) {
@@ -185,9 +185,9 @@ public class PassengerWindow extends javax.swing.JFrame {
     }
 
     public void createDelTable(Passenger passenger) {
-        
+
         data.removeAll(data);
-        
+
         Object[] row = new Object[]{passenger.getId(),
             passenger.getName(),
             passenger.getTour().getTourCode()};
@@ -211,7 +211,7 @@ public class PassengerWindow extends javax.swing.JFrame {
     }
 
     public void createViewTable(List<Passenger> passenger) {
-        
+
         data.removeAll(data);
 
         for (int i = 0; i < passenger.size(); i++) {
@@ -240,9 +240,9 @@ public class PassengerWindow extends javax.swing.JFrame {
     }
 
     public void createViewTable(Passenger passenger) {
-        
+
         data.removeAll(data);
-        
+
         Object[] row = new Object[]{passenger.getId(),
             passenger.getName(),
             passenger.getTour().getTourCode()};
@@ -318,17 +318,28 @@ public class PassengerWindow extends javax.swing.JFrame {
         btnViewExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
+
+        tabPanePassenger.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         tabPassengerAdd.setToolTipText("");
         tabPassengerAdd.setName(""); // NOI18N
 
+        lblAddName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblAddName.setText("Name");
 
+        lblAddID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblAddID.setText("ID");
 
+        lblAddTourCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblAddTourCode.setText("Tour Code");
 
-        btnAddAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtAddID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        txtAddName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        btnAddAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAddAdd.setText("ADD");
         btnAddAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,6 +347,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        btnAddClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnAddClear.setText("Clear");
         btnAddClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,6 +355,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        btnAddExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnAddExit.setText("Exit");
         btnAddExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,66 +363,71 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        comboAddTourCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout tabPassengerAddLayout = new javax.swing.GroupLayout(tabPassengerAdd);
         tabPassengerAdd.setLayout(tabPassengerAddLayout);
         tabPassengerAddLayout.setHorizontalGroup(
             tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerAddLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabPassengerAddLayout.createSequentialGroup()
-                        .addComponent(btnAddAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAddAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAddClear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                        .addComponent(btnAddExit))
+                        .addComponent(btnAddClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                        .addComponent(btnAddExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabPassengerAddLayout.createSequentialGroup()
                         .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAddTourCode)
-                            .addComponent(lblAddID)
-                            .addComponent(lblAddName))
+                            .addComponent(lblAddID, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAddName, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAddTourCode))
                         .addGap(18, 18, 18)
-                        .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAddName, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtAddID, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAddName)
+                            .addComponent(txtAddID)
                             .addComponent(comboAddTourCode, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap())
         );
         tabPassengerAddLayout.setVerticalGroup(
             tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerAddLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAddID)
-                    .addComponent(txtAddID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(lblAddID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAddID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAddName)
-                    .addComponent(txtAddName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(lblAddName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAddName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAddTourCode)
-                    .addComponent(comboAddTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                    .addComponent(comboAddTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAddTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addGroup(tabPassengerAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddAdd)
-                    .addComponent(btnAddClear)
-                    .addComponent(btnAddExit))
+                    .addComponent(btnAddAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddClear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         tabPanePassenger.addTab("ADD", tabPassengerAdd);
         tabPassengerAdd.getAccessibleContext().setAccessibleName("tabPassengerAdd");
 
+        lblEditName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblEditName.setText("Name");
 
         txtEditName.setEnabled(false);
 
+        lblEditTourCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblEditTourCode.setText("Tour Code");
 
+        lblEditID.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblEditID.setText("ID");
 
-        btnEditUpdate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnEditUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEditUpdate.setText("UPDATE");
         btnEditUpdate.setEnabled(false);
         btnEditUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -418,6 +436,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        btnEditClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditClear.setText("Clear");
         btnEditClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -425,6 +444,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        btnEditExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditExit.setText("Exit");
         btnEditExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -432,6 +452,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        btnEditGet.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditGet.setText("Get");
         btnEditGet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -446,66 +467,74 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPassengerEditLayout.setHorizontalGroup(
             tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerEditLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabPassengerEditLayout.createSequentialGroup()
-                        .addComponent(btnEditUpdate)
+                        .addComponent(btnEditUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEditClear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                        .addComponent(btnEditExit))
+                        .addComponent(btnEditClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
+                        .addComponent(btnEditExit, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabPassengerEditLayout.createSequentialGroup()
                         .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEditTourCode)
-                            .addComponent(lblEditID)
-                            .addComponent(lblEditName))
+                            .addComponent(lblEditName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEditID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEditName, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(txtEditID, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tabPassengerEditLayout.createSequentialGroup()
+                                .addComponent(txtEditID)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEditGet, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEditName)
                             .addComponent(comboEditTourCode, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditGet)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
         tabPassengerEditLayout.setVerticalGroup(
             tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerEditLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(36, 36, 36)
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEditID)
-                    .addComponent(txtEditID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditGet))
+                    .addComponent(txtEditID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEditID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditGet, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEditName)
-                    .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEditName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEditName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comboEditTourCode)
+                    .addComponent(lblEditTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEditTourCode)
-                    .addComponent(comboEditTourCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditUpdate)
-                    .addComponent(btnEditClear)
-                    .addComponent(btnEditExit))
+                    .addComponent(btnEditUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditClear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         tabPanePassenger.addTab("EDIT", tabPassengerEdit);
         tabPassengerEdit.getAccessibleContext().setAccessibleName("tabPassengerEdit");
 
+        lblDelSaerch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblDelSaerch.setText("Search by:");
 
+        comboDelSearchCategory.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboDelSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "ID" }));
 
+        txtDelKeyword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        btnDelFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnDelFind.setText("Find");
+        btnDelFind.setPreferredSize(new java.awt.Dimension(60, 30));
         btnDelFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDelFindActionPerformed(evt);
             }
         });
 
+        tableDel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tableDel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -529,6 +558,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         scrollPaneDel.setViewportView(tableDel);
         tableDel.getAccessibleContext().setAccessibleName("tableDelList");
 
+        btnDelClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnDelClear.setText("Clear");
         btnDelClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -536,14 +566,21 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
-        btnDelDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnDelDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelDelete.setText("DELETE");
+        btnDelDelete.setEnabled(false);
+        btnDelDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDelDeleteMouseEntered(evt);
+            }
+        });
         btnDelDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDelDeleteActionPerformed(evt);
             }
         });
 
+        btnDelExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnDelExit.setText("Exit");
         btnDelExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -556,55 +593,61 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPassengerDeleteLayout.setHorizontalGroup(
             tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerDeleteLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneDel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
                     .addGroup(tabPassengerDeleteLayout.createSequentialGroup()
-                        .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDelKeyword)
+                        .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tabPassengerDeleteLayout.createSequentialGroup()
                                 .addComponent(lblDelSaerch)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboDelSearchCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboDelSearchCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(tabPassengerDeleteLayout.createSequentialGroup()
+                                .addComponent(txtDelKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDelFind, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(tabPassengerDeleteLayout.createSequentialGroup()
+                        .addComponent(btnDelDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelFind))
-                    .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(tabPassengerDeleteLayout.createSequentialGroup()
-                            .addComponent(btnDelDelete)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnDelClear)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDelExit))
-                        .addComponent(scrollPaneDel, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(btnDelClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDelExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         tabPassengerDeleteLayout.setVerticalGroup(
             tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerDeleteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDelSaerch)
-                    .addComponent(comboDelSearchCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDelKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelFind))
+                    .addComponent(lblDelSaerch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboDelSearchCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(scrollPaneDel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelDelete)
-                    .addComponent(btnDelExit)
-                    .addComponent(btnDelClear))
+                    .addComponent(txtDelKeyword, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(btnDelFind, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(scrollPaneDel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(tabPassengerDeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelClear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         tabPanePassenger.addTab("DELETE", tabPassengerDelete);
         tabPassengerDelete.getAccessibleContext().setAccessibleName("tabPassengerDelete");
 
+        lblViewSaerch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblViewSaerch.setText("Search by:");
 
+        comboViewSearchCategory.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboViewSearchCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "ID" }));
 
+        txtViewKeyword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        btnViewFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnViewFind.setText("Find");
         btnViewFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,6 +655,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        tableView.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tableView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -633,6 +677,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         scrollPaneView.setViewportView(tableView);
         tableView.getAccessibleContext().setAccessibleName("tableViewList");
 
+        btnViewClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnViewClear.setText("Clear");
         btnViewClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -640,6 +685,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
+        btnViewExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnViewExit.setText("Exit");
         btnViewExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -652,42 +698,42 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPassengerViewLayout.setHorizontalGroup(
             tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerViewLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollPaneView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabPassengerViewLayout.createSequentialGroup()
+                        .addComponent(btnViewClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnViewExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabPassengerViewLayout.createSequentialGroup()
-                        .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtViewKeyword)
+                        .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tabPassengerViewLayout.createSequentialGroup()
                                 .addComponent(lblViewSaerch)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboViewSearchCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(comboViewSearchCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtViewKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(btnViewFind))
-                    .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tabPassengerViewLayout.createSequentialGroup()
-                            .addComponent(btnViewClear)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnViewExit))
-                        .addComponent(scrollPaneView, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(btnViewFind, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         tabPassengerViewLayout.setVerticalGroup(
             tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPassengerViewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblViewSaerch)
-                    .addComponent(comboViewSearchCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtViewKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnViewFind))
+                    .addComponent(comboViewSearchCategory, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(lblViewSaerch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(scrollPaneView, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewExit)
-                    .addComponent(btnViewClear))
+                    .addComponent(txtViewKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewFind, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(scrollPaneView, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(tabPassengerViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewExit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewClear, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -702,7 +748,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabPanePassenger, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tabPanePassenger)
         );
 
         tabPanePassenger.getAccessibleContext().setAccessibleName("tabPanePassenger");
@@ -758,6 +804,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         txtDelKeyword.requestFocus();
         passengerTableModel.setDataVector(null, columnHeaders);
         tableDel.setModel(passengerTableModel);
+        btnDelDelete.setEnabled(false);
     }//GEN-LAST:event_btnDelClearActionPerformed
 
     private void btnViewClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewClearActionPerformed
@@ -769,6 +816,7 @@ public class PassengerWindow extends javax.swing.JFrame {
 
     private void btnDelDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelDeleteActionPerformed
         // TODO add your handling code here:
+        // if(tableDel.is)
         passenger.setId((Integer) tableDel.getValueAt(tableDel.getSelectedRow(), 0));
         passenger.setName((String) tableDel.getValueAt(tableDel.getSelectedRow(), 1));
         tour = tourDAO.getTour((Integer) tableDel.getValueAt(tableDel.getSelectedRow(), 2));
@@ -784,7 +832,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             passengerTableModel.setDataVector(null, columnHeaders);
             tableDel.setModel(passengerTableModel);
             btnDelFind.doClick();
-
+            btnDelDelete.setEnabled(false);
         } else {
             JOptionPane.showMessageDialog(this, "Database Error", "Passenger Management", JOptionPane.ERROR_MESSAGE);
         }
@@ -813,6 +861,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                             }
                         } else {
                             JOptionPane.showMessageDialog(this, "Please select the tour code before adding", "Passenger Management", JOptionPane.WARNING_MESSAGE);
+                            comboAddTourCode.requestFocus();
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, nameFormatLengthWarningMessage, "Passenger Management", JOptionPane.WARNING_MESSAGE);
@@ -946,6 +995,13 @@ public class PassengerWindow extends javax.swing.JFrame {
             txtEditID.requestFocus();
         }
     }//GEN-LAST:event_btnEditGetActionPerformed
+
+    private void btnDelDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelDeleteMouseEntered
+        // TODO add your handling code here:
+        if (tableDel.getSelectedRow() >= 0) {
+            btnDelDelete.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnDelDeleteMouseEntered
 
     /**
      * @param args the command line arguments
