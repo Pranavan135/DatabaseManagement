@@ -7,6 +7,7 @@ package db.ui;
 
 import db.entity.Driver;
 import db.dao.DriverDAO;
+import db.validate.DriverValidate;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -166,48 +167,47 @@ public class DriverWindow extends javax.swing.JFrame {
                         .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addDriverTabLayout.createSequentialGroup()
-                            .addComponent(telephoneNoLabel)
-                            .addGap(90, 90, 90)
-                            .addComponent(telephoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(addDriverTabLayout.createSequentialGroup()
-                            .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(101, 101, 101)
-                            .addComponent(addressTextField))
-                        .addGroup(addDriverTabLayout.createSequentialGroup()
-                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(101, 101, 101)
-                            .addComponent(nameTextField))
-                        .addGroup(addDriverTabLayout.createSequentialGroup()
-                            .addComponent(idLabel)
-                            .addGap(156, 156, 156)
-                            .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(199, Short.MAX_VALUE))
+                    .addGroup(addDriverTabLayout.createSequentialGroup()
+                        .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addDriverTabLayout.createSequentialGroup()
+                                    .addComponent(idLabel)
+                                    .addGap(104, 104, 104))
+                                .addGroup(addDriverTabLayout.createSequentialGroup()
+                                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(49, 49, 49)))
+                            .addGroup(addDriverTabLayout.createSequentialGroup()
+                                .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49))
+                            .addComponent(telephoneNoLabel))
+                        .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(addressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                            .addComponent(nameTextField)
+                            .addComponent(idTextField)
+                            .addComponent(telephoneNoTextField))))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         addDriverTabLayout.setVerticalGroup(
             addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addDriverTabLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(33, 33, 33)
+                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idLabel)
                     .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
                 .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addDriverTabLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(nameLabel))
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addDriverTabLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(15, 15, 15)
+                        .addComponent(nameLabel)
+                        .addGap(20, 20, 20)
                         .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addDriverTabLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addDriverTabLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGap(5, 5, 5)
                         .addComponent(telephoneNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addDriverTabLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -217,7 +217,7 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         driverTab.addTab("ADD", addDriverTab);
@@ -573,47 +573,52 @@ public class DriverWindow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_goEditActionPerformed
 
-    private void viewTable(List list){
+    private void viewTable(List list) {
         String referenceNo = nameViewTextField.getText().trim();
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
-        
+
         tableHeaders.add("ID");
         tableHeaders.add("Name");
         tableHeaders.add("Address");
         tableHeaders.add("Tele No");
 
-        
-        if (list != null)     {
+        if (list != null) {
             for (Object o : list) {
                 Driver driver = (Driver) o;
-                
+
                 Vector<Object> oneRow = new Vector<Object>();
                 oneRow.add(driver.getId().getId());
                 oneRow.add(driver.getId().getName());
                 oneRow.add(driver.getAddress());
                 oneRow.add(driver.getTpNo());
-                
+
                 tableData.add(oneRow);
             }
-            
-        resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-        }
-        else {
-            
+
+            resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        } else {
+
         }
     }
     private void viewGoButtonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGoButtonFieldActionPerformed
         // TODO add your handling code here:
         if (!nameViewTextField.getText().trim().equals("") || !idViewTextField.getText().trim().equals("")) {
-            viewTable(DriverDAO.viewDrivers(nameViewTextField.getText().trim(),Integer.parseInt(idViewTextField.getText().trim())));
+            viewTable(DriverDAO.viewDrivers(nameViewTextField.getText().trim(), Integer.parseInt(idViewTextField.getText().trim())));
         } else {
             JOptionPane.showMessageDialog(null, "Please Eneter values for Name or ID", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_viewGoButtonFieldActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        DriverDAO.addData(Integer.parseInt(idTextField.getText().trim()),nameTextField.getText().trim(),addressTextField.getText().trim(),telephoneNoTextField.getText().trim());
+        if (DriverValidate.idValidate(idTextField.getText().trim())) {
+            if (DriverValidate.nameValidate(nameTextField.getText().trim())) {
+
+                DriverDAO.addData(Integer.parseInt(idTextField.getText().trim()), nameTextField.getText().trim(), addressTextField.getText().trim(), telephoneNoTextField.getText().trim());
+            }
+        }
+
+
     }//GEN-LAST:event_saveActionPerformed
 
     private void exitEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitEditButtonActionPerformed
@@ -642,63 +647,59 @@ public class DriverWindow extends javax.swing.JFrame {
 
     private void deleteGoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGoButtonActionPerformed
         if (!nameDeletetextField.getText().trim().equals("") || !idDeleteTextField.getText().trim().equals("")) {
-            delTable(DriverDAO.viewDrivers(nameDeletetextField.getText().trim(),Integer.parseInt(idDeleteTextField.getText().trim())));
+            delTable(DriverDAO.viewDrivers(nameDeletetextField.getText().trim(), Integer.parseInt(idDeleteTextField.getText().trim())));
         } else {
             JOptionPane.showMessageDialog(null, "Please Eneter values for Name or ID", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_deleteGoButtonActionPerformed
 
-    private void delTable(List list){
+    private void delTable(List list) {
         String referenceNo = nameViewTextField.getText().trim();
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
-        
+
         tableHeaders.add("ID");
         tableHeaders.add("Name");
         tableHeaders.add("Address");
         tableHeaders.add("Tele No");
 
-        
-        if (list != null)     {
+        if (list != null) {
             for (Object o : list) {
                 Driver driver = (Driver) o;
-                
+
                 Vector<Object> oneRow = new Vector<Object>();
                 oneRow.add(driver.getId().getId());
                 oneRow.add(driver.getId().getName());
                 oneRow.add(driver.getAddress());
                 oneRow.add(driver.getTpNo());
-                
+
                 tableData.add(oneRow);
             }
-            
-        deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+
+            deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        } else {
+
         }
-        else {
-            
-        }
-        
+
         ListSelectionModel selectionModel = deleteTable.getSelectionModel();
-        selectionModel.setSelectionInterval(0,0);
+        selectionModel.setSelectionInterval(0, 0);
         selectionModel.addListSelectionListener(deleteTable);
-       
+
         selectionModel.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {      
-                int OPTION = JOptionPane.showConfirmDialog(null, "Do you want to delete this record!!!","Delete confirmation", JOptionPane.WARNING_MESSAGE);
-                
-                
-                if (OPTION == JOptionPane.YES_OPTION){
+            public void valueChanged(ListSelectionEvent e) {
+                int OPTION = JOptionPane.showConfirmDialog(null, "Do you want to delete this record!!!", "Delete confirmation", JOptionPane.WARNING_MESSAGE);
+
+                if (OPTION == JOptionPane.YES_OPTION) {
                     Driver driver = (Driver) e.getSource();
                     //System.out.println(driver.getId().getId());
-                    JOptionPane.showMessageDialog(null,""+driver.getId().getId(), "xxx", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "" + driver.getId().getId(), "xxx", JOptionPane.INFORMATION_MESSAGE);
                     //DriverDAO.deleteData(driver.getId().getId());
                 }
             }
-            
-            
+
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addDriverTab;
