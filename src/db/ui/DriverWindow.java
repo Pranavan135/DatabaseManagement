@@ -575,7 +575,23 @@ public class DriverWindow extends javax.swing.JFrame {
         } catch (NumberFormatException numberFormatException) {
             numberFormatException.printStackTrace();
         }
-       JOptionPane.showMessageDialog(null, DriverDAO.isExistDriver(id), "Existence!!!", JOptionPane.INFORMATION_MESSAGE);
+
+        if (DriverDAO.isExistDriver(id)) {
+            idEditLabel.setVisible(true);
+            idEditTextField.setVisible(true);
+            idEditTextField.setText(id.toString());
+            idEditTextField.setEditable(false);
+            nameEditLabel.setVisible(true);
+            nameEditTextField.setVisible(true);
+            addressEditLabel.setVisible(true);
+            addressEditTextField.setVisible(true);
+            telenoEditLabel.setVisible(true);
+            teleNoEditTextField.setVisible(true);
+            DriverDAO.updateData(id, nameEditTextField.getText().trim(), addressEditTextField.getText().trim(), teleNoEditTextField.getText().trim());
+            JOptionPane.showMessageDialog(null, "Record updated", null, JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "There is no coach with given id", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_goEditActionPerformed
 
