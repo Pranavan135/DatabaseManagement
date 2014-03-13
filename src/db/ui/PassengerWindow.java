@@ -90,7 +90,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         columnHeaders = new String[]{"ID", "Name", "Tour"};
 
         passengerTableModel = new DefaultTableModel(null, columnHeaders);
-        gridColour1 = new Color(0, 204, 153);
+        gridColour1 = new Color(104, 136, 170);
         tableCellRenderer = new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table,
@@ -99,7 +99,7 @@ public class PassengerWindow extends javax.swing.JFrame {
 
                 Component c = super.getTableCellRendererComponent(table,
                         value, isSelected, hasFocus, row, column);
-                c.setBackground(row % 2 == 0 ? gridColour1 : Color.GRAY);
+                c.setBackground(row % 2 == 0 ? gridColour1 : new Color(138, 154, 91));
                 return c;
 
             }
