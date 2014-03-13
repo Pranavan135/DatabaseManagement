@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
     </Component>
@@ -29,16 +29,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="coachTabbedPane" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="coachTabbedPane" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,7 +84,7 @@
                           </Group>
                           <Component id="coachCapacityAddTextField" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="140" pref="197" max="32767" attributes="0"/>
+                      <EmptySpace min="140" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -186,15 +186,129 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="568" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="editRegNoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lastServiceMileageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lastSerDateEditLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="capacityEditLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="regNoEditLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="editRegNoTextField" alignment="0" pref="96" max="32767" attributes="0"/>
+                              <Component id="regNoEdittextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="capcityEdittextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lastServiceDateEditTextField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lastServiceMileageEditTextField" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Component id="editSaveButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="83" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="editGoButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="editExitButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="292" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="editRegNoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editRegNoTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editGoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="regNoEditLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="regNoEdittextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="capacityEditLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="capcityEdittextField" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lastSerDateEditLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lastServiceDateEditTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lastServiceMileageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lastServiceMileageEditTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="editExitButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editSaveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="editRegNoLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Enter RegNo to Edit"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="regNoEditLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reg No"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lastSerDateEditLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Last Service Date"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="capacityEditLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Capacity"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lastServiceMileageLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Last Service Mileage"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="editRegNoTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="regNoEdittextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="capcityEdittextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="lastServiceDateEditTextField">
+            </Component>
+            <Component class="javax.swing.JTextField" name="lastServiceMileageEditTextField">
+            </Component>
+            <Component class="javax.swing.JButton" name="editExitButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exit"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="editGoButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Go"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="editSaveButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Save"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="deletePanel">
           <Constraints>
@@ -208,17 +322,57 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="568" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="regNoDeleteLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                      <Component id="regNoDeleteTextField" min="-2" pref="103" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="deleteExitButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteGoButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="142" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="292" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="regNoDeleteTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="regNoDeleteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteGoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="121" max="32767" attributes="0"/>
+                      <Component id="deleteExitButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="regNoDeleteLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Enter Reg No "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="regNoDeleteTextField">
+            </Component>
+            <Component class="javax.swing.JButton" name="deleteGoButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Go"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="deleteExitButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exit"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel4">
+        <Container class="javax.swing.JPanel" name="viewPanel">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="View">
@@ -230,15 +384,113 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="568" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="exitViewButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="regNoViewLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                  <Component id="regNoViewTextField" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="goViewButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="452" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="292" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="regNoViewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="regNoViewTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="goViewButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="167" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="exitViewButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="regNoViewLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Enter Reg No"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="regNoViewTextField">
+            </Component>
+            <Component class="javax.swing.JButton" name="goViewButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="GO"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="viewTable">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="4" rowCount="4">
+                        <Column editable="true" title="Reg No" type="java.lang.Integer"/>
+                        <Column editable="true" title="Capcity" type="java.lang.Integer"/>
+                        <Column editable="true" title="ServiceDate" type="java.lang.Object"/>
+                        <Column editable="true" title="ServiceMileage" type="java.lang.Double"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="exitViewButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exit"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

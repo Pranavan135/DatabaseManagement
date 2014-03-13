@@ -43,8 +43,31 @@ public class CoachWindow extends javax.swing.JFrame {
         coachLastServiceMileageAddTextField = new javax.swing.JTextField();
         coachLastServiceDate = new com.toedter.calendar.JDateChooser();
         editPanel = new javax.swing.JPanel();
+        editRegNoLabel = new javax.swing.JLabel();
+        regNoEditLabel = new javax.swing.JLabel();
+        lastSerDateEditLabel = new javax.swing.JLabel();
+        capacityEditLabel = new javax.swing.JLabel();
+        lastServiceMileageLabel = new javax.swing.JLabel();
+        editRegNoTextField = new javax.swing.JTextField();
+        regNoEdittextField = new javax.swing.JTextField();
+        capcityEdittextField = new javax.swing.JTextField();
+        lastServiceDateEditTextField = new javax.swing.JTextField();
+        lastServiceMileageEditTextField = new javax.swing.JTextField();
+        editExitButton = new javax.swing.JButton();
+        editGoButton = new javax.swing.JButton();
+        editSaveButton = new javax.swing.JButton();
         deletePanel = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        regNoDeleteLabel = new javax.swing.JLabel();
+        regNoDeleteTextField = new javax.swing.JTextField();
+        deleteGoButton = new javax.swing.JButton();
+        deleteExitButton = new javax.swing.JButton();
+        viewPanel = new javax.swing.JPanel();
+        regNoViewLabel = new javax.swing.JLabel();
+        regNoViewTextField = new javax.swing.JTextField();
+        goViewButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        viewTable = new javax.swing.JTable();
+        exitViewButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,7 +119,7 @@ public class CoachWindow extends javax.swing.JFrame {
                         .addComponent(coachLastServiceMileageAddTextField)
                         .addComponent(coachLastServiceDate, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                     .addComponent(coachCapacityAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(140, 197, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addPanelLayout.setVerticalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,44 +150,183 @@ public class CoachWindow extends javax.swing.JFrame {
 
         coachTabbedPane.addTab("Add", addPanel);
 
+        editRegNoLabel.setText("Enter RegNo to Edit");
+
+        regNoEditLabel.setText("Reg No");
+
+        lastSerDateEditLabel.setText("Last Service Date");
+
+        capacityEditLabel.setText("Capacity");
+
+        lastServiceMileageLabel.setText("Last Service Mileage");
+
+        editExitButton.setText("Exit");
+
+        editGoButton.setText("Go");
+
+        editSaveButton.setText("Save");
+
         javax.swing.GroupLayout editPanelLayout = new javax.swing.GroupLayout(editPanel);
         editPanel.setLayout(editPanelLayout);
         editPanelLayout.setHorizontalGroup(
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editPanelLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editRegNoLabel)
+                    .addComponent(lastServiceMileageLabel)
+                    .addComponent(lastSerDateEditLabel)
+                    .addComponent(capacityEditLabel)
+                    .addComponent(regNoEditLabel))
+                .addGap(64, 64, 64)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(editRegNoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                        .addComponent(regNoEdittextField)
+                        .addComponent(capcityEdittextField)
+                        .addComponent(lastServiceDateEditTextField)
+                        .addComponent(lastServiceMileageEditTextField))
+                    .addGroup(editPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(editSaveButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editGoButton)
+                    .addComponent(editExitButton))
+                .addGap(79, 79, 79))
         );
         editPanelLayout.setVerticalGroup(
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+            .addGroup(editPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editRegNoLabel)
+                    .addComponent(editRegNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editGoButton))
+                .addGap(32, 32, 32)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regNoEditLabel)
+                    .addComponent(regNoEdittextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(capacityEditLabel)
+                    .addComponent(capcityEdittextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lastSerDateEditLabel)
+                    .addComponent(lastServiceDateEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lastServiceMileageLabel)
+                    .addComponent(lastServiceMileageEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editExitButton)
+                    .addComponent(editSaveButton))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         coachTabbedPane.addTab("Edit", editPanel);
+
+        regNoDeleteLabel.setText("Enter Reg No ");
+
+        deleteGoButton.setText("Go");
+
+        deleteExitButton.setText("Exit");
 
         javax.swing.GroupLayout deletePanelLayout = new javax.swing.GroupLayout(deletePanel);
         deletePanel.setLayout(deletePanelLayout);
         deletePanelLayout.setHorizontalGroup(
             deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+            .addGroup(deletePanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(regNoDeleteLabel)
+                .addGap(58, 58, 58)
+                .addComponent(regNoDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deleteExitButton)
+                    .addComponent(deleteGoButton))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         deletePanelLayout.setVerticalGroup(
             deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+            .addGroup(deletePanelLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regNoDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(regNoDeleteLabel)
+                    .addComponent(deleteGoButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addComponent(deleteExitButton)
+                .addGap(78, 78, 78))
         );
 
         coachTabbedPane.addTab("Delete", deletePanel);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+        regNoViewLabel.setText("Enter Reg No");
+
+        goViewButton.setText("GO");
+
+        viewTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Reg No", "Capcity", "ServiceDate", "ServiceMileage"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(viewTable);
+
+        exitViewButton.setText("Exit");
+
+        javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
+        viewPanel.setLayout(viewPanelLayout);
+        viewPanelLayout.setHorizontalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPanelLayout.createSequentialGroup()
+                .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(exitViewButton)
+                    .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(viewPanelLayout.createSequentialGroup()
+                            .addGap(29, 29, 29)
+                            .addComponent(regNoViewLabel)
+                            .addGap(66, 66, 66)
+                            .addComponent(regNoViewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(36, 36, 36)
+                            .addComponent(goViewButton))
+                        .addGroup(viewPanelLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+        viewPanelLayout.setVerticalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPanelLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regNoViewLabel)
+                    .addComponent(regNoViewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(goViewButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(exitViewButton)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        coachTabbedPane.addTab("View", jPanel4);
+        coachTabbedPane.addTab("View", viewPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,14 +334,14 @@ public class CoachWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(coachTabbedPane)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(coachTabbedPane)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -203,6 +365,8 @@ public class CoachWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addPanel;
+    private javax.swing.JLabel capacityEditLabel;
+    private javax.swing.JTextField capcityEdittextField;
     private javax.swing.JButton clearAddButton;
     private javax.swing.JLabel coachCapacityAddLabel;
     private javax.swing.JTextField coachCapacityAddTextField;
@@ -213,11 +377,32 @@ public class CoachWindow extends javax.swing.JFrame {
     private javax.swing.JLabel coachRegNoAddLabel;
     private javax.swing.JTextField coachRegNoAddTextField;
     private javax.swing.JTabbedPane coachTabbedPane;
+    private javax.swing.JButton deleteExitButton;
+    private javax.swing.JButton deleteGoButton;
     private javax.swing.JPanel deletePanel;
+    private javax.swing.JButton editExitButton;
+    private javax.swing.JButton editGoButton;
     private javax.swing.JPanel editPanel;
+    private javax.swing.JLabel editRegNoLabel;
+    private javax.swing.JTextField editRegNoTextField;
+    private javax.swing.JButton editSaveButton;
     private javax.swing.JButton exitAddButton;
+    private javax.swing.JButton exitViewButton;
+    private javax.swing.JButton goViewButton;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lastSerDateEditLabel;
+    private javax.swing.JTextField lastServiceDateEditTextField;
+    private javax.swing.JTextField lastServiceMileageEditTextField;
+    private javax.swing.JLabel lastServiceMileageLabel;
+    private javax.swing.JLabel regNoDeleteLabel;
+    private javax.swing.JTextField regNoDeleteTextField;
+    private javax.swing.JLabel regNoEditLabel;
+    private javax.swing.JTextField regNoEdittextField;
+    private javax.swing.JLabel regNoViewLabel;
+    private javax.swing.JTextField regNoViewTextField;
     private javax.swing.JButton saveAddButton;
+    private javax.swing.JPanel viewPanel;
+    private javax.swing.JTable viewTable;
     // End of variables declaration//GEN-END:variables
 }

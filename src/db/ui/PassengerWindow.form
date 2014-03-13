@@ -3,6 +3,12 @@
 <Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[700, 500]"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[700, 500]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -28,12 +34,19 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tabPanePassenger" min="-2" max="-2" attributes="0"/>
+          <Component id="tabPanePassenger" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="tabPanePassenger">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
+      </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="tabPanePassenger"/>
       </AccessibilityProperties>
@@ -60,30 +73,30 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="btnAddAdd" min="-2" pref="80" max="-2" attributes="0"/>
+                              <Component id="btnAddAdd" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnAddClear" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnAddExit" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAddClear" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace pref="253" max="32767" attributes="0"/>
+                              <Component id="btnAddExit" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblAddID" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Component id="lblAddName" alignment="0" min="-2" pref="58" max="-2" attributes="0"/>
                                   <Component id="lblAddTourCode" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAddID" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAddName" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtAddName" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtAddID" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtAddTourCode" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtAddName" max="32767" attributes="0"/>
+                                  <Component id="txtAddID" max="32767" attributes="0"/>
+                                  <Component id="comboAddTourCode" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="86" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -92,24 +105,24 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAddID" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtAddID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAddID" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="txtAddID" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAddName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtAddName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAddName" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="txtAddName" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAddTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtAddTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboAddTourCode" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="lblAddTourCode" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                      <EmptySpace pref="96" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnAddAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAddClear" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAddExit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAddAdd" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnAddClear" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnAddExit" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -119,29 +132,46 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblAddName">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Name"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAddID">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblAddTourCode">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Tour Code"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtAddTourCode">
-            </Component>
             <Component class="javax.swing.JTextField" name="txtAddID">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtAddName">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnAddAdd">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="11" style="1"/>
+                  <Font name="Tahoma" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="ADD"/>
               </Properties>
@@ -151,6 +181,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnAddClear">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
@@ -159,11 +192,24 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnAddExit">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddExitActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboAddTourCode">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -183,59 +229,61 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="btnEditUpdate" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEditUpdate" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnEditClear" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnEditExit" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEditClear" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace pref="254" max="32767" attributes="0"/>
+                              <Component id="btnEditExit" min="-2" pref="99" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblEditTourCode" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblEditID" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblEditName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEditTourCode" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEditName" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="lblEditID" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtEditName" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtEditID" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtEditTourCode" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtEditID" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnEditGet" min="-2" pref="150" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtEditName" max="32767" attributes="0"/>
+                                  <Component id="comboEditTourCode" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnEditGet" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblEditID" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEditID" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEditGet" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEditID" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="lblEditID" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnEditGet" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblEditName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEditName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEditName" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="lblEditName" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblEditTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEditTourCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="comboEditTourCode" max="32767" attributes="0"/>
+                          <Component id="lblEditTourCode" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="55" max="32767" attributes="0"/>
+                      <EmptySpace pref="140" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnEditUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEditClear" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEditExit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEditUpdate" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnEditClear" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnEditExit" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -245,6 +293,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblEditName">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Name"/>
               </Properties>
             </Component>
@@ -255,27 +306,29 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtEditID">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtEditTourCode">
-              <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="lblEditTourCode">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Tour Code"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblEditID">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnEditUpdate">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="11" style="1"/>
+                  <Font name="Tahoma" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="UPDATE"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditUpdateActionPerformed"/>
@@ -283,6 +336,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnEditClear">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
@@ -291,6 +347,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnEditExit">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -299,11 +358,22 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnEditGet">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Get"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditGetActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboEditTourCode">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -323,32 +393,33 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="scrollPaneDel" alignment="1" pref="571" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtDelKeyword" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="lblDelSaerch" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="comboDelSearchCategory" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="comboDelSearchCategory" min="-2" pref="139" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtDelKeyword" min="-2" pref="300" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="btnDelFind" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnDelFind" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btnDelDelete" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnDelClear" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnDelExit" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="scrollPaneDel" min="-2" pref="358" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnDelDelete" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnDelClear" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnDelExit" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -357,21 +428,21 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblDelSaerch" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboDelSearchCategory" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtDelKeyword" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDelFind" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDelSaerch" alignment="3" max="32767" attributes="0"/>
+                          <Component id="comboDelSearchCategory" alignment="3" pref="37" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="scrollPaneDel" min="-2" pref="91" max="-2" attributes="0"/>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnDelDelete" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDelExit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDelClear" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDelKeyword" alignment="3" pref="30" max="32767" attributes="0"/>
+                          <Component id="btnDelFind" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Component id="scrollPaneDel" min="-2" pref="200" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnDelDelete" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnDelExit" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnDelClear" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -381,11 +452,17 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblDelSaerch">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Search by:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboDelSearchCategory">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="Name"/>
@@ -395,10 +472,21 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtDelKeyword">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnDelFind">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Find"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[60, 30]"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDelFindActionPerformed"/>
@@ -413,6 +501,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tableDel">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="3" rowCount="0">
                         <Column editable="false" title="ID" type="java.lang.Object"/>
@@ -458,6 +549,9 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnDelClear">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
@@ -467,16 +561,21 @@
             <Component class="javax.swing.JButton" name="btnDelDelete">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="11" style="1"/>
+                  <Font name="Tahoma" size="14" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="DELETE"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDelDeleteMouseEntered"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDelDeleteActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDelExit">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -500,31 +599,30 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtViewKeyword" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                          <Component id="scrollPaneView" alignment="1" pref="571" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnViewClear" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnViewExit" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="lblViewSaerch" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="comboViewSearchCategory" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="comboViewSearchCategory" min="-2" pref="140" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="txtViewKeyword" min="-2" pref="300" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnViewFind" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnViewClear" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnViewExit" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="scrollPaneView" alignment="0" min="-2" pref="355" max="-2" attributes="0"/>
+                              <Component id="btnViewFind" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -533,20 +631,20 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblViewSaerch" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboViewSearchCategory" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtViewKeyword" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnViewFind" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboViewSearchCategory" alignment="3" pref="38" max="32767" attributes="0"/>
+                          <Component id="lblViewSaerch" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="scrollPaneView" min="-2" pref="91" max="-2" attributes="0"/>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnViewExit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnViewClear" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtViewKeyword" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="btnViewFind" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="scrollPaneView" min="-2" pref="201" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnViewExit" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnViewClear" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -556,11 +654,17 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblViewSaerch">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Search by:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboViewSearchCategory">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="Name"/>
@@ -570,9 +674,17 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtViewKeyword">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnViewFind">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Find"/>
               </Properties>
               <Events>
@@ -588,6 +700,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tableView">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="3" rowCount="0">
                         <Column editable="false" title="ID" type="java.lang.Object"/>
@@ -628,6 +743,9 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnViewClear">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
@@ -636,6 +754,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnViewExit">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="12" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>

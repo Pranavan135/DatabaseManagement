@@ -13,6 +13,9 @@ import java.awt.HeadlessException;
 import java.util.List;
 import org.hibernate.Query;
 import db.entity.Route;
+import db.entity.Town;
+import java.util.ArrayList;
+
 /**
  *
  * @author userr
@@ -142,6 +145,86 @@ public class RouteDAO {
             transaction.commit();
             return result;
             
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+    
+    public ArrayList<Integer> getAllRouteID(){
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+            transaction = session.beginTransaction();
+            String HQLQuery = "select r.id From Route r";
+            Query query = session.createQuery(HQLQuery);
+            ArrayList<Integer> result = new ArrayList(query.list());
+            session.flush();
+            transaction.commit();
+            return result;
+            
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+        
+    }
+    
+    public ArrayList<Integer> getAllTownID(){
+        
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+            transaction = session.beginTransaction();
+            String HQLQuery = "select town.id From Town town";
+            Query query = session.createQuery(HQLQuery);
+            ArrayList<Integer> result = new ArrayList(query.list());
+            session.flush();
+            transaction.commit();
+            return result;
+            
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+        
+    }
+    
+     public Town getTown(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+            String HQLQuery = "FROM Town t WHERE t.id = :idValue";
+
+            Query query = session.createQuery(HQLQuery);
+            query.setParameter("idValue", id);
+            Object town = query.uniqueResult();
+
+            if (town != null && town instanceof Town) {
+                return (Town) town;
+            }
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();

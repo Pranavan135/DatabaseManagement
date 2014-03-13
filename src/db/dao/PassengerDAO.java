@@ -95,7 +95,7 @@ public class PassengerDAO {
         try {
             String HQLQuery = "FROM Passenger p WHERE p.name like :nameValue";
             Query query = session.createQuery(HQLQuery);
-            query.setParameter("nameValue", "%" + name + "%");
+            query.setParameter("nameValue", "" + name + "%");
             List<Passenger> passenger = query.list();
             return passenger;
         } catch (HibernateException | HeadlessException ex) {
