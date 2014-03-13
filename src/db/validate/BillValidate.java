@@ -58,7 +58,7 @@ public class BillValidate {
         }
     }
     
-    public boolean validateDate(String date) {
+  /*  public boolean validateDate(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         try {
             sdf.parse(date);
@@ -68,7 +68,7 @@ public class BillValidate {
             JOptionPane.showMessageDialog(null, "Please Enter a valid date in dd-MM-yyyy format", "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         }   
-    }
+    }*/
     
      public boolean validateIndividuals(String numberOfIndividuals) {
           try {
@@ -107,17 +107,12 @@ public class BillValidate {
          
      }
      
-     public boolean validateTour(String tourCode)   {
-         if(billDAO.getTour(tourCode) != null)
-             return true;
-         else   {
-               JOptionPane.showMessageDialog(null, "Tour code is not valid", "ERROR", JOptionPane.ERROR_MESSAGE);
-               return false;
-         }
+     public boolean validateNotNull(String value)   {
+         return !value.isEmpty();
              
      }
      
-      public boolean validateTown(String townId)   {
+    /*  public boolean validateTown(String townId)   {
          if(billDAO.getTown(townId) != null)
              return true;
          else   {
@@ -134,5 +129,5 @@ public class BillValidate {
                return false;
          }
              
-     }
+     }*/
 }
