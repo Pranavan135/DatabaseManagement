@@ -29,18 +29,33 @@ public class RouteVallidate {
     
     public boolean IDValidation(String id){
         
-        
-        
-        int length = id.length();
-        if (length == 0){
+        try{
+            int r_id =  Integer.parseInt(id);
+            int length = id.length();
+             if (length == 0){
             JOptionPane.showMessageDialog(null, "Please enter the route ID", "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
+             }
+             else if ( length > 11 && length !=5 ){
+                 JOptionPane.showMessageDialog(null, "Route ID must be 5 charachters", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        return false;
+             }
+             else if (r_id < 0){
+                  JOptionPane.showMessageDialog(null, "Route ID must be greater than zero", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        return false;
+               }
+             else 
+                 return true;             
         }
-        try{
-           int r_id =  Integer.parseInt(id);
-           if ( length < 11 && length ==5 ){
-               if (r_id > 0){
-                   if (routeDAO.isUnique(id)){
+        catch(NumberFormatException nf){
+            JOptionPane.showMessageDialog(null, "ID should only contain digits", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return false;
+        }
+    }
+
+    
+    public boolean isUnique(String id){
+         if (routeDAO.isUnique(id)){
                        return true;
                    }
                    else{
@@ -48,22 +63,18 @@ public class RouteVallidate {
                        JOptionPane.showMessageDialog(null, "Route ID must be unique", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
-                }
-                else{
-                JOptionPane.showMessageDialog(null, "Route ID must be greater than zero", "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+    public boolean isExit(String id){
+         if (routeDAO.isExist(id)){
+                       return true;
+                   }
+                   else{
+                       
+                       JOptionPane.showMessageDialog(null, "Route ID is not exist!!Please enter the correct id.", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
-           }
-           else{
-               JOptionPane.showMessageDialog(null, "Route ID must be 5 charachters", "ERROR", JOptionPane.ERROR_MESSAGE);
-                        return false;
-                }
-        }
-        catch(NumberFormatException nf){
-            JOptionPane.showMessageDialog(null, "ID should only contain digits", "ERROR", JOptionPane.ERROR_MESSAGE);
-                return false;
-        }
     }
+    
     
     public boolean nameValidation(String name){
         
@@ -80,6 +91,8 @@ public class RouteVallidate {
             return true;
 
     }
+    
+    
     
     public boolean daysValidation(String days){
         try{
