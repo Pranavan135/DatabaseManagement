@@ -90,6 +90,7 @@ public class DriverWindow extends javax.swing.JFrame {
         resultTable = new javax.swing.JTable();
         idViewLabel = new javax.swing.JLabel();
         idViewTextField = new javax.swing.JTextField();
+        viewExitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -467,6 +468,9 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
+        viewExitButton.setFont(new java.awt.Font("Andalus", 1, 12)); // NOI18N
+        viewExitButton.setText("Exit");
+
         javax.swing.GroupLayout viewDriverTabLayout = new javax.swing.GroupLayout(viewDriverTab);
         viewDriverTab.setLayout(viewDriverTabLayout);
         viewDriverTabLayout.setHorizontalGroup(
@@ -488,6 +492,10 @@ public class DriverWindow extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(90, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewDriverTabLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(viewExitButton)
+                .addGap(63, 63, 63))
         );
         viewDriverTabLayout.setVerticalGroup(
             viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,7 +511,9 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addComponent(viewGoButtonField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(viewExitButton)
+                .addGap(35, 35, 35))
         );
 
         driverTab.addTab("VIEW", viewDriverTab);
@@ -515,13 +525,13 @@ public class DriverWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(driverTab, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(driverTab, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -734,6 +744,7 @@ public class DriverWindow extends javax.swing.JFrame {
     private javax.swing.JLabel telephoneNoLabel;
     private javax.swing.JTextField telephoneNoTextField;
     private javax.swing.JPanel viewDriverTab;
+    private javax.swing.JButton viewExitButton;
     private javax.swing.JButton viewGoButtonField;
     // End of variables declaration//GEN-END:variables
 }
