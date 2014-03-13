@@ -10,6 +10,10 @@ import db.dao.DriverDAO;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -73,6 +77,11 @@ public class DriverWindow extends javax.swing.JFrame {
         idDeleteTextField = new javax.swing.JTextField();
         deleteDeleteButton = new javax.swing.JButton();
         exitDeleteButton = new javax.swing.JButton();
+        nameDeleteLabel = new javax.swing.JLabel();
+        nameDeletetextField = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        deleteTable = new javax.swing.JTable();
+        deleteGoButton = new javax.swing.JButton();
         viewDriverTab = new javax.swing.JPanel();
         nameViewLabel = new javax.swing.JLabel();
         nameViewTextField = new javax.swing.JTextField();
@@ -333,32 +342,77 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
+        nameDeleteLabel.setText("ENTER NAME");
+
+        deleteTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Address", "Tele No"
+            }
+        ));
+        jScrollPane2.setViewportView(deleteTable);
+
+        deleteGoButton.setFont(new java.awt.Font("Andalus", 1, 12)); // NOI18N
+        deleteGoButton.setText("GO");
+        deleteGoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteGoButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout deleteDriverTabLayout = new javax.swing.GroupLayout(deleteDriverTab);
         deleteDriverTab.setLayout(deleteDriverTabLayout);
         deleteDriverTabLayout.setHorizontalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteDriverTabLayout.createSequentialGroup()
+            .addGroup(deleteDriverTabLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(idDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameDeleteLabel))
                 .addGap(18, 18, 18)
-                .addComponent(idDeleteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                .addGap(29, 29, 29)
-                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(exitDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(deleteDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(188, 188, 188))
+                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idDeleteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(nameDeletetextField))
+                .addGap(54, 54, 54)
+                .addComponent(deleteGoButton)
+                .addGap(175, 175, 175))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteDriverTabLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(deleteDeleteButton)
+                .addGap(44, 44, 44)
+                .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+            .addGroup(deleteDriverTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         deleteDriverTabLayout.setVerticalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deleteDriverTabLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deleteDriverTabLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(idDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idDeleteTextField))
+                        .addGap(18, 18, 18))
+                    .addGroup(deleteDriverTabLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(deleteGoButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameDeleteLabel)
+                    .addComponent(nameDeletetextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
-                .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addGap(47, 47, 47))
         );
 
         driverTab.addTab("DELETE", deleteDriverTab);
@@ -560,6 +614,64 @@ public class DriverWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameViewTextFieldActionPerformed
 
+    private void deleteGoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGoButtonActionPerformed
+        if (!nameDeletetextField.getText().trim().equals("") || !idDeleteTextField.getText().trim().equals("")) {
+            delTable(DriverDAO.viewDrivers(nameDeletetextField.getText().trim(),Integer.parseInt(idDeleteTextField.getText().trim())));
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Eneter values for Name or ID", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_deleteGoButtonActionPerformed
+
+    private void delTable(List list){
+        String referenceNo = nameViewTextField.getText().trim();
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        
+        tableHeaders.add("ID");
+        tableHeaders.add("Name");
+        tableHeaders.add("Address");
+        tableHeaders.add("Tele No");
+
+        
+        if (list != null)     {
+            for (Object o : list) {
+                Driver driver = (Driver) o;
+                
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(driver.getId().getId());
+                oneRow.add(driver.getId().getName());
+                oneRow.add(driver.getAddress());
+                oneRow.add(driver.getTpNo());
+                
+                tableData.add(oneRow);
+            }
+            
+        deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        }
+        else {
+            
+        }
+        
+        ListSelectionModel selectionModel = deleteTable.getSelectionModel();
+        selectionModel.setSelectionInterval(0,0);
+        selectionModel.addListSelectionListener(deleteTable);
+       
+        selectionModel.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {      
+                int OPTION = JOptionPane.showConfirmDialog(null, "Do you want to delete this record!!!","Delete confirmation", JOptionPane.WARNING_MESSAGE);
+                
+                
+                if (OPTION == JOptionPane.YES_OPTION){
+                    Driver driver = (Driver) e.getSource();
+                    //System.out.println(driver.getId().getId());
+                    JOptionPane.showMessageDialog(null,""+driver.getId().getId(), "xxx", JOptionPane.INFORMATION_MESSAGE);
+                    //DriverDAO.deleteData(driver.getId().getId());
+                }
+            }
+            
+            
+        });
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -571,6 +683,8 @@ public class DriverWindow extends javax.swing.JFrame {
     private javax.swing.JButton clear;
     private javax.swing.JButton deleteDeleteButton;
     private javax.swing.JPanel deleteDriverTab;
+    private javax.swing.JButton deleteGoButton;
+    private javax.swing.JTable deleteTable;
     private javax.swing.JTabbedPane driverTab;
     private javax.swing.JPanel editDriverTab;
     private javax.swing.JButton exit;
@@ -588,6 +702,9 @@ public class DriverWindow extends javax.swing.JFrame {
     private javax.swing.JLabel idViewLabel;
     private javax.swing.JTextField idViewTextField;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel nameDeleteLabel;
+    private javax.swing.JTextField nameDeletetextField;
     private javax.swing.JLabel nameEditLabel;
     private javax.swing.JTextField nameEditTextField;
     private javax.swing.JLabel nameLabel;
