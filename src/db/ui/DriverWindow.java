@@ -351,7 +351,15 @@ public class DriverWindow extends javax.swing.JFrame {
             new String [] {
                 "ID", "Name", "Address", "Tele No"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(deleteTable);
 
         deleteGoButton.setFont(new java.awt.Font("Andalus", 1, 12)); // NOI18N
@@ -381,9 +389,9 @@ public class DriverWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteDriverTabLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deleteDeleteButton)
-                .addGap(44, 44, 44)
+                .addGap(29, 29, 29)
                 .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGap(50, 50, 50))
             .addGroup(deleteDriverTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -440,7 +448,15 @@ public class DriverWindow extends javax.swing.JFrame {
             new String [] {
                 "ID", "Name", "Address", "Tele No"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(resultTable);
 
         idViewLabel.setText("Enter Driver ID");
