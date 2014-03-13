@@ -60,6 +60,17 @@ public class RouteWindow extends javax.swing.JFrame {
         addAddButton = new javax.swing.JButton();
         cleaAddrButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        DeleteJPanel = new javax.swing.JPanel();
+        routeIDDeleteLabel = new javax.swing.JLabel();
+        routeIDDeleteTextField = new javax.swing.JTextField();
+        DeleteButton = new javax.swing.JButton();
+        ViewJPanel = new javax.swing.JPanel();
+        routeIDViewLabel = new javax.swing.JLabel();
+        showVIewButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultTable = new javax.swing.JTable();
+        routeIDViewTextField = new javax.swing.JTextField();
+        showAllRouteViewTextField = new javax.swing.JButton();
         EditJPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -73,17 +84,6 @@ public class RouteWindow extends javax.swing.JFrame {
         clearEditButton = new javax.swing.JButton();
         exitEditButton = new javax.swing.JButton();
         showEditButton = new javax.swing.JButton();
-        DeleteJPanel = new javax.swing.JPanel();
-        routeIDDeleteLabel = new javax.swing.JLabel();
-        routeIDDeleteTextField = new javax.swing.JTextField();
-        DeleteButton = new javax.swing.JButton();
-        ViewJPanel = new javax.swing.JPanel();
-        routeIDViewLabel = new javax.swing.JLabel();
-        showVIewButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        resultTable = new javax.swing.JTable();
-        routeIDViewTextField = new javax.swing.JTextField();
-        showAllRouteViewTextField = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,101 +182,6 @@ public class RouteWindow extends javax.swing.JFrame {
         );
 
         RoutePane.addTab("Add", AddJPanel);
-
-        jLabel1.setText("Route ID");
-
-        jLabel2.setText("Route Name");
-
-        jLabel3.setText("Days");
-
-        jLabel4.setText("Distances");
-
-        editEditButton.setText("Edit");
-        editEditButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editEditButtonActionPerformed(evt);
-            }
-        });
-
-        clearEditButton.setText("Clear");
-
-        exitEditButton.setText("Exit");
-        exitEditButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitEditButtonActionPerformed(evt);
-            }
-        });
-
-        showEditButton.setText("Show");
-        showEditButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showEditButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout EditJPanelLayout = new javax.swing.GroupLayout(EditJPanel);
-        EditJPanel.setLayout(EditJPanelLayout);
-        EditJPanelLayout.setHorizontalGroup(
-            EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditJPanelLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(routeIDEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(EditJPanelLayout.createSequentialGroup()
-                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addGroup(EditJPanelLayout.createSequentialGroup()
-                                .addComponent(editEditButton)
-                                .addGap(13, 13, 13)))
-                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(EditJPanelLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(clearEditButton)
-                                .addGap(56, 56, 56)
-                                .addComponent(exitEditButton)
-                                .addGap(46, 46, 46)
-                                .addComponent(showEditButton))
-                            .addComponent(routeNameEditTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(routeDaysEditTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(routeDistanceEditTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(79, Short.MAX_VALUE))
-        );
-        EditJPanelLayout.setVerticalGroup(
-            EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EditJPanelLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(routeIDEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(30, 30, 30)
-                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(routeNameEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(routeDaysEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditJPanelLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel4))
-                    .addGroup(EditJPanelLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(routeDistanceEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editEditButton)
-                    .addComponent(clearEditButton)
-                    .addComponent(exitEditButton)
-                    .addComponent(showEditButton))
-                .addGap(128, 128, 128))
-        );
-
-        RoutePane.addTab("Edit", EditJPanel);
 
         routeIDDeleteLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         routeIDDeleteLabel.setText("Route ID");
@@ -385,15 +290,116 @@ public class RouteWindow extends javax.swing.JFrame {
 
         RoutePane.addTab("View", ViewJPanel);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Route ID");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel2.setText("Route Name");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("Days");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Distances");
+
+        editEditButton.setText("Edit");
+        editEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editEditButtonActionPerformed(evt);
+            }
+        });
+
+        clearEditButton.setText("Clear");
+
+        exitEditButton.setText("Exit");
+        exitEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitEditButtonActionPerformed(evt);
+            }
+        });
+
+        showEditButton.setText("Show");
+        showEditButton.setToolTipText("Show the route details");
+        showEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showEditButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout EditJPanelLayout = new javax.swing.GroupLayout(EditJPanel);
+        EditJPanel.setLayout(EditJPanelLayout);
+        EditJPanelLayout.setHorizontalGroup(
+            EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditJPanelLayout.createSequentialGroup()
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(EditJPanelLayout.createSequentialGroup()
+                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(EditJPanelLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditJPanelLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(159, 159, 159)))
+                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(routeDaysEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(routeDistanceEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(routeNameEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(routeIDEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(EditJPanelLayout.createSequentialGroup()
+                        .addContainerGap(60, Short.MAX_VALUE)
+                        .addComponent(showEditButton)
+                        .addGap(29, 29, 29)
+                        .addComponent(editEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(clearEditButton)
+                        .addGap(33, 33, 33)
+                        .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(104, 104, 104))
+        );
+        EditJPanelLayout.setVerticalGroup(
+            EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditJPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(routeIDEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(routeNameEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(25, 25, 25)
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(routeDaysEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(26, 26, 26)
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(routeDistanceEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(55, 55, 55)
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showEditButton)
+                    .addComponent(editEditButton)
+                    .addComponent(clearEditButton)
+                    .addComponent(exitEditButton))
+                .addContainerGap(120, Short.MAX_VALUE))
+        );
+
+        RoutePane.addTab("Edit", EditJPanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RoutePane, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(RoutePane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(RoutePane, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(RoutePane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -421,6 +427,10 @@ public class RouteWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_exitEditButtonActionPerformed
 
     private void editEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEditButtonActionPerformed
+
+        routeName = routeNameTextField.getText().trim();
+        days = routeDaysTextField.getText().trim();
+        distance = routeDistanceTextField.getText().trim();
         
     }//GEN-LAST:event_editEditButtonActionPerformed
 
