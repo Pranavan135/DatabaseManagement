@@ -414,7 +414,7 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameDeletetextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameDeleteLabel)
-                    .addComponent(deleteGoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deleteGoButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -569,7 +569,13 @@ public class DriverWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_idTextFieldEditActionPerformed
 
     private void goEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goEditActionPerformed
-        // TODO add your handling code here:
+        Integer id = 0;
+        try {
+            id = Integer.parseInt(idTextFieldEdit.getText().trim());
+        } catch (NumberFormatException numberFormatException) {
+            numberFormatException.printStackTrace();
+        }
+       JOptionPane.showMessageDialog(null, DriverDAO.isExistDriver(id), "Existence!!!", JOptionPane.INFORMATION_MESSAGE);
 
     }//GEN-LAST:event_goEditActionPerformed
 

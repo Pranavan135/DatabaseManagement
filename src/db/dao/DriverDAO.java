@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package db.dao;
 
 import db.entity.Driver;
@@ -27,16 +26,16 @@ import org.hibernate.cfg.Configuration;
  * @author Pranavan
  */
 public class DriverDAO {
-    
-      private static String QUERY_BASED_ON_Name = "from drivers a where a.name like '";
-    
-    public static boolean addData(Integer id,String name,String address,String tp_no){
-        Session sess = null;
-        Transaction tran = null;
+
+    private static String QUERY_BASED_ON_Name = "from drivers a where a.name like '";
+    private static Session session = null;
+    private static Transaction transaction = null;
+
+    public static boolean addData(Integer id, String name, String address, String tp_no) {
         try {
             SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
-            sess = sessFact.openSession();
-            tran = sess.beginTransaction();
+            session = sessFact.openSession();
+            transaction = session.beginTransaction();
             Driver driver = new Driver();
             DriverId driverId = new DriverId();
             driverId.setId(id);
@@ -44,35 +43,35 @@ public class DriverDAO {
             driver.setId(driverId);
             driver.setAddress(address);
             driver.setTpNo(tp_no);
-            sess.save(driver);
-            tran.commit();
-            JOptionPane.showMessageDialog(null, "Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
+            session.save(driver);
+            transaction.commit();
+            JOptionPane.showMessageDialog(null, "Record Added", "Details", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         } finally {
-            sess.flush();
-            sess.close();
+            session.flush();
+            session.close();
         }
-    } 
-    
-    public static boolean editData(){
+    }
+
+    public static boolean editData() {
         return true;
     }
-    
-    public static boolean updateData(){
+
+    public static boolean updateData() {
         return true;
     }
-    
-    public static boolean deleteData(Integer id){
+
+    public static boolean deleteData(Integer id) {
         Session sess = null;
         Transaction tran = null;
         try {
             SessionFactory sessFact = new Configuration().configure().buildSessionFactory();
             sess = sessFact.openSession();
             tran = sess.beginTransaction();
-            String hql = "DELETE FROM Driver d "  + "WHERE d.id.id = :id";
+            String hql = "DELETE FROM Driver d " + "WHERE d.id.id = :id";
             Query query = sess.createQuery(hql);
             query.setParameter("id", id);
             int result = query.executeUpdate();
@@ -88,13 +87,10 @@ public class DriverDAO {
             sess.close();
         }
     }
-    
 
-   public static List viewDrivers(String name,Integer id){
-       Session session = null;
-        Transaction transaction = null;
-        String hql = "from Driver d where d.id.name like '"+name + "%' and d.id.id like '" + id+"%'";
-        
+    public static List viewDrivers(String name, Integer id) {
+        String hql = "from Driver d where d.id.name like '" + name + "%' and d.id.id like '" + id + "%'";
+
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
@@ -102,13 +98,31 @@ public class DriverDAO {
             List resultList = q.list();
             session.getTransaction().commit();
             return resultList;
-        }
-        catch (HibernateException|HeadlessException he) {
+        } catch (HibernateException | HeadlessException he) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
             }
             he.printStackTrace();
         }
         return null;
-   }
+    }
+
+    public static boolean isExistDriver(Integer id) {
+        Long count = 0L;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            count = (Long) session.createQuery("select count(*) from Driver d where d.id.id = :id")
+                    .setInteger("id", id)
+                    .uniqueResult();
+             session.getTransaction().commit();
+        } catch (Exception ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
+            return false;
+        }
+        return count > 0;
+    }
 }
