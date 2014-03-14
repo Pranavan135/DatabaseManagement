@@ -132,7 +132,6 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        clear.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         clear.setText("Clear");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +139,6 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        save.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         save.setText("Save");
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +146,6 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        exit.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exit.setText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,7 +230,6 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        goEdit.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         goEdit.setText("Go");
         goEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +237,6 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        exitEditButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exitEditButton.setText("EXIT");
         exitEditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,7 +258,6 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        editUpdateButton.setFont(new java.awt.Font("Andalus", 1, 13)); // NOI18N
         editUpdateButton.setText("Update");
         editUpdateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,8 +307,8 @@ public class DriverWindow extends javax.swing.JFrame {
                         .addGap(68, 68, 68)))
                 .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(goEdit)
-                    .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(158, Short.MAX_VALUE))
+                    .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         editDriverTabLayout.setVerticalGroup(
             editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,15 +340,14 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editUpdateButton)
-                    .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                    .addComponent(exitEditButton))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         driverTab.addTab("EDIT", editDriverTab);
 
         idDeleteLabel.setText("ENTER ID");
 
-        deleteDeleteButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         deleteDeleteButton.setText("Delete");
         deleteDeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,7 +355,6 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        exitDeleteButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exitDeleteButton.setText("Exit");
         exitDeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -390,7 +382,6 @@ public class DriverWindow extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(deleteTable);
 
-        deleteGoButton.setFont(new java.awt.Font("Andalus", 1, 12)); // NOI18N
         deleteGoButton.setText("GO");
         deleteGoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,7 +400,7 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addComponent(nameDeleteLabel))
                 .addGap(18, 18, 18)
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idDeleteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                    .addComponent(idDeleteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                     .addComponent(nameDeletetextField))
                 .addGap(44, 44, 44)
                 .addComponent(deleteGoButton)
@@ -441,7 +432,7 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitDeleteButton)
                     .addComponent(deleteDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
         );
@@ -456,7 +447,6 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        viewGoButtonField.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         viewGoButtonField.setText("GO");
         viewGoButtonField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -530,10 +520,10 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addGroup(viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameViewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameViewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewGoButtonField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(viewGoButtonField))
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(viewExitButton)
                 .addGap(35, 35, 35))
         );

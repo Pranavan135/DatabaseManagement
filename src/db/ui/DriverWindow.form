@@ -189,9 +189,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="clear">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="18" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
               <Events>
@@ -200,9 +197,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="save">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="18" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
               <Events>
@@ -211,9 +205,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="exit">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="18" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -287,9 +278,9 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="goEdit" min="-2" max="-2" attributes="0"/>
-                          <Component id="exitEditButton" min="-2" pref="106" max="-2" attributes="0"/>
+                          <Component id="exitEditButton" min="-2" pref="77" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="158" max="32767" attributes="0"/>
+                      <EmptySpace pref="187" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -330,9 +321,9 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="editUpdateButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="exitEditButton" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="exitEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
+                      <EmptySpace pref="72" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -350,9 +341,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="goEdit">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="18" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Go"/>
               </Properties>
               <Events>
@@ -361,9 +349,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="exitEditButton">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="18" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="EXIT"/>
               </Properties>
               <Events>
@@ -403,9 +388,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="editUpdateButton">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="13" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Update"/>
               </Properties>
               <Events>
@@ -434,7 +416,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="idDeleteTextField" pref="215" max="32767" attributes="0"/>
+                          <Component id="idDeleteTextField" pref="219" max="32767" attributes="0"/>
                           <Component id="nameDeletetextField" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
@@ -473,7 +455,7 @@
                       <Component id="jScrollPane2" min="-2" pref="157" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="exitDeleteButton" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="exitDeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="deleteDeleteButton" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
@@ -491,9 +473,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="deleteDeleteButton">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="18" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
               <Events>
@@ -502,9 +481,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="exitDeleteButton">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="18" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -568,9 +544,6 @@
             </Container>
             <Component class="javax.swing.JButton" name="deleteGoButton">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="12" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="GO"/>
               </Properties>
               <Events>
@@ -633,11 +606,11 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="nameViewLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="nameViewTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="viewGoButtonField" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="viewGoButtonField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="112" max="-2" attributes="0"/>
-                      <EmptySpace pref="85" max="32767" attributes="0"/>
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
                       <Component id="viewExitButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
@@ -657,9 +630,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="viewGoButtonField">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="18" style="1"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="GO"/>
               </Properties>
               <Events>
