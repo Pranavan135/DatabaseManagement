@@ -33,6 +33,7 @@ public class BillWindow extends javax.swing.JFrame {
     private BillDAO billDAO = BillDAO.create();
     private BillValidate billValidate = BillValidate.create();
     private static BillWindow billWindow = null;
+    private String editReference = "";
     
     public BillWindow() {
         initComponents();
@@ -68,29 +69,32 @@ public class BillWindow extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         billDateChooser = new com.toedter.calendar.JDateChooser();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        HotelTownScrollPane = new javax.swing.JScrollPane();
         hotelTownTable = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
+        tourCodeScrollPane = new javax.swing.JScrollPane();
         tourCodelist = new javax.swing.JList();
         editBillsTab = new javax.swing.JPanel();
-        editTourCodeLabel = new javax.swing.JLabel();
-        editReferenceLabel = new javax.swing.JLabel();
-        editAmountLabel = new javax.swing.JLabel();
-        editTownIDTextField = new javax.swing.JTextField();
-        editNumberOfIndividualsTextField = new javax.swing.JTextField();
-        editAmountTextField = new javax.swing.JTextField();
-        editHotelIDLabel = new javax.swing.JLabel();
-        editBillDateLabel = new javax.swing.JLabel();
-        editNumberofIndividualsLabel = new javax.swing.JLabel();
-        editTourCodeTextField = new javax.swing.JTextField();
-        editHotelIDTextField = new javax.swing.JTextField();
-        editTownIDLabel = new javax.swing.JLabel();
-        editBillDateTextField = new javax.swing.JTextField();
-        editReferenceNoTextField = new javax.swing.JTextField();
-        editExitButton = new javax.swing.JButton();
-        showButton = new javax.swing.JButton();
-        editClearButton = new javax.swing.JButton();
-        editEditButton1 = new javax.swing.JButton();
+        edittourCodeLabel1 = new javax.swing.JLabel();
+        editreferenceNoLabel1 = new javax.swing.JLabel();
+        editamountLabel1 = new javax.swing.JLabel();
+        edittownIDTextField1 = new javax.swing.JTextField();
+        editnumberOfIndvidualsTextField1 = new javax.swing.JTextField();
+        editamountTextField1 = new javax.swing.JTextField();
+        edithotelIDLabel1 = new javax.swing.JLabel();
+        editbillDateLabel1 = new javax.swing.JLabel();
+        editnumberOfIndvidualsLabel1 = new javax.swing.JLabel();
+        edittourCodeTextField1 = new javax.swing.JTextField();
+        edithotelIDtextField1 = new javax.swing.JTextField();
+        editreferenceNoTextField1 = new javax.swing.JTextField();
+        editexitButton1 = new javax.swing.JButton();
+        fetchButton = new javax.swing.JButton();
+        editclearButton1 = new javax.swing.JButton();
+        editbillDateChooser1 = new com.toedter.calendar.JDateChooser();
+        edithotelTownScrollPane = new javax.swing.JScrollPane();
+        edithotelTownTable1 = new javax.swing.JTable();
+        edittourCodeScrollPane = new javax.swing.JScrollPane();
+        edittourCodelist1 = new javax.swing.JList();
+        editButton = new javax.swing.JButton();
         deleteBillsTab = new javax.swing.JPanel();
         deleteReferenceLabel = new javax.swing.JLabel();
         deleteReferenceTextField = new javax.swing.JTextField();
@@ -200,22 +204,20 @@ public class BillWindow extends javax.swing.JFrame {
                 "Hotel ID", "Hotel Name", "Town ID", "Town Name"
             }
         ));
+        hotelTownTable.setEnabled(false);
         hotelTownTable.setSelectionMode(SINGLE_SELECTION);
         hotelTownTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 hotelTownTableMouseClicked(evt);
             }
-        });
-        jScrollPane6.setViewportView(hotelTownTable);
-
-        addBillsTab.add(jScrollPane6);
-        jScrollPane6.setBounds(30, 290, 400, 80);
-
-        jScrollPane5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jScrollPane5MouseClicked(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                hotelTownTableMouseEntered(evt);
             }
         });
+        HotelTownScrollPane.setViewportView(hotelTownTable);
+
+        addBillsTab.add(HotelTownScrollPane);
+        HotelTownScrollPane.setBounds(30, 290, 400, 80);
 
         tourCodelist.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -229,96 +231,152 @@ public class BillWindow extends javax.swing.JFrame {
                 tourCodelistValueChanged(evt);
             }
         });
-        jScrollPane5.setViewportView(tourCodelist);
+        tourCodeScrollPane.setViewportView(tourCodelist);
 
-        addBillsTab.add(jScrollPane5);
-        jScrollPane5.setBounds(200, 160, 80, 80);
+        addBillsTab.add(tourCodeScrollPane);
+        tourCodeScrollPane.setBounds(200, 160, 80, 80);
 
         billsTab.addTab("ADD", addBillsTab);
 
         editBillsTab.setLayout(null);
 
-        editTourCodeLabel.setText("Tour Code");
-        editBillsTab.add(editTourCodeLabel);
-        editTourCodeLabel.setBounds(360, 80, 101, 30);
+        edittourCodeLabel1.setText("Tour Code");
+        editBillsTab.add(edittourCodeLabel1);
+        edittourCodeLabel1.setBounds(30, 160, 101, 30);
 
-        editReferenceLabel.setText("Reference No");
-        editBillsTab.add(editReferenceLabel);
-        editReferenceLabel.setBounds(30, 30, 101, 25);
+        editreferenceNoLabel1.setText("Reference No");
+        editBillsTab.add(editreferenceNoLabel1);
+        editreferenceNoLabel1.setBounds(30, 30, 101, 25);
 
-        editAmountLabel.setText("Amount");
-        editBillsTab.add(editAmountLabel);
-        editAmountLabel.setBounds(30, 180, 101, 38);
-        editBillsTab.add(editTownIDTextField);
-        editTownIDTextField.setBounds(190, 80, 124, 28);
-        editBillsTab.add(editNumberOfIndividualsTextField);
-        editNumberOfIndividualsTextField.setBounds(500, 180, 124, 33);
-        editBillsTab.add(editAmountTextField);
-        editAmountTextField.setBounds(190, 180, 124, 33);
+        editamountLabel1.setText("Amount");
+        editBillsTab.add(editamountLabel1);
+        editamountLabel1.setBounds(30, 80, 101, 38);
 
-        editHotelIDLabel.setText("Hotel ID");
-        editBillsTab.add(editHotelIDLabel);
-        editHotelIDLabel.setBounds(360, 130, 101, 30);
+        edittownIDTextField1.setEditable(false);
+        editBillsTab.add(edittownIDTextField1);
+        edittownIDTextField1.setBounds(550, 310, 80, 30);
 
-        editBillDateLabel.setText("Bill date");
-        editBillsTab.add(editBillDateLabel);
-        editBillDateLabel.setBounds(30, 130, 101, 30);
+        editnumberOfIndvidualsTextField1.setEnabled(false);
+        editBillsTab.add(editnumberOfIndvidualsTextField1);
+        editnumberOfIndvidualsTextField1.setBounds(510, 190, 124, 33);
 
-        editNumberofIndividualsLabel.setText("Number of Individuals");
-        editBillsTab.add(editNumberofIndividualsLabel);
-        editNumberofIndividualsLabel.setBounds(360, 190, 110, 14);
-        editBillsTab.add(editTourCodeTextField);
-        editTourCodeTextField.setBounds(500, 80, 124, 30);
-        editBillsTab.add(editHotelIDTextField);
-        editHotelIDTextField.setBounds(500, 130, 124, 28);
+        editamountTextField1.setEnabled(false);
+        editBillsTab.add(editamountTextField1);
+        editamountTextField1.setBounds(190, 80, 124, 30);
 
-        editTownIDLabel.setText("Town ID");
-        editBillsTab.add(editTownIDLabel);
-        editTownIDLabel.setBounds(30, 80, 101, 25);
-        editBillsTab.add(editBillDateTextField);
-        editBillDateTextField.setBounds(190, 130, 124, 28);
-        editBillsTab.add(editReferenceNoTextField);
-        editReferenceNoTextField.setBounds(190, 30, 124, 28);
+        edithotelIDLabel1.setText("Hotel ID and Town ID");
+        editBillsTab.add(edithotelIDLabel1);
+        edithotelIDLabel1.setBounds(30, 260, 110, 30);
 
-        editExitButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
-        editExitButton.setText("EXIT");
-        editExitButton.addActionListener(new java.awt.event.ActionListener() {
+        editbillDateLabel1.setText("Bill date (dd-MM-yyyy)");
+        editBillsTab.add(editbillDateLabel1);
+        editbillDateLabel1.setBounds(360, 130, 110, 30);
+
+        editnumberOfIndvidualsLabel1.setText("Number of Individuals");
+        editBillsTab.add(editnumberOfIndvidualsLabel1);
+        editnumberOfIndvidualsLabel1.setBounds(360, 190, 110, 14);
+
+        edittourCodeTextField1.setEditable(false);
+        editBillsTab.add(edittourCodeTextField1);
+        edittourCodeTextField1.setBounds(30, 200, 80, 30);
+
+        edithotelIDtextField1.setEditable(false);
+        editBillsTab.add(edithotelIDtextField1);
+        edithotelIDtextField1.setBounds(440, 310, 80, 30);
+        editBillsTab.add(editreferenceNoTextField1);
+        editreferenceNoTextField1.setBounds(190, 30, 124, 28);
+
+        editexitButton1.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        editexitButton1.setText("EXIT");
+        editexitButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editExitButtonActionPerformed(evt);
+                editexitButton1ActionPerformed(evt);
             }
         });
-        editBillsTab.add(editExitButton);
-        editExitButton.setBounds(440, 260, 160, 70);
+        editBillsTab.add(editexitButton1);
+        editexitButton1.setBounds(450, 440, 140, 30);
 
-        showButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
-        showButton.setText("SHOW");
-        showButton.addActionListener(new java.awt.event.ActionListener() {
+        fetchButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        fetchButton.setText("FETCH");
+        fetchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showButtonActionPerformed(evt);
+                fetchButtonActionPerformed(evt);
             }
         });
-        editBillsTab.add(showButton);
-        showButton.setBounds(360, 30, 140, 30);
+        editBillsTab.add(fetchButton);
+        fetchButton.setBounds(450, 30, 120, 40);
 
-        editClearButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
-        editClearButton.setText("CLEAR");
-        editClearButton.addActionListener(new java.awt.event.ActionListener() {
+        editclearButton1.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        editclearButton1.setText("CLEAR");
+        editclearButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editClearButtonActionPerformed(evt);
+                editclearButton1ActionPerformed(evt);
             }
         });
-        editBillsTab.add(editClearButton);
-        editClearButton.setBounds(240, 260, 160, 70);
+        editBillsTab.add(editclearButton1);
+        editclearButton1.setBounds(450, 390, 140, 30);
 
-        editEditButton1.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
-        editEditButton1.setText("EDIT");
-        editEditButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editEditButton1ActionPerformed(evt);
+        editbillDateChooser1.setEnabled(false);
+        editBillsTab.add(editbillDateChooser1);
+        editbillDateChooser1.setBounds(510, 130, 130, 30);
+        billDateChooser.setMaxSelectableDate(new Date());
+
+        edithotelTownTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Hotel ID", "Hotel Name", "Town ID", "Town Name"
+            }
+        ));
+        edithotelTownTable1.setEnabled(false);
+        edithotelTownTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        edithotelTownTable1.setRowSelectionAllowed(true);
+        edithotelTownTable1.setSelectionMode(SINGLE_SELECTION);
+        edithotelTownTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                edithotelTownTable1MouseClicked(evt);
             }
         });
-        editBillsTab.add(editEditButton1);
-        editEditButton1.setBounds(40, 260, 160, 70);
+        edithotelTownScrollPane.setViewportView(edithotelTownTable1);
+
+        editBillsTab.add(edithotelTownScrollPane);
+        edithotelTownScrollPane.setBounds(30, 290, 400, 80);
+
+        edittourCodeScrollPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                edittourCodeScrollPaneMouseClicked(evt);
+            }
+        });
+
+        edittourCodelist1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        edittourCodelist1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        edittourCodelist1.setEnabled(false);
+        getTours();
+        edittourCodelist1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                edittourCodelist1ValueChanged(evt);
+            }
+        });
+        edittourCodeScrollPane.setViewportView(edittourCodelist1);
+
+        editBillsTab.add(edittourCodeScrollPane);
+        edittourCodeScrollPane.setBounds(200, 160, 80, 80);
+
+        editButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        editButton.setText("EDIT");
+        editButton.setEnabled(false);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+        editBillsTab.add(editButton);
+        editButton.setBounds(110, 400, 160, 50);
 
         billsTab.addTab("EDIT", editBillsTab);
 
@@ -475,7 +533,7 @@ public class BillWindow extends javax.swing.JFrame {
                 listModel.addElement(tour.getTourCode());       
             }
         tourCodelist.setModel(listModel);
-        
+        edittourCodelist1.setModel(listModel);
         }
         else {
             
@@ -547,38 +605,23 @@ public class BillWindow extends javax.swing.JFrame {
        clearAdd();
     }//GEN-LAST:event_clearButtonActionPerformed
 
-    private void editExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editExitButtonActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_editExitButtonActionPerformed
-
-    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showButtonActionPerformed
-
-    private void editClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClearButtonActionPerformed
-        editReferenceNoTextField.setText("");
-        editTownIDTextField.setText("");
-        editTourCodeTextField.setText("");
-        editNumberOfIndividualsTextField.setText("");
-        editAmountTextField.setText("");
-        editBillDateTextField.setText("");
-        editHotelIDTextField.setText("");
-    }//GEN-LAST:event_editClearButtonActionPerformed
-
-    private void editEditButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEditButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editEditButton1ActionPerformed
-
     private void tourCodelistValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_tourCodelistValueChanged
         if (!tourCodelist.isSelectionEmpty()) { 
             tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
+            hotelIDtextField.setText("");
+            townIDTextField.setText("");
+            hotelTownTable.clearSelection();
+            hotelTownTable.setEnabled(false);
+            
+          //  if (hotelTownTable.getRowCount() > 0)
+            //    hotelTownTable.setModel(null);
             Tour tour = billDAO.getTour(tourCodeTextField.getText());
             Set<Hotel> hotels = billDAO.getAllHotels(tour);
-            changeTable(hotels);
+            changeTable(hotels, 1);
         }
     }//GEN-LAST:event_tourCodelistValueChanged
 
-    private void changeTable(Set<Hotel> hotels) {
+    private void changeTable(Set<Hotel> hotels, int a) {
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
         
@@ -598,33 +641,166 @@ public class BillWindow extends javax.swing.JFrame {
                 oneRow.add(h.getTown().getName());
                 tableData.add(oneRow);
             }
-        hotelTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+       if (a == 1) {
+            hotelTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+            hotelTownTable.setEnabled(true);
+       }
+       else
+           edithotelTownTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
         }
         else {
             JOptionPane.showMessageDialog(null, "There are no overnight stops please try again with another tour code", "ERROR", JOptionPane.ERROR_MESSAGE);
             tourCodelist.clearSelection();
             tourCodeTextField.setText("");
-            
-           
         }
         
     }  
     private void hotelTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hotelTownTableMouseClicked
-       hotelIDtextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 0).toString());
-       townIDTextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 2).toString());
+       if(hotelTownTable.isEnabled()) {
+        hotelIDtextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 0).toString());
+        townIDTextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 2).toString());
+       }
     }//GEN-LAST:event_hotelTownTableMouseClicked
 
-    private void jScrollPane5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane5MouseClicked
-        tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
-         Tour tour = billDAO.getTour(tourCodeTextField.getText());
-         Set<Hotel> hotels = billDAO.getAllHotels(tour);
-         changeTable(hotels);
-    }//GEN-LAST:event_jScrollPane5MouseClicked
+    private void editexitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editexitButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editexitButton1ActionPerformed
+
+    private void fetchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fetchButtonActionPerformed
+        String referenceNo = editreferenceNoTextField1.getText();
+        editReference = referenceNo;
+        Bill b = billDAO.isUnique(referenceNo);
+        
+        if(b != null)   {
+            editamountTextField1.setText(b.getAmount().toString());
+            editnumberOfIndvidualsTextField1.setText(String.valueOf(b.getNumberOfIndividuals()));
+            editbillDateChooser1.setDate(b.getBillDate());
+            edittourCodelist1.setSelectedValue(b.getTour().getTourCode(), rootPaneCheckingEnabled);
+            edittourCodeTextField1.setText(edittourCodelist1.getSelectedValue().toString());
+            Tour tour = billDAO.getTour(edittourCodeTextField1.getText());
+            Set<Hotel> hotels = billDAO.getAllHotels(tour);
+            //changeTable(hotels, 0);
+            //edithotelTownTable1.setRowSelectionInterval(edithotelTownTable1.getValueAt(WIDTH, WIDTH).compareToIgnoreCase(String.valueOf(b.getHotel().getId())),0 );
+            edithotelIDtextField1.setText(String.valueOf(b.getHotel().getId()));
+            edittownIDTextField1.setText(String.valueOf(b.getTown().getId()));
+            editEnable();
+            
+        }
+        else    {
+             JOptionPane.showMessageDialog(null, "Reference No not exists. Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);
+             editreferenceNoTextField1.setText("");
+        }
+        
+    }//GEN-LAST:event_fetchButtonActionPerformed
+
+    private void editEnable()   {
+        editamountTextField1.setEnabled(true);
+        editnumberOfIndvidualsTextField1.setEnabled(true);
+        editbillDateChooser1.setEnabled(true);
+        edittourCodelist1.setEnabled(true);
+        editButton.setEnabled(true);
+        edithotelTownTable1.setEnabled(true);
+    }
+    private void editclearButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editclearButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editclearButton1ActionPerformed
+
+    private void edithotelTownTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edithotelTownTable1MouseClicked
+        if(edithotelTownTable1.isEnabled()) {
+            edithotelIDtextField1.setText(edithotelTownTable1.getValueAt(edithotelTownTable1.getSelectedRow(), 0).toString());
+            edittownIDTextField1.setText(edithotelTownTable1.getValueAt(edithotelTownTable1.getSelectedRow(), 2).toString());
+       }
+    }//GEN-LAST:event_edithotelTownTable1MouseClicked
+
+    private void edittourCodelist1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_edittourCodelist1ValueChanged
+        if (!edittourCodelist1.isSelectionEmpty()) { 
+            edittourCodeTextField1.setText(edittourCodelist1.getSelectedValue().toString());
+            edithotelIDtextField1.setText("");
+            edittownIDTextField1.setText("");
+            edithotelTownTable1.clearSelection();
+            Tour tour = billDAO.getTour(edittourCodeTextField1.getText());
+            Set<Hotel> hotels = billDAO.getAllHotels(tour);
+            changeTable(hotels, 0);
+        }
+    }//GEN-LAST:event_edittourCodelist1ValueChanged
+
+    private void edittourCodeScrollPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edittourCodeScrollPaneMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edittourCodeScrollPaneMouseClicked
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        String referenceNo = editreferenceNoTextField1.getText();
+        String date = editbillDateChooser1.getDateFormatString();
+        String tourCode = edittourCodeTextField1.getText();
+        String townID = edittownIDTextField1.getText();
+        String hotelID = edithotelIDtextField1.getText();
+        String numberOfIndividuals = editnumberOfIndvidualsTextField1.getText();
+        String amount = editamountTextField1.getText();
+      
+        
+       if (referenceNo.equalsIgnoreCase(editReference)) {
+        if (!billValidate.validateNotNull(date))   {
+             JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
+             billDateChooser.cleanup();
+        }
+        else if (!billValidate.validateAmount(amount)) { 
+            amountTextField.setText("");
+            amount = "";
+        }
+        else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
+            numberOfIndvidualsTextField.setText("");
+            numberOfIndividuals = "";
+        }
+        else if (!billValidate.validateNotNull(tourCode))   {
+             JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+         else if (!billValidate.validateNotNull(townID))   {
+             JOptionPane.showMessageDialog(null, "Please Select a town", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+         else if (!billValidate.validateNotNull(hotelID))   {
+             JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        else    {
+             boolean response = billDAO.editBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
+             //JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+
+             if (response)  {
+                 JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                 clearEdit();
+             }
+             else
+                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+       }
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    
+    private void clearEdit()    {
+        editreferenceNoTextField1.setText("");
+        edittownIDTextField1.setText("");
+        edittourCodeTextField1.setText("");
+        editnumberOfIndvidualsTextField1.setText("");
+        editnumberOfIndvidualsTextField1.setEnabled(false);
+        editamountTextField1.setText("");
+        editamountTextField1.setEnabled(false);
+        editbillDateChooser1.setDate(null);
+        editbillDateChooser1.setEnabled(false);
+        edithotelIDtextField1.setText("");
+        edittourCodelist1.clearSelection();
+        edittourCodelist1.setEnabled(false);
+        edithotelTownTable1.clearSelection();
+        edithotelTownTable1.setEnabled(false);
+    }
+    
+    private void hotelTownTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hotelTownTableMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hotelTownTableMouseEntered
 
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane HotelTownScrollPane;
     private javax.swing.JPanel addBillsTab;
     private javax.swing.JButton addButton;
     private javax.swing.JLabel amountLabel;
@@ -637,38 +813,40 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel deleteReferenceLabel;
     private javax.swing.JTextField deleteReferenceTextField;
-    private javax.swing.JLabel editAmountLabel;
-    private javax.swing.JTextField editAmountTextField;
-    private javax.swing.JLabel editBillDateLabel;
-    private javax.swing.JTextField editBillDateTextField;
     private javax.swing.JPanel editBillsTab;
-    private javax.swing.JButton editClearButton;
-    private javax.swing.JButton editEditButton1;
-    private javax.swing.JButton editExitButton;
-    private javax.swing.JLabel editHotelIDLabel;
-    private javax.swing.JTextField editHotelIDTextField;
-    private javax.swing.JTextField editNumberOfIndividualsTextField;
-    private javax.swing.JLabel editNumberofIndividualsLabel;
-    private javax.swing.JLabel editReferenceLabel;
-    private javax.swing.JTextField editReferenceNoTextField;
-    private javax.swing.JLabel editTourCodeLabel;
-    private javax.swing.JTextField editTourCodeTextField;
-    private javax.swing.JLabel editTownIDLabel;
-    private javax.swing.JTextField editTownIDTextField;
+    private javax.swing.JButton editButton;
+    private javax.swing.JLabel editamountLabel1;
+    private javax.swing.JTextField editamountTextField1;
+    private com.toedter.calendar.JDateChooser editbillDateChooser1;
+    private javax.swing.JLabel editbillDateLabel1;
+    private javax.swing.JButton editclearButton1;
+    private javax.swing.JButton editexitButton1;
+    private javax.swing.JLabel edithotelIDLabel1;
+    private javax.swing.JTextField edithotelIDtextField1;
+    private javax.swing.JScrollPane edithotelTownScrollPane;
+    private javax.swing.JTable edithotelTownTable1;
+    private javax.swing.JLabel editnumberOfIndvidualsLabel1;
+    private javax.swing.JTextField editnumberOfIndvidualsTextField1;
+    private javax.swing.JLabel editreferenceNoLabel1;
+    private javax.swing.JTextField editreferenceNoTextField1;
+    private javax.swing.JLabel edittourCodeLabel1;
+    private javax.swing.JScrollPane edittourCodeScrollPane;
+    private javax.swing.JTextField edittourCodeTextField1;
+    private javax.swing.JList edittourCodelist1;
+    private javax.swing.JTextField edittownIDTextField1;
     private javax.swing.JButton exitButton;
+    private javax.swing.JButton fetchButton;
     private javax.swing.JLabel hotelIDLabel;
     private javax.swing.JTextField hotelIDtextField;
     private javax.swing.JTable hotelTownTable;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel numberOfIndvidualsLabel;
     private javax.swing.JTextField numberOfIndvidualsTextField;
     private javax.swing.JLabel referenceNoLabel;
     private javax.swing.JTextField referenceNoTextField;
-    private javax.swing.JButton showButton;
     private javax.swing.JLabel tourCodeLabel;
+    private javax.swing.JScrollPane tourCodeScrollPane;
     private javax.swing.JTextField tourCodeTextField;
     private javax.swing.JList tourCodelist;
     private javax.swing.JTextField townIDTextField;

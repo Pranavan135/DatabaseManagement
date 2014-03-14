@@ -114,7 +114,7 @@ public class BillDAO {
         return null;
     }
     
-    public boolean isUnique(String referenceNo)    {
+    public Bill isUnique(String referenceNo)    {
         Session session = null;
         Transaction transaction = null;
         
@@ -129,9 +129,7 @@ public class BillDAO {
             session.getTransaction().commit();
             //JOptionPane.showMessageDialog(null,, "ERROR", JOptionPane.ERROR_MESSAGE);
             
-           if (b == null)   {
-                return true;
-           }
+           return b;
             //session.getTransaction().commit();
         }
         catch (HibernateException|HeadlessException he) {
@@ -143,9 +141,10 @@ public class BillDAO {
         finally {
             session.close();
         }
-        return false;
- 
+        return null;
     }
+    
+    
     
     public Town getTown(String townId)  {
         Session session = null;
