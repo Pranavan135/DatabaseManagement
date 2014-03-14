@@ -257,9 +257,9 @@ public class CoachWindow extends javax.swing.JFrame {
                     .addComponent(regNoDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regNoDeleteLabel)
                     .addComponent(deleteGoButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(deleteExitButton)
-                .addGap(57, 57, 57))
+                .addGap(78, 78, 78))
         );
 
         coachTabbedPane.addTab("Delete", deletePanel);
@@ -334,14 +334,14 @@ public class CoachWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(coachTabbedPane)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(coachTabbedPane)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         pack();

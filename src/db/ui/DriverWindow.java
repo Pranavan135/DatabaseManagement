@@ -94,7 +94,6 @@ public class DriverWindow extends javax.swing.JFrame {
         viewExitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         driverTab.setPreferredSize(new java.awt.Dimension(613, 400));
 
@@ -177,9 +176,10 @@ public class DriverWindow extends javax.swing.JFrame {
                                     .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(49, 49, 49)))
                             .addGroup(addDriverTabLayout.createSequentialGroup()
-                                .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49))
-                            .addComponent(telephoneNoLabel))
+                                .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(telephoneNoLabel))
+                                .addGap(49, 49, 49)))
                         .addGroup(addDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(addressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                             .addComponent(nameTextField)
@@ -271,28 +271,34 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addGroup(editDriverTabLayout.createSequentialGroup()
                         .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createSequentialGroup()
-                                .addComponent(idEditLabel)
-                                .addGap(140, 140, 140)
-                                .addComponent(idEditTextField))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createSequentialGroup()
-                                .addComponent(idEditSearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
-                                .addComponent(idTextFieldEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createSequentialGroup()
-                                .addComponent(nameEditLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addressEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createSequentialGroup()
                                 .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(addressEditLabel)
                                     .addComponent(telenoEditLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(34, 34, 34)
+                                .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(teleNoEditTextField)
+                                    .addGroup(editDriverTabLayout.createSequentialGroup()
+                                        .addComponent(addressEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createSequentialGroup()
+                                .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriverTabLayout.createSequentialGroup()
+                                            .addComponent(idEditSearchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(50, 50, 50))
+                                        .addGroup(editDriverTabLayout.createSequentialGroup()
+                                            .addComponent(idEditLabel)
+                                            .addGap(86, 86, 86)))
+                                    .addGroup(editDriverTabLayout.createSequentialGroup()
+                                        .addComponent(nameEditLabel)
+                                        .addGap(70, 70, 70)))
                                 .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(teleNoEditTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                                    .addComponent(idEditTextField)
+                                    .addComponent(idTextFieldEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                     .addComponent(nameEditTextField))))
                         .addGap(47, 47, 47)
                         .addComponent(goEdit)))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         editDriverTabLayout.setVerticalGroup(
             editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,21 +312,24 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idEditLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(idEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(27, 27, 27)
+                .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameEditLabel)
-                    .addComponent(addressEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addressEditLabel)
                     .addComponent(nameEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editDriverTabLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(addressEditLabel))
+                    .addGroup(editDriverTabLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(addressEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
                 .addGroup(editDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(telenoEditLabel)
                     .addComponent(teleNoEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         driverTab.addTab("EDIT", editDriverTab);
@@ -384,40 +393,35 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idDeleteTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                     .addComponent(nameDeletetextField))
-                .addGap(54, 54, 54)
+                .addGap(44, 44, 44)
                 .addComponent(deleteGoButton)
-                .addGap(175, 175, 175))
+                .addGap(185, 185, 185))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteDriverTabLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deleteDeleteButton)
-                .addGap(29, 29, 29)
+                .addGap(33, 33, 33)
                 .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGap(126, 126, 126))
             .addGroup(deleteDriverTabLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         deleteDriverTabLayout.setVerticalGroup(
             deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deleteDriverTabLayout.createSequentialGroup()
-                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(deleteDriverTabLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(idDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idDeleteTextField))
-                        .addGap(18, 18, 18))
-                    .addGroup(deleteDriverTabLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(deleteGoButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idDeleteTextField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameDeletetextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameDeleteLabel)
-                    .addComponent(nameDeletetextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteGoButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -481,8 +485,8 @@ public class DriverWindow extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(idViewLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nameViewLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(nameViewLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
                         .addGroup(viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nameViewTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                             .addComponent(idViewTextField))
@@ -506,12 +510,12 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addComponent(idViewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(viewDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameViewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameViewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameViewTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewGoButtonField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(viewExitButton)
                 .addGap(35, 35, 35))
         );
@@ -525,13 +529,13 @@ public class DriverWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(driverTab, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(driverTab, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 123, Short.MAX_VALUE))
         );
 
         pack();
@@ -569,7 +573,34 @@ public class DriverWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_idTextFieldEditActionPerformed
 
     private void goEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goEditActionPerformed
-        // TODO add your handling code here:
+        Integer id = 0;
+        try {
+            id = Integer.parseInt(idTextFieldEdit.getText().trim());
+        } catch (NumberFormatException numberFormatException) {
+            numberFormatException.printStackTrace();
+        }
+
+        if (DriverDAO.isExistDriver(id)) {
+            idEditLabel.setVisible(true);
+            idEditTextField.setVisible(true);
+            idEditTextField.setText(id.toString());
+            idEditTextField.setEditable(false);
+            idEditTextField.setEnabled(false);
+            Driver driver = DriverDAO.getDriver(id);
+            nameEditLabel.setVisible(true);
+            nameEditTextField.setVisible(true);
+            nameEditTextField.setText(driver.getId().getName());
+            addressEditLabel.setVisible(true);
+            addressEditTextField.setVisible(true);
+            addressEditTextField.setText(driver.getAddress());
+            telenoEditLabel.setVisible(true);
+            teleNoEditTextField.setVisible(true);
+            teleNoEditTextField.setText(driver.getTpNo());
+           // DriverDAO.updateData(id, nameEditTextField.getText().trim(), addressEditTextField.getText().trim(), teleNoEditTextField.getText().trim());
+            //JOptionPane.showMessageDialog(null, "Record updated", null, JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "There is no coach with given id", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_goEditActionPerformed
 
