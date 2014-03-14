@@ -725,20 +725,34 @@ public class DriverWindow extends javax.swing.JFrame {
             if (DriverValidate.addressValidate(addressEditTextField.getText().trim())) {
 
                 if (DriverValidate.tpNoValidate(teleNoEditTextField.getText().trim())) {
+                    if (!driver.getId().getName().equals(nameEditTextField.getText()) || !driver.getAddress().equals(addressEditTextField.getText().trim()) || !driver.getTpNo().equals(teleNoEditTextField.getText().trim())) {
 
-                    DriverDAO.updateData(driver.getId().getId(), nameEditTextField.getText().trim(), addressEditTextField.getText().trim(), teleNoEditTextField.getText().trim());
-                    driver = null;
+                        DriverDAO.updateData(driver.getId().getId(), nameEditTextField.getText().trim(), addressEditTextField.getText().trim(), teleNoEditTextField.getText().trim());
+                        driver = null;
 
-                    idEditLabel.setVisible(false);
-                    idEditTextField.setVisible(false);
-                    nameEditLabel.setVisible(false);
-                    nameEditTextField.setVisible(false);
-                    addressEditLabel.setVisible(false);
-                    addressEditTextField.setVisible(false);
-                    telenoEditLabel.setVisible(false);
-                    teleNoEditTextField.setVisible(false);
-                    idTextFieldEdit.setText("");
-                    idTextFieldEdit.requestFocus();
+                        idEditLabel.setVisible(false);
+                        idEditTextField.setVisible(false);
+                        nameEditLabel.setVisible(false);
+                        nameEditTextField.setVisible(false);
+                        addressEditLabel.setVisible(false);
+                        addressEditTextField.setVisible(false);
+                        telenoEditLabel.setVisible(false);
+                        teleNoEditTextField.setVisible(false);
+                        idTextFieldEdit.setText("");
+                        idTextFieldEdit.requestFocus();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nothing has updated", "Details", JOptionPane.INFORMATION_MESSAGE);
+                        idEditLabel.setVisible(false);
+                        idEditTextField.setVisible(false);
+                        nameEditLabel.setVisible(false);
+                        nameEditTextField.setVisible(false);
+                        addressEditLabel.setVisible(false);
+                        addressEditTextField.setVisible(false);
+                        telenoEditLabel.setVisible(false);
+                        teleNoEditTextField.setVisible(false);
+                        idTextFieldEdit.setText("");
+                        idTextFieldEdit.requestFocus();
+                    }
 
                 } else {
                     teleNoEditTextField.setText(driver.getTpNo());
