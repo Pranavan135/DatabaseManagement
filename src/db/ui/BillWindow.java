@@ -480,18 +480,19 @@ public class BillWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void addData()  {
         String referenceNo = referenceNoTextField.getText();
-        String date = billDateChooser.getDateFormatString();
         String tourCode = tourCodeTextField.getText();
         String townID = townIDTextField.getText();
         String hotelID = hotelIDtextField.getText();
         String numberOfIndividuals = numberOfIndvidualsTextField.getText();
         String amount = amountTextField.getText();
       
+     
+             
         if (!billValidate.validatReferenceNo(referenceNo)) {
             referenceNoTextField.setText("");
             referenceNo = "";
         }
-        else if (!billValidate.validateNotNull(date))   {
+        else if ( billDateChooser.getDate() == null )   {
              JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
              billDateChooser.cleanup();
         }
