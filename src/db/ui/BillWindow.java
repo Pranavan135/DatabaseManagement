@@ -648,6 +648,7 @@ public class BillWindow extends javax.swing.JFrame {
        }
        else
            edithotelTownTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
+           edithotelTownTable1.setEnabled(true);
         }
         else {
             JOptionPane.showMessageDialog(null, "There are no overnight stops please try again with another tour code", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -664,7 +665,7 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_hotelTownTableMouseClicked
 
     private void editexitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editexitButton1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
     }//GEN-LAST:event_editexitButton1ActionPerformed
 
     private void fetchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fetchButtonActionPerformed
@@ -703,7 +704,7 @@ public class BillWindow extends javax.swing.JFrame {
         edithotelTownTable1.setEnabled(true);
     }
     private void editclearButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editclearButton1ActionPerformed
-        // TODO add your handling code here:
+        clearEdit();
     }//GEN-LAST:event_editclearButton1ActionPerformed
 
     private void edithotelTownTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edithotelTownTable1MouseClicked
@@ -719,6 +720,7 @@ public class BillWindow extends javax.swing.JFrame {
             edithotelIDtextField1.setText("");
             edittownIDTextField1.setText("");
             edithotelTownTable1.clearSelection();
+            edithotelTownTable1.setEnabled(false);
             Tour tour = billDAO.getTour(edittourCodeTextField1.getText());
             Set<Hotel> hotels = billDAO.getAllHotels(tour);
             changeTable(hotels, 0);
@@ -742,14 +744,14 @@ public class BillWindow extends javax.swing.JFrame {
        if (referenceNo.equalsIgnoreCase(editReference)) {
         if (!billValidate.validateNotNull(date))   {
              JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
-             billDateChooser.cleanup();
+             editbillDateChooser1.cleanup();
         }
         else if (!billValidate.validateAmount(amount)) { 
-            amountTextField.setText("");
+            editamountTextField1.setText("");
             amount = "";
         }
         else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
-            numberOfIndvidualsTextField.setText("");
+            editnumberOfIndvidualsTextField1.setText("");
             numberOfIndividuals = "";
         }
         else if (!billValidate.validateNotNull(tourCode))   {
@@ -763,11 +765,57 @@ public class BillWindow extends javax.swing.JFrame {
         }
         else    {
              boolean response = billDAO.editBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
-             //JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
-
+      
              if (response)  {
                  JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
                  clearEdit();
+             }
+             else
+                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+       }
+       else  {
+           if (!billValidate.validatReferenceNo(referenceNo))   {
+               editreferenceNoTextField1.setText("");
+               referenceNo = "";
+           }
+           else if (!billValidate.validateNotNull(date))   {
+             JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
+             editbillDateChooser1.cleanup();
+            }
+            else if (!billValidate.validateAmount(amount)) { 
+               editamountTextField1.setText("");
+               amount = "";
+            }
+            else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
+                editnumberOfIndvidualsTextField1.setText("");
+                numberOfIndividuals = "";
+            }
+            else if (!billValidate.validateNotNull(tourCode))   {
+                 JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else if (!billValidate.validateNotNull(townID))   {
+                JOptionPane.showMessageDialog(null, "Please Select a town", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else if (!billValidate.validateNotNull(hotelID))   {
+                JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else    {
+                Bill bill = billDAO.isUnique(editReference);
+                boolean response = billDAO.deleteBill(bill);
+      
+             if (response)  {
+                 boolean response1 = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
+                 //JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                 
+                 
+                 if(response1)  {
+                     JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                     clearEdit();
+                 }
+                 else
+                    JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+       
              }
              else
                  JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);

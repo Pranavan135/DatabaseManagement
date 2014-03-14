@@ -114,6 +114,26 @@ public class BillDAO {
         return null;
     }
     
+    public boolean deleteBill(Bill bill) {
+       Session session = null;
+        Transaction transaction = null;
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.delete(bill);
+            session.flush();
+            transaction.commit();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
+    
     public Bill isUnique(String referenceNo)    {
         Session session = null;
         Transaction transaction = null;
