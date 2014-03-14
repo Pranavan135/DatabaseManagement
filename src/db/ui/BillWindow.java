@@ -97,6 +97,9 @@ public class BillWindow extends javax.swing.JFrame {
         deleteReferenceLabel = new javax.swing.JLabel();
         deleteReferenceTextField = new javax.swing.JTextField();
         deleteButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        deleteTable = new javax.swing.JTable();
+        deleteFetchButton = new javax.swing.JButton();
         viewBillsTab = new javax.swing.JPanel();
         viewReferenceLabel = new javax.swing.JLabel();
         viewReferenceTextField = new javax.swing.JTextField();
@@ -380,6 +383,25 @@ public class BillWindow extends javax.swing.JFrame {
         deleteButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         deleteButton.setText("Delete");
 
+        deleteTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(deleteTable);
+        //deleteTable.setSelectionMode(MULTIPLE_INTERVAL);
+
+        deleteFetchButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        deleteFetchButton.setText("Fetch");
+        deleteFetchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteFetchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout deleteBillsTabLayout = new javax.swing.GroupLayout(deleteBillsTab);
         deleteBillsTab.setLayout(deleteBillsTabLayout);
         deleteBillsTabLayout.setHorizontalGroup(
@@ -389,9 +411,15 @@ public class BillWindow extends javax.swing.JFrame {
                 .addComponent(deleteReferenceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
                 .addComponent(deleteReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(deleteFetchButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteButton)
-                .addGap(59, 59, 59))
+                .addContainerGap())
+            .addGroup(deleteBillsTabLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         deleteBillsTabLayout.setVerticalGroup(
             deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,8 +428,11 @@ public class BillWindow extends javax.swing.JFrame {
                 .addGroup(deleteBillsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteReferenceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteReferenceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton))
-                .addContainerGap(429, Short.MAX_VALUE))
+                    .addComponent(deleteButton)
+                    .addComponent(deleteFetchButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
         billsTab.addTab("DELETE", deleteBillsTab);
@@ -611,8 +642,7 @@ public class BillWindow extends javax.swing.JFrame {
         edithotelTownTable1.setEnabled(true);
     }
     
-     private void viewBills() {
-        String referenceNo = viewReferenceTextField.getText();
+     private void viewBills(String referenceNo, int num) {
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
         
@@ -640,7 +670,10 @@ public class BillWindow extends javax.swing.JFrame {
                 oneRow.add(bill.getAmount());
                 tableData.add(oneRow);
             }
-        viewTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        if (num == 1)   
+            viewTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        else 
+            deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
         }
         else {
             JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
@@ -652,7 +685,7 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        viewBills();
+        viewBills(viewReferenceTextField.getText(),1 );
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -836,6 +869,10 @@ public class BillWindow extends javax.swing.JFrame {
         }
        }
     }//GEN-LAST:event_editButtonActionPerformed
+
+    private void deleteFetchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFetchButtonActionPerformed
+        viewBills(deleteReferenceTextField.getText(), 0);
+    }//GEN-LAST:event_deleteFetchButtonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -852,8 +889,10 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JButton clearButton;
     private javax.swing.JPanel deleteBillsTab;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteFetchButton;
     private javax.swing.JLabel deleteReferenceLabel;
     private javax.swing.JTextField deleteReferenceTextField;
+    private javax.swing.JTable deleteTable;
     private javax.swing.JPanel editBillsTab;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel editamountLabel1;
@@ -882,6 +921,7 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JTable hotelTownTable;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel numberOfIndvidualsLabel;
     private javax.swing.JTextField numberOfIndvidualsTextField;
     private javax.swing.JLabel referenceNoLabel;
