@@ -7,9 +7,6 @@
 package db.validate;
 
 import db.dao.BillDAO;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,7 +31,7 @@ public class BillValidate {
                 int reference = Integer.parseInt(referenceNo);
                 
                 if (reference > 0)  {
-                    if (billDAO.isUnique(referenceNo))    {
+                    if (billDAO.isUnique(referenceNo) == null)    {
                         return true;
                     }
                     else {
