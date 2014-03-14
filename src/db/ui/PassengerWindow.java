@@ -363,7 +363,6 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnAddAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAddAdd.setForeground(new java.awt.Color(51, 51, 51));
-        btnAddAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add copy.png"))); // NOI18N
         btnAddAdd.setText("ADD");
         btnAddAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,7 +381,6 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnAddExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnAddExit.setForeground(new java.awt.Color(51, 51, 51));
-        btnAddExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit copy.png"))); // NOI18N
         btnAddExit.setText("Exit");
         btnAddExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -474,7 +472,6 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnEditUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEditUpdate.setForeground(new java.awt.Color(51, 51, 51));
-        btnEditUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update copy.png"))); // NOI18N
         btnEditUpdate.setText("UPDATE");
         btnEditUpdate.setEnabled(false);
         btnEditUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -494,7 +491,6 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnEditExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditExit.setForeground(new java.awt.Color(51, 51, 51));
-        btnEditExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit copy.png"))); // NOI18N
         btnEditExit.setText("Exit");
         btnEditExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -504,7 +500,6 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnEditGet.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditGet.setForeground(new java.awt.Color(51, 51, 51));
-        btnEditGet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update copy.png"))); // NOI18N
         btnEditGet.setText("Get");
         btnEditGet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -638,7 +633,6 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnDelDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnDelDelete.setForeground(new java.awt.Color(51, 51, 51));
-        btnDelDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete2 copy.png"))); // NOI18N
         btnDelDelete.setText("DELETE");
         btnDelDelete.setEnabled(false);
         btnDelDelete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -654,7 +648,6 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnDelExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnDelExit.setForeground(new java.awt.Color(51, 51, 51));
-        btnDelExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit copy.png"))); // NOI18N
         btnDelExit.setText("Exit");
         btnDelExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -778,7 +771,6 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         btnViewExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnViewExit.setForeground(new java.awt.Color(51, 51, 51));
-        btnViewExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit copy.png"))); // NOI18N
         btnViewExit.setText("Exit");
         btnViewExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
