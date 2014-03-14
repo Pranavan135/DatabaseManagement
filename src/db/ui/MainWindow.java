@@ -7,6 +7,8 @@
 package db.ui;
 
 import db.dao.BillDAO;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 /**
  *
  * @author DELL
@@ -219,6 +221,14 @@ public class MainWindow extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        try {
+            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+        } catch (ClassNotFoundException classNotFoundException) {
+        } catch (InstantiationException instantiationException) {
+        } catch (IllegalAccessException illegalAccessException) {
+        } catch (UnsupportedLookAndFeelException unsupportedLookAndFeelException) {
+        }
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
