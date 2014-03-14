@@ -7,6 +7,7 @@ package db.ui;
 import db.dao.RouteDAO;
 import db.entity.Route;
 import db.validate.RouteVallidate;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JDialog;
@@ -102,7 +103,7 @@ public class RouteWindow extends javax.swing.JFrame {
         routeDistanceLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         routeDistanceLabel.setText("Distance");
 
-        addAddButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
+        addAddButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         addAddButton.setText("Add");
         addAddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +111,7 @@ public class RouteWindow extends javax.swing.JFrame {
             }
         });
 
-        cleaAddrButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
+        cleaAddrButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         cleaAddrButton.setText("Clear");
         cleaAddrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +119,7 @@ public class RouteWindow extends javax.swing.JFrame {
             }
         });
 
-        exitButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
+        exitButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +171,7 @@ public class RouteWindow extends javax.swing.JFrame {
                             .addComponent(routeDaysTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(routeDaysLabel)))
                     .addGroup(AddJPanelLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(30, 30, 30)
                         .addComponent(cleaAddrButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddJPanelLayout.createSequentialGroup()
@@ -244,8 +245,7 @@ public class RouteWindow extends javax.swing.JFrame {
                                 .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditJPanelLayout.createSequentialGroup()
                                 .addContainerGap(33, Short.MAX_VALUE)
                                 .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -525,13 +525,17 @@ public class RouteWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void addRouteData(){
-      /*if ( routeValidate.IDValidation(routeID) && routeValidate.is_Unique(routeID) && routeValidate.nameValidation(routeName) 
+      if ( routeValidate.IDValidation(routeID)  && routeValidate.nameValidation(routeName) 
                && routeValidate.daysValidation(days) && routeValidate.distanceValidation(distance)  ){
-           
-           routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
-           
-       }*/
-           
+         if( routeValidate.isUnique(routeID) )
+         {
+                routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
+                 JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
+         } 
+         else {
+                    JOptionPane.showMessageDialog(this, "Database Error", "Error", JOptionPane.ERROR_MESSAGE);
+         }          
+       }
     }
     
      private void displayResult(List resultList) {

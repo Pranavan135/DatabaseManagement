@@ -99,7 +99,7 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="cleaAddrButton" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -165,7 +165,7 @@
             <Component class="javax.swing.JButton" name="addAddButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="14" style="1"/>
+                  <Font name="Andalus" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
@@ -176,7 +176,7 @@
             <Component class="javax.swing.JButton" name="cleaAddrButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="14" style="1"/>
+                  <Font name="Andalus" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
@@ -187,7 +187,7 @@
             <Component class="javax.swing.JButton" name="exitButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Andalus" size="14" style="1"/>
+                  <Font name="Andalus" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
@@ -220,7 +220,6 @@
                                           <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace pref="33" max="32767" attributes="0"/>
