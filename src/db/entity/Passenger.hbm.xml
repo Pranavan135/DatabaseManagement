@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="tour" class="db.entity.Tour" fetch="select">
+        <many-to-one name="tour" class="db.entity.Tour" lazy="false" fetch="select">
             <column name="tour_code" />
         </many-to-one>
         <property name="name" type="string">

@@ -13,6 +13,7 @@ import db.validate.PassengerValidator;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -329,6 +330,16 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         tabPassengerAdd.setToolTipText("");
         tabPassengerAdd.setName(""); // NOI18N
+        tabPassengerAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabPassengerAddMouseClicked(evt);
+            }
+        });
+        tabPassengerAdd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tabPassengerAddFocusGained(evt);
+            }
+        });
 
         lblAddName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblAddName.setForeground(new java.awt.Color(0, 51, 51));
@@ -379,7 +390,6 @@ public class PassengerWindow extends javax.swing.JFrame {
             }
         });
 
-        comboAddTourCode.setBackground(new java.awt.Color(250, 250, 250));
         comboAddTourCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboAddTourCode.setForeground(new java.awt.Color(51, 51, 0));
 
@@ -434,6 +444,12 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPanePassenger.addTab("ADD", tabPassengerAdd);
         tabPassengerAdd.getAccessibleContext().setAccessibleName("tabPassengerAdd");
 
+        tabPassengerEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabPassengerEditMouseClicked(evt);
+            }
+        });
+
         lblEditName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblEditName.setForeground(new java.awt.Color(0, 51, 51));
         lblEditName.setText("Name");
@@ -442,6 +458,11 @@ public class PassengerWindow extends javax.swing.JFrame {
         txtEditName.setEnabled(false);
 
         txtEditID.setForeground(new java.awt.Color(51, 51, 0));
+        txtEditID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEditIDKeyPressed(evt);
+            }
+        });
 
         lblEditTourCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblEditTourCode.setForeground(new java.awt.Color(0, 51, 51));
@@ -502,10 +523,10 @@ public class PassengerWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabPassengerEditLayout.createSequentialGroup()
-                        .addComponent(btnEditUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditUpdate)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnEditExit, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabPassengerEditLayout.createSequentialGroup()
                         .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,7 +536,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(tabPassengerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tabPassengerEditLayout.createSequentialGroup()
-                                .addComponent(txtEditID)
+                                .addComponent(txtEditID, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnEditGet, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtEditName)
@@ -549,6 +570,12 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPanePassenger.addTab("EDIT", tabPassengerEdit);
         tabPassengerEdit.getAccessibleContext().setAccessibleName("tabPassengerEdit");
 
+        tabPassengerDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabPassengerDeleteMouseClicked(evt);
+            }
+        });
+
         lblDelSaerch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblDelSaerch.setForeground(new java.awt.Color(0, 51, 51));
         lblDelSaerch.setText("Search by:");
@@ -559,6 +586,11 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         txtDelKeyword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtDelKeyword.setForeground(new java.awt.Color(51, 51, 0));
+        txtDelKeyword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDelKeywordKeyPressed(evt);
+            }
+        });
 
         btnDelFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnDelFind.setForeground(new java.awt.Color(51, 51, 51));
@@ -681,6 +713,12 @@ public class PassengerWindow extends javax.swing.JFrame {
         tabPanePassenger.addTab("DELETE", tabPassengerDelete);
         tabPassengerDelete.getAccessibleContext().setAccessibleName("tabPassengerDelete");
 
+        tabPassengerView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabPassengerViewMouseClicked(evt);
+            }
+        });
+
         lblViewSaerch.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblViewSaerch.setForeground(new java.awt.Color(0, 51, 51));
         lblViewSaerch.setText("Search by:");
@@ -691,6 +729,11 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         txtViewKeyword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtViewKeyword.setForeground(new java.awt.Color(51, 51, 0));
+        txtViewKeyword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtViewKeywordKeyPressed(evt);
+            }
+        });
 
         btnViewFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnViewFind.setForeground(new java.awt.Color(51, 51, 51));
@@ -871,20 +914,23 @@ public class PassengerWindow extends javax.swing.JFrame {
         passenger.setName((String) tableDel.getValueAt(tableDel.getSelectedRow(), 1));
         tour = tourDAO.getTour((Integer) tableDel.getValueAt(tableDel.getSelectedRow(), 2));
         passenger.setTour(tour);
-        if (passengerDAO.deletePassenger(passenger)) {
-            JOptionPane.showMessageDialog(this, "Successfully deleted", "Passenger Management", JOptionPane.INFORMATION_MESSAGE);
-            //remove table row     
-            //efficient way
-           /* tableDel.setValueAt(null, tableDel.getSelectedRow(),0);
-             tableDel.setValueAt(null, tableDel.getSelectedRow(),1);
-             tableDel.setValueAt(null, tableDel.getSelectedRow(),2); */
-            //easy way
-            passengerTableModel.setDataVector(null, columnHeaders);
-            tableDel.setModel(passengerTableModel);
-            btnDelFind.doClick();
-            btnDelDelete.setEnabled(false);
-        } else {
-            JOptionPane.showMessageDialog(this, "Database Error", "Passenger Management", JOptionPane.ERROR_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(this, "Are you sure to delete the record?", "Passenger Management", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            if (passengerDAO.deletePassenger(passenger)) {
+                JOptionPane.showMessageDialog(this, "Successfully deleted", "Passenger Management", JOptionPane.INFORMATION_MESSAGE);
+                //remove table row     
+                //efficient way
+               /* tableDel.setValueAt(null, tableDel.getSelectedRow(),0);
+                 tableDel.setValueAt(null, tableDel.getSelectedRow(),1);
+                 tableDel.setValueAt(null, tableDel.getSelectedRow(),2); */
+                //easy way
+                passengerTableModel.setDataVector(null, columnHeaders);
+                tableDel.setModel(passengerTableModel);
+                btnDelFind.doClick();
+                btnDelDelete.setEnabled(false);
+            } else {
+                JOptionPane.showMessageDialog(this, "Database Error", "Passenger Management", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnDelDeleteActionPerformed
 
@@ -1052,6 +1098,61 @@ public class PassengerWindow extends javax.swing.JFrame {
             btnDelDelete.setEnabled(true);
         }
     }//GEN-LAST:event_btnDelDeleteMouseEntered
+
+    private void txtEditIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditIDKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnEditGet.doClick();
+        }
+    }//GEN-LAST:event_txtEditIDKeyPressed
+
+    private void txtDelKeywordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDelKeywordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnDelFind.doClick();
+        }
+    }//GEN-LAST:event_txtDelKeywordKeyPressed
+
+    private void txtViewKeywordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtViewKeywordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnViewFind.doClick();
+        }
+    }//GEN-LAST:event_txtViewKeywordKeyPressed
+
+    private void tabPassengerAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPassengerAddMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tabPassengerAddMouseClicked
+
+    private void tabPassengerEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPassengerEditMouseClicked
+        // TODO add your handling code here:
+        if (evt.getComponent() == tabPassengerEdit){
+            txtEditID.requestFocus();
+            txtEditID.selectAll();
+        } 
+    }//GEN-LAST:event_tabPassengerEditMouseClicked
+
+    private void tabPassengerDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPassengerDeleteMouseClicked
+        // TODO add your handling code here:
+        if (evt.getComponent() == tabPassengerDelete){
+            txtDelKeyword.requestFocus();
+            txtDelKeyword.selectAll();
+        } 
+    }//GEN-LAST:event_tabPassengerDeleteMouseClicked
+
+    private void tabPassengerViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPassengerViewMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tabPassengerViewMouseClicked
+
+    private void tabPassengerAddFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tabPassengerAddFocusGained
+        // TODO add your handling code here:
+        if(evt.getComponent() == tabPassengerAdd){
+            txtAddID.requestFocus();
+            txtAddID.selectAll();
+        } 
+    }//GEN-LAST:event_tabPassengerAddFocusGained
 
     /**
      * @param args the command line arguments
