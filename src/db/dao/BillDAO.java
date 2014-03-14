@@ -8,7 +8,6 @@ package db.dao;
 
 import db.entity.Bill;
 import db.entity.Hotel;
-import db.entity.Route;
 import db.entity.RouteTown;
 import db.entity.Tour;
 import db.entity.Town;
@@ -17,13 +16,10 @@ import java.awt.HeadlessException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -102,7 +98,6 @@ public class BillDAO {
             Query q = session.createQuery(hql);
             List resultList = q.list();
             session.getTransaction().commit();
-//            System.out.println("xxxxxxx");
             return resultList;
         }
         catch (HibernateException|HeadlessException he) {
@@ -147,10 +142,8 @@ public class BillDAO {
             Bill b= (Bill)q.uniqueResult();
 
             session.getTransaction().commit();
-            //JOptionPane.showMessageDialog(null,, "ERROR", JOptionPane.ERROR_MESSAGE);
             
            return b;
-            //session.getTransaction().commit();
         }
         catch (HibernateException|HeadlessException he) {
             if (transaction != null && transaction.wasCommitted()) {
@@ -164,9 +157,7 @@ public class BillDAO {
         return null;
     }
     
-    
-    
-    public Town getTown(String townId)  {
+   public Town getTown(String townId)  {
         Session session = null;
         Transaction transaction = null;
         
