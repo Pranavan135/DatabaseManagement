@@ -87,6 +87,11 @@ public class CoachWindow extends javax.swing.JFrame {
         });
 
         saveAddButton.setText("Save");
+        saveAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveAddButtonActionPerformed(evt);
+            }
+        });
 
         exitAddButton.setText("Exit");
         exitAddButton.addActionListener(new java.awt.event.ActionListener() {
@@ -358,6 +363,10 @@ public class CoachWindow extends javax.swing.JFrame {
        coachLastServiceDate.setDate(null);
        coachLastServiceMileageAddTextField.setText("");
     }//GEN-LAST:event_clearAddButtonActionPerformed
+
+    private void saveAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAddButtonActionPerformed
+        
+    }//GEN-LAST:event_saveAddButtonActionPerformed
 
     /**
      * @param args the command line arguments
