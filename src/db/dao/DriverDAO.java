@@ -60,8 +60,9 @@ public class DriverDAO {
             sessFact = new Configuration().configure().buildSessionFactory();
             session = sessFact.openSession();
             transaction = session.beginTransaction();
-            String hql = "UPDATE Driver d set d.id.name = :name, d.address = :address, d.tpNo = :teleno" + "WHERE d.id.id = :id";
+            String hql = "UPDATE Driver d set d.id.name = :name, d.address = :address, d.tpNo = :teleno WHERE d.id.id = :id";
             Query query = session.createQuery(hql);
+            query.setParameter("id", id);
             query.setParameter("name", name);
             query.setParameter("address", address);
             query.setParameter("teleno", teleno);
@@ -72,7 +73,7 @@ public class DriverDAO {
              Driver driver = (Driver) query.uniqueResult();*/
             query.executeUpdate();
             transaction.commit();
-            JOptionPane.showMessageDialog(null, "Record Added", "Details", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Record Updated", "Details", JOptionPane.INFORMATION_MESSAGE);
             return true;
 
         } catch (HibernateException hibernateException) {

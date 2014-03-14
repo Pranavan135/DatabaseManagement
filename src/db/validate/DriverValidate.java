@@ -67,27 +67,29 @@ public class DriverValidate {
     }
 
     public static boolean tpNoValidate(String tpNo) {
-        if(!tpNo.equals("")){
-            if(isNumeric(tpNo)){
-                
-                
-            }
-            else{
+        if (!tpNo.equals("")) {
+            if (isNumeric(tpNo)) {
+                if (tpNo.length() == 10) {
+                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please enter  Phone Number with 10 digits", "Error", JOptionPane.ERROR_MESSAGE);
+                    return false;
+                }
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Please enter  Phone Number with digits only", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+                return false;
             }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Please enter a Phone Number", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        return false;
     }
-    
-    public static boolean isNumeric(String tpNo){
-        
+
+    public static boolean isNumeric(String tpNo) {
+
         Integer id = 0;
-        
+
         try {
             id = Integer.parseInt(tpNo);
             return true;
