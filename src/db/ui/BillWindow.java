@@ -382,6 +382,11 @@ public class BillWindow extends javax.swing.JFrame {
 
         deleteButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         deleteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -873,6 +878,31 @@ public class BillWindow extends javax.swing.JFrame {
     private void deleteFetchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFetchButtonActionPerformed
         viewBills(deleteReferenceTextField.getText(), 0);
     }//GEN-LAST:event_deleteFetchButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        if(deleteTable.getSelectedRowCount() != 0)  {
+            int response = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record(s) ? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+           
+                    
+            if (response == JOptionPane.YES_OPTION) {
+                 boolean result1 = true;
+                int[] count = deleteTable.getSelectedRows();
+                for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
+                   Bill b = billDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
+                   boolean result = billDAO.deleteBill(b);
+                   
+                   if(!result)
+                       result1 = false;
+                }
+                 if(result1)
+                       JOptionPane.showConfirmDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                   else
+                       JOptionPane.showConfirmDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERRO", JOptionPane.ERROR_MESSAGE);
+	
+            }
+        }
+            
+    }//GEN-LAST:event_deleteButtonActionPerformed
     
     /**
      * @param args the command line arguments

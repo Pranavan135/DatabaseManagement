@@ -223,7 +223,7 @@ public class MainWindow extends javax.swing.JFrame {
         //</editor-fold>
         
         try {
-            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackMoonLookAndFeel");
         } catch (ClassNotFoundException classNotFoundException) {
         } catch (InstantiationException instantiationException) {
         } catch (IllegalAccessException illegalAccessException) {
