@@ -8,7 +8,7 @@ import db.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import db.entity.Route;
+import db.entity.RouteTownId;
 import java.awt.HeadlessException;
 import java.util.List;
 import org.hibernate.Query;
@@ -58,6 +58,30 @@ public class RouteDAO {
             return false;
     }
     
+     public boolean addRouteTown(RouteTownId route_town){
+        
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            
+            if (session == null)
+                return false;
+            try{
+                session.beginTransaction();
+                session.save(route_town);
+                session.flush();
+                transaction.commit();
+                return true;
+            }
+            
+        catch(HibernateException he){
+            if (transaction != null && transaction.wasCommitted())
+                transaction.rollback();
+        }
+            finally{
+                session.close();
+            }
+            return false;
+    }
+     
     public boolean updateRoute(Route route){
         Session session = HibernateUtil.getSessionFactory().openSession();
         
@@ -80,6 +104,31 @@ public class RouteDAO {
         return false;
        
     }
+    
+    public boolean deleteRouteTown(RouteTownId route_town){
+        
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            
+            if (session == null)
+                return false;
+            try{
+                session.beginTransaction();
+                session.delete(route_town);
+                session.flush();
+                transaction.commit();
+                return true;
+            }
+            
+        catch(HibernateException he){
+            if (transaction != null && transaction.wasCommitted())
+                transaction.rollback();
+        }
+            finally{
+                session.close();
+            }
+            return false;
+    }
+    
     public boolean deleteRoute(Route route) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         if (session == null) {

@@ -101,6 +101,19 @@ public class Tour  implements java.io.Serializable {
     public String toString() {
         return "" + tourCode;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tour other = (Tour) obj;
+        if (this.tourCode != other.tourCode) {
+            return false;
+        }
+        return true;
+    }
 }
-
-

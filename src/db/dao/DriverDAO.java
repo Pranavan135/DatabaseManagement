@@ -54,54 +54,52 @@ public class DriverDAO {
         }
     }
 
-    public static boolean editData() {
-        return true;
-    }
 
     public static boolean updateData(Integer id, String name, String address, String teleno) {
         try {
             sessFact = new Configuration().configure().buildSessionFactory();
             session = sessFact.openSession();
             transaction = session.beginTransaction();
-            String hql = "UPDATE Driver d set d.id.name = :name, d.address = :address, d.tpNo = :teleno"  +"WHERE d.id.id = :id";
+            String hql = "UPDATE Driver d set d.id.name = :name, d.address = :address, d.tpNo = :teleno" + "WHERE d.id.id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("name", name);
-            query.setParameter("address",address);
+            query.setParameter("address", address);
             query.setParameter("teleno", teleno);
-            
+
             /*String hql = "from Driver d where d.id.id = :id";
-            Query query = session.createQuery(hql);
-            query.setParameter("id", id);
-            Driver driver = (Driver) query.uniqueResult();*/
-            
+             Query query = session.createQuery(hql);
+             query.setParameter("id", id);
+             Driver driver = (Driver) query.uniqueResult();*/
+            query.executeUpdate();
+            transaction.commit();
+            JOptionPane.showMessageDialog(null, "Record Added", "Details", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+
         } catch (HibernateException hibernateException) {
         }
-        
-        
+
         return true;
     }
 
     public static boolean deleteData(Integer id) {
-        Session sess = null;
-        Transaction tran = null;
         try {
             sessFact = new Configuration().configure().buildSessionFactory();
-            sess = sessFact.openSession();
-            tran = sess.beginTransaction();
+            session = sessFact.openSession();
+            transaction = session.beginTransaction();
             String hql = "DELETE FROM Driver d " + "WHERE d.id.id = :id";
-            Query query = sess.createQuery(hql);
+            Query query = session.createQuery(hql);
             query.setParameter("id", id);
             int result = query.executeUpdate();
             System.out.println("Rows affected: " + result);
-            tran.commit();
+            transaction.commit();
             //JOptionPane.showMessageDialog(null, "Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         } finally {
-            sess.flush();
-            sess.close();
+            session.flush();
+            session.close();
         }
     }
 
@@ -124,6 +122,27 @@ public class DriverDAO {
         return null;
     }
 
+    public static Driver getDriver(Integer id) {
+        Driver driver = new Driver();
+        if (isExistDriver(id)) {
+            try {
+                session = HibernateUtil.getSessionFactory().openSession();
+                transaction = session.beginTransaction();
+                String hql = "FROM Driver d WHERE d.id.id = :id";
+                Query query = session.createQuery(hql);
+                query.setParameter("id", id);
+                List resultList = query.list();
+                session.getTransaction().commit();
+                driver = (Driver) resultList.get(0);
+                return driver;
+            } catch (HibernateException hibernateException) {
+                hibernateException.printStackTrace();
+                return null;
+            }
+        }
+        return driver;
+    }
+
     public static boolean isExistDriver(Integer id) {
         Long count = 0L;
         try {
@@ -132,7 +151,7 @@ public class DriverDAO {
             count = (Long) session.createQuery("select count(*) from Driver d where d.id.id = :id")
                     .setInteger("id", id)
                     .uniqueResult();
-             session.getTransaction().commit();
+            session.getTransaction().commit();
         } catch (Exception ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
