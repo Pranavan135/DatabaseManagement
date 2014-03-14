@@ -130,7 +130,7 @@ public class RouteVallidate {
                         return false;
                     }
            }
-        catch(NumberFormatException nf){
+        catch(NumberFormatException nfe ){
             JOptionPane.showMessageDialog(null, "Route Length must only contain digits", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return false;
         }
