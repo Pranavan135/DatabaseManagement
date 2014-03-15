@@ -883,7 +883,6 @@ public class RouteWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please select the town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
            }
            else{
-              // JOptionPane.showMessageDialog(this,townIDAssignComboBox.getSelectedItem() , "Success", WIDTH);
                 boolean response =  routeDAO.addRouteTown(new RouteTownId(Integer.valueOf(routeIDAssignComboBox.getSelectedItem().toString()),Integer.valueOf((String)townIDAssignComboBox.getSelectedItem().toString())));
                if (response)
                 JOptionPane.showMessageDialog(this, "Route_Town Detail is Successfully Added into Database", "Success", WIDTH);
