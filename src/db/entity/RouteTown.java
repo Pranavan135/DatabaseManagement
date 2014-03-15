@@ -12,14 +12,18 @@ public class RouteTown  implements java.io.Serializable {
      private RouteTownId id;
      private Route route;
      private Town town;
+     private Integer routeId;
+     private Integer townId;
 
-    public RouteTown() {
+  public RouteTown(int routeId, int townId) {
+      this.routeId = routeId;
+       this.townId = townId;
     }
-
 	
-    public RouteTown(RouteTownId id) {
-        this.id = id;
-    }
+  /*  public RouteTown(RouteTownId id) {
+        this.routeId = id.getRouteId();
+        this.townId = id.getTownId();
+    }*/
     
     public RouteTown(RouteTownId id, Route route, Town town) {
        this.id = id;
@@ -36,6 +40,20 @@ public class RouteTown  implements java.io.Serializable {
     }
     public Route getRoute() {
         return this.route;
+    }
+    
+    public void setRouteId(Integer id) {
+        this.routeId = id;
+    }
+    public Integer getRouteId() {
+        return this.routeId;
+    }
+    
+    public void setTownId(Integer id) {
+        this.townId = id;
+    }
+    public Integer getTownId() {
+        return this.townId;
     }
     
     public void setRoute(Route route) {
