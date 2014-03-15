@@ -175,7 +175,11 @@ public class BillDAO {
             }
             he.printStackTrace();
         }
+         finally {
+            session.close();
+        }
         return null;
+        
     }
     
     public Tour getTour(String tourCode)  {
@@ -195,6 +199,9 @@ public class BillDAO {
                 transaction.rollback();
             }
             he.printStackTrace();
+        }
+          finally {
+            session.close();
         }
         return null;
     }
@@ -217,6 +224,9 @@ public class BillDAO {
                 transaction.rollback();
             }
             he.printStackTrace();
+        }
+        finally {
+            session.close();
         }
         return null;
     }
