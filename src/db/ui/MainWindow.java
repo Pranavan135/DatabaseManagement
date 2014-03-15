@@ -17,7 +17,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class MainWindow extends javax.swing.JFrame {
 
    
-    private RouteWindow rw = RouteWindow.create();
+    private static final RouteWindow rw = RouteWindow.create();
     /**
      * Creates new form MainWindow
      */
@@ -195,7 +195,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_passengersTextFieldActionPerformed
 
     private void routesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesTextFieldActionPerformed
-        new RouteWindow().setVisible(true);
+        RouteWindow.create().setVisible(true);
         rw.addRouteIDComboBoxData();
         rw.addTownIDComboBoxData();
     }//GEN-LAST:event_routesTextFieldActionPerformed
