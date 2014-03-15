@@ -7,6 +7,7 @@
 package db.validate;
 
 import db.dao.DriverDAO;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,10 @@ public class CoachValidate {
         }
         try {
             regNo = Integer.parseInt(regno);
+            if(!(regNo > 0)){
+                JOptionPane.showMessageDialog(null,"Registration Number cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Reg No can contain only digits!!!!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -46,33 +51,39 @@ public class CoachValidate {
     public static boolean capacityValidate(String capcity){
         if (!capcity.equals("")) {
             if (isNumeric(capcity)) {
-                if (capcity.length() == 10) {
-                    return true;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Please enter  Phone Number with 10 digits", "Error", JOptionPane.ERROR_MESSAGE);
-                    return false;
-                }
+               return true;
 
             } else {
-                JOptionPane.showMessageDialog(null, "Please enter  Phone Number with digits only", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please enter  capacity that is positive Number", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Please enter a Phone Number", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please enter Capcity", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
 
-    public static boolean isNumeric(String tpNo) {
+    public static boolean isNumeric(String numericString) {
 
-        Integer id = 0;
+        Integer NumericString = 0;
 
         try {
-            id = Integer.parseInt(tpNo);
+            NumericString = Integer.parseInt(numericString);
             return true;
         } catch (NumberFormatException numberFormatException) {
+            //JOptionPane.showMessageDialog(null,"Capcity is an integer!!!", "", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+    
+    
+    public static boolean dateValidate(Date date){
+        return true;
+    }
+    
+    
+    public static boolean mileageValidate(String mileage){
+        return true;
     }
     
 }
