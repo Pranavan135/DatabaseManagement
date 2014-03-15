@@ -13,8 +13,10 @@ import java.awt.HeadlessException;
 import java.util.List;
 import org.hibernate.Query;
 import db.entity.Route;
+import db.entity.RouteTown;
 import db.entity.Town;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,8 +26,7 @@ public class RouteDAO {
     
    // private static String QUERY_BASED_ON_ROUTE_ID = "from route r where r.id like '";
     private static RouteDAO routeDAO = null;
-    Transaction transaction = null;
-    
+  
     public static RouteDAO create(){
         if (routeDAO == null){
              routeDAO = new RouteDAO();
@@ -35,60 +36,63 @@ public class RouteDAO {
     }
     
     public boolean addRoute(Route route){
-        
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            
-            if (session == null)
-                return false;
-            try{
-                session.beginTransaction();
-                session.save(route);
-                session.flush();
-                transaction.commit();
-                return true;
-            }
-            
-        catch(HibernateException he){
-            if (transaction != null && transaction.wasCommitted())
-                transaction.rollback();
-        }
-            finally{
-                session.close();
-            }
+        Session session = HibernateUtil.getSessionFactory().openSession();
+         Transaction transaction = null;
+         
+         if (session == null) {
             return false;
+        }
+         try{
+            transaction = session.beginTransaction();
+            session.save(route);
+            session.flush();
+            transaction.commit();
+            return true;
+          } 
+         catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return false;
     }
     
      public boolean addRouteTown(RouteTownId route_town){
         
             Session session = HibernateUtil.getSessionFactory().openSession();
-            
-            if (session == null)
-                return false;
-            try{
-                session.beginTransaction();
-                session.save(route_town);
-                session.flush();
-                transaction.commit();
-                return true;
-            }
-            
-        catch(HibernateException he){
-            if (transaction != null && transaction.wasCommitted())
-                transaction.rollback();
-        }
-            finally{
-                session.close();
-            }
+         Transaction transaction = null;
+         
+         if (session == null) {
             return false;
+        }
+         try{
+            transaction = session.beginTransaction();
+            session.save(route_town);
+            session.flush();
+            transaction.commit();
+            return true;
+          } 
+         catch (HibernateException | HeadlessException ex) {
+              JOptionPane.showMessageDialog(null, "Please select the town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return false;
     }
      
     public boolean updateRoute(Route route){
         Session session = HibernateUtil.getSessionFactory().openSession();
-        
+        Transaction transaction = null;
+    
         if (session == null)
             return false;
         try{
-            session.beginTransaction();
+            transaction =  session.beginTransaction();
             session.update(route);
             session.flush();
             transaction.commit();
@@ -108,11 +112,12 @@ public class RouteDAO {
     public boolean deleteRouteTown(RouteTownId route_town){
         
             Session session = HibernateUtil.getSessionFactory().openSession();
-            
+            Transaction transaction = null;
+    
             if (session == null)
                 return false;
             try{
-                session.beginTransaction();
+                transaction =  session.beginTransaction();
                 session.delete(route_town);
                 session.flush();
                 transaction.commit();
@@ -131,10 +136,11 @@ public class RouteDAO {
     
     public boolean deleteRoute(Route route) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
         if (session == null) {
             return false;
         }
-        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             session.delete(route);
@@ -155,13 +161,15 @@ public class RouteDAO {
         
         int rid = Integer.parseInt(r_id);
         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
         if (session == null){
             return null;
         }
        
         try{
-            session.beginTransaction();
-            String HQLQuery = "From Route r where r.id = rid";
+            transaction =  session.beginTransaction();
+            String HQLQuery = "From Route r where r.id =" + rid;
             Query query = session.createQuery(HQLQuery);
             Object result = query.uniqueResult();
             transaction.commit();
@@ -181,6 +189,8 @@ public class RouteDAO {
     
     public List<Route> getAllRoute(){
          Session session = HibernateUtil.getSessionFactory().openSession();
+         Transaction transaction = null;
+    
         if (session == null) {
             return null;
         }
@@ -204,9 +214,11 @@ public class RouteDAO {
         return null;
     }
     
-    public ArrayList<Integer> getAllRouteID(){
+    public List<Integer> getAllRouteID(){
         
         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
         if (session == null) {
             return null;
         }
@@ -215,7 +227,7 @@ public class RouteDAO {
             transaction = session.beginTransaction();
             String HQLQuery = "select r.id From Route r";
             Query query = session.createQuery(HQLQuery);
-            ArrayList<Integer> result = new ArrayList(query.list());
+            List<Integer> result = query.list();
             session.flush();
             transaction.commit();
             return result;
@@ -234,6 +246,8 @@ public class RouteDAO {
     public ArrayList<Integer> getAllTownID(){
         
         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
         if (session == null) {
             return null;
         }
@@ -260,6 +274,8 @@ public class RouteDAO {
     
      public Town getTown(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
         if (session == null) {
             return null;
         }
@@ -286,10 +302,7 @@ public class RouteDAO {
     
     public boolean isUnique(String id){
        Route output =  getRoute(id);
-       if (output == null)
-           return true;
-       else
-           return false;  
+        return output == null;  
     }
     
    public boolean isExist(String id){
