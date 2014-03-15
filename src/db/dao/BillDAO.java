@@ -176,7 +176,7 @@ public class BillDAO {
             he.printStackTrace();
         }
          finally {
-            session.close();
+           // session.close();
         }
         return null;
         
@@ -201,7 +201,7 @@ public class BillDAO {
             he.printStackTrace();
         }
           finally {
-            session.close();
+        //    session.close();
         }
         return null;
     }
@@ -226,7 +226,7 @@ public class BillDAO {
             he.printStackTrace();
         }
         finally {
-            session.close();
+            //session.close();
         }
         return null;
     }
@@ -247,7 +247,7 @@ public class BillDAO {
                 transaction.rollback();
             }
         } finally {
-            session.close();
+            //session.close();
         }
         return null;
     }

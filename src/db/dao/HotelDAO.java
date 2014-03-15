@@ -103,7 +103,7 @@ public class HotelDAO {
             he.printStackTrace();
         }
         finally {
-            session.close();
+          //  session.close();
         }
         return null;
     }
