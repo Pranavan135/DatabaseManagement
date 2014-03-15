@@ -883,9 +883,8 @@ public class BillWindow extends javax.swing.JFrame {
         if(deleteTable.getSelectedRowCount() != 0)  {
             int response = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record(s) ? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
            
-                    
-            if (response == JOptionPane.YES_OPTION) {
-                 boolean result1 = true;
+             if (response == JOptionPane.YES_OPTION) {
+                boolean result1 = true;
                 int[] count = deleteTable.getSelectedRows();
                 for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
                    Bill b = billDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
@@ -895,9 +894,9 @@ public class BillWindow extends javax.swing.JFrame {
                        result1 = false;
                 }
                  if(result1)
-                       JOptionPane.showConfirmDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
-                   else
-                       JOptionPane.showConfirmDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERRO", JOptionPane.ERROR_MESSAGE);
+                       JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                 else
+                       JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
 	
             }
         }
