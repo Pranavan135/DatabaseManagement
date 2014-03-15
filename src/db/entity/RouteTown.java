@@ -20,6 +20,9 @@ public class RouteTown  implements java.io.Serializable {
        this.townId = townId;
     }
 	
+  public RouteTown()    {
+      
+  }
 
   /*  public RouteTown(RouteTownId id) {
         this.routeId = id.getRouteId();
