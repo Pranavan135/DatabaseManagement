@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package db.ui;
 
 import db.dao.CoachDAO;
+import db.entity.Coach;
 import db.validate.CoachValidate;
 import javax.swing.JOptionPane;
 
@@ -19,8 +19,18 @@ public class CoachWindow extends javax.swing.JFrame {
     /**
      * Creates new form CoachWindow
      */
+    public static Coach coach;
+
     public CoachWindow() {
         initComponents();
+        regNoEditLabel.setVisible(false);
+        regNoEdittextField.setVisible(false);
+        capacityEditLabel.setVisible(false);
+        capacityEdittextField.setVisible(false);
+        lastSerDateEditLabel.setVisible(false);
+        editDate.setVisible(false);
+        lastServiceMileageLabel.setVisible(false);
+        lastServiceMileageEditTextField.setVisible(false);
     }
 
     /**
@@ -54,12 +64,12 @@ public class CoachWindow extends javax.swing.JFrame {
         lastServiceMileageLabel = new javax.swing.JLabel();
         editRegNoTextField = new javax.swing.JTextField();
         regNoEdittextField = new javax.swing.JTextField();
-        capcityEdittextField = new javax.swing.JTextField();
-        lastServiceDateEditTextField = new javax.swing.JTextField();
+        capacityEdittextField = new javax.swing.JTextField();
         lastServiceMileageEditTextField = new javax.swing.JTextField();
         editExitButton = new javax.swing.JButton();
         editGoButton = new javax.swing.JButton();
         editSaveButton = new javax.swing.JButton();
+        editDate = new com.toedter.calendar.JDateChooser();
         deletePanel = new javax.swing.JPanel();
         regNoDeleteLabel = new javax.swing.JLabel();
         regNoDeleteTextField = new javax.swing.JTextField();
@@ -170,10 +180,25 @@ public class CoachWindow extends javax.swing.JFrame {
         lastServiceMileageLabel.setText("Last Service Mileage");
 
         editExitButton.setText("Exit");
+        editExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editExitButtonActionPerformed(evt);
+            }
+        });
 
         editGoButton.setText("Go");
+        editGoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editGoButtonActionPerformed(evt);
+            }
+        });
 
-        editSaveButton.setText("Save");
+        editSaveButton.setText("Update");
+        editSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editSaveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editPanelLayout = new javax.swing.GroupLayout(editPanel);
         editPanel.setLayout(editPanelLayout);
@@ -189,20 +214,24 @@ public class CoachWindow extends javax.swing.JFrame {
                     .addComponent(regNoEditLabel))
                 .addGap(64, 64, 64)
                 .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(editRegNoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                        .addComponent(regNoEdittextField)
-                        .addComponent(capcityEdittextField)
-                        .addComponent(lastServiceDateEditTextField)
-                        .addComponent(lastServiceMileageEditTextField))
                     .addGroup(editPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(editSaveButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editGoButton)
-                    .addComponent(editExitButton))
-                .addGap(79, 79, 79))
+                        .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(regNoEdittextField, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                                .addComponent(capacityEdittextField)
+                                .addComponent(lastServiceMileageEditTextField))
+                            .addGroup(editPanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(editSaveButton))
+                            .addComponent(editRegNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editGoButton)
+                            .addComponent(editExitButton))
+                        .addGap(79, 79, 79))
+                    .addGroup(editPanelLayout.createSequentialGroup()
+                        .addComponent(editDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         editPanelLayout.setVerticalGroup(
             editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,12 +248,12 @@ public class CoachWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(capacityEditLabel)
-                    .addComponent(capcityEdittextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(capacityEdittextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lastSerDateEditLabel)
-                    .addComponent(lastServiceDateEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                    .addComponent(editDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lastServiceMileageLabel)
                     .addComponent(lastServiceMileageEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,7 +261,7 @@ public class CoachWindow extends javax.swing.JFrame {
                 .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editExitButton)
                     .addComponent(editSaveButton))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         coachTabbedPane.addTab("Edit", editPanel);
@@ -358,29 +387,117 @@ public class CoachWindow extends javax.swing.JFrame {
 
     private void exitAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitAddButtonActionPerformed
         this.dispose();
-                
+
     }//GEN-LAST:event_exitAddButtonActionPerformed
 
     private void clearAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearAddButtonActionPerformed
-       coachRegNoAddTextField.setText("");
-       coachCapacityAddTextField.setText("");
-       coachLastServiceDate.setDate(null);
-       coachLastServiceMileageAddTextField.setText("");
+        coachRegNoAddTextField.setText("");
+        coachCapacityAddTextField.setText("");
+        coachLastServiceDate.setDate(null);
+        coachLastServiceMileageAddTextField.setText("");
     }//GEN-LAST:event_clearAddButtonActionPerformed
 
     private void saveAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAddButtonActionPerformed
-        if ( CoachValidate.regNoValidate(coachRegNoAddTextField.getText().trim())){
-            if( CoachValidate.capacityValidate(coachCapacityAddTextField.getText().trim())){
-                if(CoachValidate.dateValidate(coachLastServiceDate.getDate())){
-                    if(CoachValidate.mileageValidate(coachLastServiceMileageAddTextField.getText().trim())){
-                        CoachDAO.addCoach(Integer.parseInt(coachRegNoAddTextField.getText().trim()),Integer.parseInt(coachCapacityAddTextField.getText().trim()),coachLastServiceDate.getDate(),Double.parseDouble(coachLastServiceMileageAddTextField.getText().trim()));
-                        JOptionPane.showMessageDialog(this,"Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
+        if (CoachValidate.regNoValidate(coachRegNoAddTextField.getText().trim())) {
+            if (CoachValidate.capacityValidate(coachCapacityAddTextField.getText().trim())) {
+                if (CoachValidate.dateValidate(coachLastServiceDate.getDate())) {
+                    if (CoachValidate.mileageValidate(coachLastServiceMileageAddTextField.getText().trim())) {
+                        CoachDAO.addCoach(Integer.parseInt(coachRegNoAddTextField.getText().trim()), Integer.parseInt(coachCapacityAddTextField.getText().trim()), coachLastServiceDate.getDate(), Double.parseDouble(coachLastServiceMileageAddTextField.getText().trim()));
+                        //JOptionPane.showMessageDialog(this,"Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
-            
+
         }
     }//GEN-LAST:event_saveAddButtonActionPerformed
+
+    private void editGoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGoButtonActionPerformed
+
+        Integer regNo = 0;
+        try {
+            regNo = Integer.parseInt(editRegNoTextField.getText().trim());
+        } catch (NumberFormatException numberFormatException) {
+            numberFormatException.printStackTrace();
+        }
+
+        if (CoachDAO.isExistCoach(regNo)) {
+            regNoEditLabel.setVisible(true);
+            regNoEdittextField.setVisible(true);
+            regNoEdittextField.setText(regNo.toString());
+            regNoEdittextField.setEditable(false);
+            regNoEdittextField.setEnabled(false);
+            coach = CoachDAO.getCoach(regNo);
+            capacityEditLabel.setVisible(true);
+            capacityEdittextField.setVisible(true);
+            capacityEdittextField.setText(String.valueOf(coach.getCapacity()));
+            lastSerDateEditLabel.setVisible(true);
+            editDate.setVisible(true);
+            editDate.setDate(coach.getLastServiceDate());
+            lastServiceMileageLabel.setVisible(true);
+            lastServiceMileageEditTextField.setVisible(true);
+            lastServiceMileageEditTextField.setText(String.valueOf(coach.getLastServiceMileage()));
+            // DriverDAO.updateData(id, nameEditTextField.getText().trim(), addressEditTextField.getText().trim(), teleNoEditTextField.getText().trim());
+            //JOptionPane.showMessageDialog(null, "Record updated", null, JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "There is no coach with given id", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_editGoButtonActionPerformed
+
+    private void editSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSaveButtonActionPerformed
+        // TODO add your handling code here:
+        if (CoachValidate.capacityValidate(capacityEdittextField.getText().trim())) {
+
+            if (CoachValidate.dateValidate(editDate.getDate())) {
+
+                if (CoachValidate.mileageValidate(lastServiceMileageEditTextField.getText().trim())) {
+                    if (!(coach.getCapacity() == Integer.parseInt(capacityEdittextField.getText().trim())) || !(coach.getLastServiceDate().equals(editDate.getDate()))) {
+
+                        CoachDAO.updateData(Integer.parseInt(regNoEdittextField.getText().trim()), Integer.parseInt(capacityEdittextField.getText().trim()), editDate.getDate(), Double.parseDouble(lastServiceMileageEditTextField.getText().trim()));
+                        coach = null;
+
+                        regNoEditLabel.setVisible(false);
+                        regNoEdittextField.setVisible(false);
+                        capacityEditLabel.setVisible(false);
+                        capacityEdittextField.setVisible(false);
+                        lastSerDateEditLabel.setVisible(false);
+                        editDate.setVisible(false);
+                        lastServiceMileageLabel.setVisible(false);
+                        lastServiceMileageEditTextField.setVisible(false);
+                        editRegNoTextField.setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nothing has updated", "Details", JOptionPane.INFORMATION_MESSAGE);
+                        regNoEditLabel.setVisible(false);
+                        regNoEdittextField.setVisible(false);
+                        capacityEditLabel.setVisible(false);
+                        capacityEdittextField.setVisible(false);
+                        lastSerDateEditLabel.setVisible(false);
+                        editDate.setVisible(false);
+                        lastServiceMileageLabel.setVisible(false);
+                        lastServiceMileageEditTextField.setVisible(false);
+                        editRegNoTextField.setText("");
+                    }
+
+                } else {
+                    lastServiceMileageEditTextField.setText(String.valueOf(coach.getLastServiceMileage()));
+                    lastServiceMileageEditTextField.requestFocus();
+                }
+
+            } else {
+                editDate.setDate(coach.getLastServiceDate());
+                editDate.requestFocus();
+            }
+
+        } else {
+            
+            capacityEdittextField.setText(String.valueOf(coach.getCapacity()));
+            capacityEdittextField.requestFocus();
+        }
+    }//GEN-LAST:event_editSaveButtonActionPerformed
+
+    private void editExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editExitButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_editExitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,7 +506,7 @@ public class CoachWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addPanel;
     private javax.swing.JLabel capacityEditLabel;
-    private javax.swing.JTextField capcityEdittextField;
+    private javax.swing.JTextField capacityEdittextField;
     private javax.swing.JButton clearAddButton;
     private javax.swing.JLabel coachCapacityAddLabel;
     private javax.swing.JTextField coachCapacityAddTextField;
@@ -403,6 +520,7 @@ public class CoachWindow extends javax.swing.JFrame {
     private javax.swing.JButton deleteExitButton;
     private javax.swing.JButton deleteGoButton;
     private javax.swing.JPanel deletePanel;
+    private com.toedter.calendar.JDateChooser editDate;
     private javax.swing.JButton editExitButton;
     private javax.swing.JButton editGoButton;
     private javax.swing.JPanel editPanel;
@@ -415,7 +533,6 @@ public class CoachWindow extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lastSerDateEditLabel;
-    private javax.swing.JTextField lastServiceDateEditTextField;
     private javax.swing.JTextField lastServiceMileageEditTextField;
     private javax.swing.JLabel lastServiceMileageLabel;
     private javax.swing.JLabel regNoDeleteLabel;

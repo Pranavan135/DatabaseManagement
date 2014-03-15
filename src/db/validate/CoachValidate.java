@@ -6,6 +6,7 @@
 
 package db.validate;
 
+import db.dao.CoachDAO;
 import db.dao.DriverDAO;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -41,8 +42,8 @@ public class CoachValidate {
             return false;
         }
 
-        if (DriverDAO.isExistDriver(regNo)) {
-            JOptionPane.showMessageDialog(null, "A driver with Reg No is already there", "Error", JOptionPane.ERROR_MESSAGE);
+        if (CoachDAO.isExistCoach(regNo)) {
+            JOptionPane.showMessageDialog(null, "A Coach with Reg No is already there", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
