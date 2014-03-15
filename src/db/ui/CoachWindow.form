@@ -200,24 +200,31 @@
                       </Group>
                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="editRegNoTextField" alignment="0" pref="96" max="32767" attributes="0"/>
-                              <Component id="regNoEdittextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="capcityEdittextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lastServiceDateEditTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lastServiceMileageEditTextField" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="editRegNoTextField" alignment="0" pref="96" max="32767" attributes="0"/>
+                                      <Component id="regNoEdittextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="capacityEdittextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lastServiceMileageEditTextField" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="editSaveButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="83" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="editGoButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editExitButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                              <Component id="editSaveButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="editDate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="83" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="editGoButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="editExitButton" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -238,14 +245,14 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="capacityEditLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="capcityEdittextField" min="-2" max="-2" attributes="0"/>
+                          <Component id="capacityEdittextField" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lastSerDateEditLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lastServiceDateEditTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lastSerDateEditLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="editDate" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lastServiceMileageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lastServiceMileageEditTextField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -255,7 +262,7 @@
                           <Component id="editExitButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="editSaveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace pref="37" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -290,9 +297,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="regNoEdittextField">
             </Component>
-            <Component class="javax.swing.JTextField" name="capcityEdittextField">
-            </Component>
-            <Component class="javax.swing.JTextField" name="lastServiceDateEditTextField">
+            <Component class="javax.swing.JTextField" name="capacityEdittextField">
             </Component>
             <Component class="javax.swing.JTextField" name="lastServiceMileageEditTextField">
             </Component>
@@ -300,16 +305,27 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editExitButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="editGoButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Go"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editGoButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="editSaveButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Save"/>
+                <Property name="text" type="java.lang.String" value="Update"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editSaveButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="editDate">
             </Component>
           </SubComponents>
         </Container>

@@ -9,8 +9,12 @@ package db.dao;
 import db.entity.Coach;
 import db.entity.Driver;
 import db.entity.DriverId;
+import db.util.HibernateUtil;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -50,5 +54,74 @@ public class CoachDAO {
         }
     }
     
+    public static Coach getCoach(Integer regNo){
+        Coach coach = new Coach();
+        if (isExistCoach(regNo)) {
+            try {
+                session = HibernateUtil.getSessionFactory().openSession();
+                transaction = session.beginTransaction();
+                String hql = "FROM Coach c WHERE c.regNo = :regNo";
+                Query query = session.createQuery(hql);
+                query.setParameter("regNo", regNo);
+                List resultList = query.list();
+                session.getTransaction().commit();
+                coach = (Coach) resultList.get(0);
+               
+            } catch (HibernateException hibernateException) {
+                hibernateException.printStackTrace();
+                return null;
+            }
+        }
+        return coach;
+    }
+    
+    public static boolean isExistCoach(Integer regNo){
+       Long count = 0L;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            count = (Long) session.createQuery("select count(*) from Coach c where c.regNo = :regNo")
+                    .setInteger("regNo", regNo)
+                    .uniqueResult();
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
+            return false;
+        }
+        return count > 0;
+    }
+    
+    public static boolean updateData(Integer regNo,Integer capacity,Date lastServicedate,Double lastServiceMileage) {
+        try {
+            sessFact = new Configuration().configure().buildSessionFactory();
+            session = sessFact.openSession();
+            transaction = session.beginTransaction();
+            System.out.println("I ma here Pranavan!!!!");
+            String hql = "UPDATE Coach c set c.capacity = :capacity, c.lastServiceDate = :lastServicedate, c.lastServiceMileage = :lastServiceMileage WHERE c.regNo = :regNo";
+              System.out.println("I ma here Jeya!!!!");
+            Query query = session.createQuery(hql);
+            query.setParameter("regNo", regNo);
+            query.setParameter("capacity",capacity );
+            query.setParameter("lastServicedate", lastServicedate);
+            query.setParameter("lastServiceMileage", lastServiceMileage);
+        
+
+            /*String hql = "from Driver d where d.id.id = :id";
+             Query query = session.createQuery(hql);
+             query.setParameter("id", id);
+             Driver driver = (Driver) query.uniqueResult();*/
+            query.executeUpdate();
+            transaction.commit();
+            JOptionPane.showMessageDialog(null, "Record Updated", "Details", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+
+        } catch (HibernateException hibernateException) {
+        }
+
+        return true;
+    }
     
 }
