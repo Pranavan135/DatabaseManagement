@@ -125,26 +125,29 @@ public class CoachWindow extends javax.swing.JFrame {
         addPanelLayout.setHorizontalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addPanelLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(coachLastServiceDateAddLabel)
-                    .addComponent(coachLastServiceMileageAddLabel)
-                    .addComponent(coachRegNoAddLabel)
-                    .addComponent(clearAddButton)
-                    .addComponent(coachCapacityAddLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(53, 53, 53)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(coachLastServiceDateAddLabel)
+                            .addComponent(coachLastServiceMileageAddLabel)
+                            .addComponent(coachRegNoAddLabel)
+                            .addComponent(coachCapacityAddLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(coachRegNoAddTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(coachLastServiceMileageAddTextField)
+                                .addComponent(coachLastServiceDate, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                            .addComponent(coachCapacityAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addPanelLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(clearAddButton)
+                        .addGap(83, 83, 83)
                         .addComponent(saveAddButton)
-                        .addGap(77, 77, 77)
-                        .addComponent(exitAddButton))
-                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(coachRegNoAddTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(coachLastServiceMileageAddTextField)
-                        .addComponent(coachLastServiceDate, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                    .addComponent(coachCapacityAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(94, 94, 94)
+                        .addComponent(exitAddButton)))
+                .addGap(180, 247, Short.MAX_VALUE))
         );
         addPanelLayout.setVerticalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,12 +168,12 @@ public class CoachWindow extends javax.swing.JFrame {
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(coachLastServiceMileageAddLabel)
                     .addComponent(coachLastServiceMileageAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearAddButton)
                     .addComponent(saveAddButton)
                     .addComponent(exitAddButton))
-                .addGap(35, 35, 35))
+                .addGap(101, 101, 101))
         );
 
         coachTabbedPane.addTab("Add", addPanel);
@@ -466,9 +469,25 @@ public class CoachWindow extends javax.swing.JFrame {
                         CoachDAO.addCoach(Integer.parseInt(coachRegNoAddTextField.getText().trim()), Integer.parseInt(coachCapacityAddTextField.getText().trim()), coachLastServiceDate.getDate(), Double.parseDouble(coachLastServiceMileageAddTextField.getText().trim()));
                         //JOptionPane.showMessageDialog(this,"Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
                     }
+                    else{
+                        coachLastServiceMileageAddTextField.setText("");
+                        coachLastServiceMileageAddTextField.requestFocus();
+                    }
+                }
+                else{
+                    coachLastServiceDate.setDate(null);
+                    coachLastServiceDate.requestFocus();
                 }
             }
+            else{
+                coachCapacityAddTextField.setText("");
+                coachCapacityAddTextField.requestFocus();
+            }
 
+        }
+        else{
+            coachRegNoAddTextField.setText("");
+            coachRegNoAddTextField.requestFocus();
         }
     }//GEN-LAST:event_saveAddButtonActionPerformed
 
