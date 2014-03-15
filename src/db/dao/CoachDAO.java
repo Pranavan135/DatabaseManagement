@@ -10,6 +10,7 @@ import db.entity.Coach;
 import db.entity.Driver;
 import db.entity.DriverId;
 import db.util.HibernateUtil;
+import java.awt.HeadlessException;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -122,6 +123,74 @@ public class CoachDAO {
         }
 
         return true;
+    }
+    
+    public static List viewCoaches(String regNo) {
+        String hql = "from Coach d where d.regNo like '" + regNo + "%'";
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            Query q = session.createQuery(hql);
+            List resultList = q.list();
+            session.getTransaction().commit();
+            return resultList;
+        } catch (HibernateException | HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        return null;
+    }
+
+    
+    public static Coach isUnique(String regNo)    {
+        Session session = null;
+        Transaction transaction = null;
+        Integer regno = Integer.parseInt(regNo);
+        
+        try {
+            session =  HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            String HQL = "from Coach c where c.regNo =:regNo";
+           
+            Query q = session.createQuery(HQL) ;
+            q.setParameter("regNo", regno);
+            Coach coach = (Coach)q.uniqueResult();
+
+            session.getTransaction().commit();
+            
+           return coach;
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        return null;
+    }
+    
+     public static boolean deleteCoach(Coach coach) {
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.delete(coach);
+            session.flush();
+            transaction.commit();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            session.flush();
+            session.close();
+        }
     }
     
 }
