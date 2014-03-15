@@ -12,6 +12,7 @@ import db.entity.Town;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
 import java.util.List;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -62,6 +63,7 @@ public class HotelDAO {
     }
      
       public List getAllTowns() {
+           
         Session session = HibernateUtil.getSessionFactory().openSession();
         if (session == null) {
             return null;
