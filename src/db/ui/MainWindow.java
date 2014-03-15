@@ -7,6 +7,7 @@
 package db.ui;
 
 import db.dao.BillDAO;
+import java.util.logging.Level;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -232,7 +233,8 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (IllegalAccessException illegalAccessException) {
         } catch (UnsupportedLookAndFeelException unsupportedLookAndFeelException) {
         }
-
+        //java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+        //java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
