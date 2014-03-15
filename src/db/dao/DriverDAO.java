@@ -162,4 +162,52 @@ public class DriverDAO {
         }
         return count > 0;
     }
+    
+    public static boolean deleteDriver(Driver driver) {
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.delete(driver);
+            session.flush();
+            transaction.commit();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
+    
+    public static Driver isUnique(String id)    {
+        Session session = null;
+        Transaction transaction = null;
+        Integer iD = Integer.parseInt(id);
+        
+        try {
+            session =  HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            String HQL = "from Driver d where d.id.id =:id";
+           
+            Query q = session.createQuery(HQL) ;
+            q.setParameter("id", iD);
+            Driver driver= (Driver)q.uniqueResult();
+
+            session.getTransaction().commit();
+            
+           return driver;
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        return null;
+    }
 }

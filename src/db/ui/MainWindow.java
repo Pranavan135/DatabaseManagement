@@ -169,7 +169,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
         BillWindow.create().setVisible(true);
-            
     }//GEN-LAST:event_billsTextFieldActionPerformed
 
     private void driversTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driversTextFieldActionPerformed
@@ -179,7 +178,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void hotelsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelsTextFieldActionPerformed
         // TODO add your handling code here:
-        new HotelsWindow().setVisible(true);
+          HotelsWindow.create().setVisible(true);
     }//GEN-LAST:event_hotelsTextFieldActionPerformed
 
     private void townsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townsTextFieldActionPerformed

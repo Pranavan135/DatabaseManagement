@@ -6,6 +6,10 @@
 
 package db.ui;
 
+import db.dao.CoachDAO;
+import db.validate.CoachValidate;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pranavan
@@ -365,7 +369,17 @@ public class CoachWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_clearAddButtonActionPerformed
 
     private void saveAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAddButtonActionPerformed
-        
+        if ( CoachValidate.regNoValidate(coachRegNoAddTextField.getText().trim())){
+            if( CoachValidate.capacityValidate(coachCapacityAddTextField.getText().trim())){
+                if(CoachValidate.dateValidate(coachLastServiceDate.getDate())){
+                    if(CoachValidate.mileageValidate(coachLastServiceMileageAddTextField.getText().trim())){
+                        CoachDAO.addCoach(Integer.parseInt(coachRegNoAddTextField.getText().trim()),Integer.parseInt(coachCapacityAddTextField.getText().trim()),coachLastServiceDate.getDate(),Double.parseDouble(coachLastServiceMileageAddTextField.getText().trim()));
+                        JOptionPane.showMessageDialog(this,"Record Added","Details", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+            
+        }
     }//GEN-LAST:event_saveAddButtonActionPerformed
 
     /**

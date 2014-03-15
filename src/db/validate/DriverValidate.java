@@ -23,6 +23,12 @@ public class DriverValidate {
         }
         try {
             iD = Integer.parseInt(id);
+            
+            if(!(iD > 0)){
+                JOptionPane.showMessageDialog(null,"ID cannot be negative", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "ID can contain only digits!!!!", "Error", JOptionPane.ERROR_MESSAGE);

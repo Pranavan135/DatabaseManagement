@@ -79,7 +79,9 @@ public class Town  implements java.io.Serializable {
     }
 
     public Hotel getHotel(){
-        return (Hotel)hotels.iterator().next();
+        if(!hotels.isEmpty())
+            return (Hotel)hotels.iterator().next();
+        else return null;
 
     }
 }
