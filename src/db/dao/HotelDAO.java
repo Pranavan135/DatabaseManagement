@@ -100,11 +100,14 @@ public class HotelDAO {
             }
             he.printStackTrace();
         }
+        finally {
+            session.close();
+        }
         return null;
     }
       
       public boolean addHotel(Hotel hotel) {
-         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+         Session session = HibernateUtil.getSessionFactory().openSession();
          Transaction transaction = null;
          
          if (session == null) {
@@ -113,7 +116,7 @@ public class HotelDAO {
          try{
             transaction = session.beginTransaction();
             session.save(hotel);
-            //session.flush();
+            session.flush();
             transaction.commit();
             return true;
           } 
@@ -122,13 +125,13 @@ public class HotelDAO {
                 transaction.rollback();
             }
         } finally {
-            //session.close();
+            session.close();
         }
         return false;
     }
       
       public boolean editHotel(Hotel hotel) {
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         if (session == null) {
             return false;
@@ -147,7 +150,7 @@ public class HotelDAO {
              JOptionPane.showMessageDialog(null, ex,"ERROR", JOptionPane.ERROR_MESSAGE);
             
         } finally {
-//            session.close();
+            session.close();
         }
         return false;
     }
@@ -157,7 +160,7 @@ public class HotelDAO {
         Transaction transaction = null;
         
         try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.delete(hotel);
             session.flush();
@@ -167,8 +170,8 @@ public class HotelDAO {
             ex.printStackTrace();
             return false;
         } finally {
-//            session.flush();
-  //          session.close();
+          session.flush();
+           session.close();
         }
     }
       
@@ -177,7 +180,7 @@ public class HotelDAO {
         Transaction transaction = null;
         
         try {
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             Query q = session.createQuery("from Hotel where id = '" +hotelId+"'") ;
             Hotel t = (Hotel)q.uniqueResult();
@@ -190,6 +193,9 @@ public class HotelDAO {
                 transaction.rollback();
             }
             he.printStackTrace();
+        }
+        finally {
+            session.close();
         }
         return null;
     }
