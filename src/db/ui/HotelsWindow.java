@@ -641,6 +641,7 @@ public class HotelsWindow extends javax.swing.JFrame {
              
                     if (response)  {
                         JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE); 
+                        editClear();
                     }
                     else
                         JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
