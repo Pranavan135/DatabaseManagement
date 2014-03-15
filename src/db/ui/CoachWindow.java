@@ -8,7 +8,10 @@ package db.ui;
 import db.dao.CoachDAO;
 import db.entity.Coach;
 import db.validate.CoachValidate;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -76,7 +79,8 @@ public class CoachWindow extends javax.swing.JFrame {
         deleteGoButton = new javax.swing.JButton();
         deleteExitButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        deleteTable = new javax.swing.JTable();
+        deleteButton = new javax.swing.JButton();
         viewPanel = new javax.swing.JPanel();
         regNoViewLabel = new javax.swing.JLabel();
         regNoViewTextField = new javax.swing.JTextField();
@@ -271,10 +275,20 @@ public class CoachWindow extends javax.swing.JFrame {
         regNoDeleteLabel.setText("Enter Reg No ");
 
         deleteGoButton.setText("Go");
+        deleteGoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteGoButtonActionPerformed(evt);
+            }
+        });
 
         deleteExitButton.setText("Exit");
+        deleteExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteExitButtonActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        deleteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -290,27 +304,38 @@ public class CoachWindow extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(deleteTable);
+
+        deleteButton.setText("delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout deletePanelLayout = new javax.swing.GroupLayout(deletePanel);
         deletePanel.setLayout(deletePanelLayout);
         deletePanelLayout.setHorizontalGroup(
             deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deletePanelLayout.createSequentialGroup()
-                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deleteExitButton)
-                    .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(deletePanelLayout.createSequentialGroup()
-                            .addGap(27, 27, 27)
-                            .addComponent(regNoDeleteLabel)
-                            .addGap(58, 58, 58)
-                            .addComponent(regNoDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(deleteGoButton))
-                        .addGroup(deletePanelLayout.createSequentialGroup()
-                            .addGap(43, 43, 43)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(deletePanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(regNoDeleteLabel)
+                        .addGap(58, 58, 58)
+                        .addComponent(regNoDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteGoButton))
+                    .addGroup(deletePanelLayout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(180, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deletePanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(deleteButton)
+                .addGap(67, 67, 67)
+                .addComponent(deleteExitButton)
+                .addGap(140, 140, 140))
         );
         deletePanelLayout.setVerticalGroup(
             deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,9 +347,11 @@ public class CoachWindow extends javax.swing.JFrame {
                     .addComponent(deleteGoButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(deleteExitButton)
-                .addGap(32, 32, 32))
+                .addGap(31, 31, 31)
+                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteExitButton)
+                    .addComponent(deleteButton))
+                .addGap(31, 31, 31))
         );
 
         coachTabbedPane.addTab("Delete", deletePanel);
@@ -332,13 +359,15 @@ public class CoachWindow extends javax.swing.JFrame {
         regNoViewLabel.setText("Enter Reg No");
 
         goViewButton.setText("GO");
+        goViewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goViewButtonActionPerformed(evt);
+            }
+        });
 
         viewTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Reg No", "Capcity", "ServiceDate", "ServiceMileage"
@@ -355,6 +384,11 @@ public class CoachWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(viewTable);
 
         exitViewButton.setText("Exit");
+        exitViewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitViewButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
         viewPanel.setLayout(viewPanelLayout);
@@ -472,6 +506,10 @@ public class CoachWindow extends javax.swing.JFrame {
 
     private void editSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSaveButtonActionPerformed
         // TODO add your handling code here:
+        if(!capacityEdittextField.isVisible()){
+            JOptionPane.showMessageDialog(null,"First input the Register Number and update"," ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if (CoachValidate.capacityValidate(capacityEdittextField.getText().trim())) {
 
             if (CoachValidate.dateValidate(editDate.getDate())) {
@@ -526,6 +564,117 @@ public class CoachWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_editExitButtonActionPerformed
 
+    private void deleteGoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGoButtonActionPerformed
+        // TODO add your handling code here:
+        if (!regNoDeleteTextField.getText().trim().equals("") ){
+            delTable(CoachDAO.viewCoaches(regNoDeleteTextField.getText().trim()));
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Enter value for Reg No", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_deleteGoButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+        if(deleteTable.getSelectedRowCount() != 0)  {
+            int response = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record(s) ? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+           
+                    
+            if (response == JOptionPane.YES_OPTION) {
+                 boolean result1 = true;
+                int[] count = deleteTable.getSelectedRows();
+                for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
+                   Coach coach = CoachDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
+                   boolean result = CoachDAO.deleteCoach(coach);
+                   
+                   if(!result)
+                       result1 = false;
+                }
+                 if(result1)
+                       JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                   else
+                       JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
+	
+            }
+        }
+        
+        
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void viewTable(List list) {
+        String referenceNo = regNoDeleteTextField.getText().trim();
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+
+        tableHeaders.add("Reg no");
+        tableHeaders.add("Capacity");
+        tableHeaders.add("Last Service Date");
+        tableHeaders.add("Last Service Mileage");
+
+        if (list != null) {
+            for (Object o : list) {
+                Coach coach = (Coach) o;
+
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(coach.getRegNo());
+                oneRow.add(coach.getCapacity());
+                oneRow.add(coach.getLastServiceDate());
+                oneRow.add(coach.getLastServiceMileage());
+
+                tableData.add(oneRow);
+            }
+
+            viewTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        } else {
+
+        }
+    }
+    private void goViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goViewButtonActionPerformed
+       if (!regNoViewTextField.getText().trim().equals("")) {
+            viewTable(CoachDAO.viewCoaches(regNoViewTextField.getText().trim()));
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Enter value For Reg No ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_goViewButtonActionPerformed
+
+    private void exitViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitViewButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_exitViewButtonActionPerformed
+
+    private void deleteExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteExitButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_deleteExitButtonActionPerformed
+
+    
+    private void delTable(List list) {
+        String referenceNo = regNoDeleteTextField.getText().trim();
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+
+        tableHeaders.add("Reg no");
+        tableHeaders.add("Capacity");
+        tableHeaders.add("Last Service Date");
+        tableHeaders.add("Last Service Mileage");
+
+        if (list != null) {
+            for (Object o : list) {
+                Coach coach = (Coach) o;
+
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(coach.getRegNo());
+                oneRow.add(coach.getCapacity());
+                oneRow.add(coach.getLastServiceDate());
+                oneRow.add(coach.getLastServiceMileage());
+
+                tableData.add(oneRow);
+            }
+
+            deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        } else {
+
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -544,9 +693,11 @@ public class CoachWindow extends javax.swing.JFrame {
     private javax.swing.JLabel coachRegNoAddLabel;
     private javax.swing.JTextField coachRegNoAddTextField;
     private javax.swing.JTabbedPane coachTabbedPane;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JButton deleteExitButton;
     private javax.swing.JButton deleteGoButton;
     private javax.swing.JPanel deletePanel;
+    private javax.swing.JTable deleteTable;
     private com.toedter.calendar.JDateChooser editDate;
     private javax.swing.JButton editExitButton;
     private javax.swing.JButton editGoButton;
@@ -560,7 +711,6 @@ public class CoachWindow extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lastSerDateEditLabel;
     private javax.swing.JTextField lastServiceMileageEditTextField;
     private javax.swing.JLabel lastServiceMileageLabel;
