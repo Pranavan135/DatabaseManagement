@@ -39,7 +39,21 @@ public class HotelsWindow extends javax.swing.JFrame {
         clearButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        townScroll = new javax.swing.JScrollPane();
+        addTownTable = new javax.swing.JTable();
         editHotelsTab = new javax.swing.JPanel();
+        editidLabel1 = new javax.swing.JLabel();
+        edittownIdLabel1 = new javax.swing.JLabel();
+        edithotelNameLabel1 = new javax.swing.JLabel();
+        editidTextField1 = new javax.swing.JTextField();
+        edittownIdTextField1 = new javax.swing.JTextField();
+        edithotelNameTextField1 = new javax.swing.JTextField();
+        editclearButton1 = new javax.swing.JButton();
+        editButton1 = new javax.swing.JButton();
+        editexitButton1 = new javax.swing.JButton();
+        edittownPane = new javax.swing.JScrollPane();
+        editTownTable1 = new javax.swing.JTable();
+        editGetButton = new javax.swing.JButton();
         deleteHotelsTab = new javax.swing.JPanel();
         viewHotelsTab = new javax.swing.JPanel();
 
@@ -64,67 +78,165 @@ public class HotelsWindow extends javax.swing.JFrame {
 
         exitButton.setText("EXIT");
 
+        addTownTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Town ID", "Town Name"
+            }
+        ));
+        townScroll.setViewportView(addTownTable);
+
         javax.swing.GroupLayout addHotelsTabLayout = new javax.swing.GroupLayout(addHotelsTab);
         addHotelsTab.setLayout(addHotelsTabLayout);
         addHotelsTabLayout.setHorizontalGroup(
             addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addHotelsTabLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(addHotelsTabLayout.createSequentialGroup()
-                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(townScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addHotelsTabLayout.createSequentialGroup()
+                        .addComponent(townIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(townIdTextField))
                     .addGroup(addHotelsTabLayout.createSequentialGroup()
                         .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(hotelNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(idLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(townIdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(idLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(52, 52, 52)
                         .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(townIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(52, 52, 52)
+                .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         addHotelsTabLayout.setVerticalGroup(
             addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addHotelsTabLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addHotelsTabLayout.createSequentialGroup()
-                        .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idLabel)
-                            .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(townIdLabel)
-                            .addComponent(townIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hotelNameLabel)
-                            .addComponent(hotelNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(idLabel)
+                    .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(hotelNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hotelNameLabel))
+                .addGap(26, 26, 26)
+                .addGroup(addHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(townIdLabel)
+                    .addComponent(townIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(townScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(addHotelsTabLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         HotelsTab.addTab("ADD", addHotelsTab);
+
+        editidLabel1.setText("ID");
+
+        edittownIdLabel1.setText("Town ID");
+
+        edithotelNameLabel1.setText("Hotel Name");
+
+        edithotelNameTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edithotelNameTextField1ActionPerformed(evt);
+            }
+        });
+
+        editclearButton1.setText("CLEAR");
+
+        editButton1.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        editButton1.setText("EDIT");
+
+        editexitButton1.setText("EXIT");
+
+        editTownTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Town ID", "Town Name"
+            }
+        ));
+        edittownPane.setViewportView(editTownTable1);
+
+        editGetButton.setText("GET");
 
         javax.swing.GroupLayout editHotelsTabLayout = new javax.swing.GroupLayout(editHotelsTab);
         editHotelsTab.setLayout(editHotelsTabLayout);
         editHotelsTabLayout.setHorizontalGroup(
             editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(editHotelsTabLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(edittownPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editHotelsTabLayout.createSequentialGroup()
+                        .addComponent(edittownIdLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(edittownIdTextField1))
+                    .addGroup(editHotelsTabLayout.createSequentialGroup()
+                        .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(edithotelNameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(editidLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(52, 52, 52)
+                        .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editidTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edithotelNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(52, 52, 52)
+                .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(editButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                    .addComponent(editexitButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editclearButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editGetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         editHotelsTabLayout.setVerticalGroup(
             editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 222, Short.MAX_VALUE)
+            .addGroup(editHotelsTabLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editidLabel1)
+                    .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(editidTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editGetButton)))
+                .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editHotelsTabLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edithotelNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edithotelNameLabel1))
+                        .addGap(26, 26, 26)
+                        .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edittownIdLabel1)
+                            .addComponent(edittownIdTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(editHotelsTabLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(editButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(editHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editHotelsTabLayout.createSequentialGroup()
+                        .addComponent(edittownPane, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editHotelsTabLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(editexitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editclearButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
         );
 
         HotelsTab.addTab("EDIT", editHotelsTab);
@@ -133,11 +245,11 @@ public class HotelsWindow extends javax.swing.JFrame {
         deleteHotelsTab.setLayout(deleteHotelsTabLayout);
         deleteHotelsTabLayout.setHorizontalGroup(
             deleteHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
         deleteHotelsTabLayout.setVerticalGroup(
             deleteHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 222, Short.MAX_VALUE)
+            .addGap(0, 316, Short.MAX_VALUE)
         );
 
         HotelsTab.addTab("DELETE", deleteHotelsTab);
@@ -146,11 +258,11 @@ public class HotelsWindow extends javax.swing.JFrame {
         viewHotelsTab.setLayout(viewHotelsTabLayout);
         viewHotelsTabLayout.setHorizontalGroup(
             viewHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
         viewHotelsTabLayout.setVerticalGroup(
             viewHotelsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 222, Short.MAX_VALUE)
+            .addGap(0, 316, Short.MAX_VALUE)
         );
 
         HotelsTab.addTab("VIEW", viewHotelsTab);
@@ -169,6 +281,10 @@ public class HotelsWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void edithotelNameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edithotelNameTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edithotelNameTextField1ActionPerformed
+
     private void hotelNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_hotelNameTextFieldActionPerformed
@@ -178,9 +294,22 @@ public class HotelsWindow extends javax.swing.JFrame {
     private javax.swing.JTabbedPane HotelsTab;
     private javax.swing.JButton addButton;
     private javax.swing.JPanel addHotelsTab;
+    private javax.swing.JTable addTownTable;
     private javax.swing.JButton clearButton;
     private javax.swing.JPanel deleteHotelsTab;
+    private javax.swing.JButton editButton1;
+    private javax.swing.JButton editGetButton;
     private javax.swing.JPanel editHotelsTab;
+    private javax.swing.JTable editTownTable1;
+    private javax.swing.JButton editclearButton1;
+    private javax.swing.JButton editexitButton1;
+    private javax.swing.JLabel edithotelNameLabel1;
+    private javax.swing.JTextField edithotelNameTextField1;
+    private javax.swing.JLabel editidLabel1;
+    private javax.swing.JTextField editidTextField1;
+    private javax.swing.JLabel edittownIdLabel1;
+    private javax.swing.JTextField edittownIdTextField1;
+    private javax.swing.JScrollPane edittownPane;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel hotelNameLabel;
     private javax.swing.JTextField hotelNameTextField;
@@ -188,6 +317,7 @@ public class HotelsWindow extends javax.swing.JFrame {
     private javax.swing.JTextField idTextField;
     private javax.swing.JLabel townIdLabel;
     private javax.swing.JTextField townIdTextField;
+    private javax.swing.JScrollPane townScroll;
     private javax.swing.JPanel viewHotelsTab;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,7 +36,7 @@ public class RouteVallidate {
             JOptionPane.showMessageDialog(null, "Please enter the route ID", "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
              }
-             else if ( length > 11 && length !=5 ){
+             else if ( length > 11 || length !=5 ){
                  JOptionPane.showMessageDialog(null, "Route ID must be 5 charachters", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return false;
              }
@@ -78,12 +78,11 @@ public class RouteVallidate {
     
     public boolean nameValidation(String name){
         
-        String condition = "[a-zA-Z_]";
         if (name.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please Enter the Name", "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         }
-        else if (!name.matches(condition)){
+        else if (!isAlphabet(name)){
             JOptionPane.showMessageDialog(null, "Name should contain only alphabets and underscore", "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -92,7 +91,19 @@ public class RouteVallidate {
 
     }
     
-    
+    public boolean isAlphabet(String name){
+        if(name.isEmpty()){
+            return false;
+        } else {
+            for(int i = 0; i < name.length(); i++) {
+                char c = name.charAt(i);
+                if(!(Character.isLetter(c) || c == 0x2e || c == 0x20)){
+                    return false;
+                } 
+            }
+        }
+        return true;
+    } 
     
     public boolean daysValidation(String days){
         try{
@@ -116,12 +127,12 @@ public class RouteVallidate {
     }
     
     public boolean distanceValidation(String distance){
-        try{
-           int r_distance =  Integer.parseInt(distance);
-            if (r_distance == 0){
+        if (distance.isEmpty()){
                JOptionPane.showMessageDialog(null, "Please enter the route distance", "ERROR", JOptionPane.ERROR_MESSAGE);
                return false;
             }
+        try{
+           int r_distance =  Integer.parseInt(distance);         
                if (r_distance > 0){
                    return true;
                 }
