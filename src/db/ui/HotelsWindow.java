@@ -333,6 +333,11 @@ public class HotelsWindow extends javax.swing.JFrame {
         deleteTownNameLabel.setText("Town Name");
 
         deleteFetchButton.setText("FETCH");
+        deleteFetchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteFetchButtonActionPerformed(evt);
+            }
+        });
 
         deleteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -346,6 +351,11 @@ public class HotelsWindow extends javax.swing.JFrame {
 
         deleteButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
         deleteButton.setText("DELETE");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout deleteHotelsTabLayout = new javax.swing.GroupLayout(deleteHotelsTab);
         deleteHotelsTab.setLayout(deleteHotelsTabLayout);
@@ -410,6 +420,11 @@ public class HotelsWindow extends javax.swing.JFrame {
 
         viewButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
         viewButton.setText("VIEW");
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
 
         viewTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -517,6 +532,84 @@ public class HotelsWindow extends javax.swing.JFrame {
         townIdTextField.setText("");
     }
      
+     private void viewHotels() {
+        List resultList = null;
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        
+        tableHeaders.add("Hotel ID");
+        tableHeaders.add("Hotel Name");
+        tableHeaders.add("Town ID");
+        tableHeaders.add("Town Name");
+ 
+        
+        if(!deleteIDTextField.getText().isEmpty())   
+             resultList = hotelDAO.searchOnHotelId(deleteIDTextField.getText());
+        else if(!deleteHotelNameTextField.getText().isEmpty())
+             resultList = hotelDAO.searchHotelName(deleteHotelNameTextField.getText());
+        else if(!deleteTownNameTextField.getText().isEmpty())
+             resultList = hotelDAO.searchTownName(deleteTownNameTextField.getText());
+        else
+             resultList = hotelDAO.searchOnHotelId(deleteIDTextField.getText());
+        
+        if (resultList != null)     {
+            for (Object o : resultList) {
+                Hotel hotel = (Hotel) o;
+                
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(hotel.getId());
+                oneRow.add(hotel.getName());
+                oneRow.add(hotel.getTown().getId());
+                oneRow.add(hotel.getTown().getName());
+                tableData.add(oneRow);
+            }
+        
+            deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+     }
+        
+     private void view() {
+        List resultList = null;
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        
+        tableHeaders.add("Hotel ID");
+        tableHeaders.add("Hotel Name");
+        tableHeaders.add("Town ID");
+        tableHeaders.add("Town Name");
+ 
+        
+        if(!viewIDTextField.getText().isEmpty())   
+             resultList = hotelDAO.searchOnHotelId(viewIDTextField.getText());
+        else if(!viewHotelNameTextField.getText().isEmpty())
+             resultList = hotelDAO.searchHotelName(viewHotelNameTextField.getText());
+        else if(!viewTownNameTextField.getText().isEmpty())
+             resultList = hotelDAO.searchTownName(viewTownNameTextField.getText());
+        else
+             resultList = hotelDAO.searchOnHotelId(viewIDTextField.getText());
+        
+        if (resultList != null)     {
+            for (Object o : resultList) {
+                Hotel hotel = (Hotel) o;
+                
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(hotel.getId());
+                oneRow.add(hotel.getName());
+                oneRow.add(hotel.getTown().getId());
+                oneRow.add(hotel.getTown().getName());
+                tableData.add(oneRow);
+            }
+        
+            viewTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+     }
+      
     private void getTowns() {
         List resultList = hotelDAO.getAllTowns();
         Vector<String> tableHeaders = new Vector<String>();
@@ -705,6 +798,37 @@ public class HotelsWindow extends javax.swing.JFrame {
     private void editTownTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editTownTable1MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_editTownTable1MouseEntered
+
+    private void deleteFetchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFetchButtonActionPerformed
+        viewHotels();
+    }//GEN-LAST:event_deleteFetchButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+       if(deleteTable.getSelectedRowCount() != 0)  {
+            int response = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record(s) ? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+           
+             if (response == JOptionPane.YES_OPTION) {
+                boolean result1 = true;
+                int[] count = deleteTable.getSelectedRows();
+                for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
+                   Hotel h = hotelDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
+                   boolean result = hotelDAO.deleteHotel(h);
+                   
+                   if(!result)
+                       result1 = false;
+                }
+                 if(result1)
+                       JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                 else
+                       JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
+	
+            }
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        view();
+    }//GEN-LAST:event_viewButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
