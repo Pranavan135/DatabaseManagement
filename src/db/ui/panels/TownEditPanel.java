@@ -580,9 +580,9 @@ public class TownEditPanel extends javax.swing.JPanel {
         Set<Route> routes = new HashSet<>();
         for (Object v : dtm.getDataVector()) {
             Route route = townDAO.getRoute(((Vector) v).get(0).toString());
-            RouteTown routeTown = new RouteTown();
+            /*RouteTown routeTown = new RouteTown();
             routeTown.setTown(town);
-            routeTown.setRoute(route);
+            routeTown.setRoute(route);*/
             routes.add(route);
         }
         town.setRouteTowns(routes);
