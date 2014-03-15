@@ -162,6 +162,7 @@ public class MainWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void coachesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coachesTextFieldActionPerformed
         new CoachWindow().setVisible(true);
     }//GEN-LAST:event_coachesTextFieldActionPerformed
