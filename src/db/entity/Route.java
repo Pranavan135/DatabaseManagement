@@ -26,6 +26,14 @@ public class Route  implements java.io.Serializable {
     public Route(int id) {
         this.id = id;
     }
+    
+    public Route(int id, String name, int days, int distance) {
+       this.id = id;
+       this.name = name;
+       this.days = days;
+       this.distance = distance;
+       
+    }
     public Route(int id, String name, Integer days, Integer distance, Set driverRoutes, Set tours, Set routeTowns) {
        this.id = id;
        this.name = name;

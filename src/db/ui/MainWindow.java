@@ -9,12 +9,15 @@ package db.ui;
 import db.dao.BillDAO;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author DELL
  */
 public class MainWindow extends javax.swing.JFrame {
 
+   
+    private static final RouteWindow rw = RouteWindow.create();
     /**
      * Creates new form MainWindow
      */
@@ -159,6 +162,7 @@ public class MainWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void coachesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coachesTextFieldActionPerformed
         new CoachWindow().setVisible(true);
     }//GEN-LAST:event_coachesTextFieldActionPerformed
@@ -191,7 +195,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_passengersTextFieldActionPerformed
 
     private void routesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesTextFieldActionPerformed
-        new RouteWindow().setVisible(true);
+        RouteWindow.create().setVisible(true);
+        rw.addRouteIDComboBoxData();
+        rw.addTownIDComboBoxData();
     }//GEN-LAST:event_routesTextFieldActionPerformed
 
     /**

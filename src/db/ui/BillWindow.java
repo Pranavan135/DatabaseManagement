@@ -71,6 +71,7 @@ public class BillWindow extends javax.swing.JFrame {
         hotelTownTable = new javax.swing.JTable();
         tourCodeScrollPane = new javax.swing.JScrollPane();
         tourCodelist = new javax.swing.JList();
+        paidCheckBox = new javax.swing.JCheckBox();
         editBillsTab = new javax.swing.JPanel();
         edittourCodeLabel1 = new javax.swing.JLabel();
         editreferenceNoLabel1 = new javax.swing.JLabel();
@@ -93,6 +94,7 @@ public class BillWindow extends javax.swing.JFrame {
         edittourCodeScrollPane = new javax.swing.JScrollPane();
         edittourCodelist1 = new javax.swing.JList();
         editButton = new javax.swing.JButton();
+        editPaid = new javax.swing.JCheckBox();
         deleteBillsTab = new javax.swing.JPanel();
         deleteReferenceLabel = new javax.swing.JLabel();
         deleteReferenceTextField = new javax.swing.JTextField();
@@ -156,7 +158,7 @@ public class BillWindow extends javax.swing.JFrame {
 
         tourCodeTextField.setEditable(false);
         addBillsTab.add(tourCodeTextField);
-        tourCodeTextField.setBounds(380, 180, 80, 30);
+        tourCodeTextField.setBounds(300, 170, 140, 30);
 
         hotelIDtextField.setEditable(false);
         addBillsTab.add(hotelIDtextField);
@@ -232,7 +234,11 @@ public class BillWindow extends javax.swing.JFrame {
         tourCodeScrollPane.setViewportView(tourCodelist);
 
         addBillsTab.add(tourCodeScrollPane);
-        tourCodeScrollPane.setBounds(200, 160, 80, 80);
+        tourCodeScrollPane.setBounds(190, 150, 80, 80);
+
+        paidCheckBox.setText("Paid");
+        addBillsTab.add(paidCheckBox);
+        paidCheckBox.setBounds(530, 170, 81, 23);
 
         billsTab.addTab("ADD", addBillsTab);
 
@@ -317,7 +323,7 @@ public class BillWindow extends javax.swing.JFrame {
         editbillDateChooser1.setEnabled(false);
         editBillsTab.add(editbillDateChooser1);
         editbillDateChooser1.setBounds(510, 130, 130, 30);
-        billDateChooser.setMaxSelectableDate(new Date());
+        editbillDateChooser1.setMaxSelectableDate(new Date());
 
         edithotelTownTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -375,6 +381,10 @@ public class BillWindow extends javax.swing.JFrame {
         });
         editBillsTab.add(editButton);
         editButton.setBounds(110, 400, 160, 50);
+
+        editPaid.setText("Paid");
+        editBillsTab.add(editPaid);
+        editPaid.setBounds(370, 240, 110, 23);
 
         billsTab.addTab("EDIT", editBillsTab);
 
@@ -516,6 +526,7 @@ public class BillWindow extends javax.swing.JFrame {
         String hotelID = hotelIDtextField.getText();
         String numberOfIndividuals = numberOfIndvidualsTextField.getText();
         String amount = amountTextField.getText();
+        Boolean paid = paidCheckBox.isSelected();
       
         if (!billValidate.validatReferenceNo(referenceNo)) {
             referenceNoTextField.setText("");
@@ -543,14 +554,14 @@ public class BillWindow extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         else    {
-             /*  boolean response = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), billDateChooser.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
+             boolean response = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), billDateChooser.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
              
              if (response)  {
-             JOptionPane.showMessageDialog(null, "You have successfully added the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
-             clearAdd();
+                JOptionPane.showMessageDialog(null, "You have successfully added the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                clearAdd();
              }
              else
-             JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);*/
+             JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
         
@@ -581,6 +592,7 @@ public class BillWindow extends javax.swing.JFrame {
         tourCodelist.clearSelection();
         hotelTownTable.clearSelection();
         billDateChooser.cleanup();
+        paidCheckBox.setSelected(false);
     }
     
     private void changeTable(Set<Hotel> hotels, int a) {
@@ -656,6 +668,7 @@ public class BillWindow extends javax.swing.JFrame {
         tableHeaders.add("Bill date");
         tableHeaders.add("Person Count");
         tableHeaders.add("Amount");
+        tableHeaders.add("Paid");
         
         List resultList = billDAO.searchOnReferenceNo(referenceNo);
         
@@ -671,6 +684,7 @@ public class BillWindow extends javax.swing.JFrame {
                 oneRow.add(bill.getBillDate());
                 oneRow.add(bill.getNumberOfIndividuals());
                 oneRow.add(bill.getAmount());
+                oneRow.add(bill.getPaid());
                 tableData.add(oneRow);
             }
         if (num == 1)   
@@ -737,6 +751,7 @@ public class BillWindow extends javax.swing.JFrame {
             editbillDateChooser1.setDate(b.getBillDate());
             edittourCodelist1.setSelectedValue(b.getTour().getTourCode(), rootPaneCheckingEnabled);
             edittourCodeTextField1.setText(edittourCodelist1.getSelectedValue().toString());
+            editPaid.setSelected(b.getPaid());
             Tour tour = billDAO.getTour(edittourCodeTextField1.getText());
             Set<Hotel> hotels = billDAO.getAllHotels(tour);
             //changeTable(hotels, 0);
@@ -789,7 +804,7 @@ public class BillWindow extends javax.swing.JFrame {
         String hotelID = edithotelIDtextField1.getText();
         String numberOfIndividuals = editnumberOfIndvidualsTextField1.getText();
         String amount = editamountTextField1.getText();
-      
+        boolean paid = editPaid.isSelected();
         
        if (referenceNo.equalsIgnoreCase(editReference)) {
         if (!billValidate.validateNotNull(date))   {
@@ -814,14 +829,14 @@ public class BillWindow extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         else    {
-             //boolean response = billDAO.editBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
+             boolean response = billDAO.editBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
       
-             /*if (response)  {
-             JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
-             clearEdit();
+             if (response)  {
+                JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                clearEdit();
              }
              else
-             JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);*/
+                JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
        }
        else  {
@@ -855,8 +870,8 @@ public class BillWindow extends javax.swing.JFrame {
                 boolean response = billDAO.deleteBill(bill);
       
              if (response)  {
-                 /*boolean response1 = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount)));
-                 //JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                 boolean response1 = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
+                 JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
                  
                  
                  if(response1)  {
@@ -864,7 +879,7 @@ public class BillWindow extends javax.swing.JFrame {
                  clearEdit();
                  }
                  else
-                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);*/
+                    JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
        
              }
              else
@@ -922,6 +937,7 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JTable deleteTable;
     private javax.swing.JPanel editBillsTab;
     private javax.swing.JButton editButton;
+    private javax.swing.JCheckBox editPaid;
     private javax.swing.JLabel editamountLabel1;
     private javax.swing.JTextField editamountTextField1;
     private com.toedter.calendar.JDateChooser editbillDateChooser1;
@@ -951,6 +967,7 @@ public class BillWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel numberOfIndvidualsLabel;
     private javax.swing.JTextField numberOfIndvidualsTextField;
+    private javax.swing.JCheckBox paidCheckBox;
     private javax.swing.JLabel referenceNoLabel;
     private javax.swing.JTextField referenceNoTextField;
     private javax.swing.JLabel tourCodeLabel;
