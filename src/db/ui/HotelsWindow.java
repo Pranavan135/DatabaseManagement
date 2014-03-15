@@ -7,15 +7,11 @@
 package db.ui;
 
 import db.dao.HotelDAO;
-import db.entity.Bill;
 import db.entity.Hotel;
-import db.entity.Tour;
 import db.entity.Town;
 import db.validate.HotelValidate;
 import java.util.List;
-import java.util.Set;
 import java.util.Vector;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -257,6 +253,9 @@ public class HotelsWindow extends javax.swing.JFrame {
         editTownTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editTownTable1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                editTownTable1MouseEntered(evt);
             }
         });
         edittownPane.setViewportView(editTownTable1);
@@ -615,6 +614,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         edithotelNameTextField1.setEnabled(false);
         edittownIdTextField1.setEnabled(false);
         editTownTable1.setEnabled(false);
+        editidTextField1.setEditable(true);
         
         
     }
@@ -652,8 +652,22 @@ public class HotelsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_editButton1ActionPerformed
 
     private void editTownTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editTownTable1MouseClicked
-        // TODO add your handling code here:
+        edittownIdTextField1.setText("");
+        if(editTownTable1.getSelectedRow() >= 0)   {
+            String townID = editTownTable1.getValueAt(editTownTable1.getSelectedRow(), 0).toString();
+            
+            if (hotelDAO.getTown(townID).getHotel()!= null) {
+                JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+                addTownTable.clearSelection();
+            }
+            else
+                townIdTextField.setText(townID);
+        }
     }//GEN-LAST:event_editTownTable1MouseClicked
+
+    private void editTownTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editTownTable1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editTownTable1MouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
