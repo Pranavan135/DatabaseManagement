@@ -101,12 +101,6 @@ public class HotelsWindow extends javax.swing.JFrame {
 
         townIdTextField.setEditable(false);
 
-        hotelNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotelNameTextFieldActionPerformed(evt);
-            }
-        });
-
         clearButton.setText("CLEAR");
         clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -560,25 +554,18 @@ public class HotelsWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_edithotelNameTextField1ActionPerformed
 
-    private void hotelNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hotelNameTextFieldActionPerformed
-
     private void addTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTownTableMouseClicked
-        edittownIdTextField1.setText("");
-        if(editTownTable1.getSelectedRow() >= 0)   {
-            String townID = editTownTable1.getValueAt(editTownTable1.getSelectedRow(), 0).toString();
+        townIdTextField.setText("");
+        if(addTownTable.getSelectedRow() >= 0)   {
+            String townID = addTownTable.getValueAt(addTownTable.getSelectedRow(), 0).toString();
             
-            if(townID.equalsIgnoreCase(editTownID)) 
-                edittownIdTextField1.setText(townID);
-                
-            else if (hotelDAO.getTown(townID).getHotel()!= null) {
+            if (hotelDAO.getTown(townID).getHotel()!= null) {
                 JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-                editTownTable1.clearSelection();
+                addTownTable.clearSelection();
             }
             else    {
                 
-                edittownIdTextField1.setText(townID);
+                townIdTextField.setText(townID);
             }
         }
     }//GEN-LAST:event_addTownTableMouseClicked
@@ -697,16 +684,21 @@ public class HotelsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_editButton1ActionPerformed
 
     private void editTownTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editTownTable1MouseClicked
-        edittownIdTextField1.setText("");
+       edittownIdTextField1.setText("");
         if(editTownTable1.getSelectedRow() >= 0)   {
             String townID = editTownTable1.getValueAt(editTownTable1.getSelectedRow(), 0).toString();
             
-            if (hotelDAO.getTown(townID).getHotel()!= null) {
+            if(townID.equalsIgnoreCase(editTownID)) 
+                edittownIdTextField1.setText(townID);
+                
+            else if (hotelDAO.getTown(townID).getHotel()!= null) {
                 JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-                addTownTable.clearSelection();
+                editTownTable1.clearSelection();
             }
-            else
-                townIdTextField.setText(townID);
+            else    {
+                
+                edittownIdTextField1.setText(townID);
+            }
         }
     }//GEN-LAST:event_editTownTable1MouseClicked
 
