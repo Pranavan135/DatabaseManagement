@@ -10,6 +10,7 @@ import db.entity.Bill;
 import db.entity.Hotel;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -52,6 +53,27 @@ public class HotelDAO {
             he.printStackTrace();
         }
         finally {
+            session.close();
+        }
+        return null;
+    }
+     
+      public List getAllTowns() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Town t where overNightStop = true";
+            Query query = session.createQuery(HQLQuery);
+            List towns = query.list();
+            return towns;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
             session.close();
         }
         return null;

@@ -193,6 +193,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="getTowns();"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

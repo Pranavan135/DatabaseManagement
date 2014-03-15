@@ -7,8 +7,14 @@
 package db.ui;
 
 import db.dao.HotelDAO;
+import db.entity.Bill;
+import db.entity.Town;
 import db.validate.HotelValidate;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -113,6 +119,7 @@ public class HotelsWindow extends javax.swing.JFrame {
                 "Town ID", "Town Name"
             }
         ));
+        getTowns();
         townScroll.setViewportView(addTownTable);
 
         javax.swing.GroupLayout addHotelsTabLayout = new javax.swing.GroupLayout(addHotelsTab);
@@ -436,7 +443,37 @@ public class HotelsWindow extends javax.swing.JFrame {
         else if(!hotelValidate.validateNotNull(hotelName)) {
             JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        else if(!hotelValidate.validateNotNull(townID)){
+            JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
+    
+     private void getTowns() {
+        List resultList = hotelDAO.getAllTowns();
+        Vector<String> tableHeaders = new Vector<String>();
+        Vector tableData = new Vector();
+        
+        tableHeaders.add("Town ID");
+        tableHeaders.add("Town Name");
+        
+        if (resultList != null)     {
+            for (Object o : resultList) {
+                Town town = (Town) o;
+                
+                Vector<Object> oneRow = new Vector<Object>();
+                oneRow.add(town.getId());
+                oneRow.add(town.getName());
+                tableData.add(oneRow);
+            }
+       
+            addTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+ 
+            }
+        else {
+            JOptionPane.showMessageDialog(null, "No overnight stops found", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+     
     private void edithotelNameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edithotelNameTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edithotelNameTextField1ActionPerformed
