@@ -9,12 +9,15 @@ package db.ui;
 import db.dao.BillDAO;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author DELL
  */
 public class MainWindow extends javax.swing.JFrame {
 
+   
+    private RouteWindow rw = RouteWindow.create();
     /**
      * Creates new form MainWindow
      */
@@ -193,6 +196,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void routesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesTextFieldActionPerformed
         new RouteWindow().setVisible(true);
+        rw.addRouteIDComboBoxData();
+        rw.addTownIDComboBoxData();
     }//GEN-LAST:event_routesTextFieldActionPerformed
 
     /**
