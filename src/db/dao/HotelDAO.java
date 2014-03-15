@@ -8,6 +8,7 @@ package db.dao;
 
 import db.entity.Bill;
 import db.entity.Hotel;
+import db.entity.Town;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
 import java.util.List;
@@ -77,5 +78,50 @@ public class HotelDAO {
             session.close();
         }
         return null;
+    }
+      
+      public Town getTown(String townId)  {
+        Session session = null;
+        Transaction transaction = null;
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            Query q = session.createQuery("from Town where id = '" + townId +"'") ;
+            Town t = (Town) q.uniqueResult();
+            session.getTransaction().commit();
+            return t;
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        return null;
+    }
+      
+      public boolean addHotel(Hotel hotel) {
+         Session session = HibernateUtil.getSessionFactory().openSession();
+         Transaction transaction = null;
+         
+         if (session == null) {
+            return false;
+        }
+         try{
+            transaction = session.beginTransaction();
+            session.save(hotel);
+            session.flush();
+            transaction.commit();
+            return true;
+          } 
+         catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return false;
     }
 }

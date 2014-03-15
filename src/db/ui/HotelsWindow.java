@@ -8,6 +8,7 @@ package db.ui;
 
 import db.dao.HotelDAO;
 import db.entity.Bill;
+import db.entity.Hotel;
 import db.entity.Town;
 import db.validate.HotelValidate;
 import java.util.List;
@@ -24,6 +25,7 @@ public class HotelsWindow extends javax.swing.JFrame {
     private HotelDAO hotelDAO = HotelDAO.create();
     private HotelValidate hotelValidate = HotelValidate.create();
     private static HotelsWindow hotelWindow = null;
+    private int SINGLE;
     /**
      * Creates new form HotelsWindow
      */
@@ -90,13 +92,13 @@ public class HotelsWindow extends javax.swing.JFrame {
         viewScroll = new javax.swing.JScrollPane();
         viewTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         idLabel.setText("ID");
 
         townIdLabel.setText("Town ID");
 
         hotelNameLabel.setText("Hotel Name");
+
+        townIdTextField.setEditable(false);
 
         hotelNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,11 +107,26 @@ public class HotelsWindow extends javax.swing.JFrame {
         });
 
         clearButton.setText("CLEAR");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         addButton.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         addButton.setText("ADD");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         exitButton.setText("EXIT");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
 
         addTownTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,7 +137,13 @@ public class HotelsWindow extends javax.swing.JFrame {
             }
         ));
         getTowns();
+        addTownTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addTownTableMouseClicked(evt);
+            }
+        });
         townScroll.setViewportView(addTownTable);
+        addTownTable.setSelectionMode(SINGLE);
 
         javax.swing.GroupLayout addHotelsTabLayout = new javax.swing.GroupLayout(addHotelsTab);
         addHotelsTab.setLayout(addHotelsTabLayout);
@@ -446,9 +469,26 @@ public class HotelsWindow extends javax.swing.JFrame {
         else if(!hotelValidate.validateNotNull(townID)){
             JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        else    {
+            boolean response = hotelDAO.addHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, null));
+             
+             if (response)  {
+                 JOptionPane.showMessageDialog(null, "You have successfully added the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                 clearAdd();
+             }
+             else
+                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
-     private void getTowns() {
+     private void clearAdd() {
+        idTextField.setText("");
+        hotelNameTextField.setText("");
+        addTownTable.clearSelection();
+        townIdTextField.setText("");
+    }
+     
+    private void getTowns() {
         List resultList = hotelDAO.getAllTowns();
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
@@ -470,7 +510,7 @@ public class HotelsWindow extends javax.swing.JFrame {
  
             }
         else {
-            JOptionPane.showMessageDialog(null, "No overnight stops found", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+             JOptionPane.showMessageDialog(null, "No overnight stops found", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
      
@@ -481,6 +521,32 @@ public class HotelsWindow extends javax.swing.JFrame {
     private void hotelNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_hotelNameTextFieldActionPerformed
+
+    private void addTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTownTableMouseClicked
+        townIdTextField.setText("");
+        if(addTownTable.getSelectedRow() >= 0)   {
+            String townID = addTownTable.getValueAt(addTownTable.getSelectedRow(), 0).toString();
+            
+            if (hotelDAO.getTown(townID).getHotel()!= null) {
+                JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+                addTownTable.clearSelection();
+            }
+            else
+                townIdTextField.setText(townID);
+        }
+    }//GEN-LAST:event_addTownTableMouseClicked
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+       addData();
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+       clearAdd();
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_exitButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
