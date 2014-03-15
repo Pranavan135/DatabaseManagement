@@ -534,7 +534,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         townIdTextField.setText("");
         if(addTownTable.getSelectedRow() >= 0)   {
             String townID = addTownTable.getValueAt(addTownTable.getSelectedRow(), 0).toString();
-            
+            townIdTextField.setText(townID);
             /* if (hotelDAO.getTown(townID).getHotel()!= null) {
             JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
             addTownTable.clearSelection();
