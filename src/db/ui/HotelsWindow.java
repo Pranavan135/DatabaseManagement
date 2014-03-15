@@ -11,6 +11,7 @@ import db.entity.Hotel;
 import db.entity.Town;
 import db.validate.HotelValidate;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +26,7 @@ public class HotelsWindow extends javax.swing.JFrame {
     private static HotelsWindow hotelWindow = null;
     private int SINGLE;
     private String editID = "";
+    private String editTownID = "";
     /**
      * Creates new form HotelsWindow
      */
@@ -563,16 +565,21 @@ public class HotelsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_hotelNameTextFieldActionPerformed
 
     private void addTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTownTableMouseClicked
-        townIdTextField.setText("");
-        if(addTownTable.getSelectedRow() >= 0)   {
-            String townID = addTownTable.getValueAt(addTownTable.getSelectedRow(), 0).toString();
+        edittownIdTextField1.setText("");
+        if(editTownTable1.getSelectedRow() >= 0)   {
+            String townID = editTownTable1.getValueAt(editTownTable1.getSelectedRow(), 0).toString();
             
-            if (hotelDAO.getTown(townID).getHotel()!= null) {
+            if(townID.equalsIgnoreCase(editTownID)) 
+                edittownIdTextField1.setText(townID);
+                
+            else if (hotelDAO.getTown(townID).getHotel()!= null) {
                 JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-                addTownTable.clearSelection();
+                editTownTable1.clearSelection();
             }
-            else
-                townIdTextField.setText(townID);
+            else    {
+                
+                edittownIdTextField1.setText(townID);
+            }
         }
     }//GEN-LAST:event_addTownTableMouseClicked
 
@@ -596,6 +603,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         if(h != null)   {
             edithotelNameTextField1.setText(h.getName());
             edittownIdTextField1.setText(String.valueOf(h.getTown().getId()));
+            editTownID = edittownIdTextField1.getText();
             editEnable();
             
         }
@@ -632,20 +640,57 @@ public class HotelsWindow extends javax.swing.JFrame {
         String hotelName = edithotelNameTextField1.getText();
         String townID = edittownIdTextField1.getText();
              
-            if(!hotelValidate.validateNotNull(hotelName)) {
-                JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            else if(!hotelValidate.validateNotNull(townID)){
-                JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            else    {
-                boolean response = hotelDAO.editHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, hotelDAO.getHotel(editID).getBills()));
-             
-                if (response)  {
-                    JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE); 
+            if(ID.equalsIgnoreCase(editID))  { 
+                if(!hotelValidate.validateNotNull(hotelName)) {
+                    JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-                else
-                    JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+                else if(!hotelValidate.validateNotNull(townID)){
+                    JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                else    {
+                    Set bills = hotelDAO.getHotel(editID).getBills();
+             
+                    boolean response = hotelDAO.editHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, bills));
+             
+                    if (response)  {
+                        JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE); 
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            else{
+                if(!hotelValidate.validatID(ID)){
+                     editidTextField1.setText(editID);
+                }
+                if(!hotelValidate.validateNotNull(hotelName)) {
+                    JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(!hotelValidate.validateNotNull(townID)){
+                    JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                else    {
+                    Hotel hotel = hotelDAO.isUnique(ID);
+                    boolean response = true;
+                    
+                    if(hotel != null)
+                        response = hotelDAO.deleteHotel(hotel);
+      
+                    if (response)  {
+                        boolean response1 = hotelDAO.addHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, null));
+               
+                        if(response1)  {
+                            JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                            editClear();
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+                      }
+                     else
+                        JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+ 
+                }
+            
             }
       
        
