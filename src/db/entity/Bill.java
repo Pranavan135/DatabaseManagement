@@ -1,5 +1,5 @@
 package db.entity;
-// Generated Mar 12, 2014 5:01:43 PM by Hibernate Tools 3.6.0
+// Generated Mar 15, 2014 11:52:23 AM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -17,6 +17,7 @@ public class Bill  implements java.io.Serializable {
      private Date billDate;
      private int numberOfIndividuals;
      private Double amount;
+     private Boolean paid;
 
     public Bill() {
     }
@@ -26,7 +27,7 @@ public class Bill  implements java.io.Serializable {
         this.refNo = refNo;
         this.numberOfIndividuals = numberOfIndividuals;
     }
-    public Bill(int refNo, Town town, Tour tour, Hotel hotel, Date billDate, int numberOfIndividuals, Double amount) {
+    public Bill(int refNo, Town town, Tour tour, Hotel hotel, Date billDate, int numberOfIndividuals, Double amount, Boolean paid) {
        this.refNo = refNo;
        this.town = town;
        this.tour = tour;
@@ -34,6 +35,7 @@ public class Bill  implements java.io.Serializable {
        this.billDate = billDate;
        this.numberOfIndividuals = numberOfIndividuals;
        this.amount = amount;
+       this.paid = paid;
     }
    
     public int getRefNo() {
@@ -84,6 +86,13 @@ public class Bill  implements java.io.Serializable {
     
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+    public Boolean getPaid() {
+        return this.paid;
+    }
+    
+    public void setPaid(Boolean paid) {
+        this.paid = paid;
     }
 
 

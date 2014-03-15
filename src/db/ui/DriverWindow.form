@@ -349,7 +349,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="exitEditButton">
               <Properties>
-                <Property name="text" type="java.lang.String" value="EXIT"/>
+                <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitEditButtonActionPerformed"/>
@@ -427,8 +427,8 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="deleteDeleteButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="exitDeleteButton" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+                      <Component id="exitDeleteButton" min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -451,12 +451,12 @@
                           <Component id="nameDeleteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="deleteGoButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="48" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="157" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="exitDeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteDeleteButton" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="exitDeleteButton" max="32767" attributes="0"/>
+                          <Component id="deleteDeleteButton" pref="28" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   </Group>

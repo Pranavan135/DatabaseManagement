@@ -39,6 +39,7 @@ public class DriverWindow extends javax.swing.JFrame {
         addressEditTextField.setVisible(false);
         telenoEditLabel.setVisible(false);
         teleNoEditTextField.setVisible(false);
+        deleteTable.setEnabled(false);
     }
 
     /**
@@ -238,7 +239,7 @@ public class DriverWindow extends javax.swing.JFrame {
             }
         });
 
-        exitEditButton.setText("EXIT");
+        exitEditButton.setText("Exit");
         exitEditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitEditButtonActionPerformed(evt);
@@ -410,8 +411,8 @@ public class DriverWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(deleteDeleteButton)
                 .addGap(33, 33, 33)
-                .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                .addComponent(exitDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146))
             .addGroup(deleteDriverTabLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -429,12 +430,12 @@ public class DriverWindow extends javax.swing.JFrame {
                     .addComponent(nameDeletetextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameDeleteLabel)
                     .addComponent(deleteGoButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(exitDeleteButton)
-                    .addComponent(deleteDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(deleteDriverTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(exitDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
                 .addGap(47, 47, 47))
         );
 
@@ -707,9 +708,9 @@ public class DriverWindow extends javax.swing.JFrame {
                        result1 = false;
                 }
                  if(result1)
-                       JOptionPane.showConfirmDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                       JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
                    else
-                       JOptionPane.showConfirmDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERRO", JOptionPane.ERROR_MESSAGE);
+                       JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERRO", JOptionPane.ERROR_MESSAGE);
 	
             }
         }
@@ -809,24 +810,6 @@ public class DriverWindow extends javax.swing.JFrame {
         } else {
 
         }
-
-        ListSelectionModel selectionModel = deleteTable.getSelectionModel();
-        selectionModel.setSelectionInterval(0, 0);
-        selectionModel.addListSelectionListener(deleteTable);
-
-        selectionModel.addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                int OPTION = JOptionPane.showConfirmDialog(null, "Do you want to delete this record!!!", "Delete confirmation", JOptionPane.WARNING_MESSAGE);
-
-                if (OPTION == JOptionPane.YES_OPTION) {
-                    Driver driver = (Driver) e.getSource();
-                    //System.out.println(driver.getId().getId());
-                    JOptionPane.showMessageDialog(null, "" + driver.getId().getId(), "xxx", JOptionPane.INFORMATION_MESSAGE);
-                    //DriverDAO.deleteData(driver.getId().getId());
-                }
-            }
-
-        });
     }
 
 
