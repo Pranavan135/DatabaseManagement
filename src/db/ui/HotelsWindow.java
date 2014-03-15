@@ -9,9 +9,11 @@ package db.ui;
 import db.dao.HotelDAO;
 import db.entity.Bill;
 import db.entity.Hotel;
+import db.entity.Tour;
 import db.entity.Town;
 import db.validate.HotelValidate;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -26,6 +28,7 @@ public class HotelsWindow extends javax.swing.JFrame {
     private HotelValidate hotelValidate = HotelValidate.create();
     private static HotelsWindow hotelWindow = null;
     private int SINGLE;
+    private String editID = "";
     /**
      * Creates new form HotelsWindow
      */
@@ -233,6 +236,11 @@ public class HotelsWindow extends javax.swing.JFrame {
         edittownPane.setViewportView(editTownTable1);
 
         editGetButton.setText("GET");
+        editGetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editGetButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editHotelsTabLayout = new javax.swing.GroupLayout(editHotelsTab);
         editHotelsTab.setLayout(editHotelsTabLayout);
@@ -547,6 +555,30 @@ public class HotelsWindow extends javax.swing.JFrame {
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void editGetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGetButtonActionPerformed
+        String ID = editidTextField1.getText();
+        editID = ID;
+        Hotel h = hotelDAO.isUnique(ID);
+        
+       /* if(h != null)   {
+            edithotelNameTextField1.setText(h.getName());
+            editTownTable1.setSelectedValue(h.getTown().getId(), rootPaneCheckingEnabled);
+            edittourCodeTextField1.setText(edittourCodelist1.getSelectedValue().toString());
+            Tour tour = billDAO.getTour(edittourCodeTextField1.getText());
+            Set<Hotel> hotels = billDAO.getAllHotels(tour);
+            //changeTable(hotels, 0);
+            //edithotelTownTable1.setRowSelectionInterval(edithotelTownTable1.getValueAt(WIDTH, WIDTH).compareToIgnoreCase(String.valueOf(b.getHotel().getId())),0 );
+            edithotelIDtextField1.setText(String.valueOf(b.getHotel().getId()));
+            edittownIDTextField1.setText(String.valueOf(b.getTown().getId()));
+            editEnable();
+            
+        }
+        else    {
+             JOptionPane.showMessageDialog(null, "Reference No not exists. Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);
+             editreferenceNoTextField1.setText("");
+        }*/
+    }//GEN-LAST:event_editGetButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
