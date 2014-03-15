@@ -124,4 +124,69 @@ public class HotelDAO {
         }
         return false;
     }
+      
+      public boolean editHotel(Hotel hotel) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        if (session == null) {
+            return false;
+        }
+       
+        try {
+            transaction = session.beginTransaction();
+            session.update(hotel);
+            session.flush();
+            transaction.commit();
+            return true;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return false;
+    }
+      
+      public boolean deleteHotel(Hotel hotel) {
+        Session session = null;
+        Transaction transaction = null;
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.delete(hotel);
+            session.flush();
+            transaction.commit();
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            session.flush();
+            session.close();
+        }
+    }
+      
+      public Hotel getHotel(String hotelId)  {
+        Session session = null;
+        Transaction transaction = null;
+        
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            Query q = session.createQuery("from Hotel where id = '" +hotelId+"'") ;
+            Hotel t = (Hotel)q.uniqueResult();
+            session.getTransaction().commit();
+            
+            return t;
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+            he.printStackTrace();
+        }
+        return null;
+    }
 }

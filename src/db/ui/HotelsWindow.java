@@ -212,6 +212,9 @@ public class HotelsWindow extends javax.swing.JFrame {
 
         edithotelNameLabel1.setText("Hotel Name");
 
+        edittownIdTextField1.setEditable(false);
+
+        edithotelNameTextField1.setEnabled(false);
         edithotelNameTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 edithotelNameTextField1ActionPerformed(evt);
@@ -219,11 +222,27 @@ public class HotelsWindow extends javax.swing.JFrame {
         });
 
         editclearButton1.setText("CLEAR");
+        editclearButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editclearButton1ActionPerformed(evt);
+            }
+        });
 
         editButton1.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
         editButton1.setText("EDIT");
+        editButton1.setEnabled(false);
+        editButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButton1ActionPerformed(evt);
+            }
+        });
 
         editexitButton1.setText("EXIT");
+        editexitButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editexitButton1ActionPerformed(evt);
+            }
+        });
 
         editTownTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -233,6 +252,13 @@ public class HotelsWindow extends javax.swing.JFrame {
                 "Town ID", "Town Name"
             }
         ));
+        editTownTable1.setEnabled(false);
+        getTowns();
+        editTownTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editTownTable1MouseClicked(evt);
+            }
+        });
         edittownPane.setViewportView(editTownTable1);
 
         editGetButton.setText("GET");
@@ -485,7 +511,7 @@ public class HotelsWindow extends javax.swing.JFrame {
                  clearAdd();
              }
              else
-                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -513,14 +539,21 @@ public class HotelsWindow extends javax.swing.JFrame {
                 oneRow.add(town.getName());
                 tableData.add(oneRow);
             }
-       
+   
             addTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
- 
+            editTownTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
             }
         else {
              JOptionPane.showMessageDialog(null, "No overnight stops found", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+     private void editEnable() {
+        edithotelNameTextField1.setEnabled(true);
+        editTownTable1.setEnabled(true);
+        editButton1.setEnabled(true);
+        editidTextField1.setEditable(false);
+     }
      
     private void edithotelNameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edithotelNameTextField1ActionPerformed
         // TODO add your handling code here:
@@ -534,13 +567,13 @@ public class HotelsWindow extends javax.swing.JFrame {
         townIdTextField.setText("");
         if(addTownTable.getSelectedRow() >= 0)   {
             String townID = addTownTable.getValueAt(addTownTable.getSelectedRow(), 0).toString();
-            townIdTextField.setText(townID);
-            /* if (hotelDAO.getTown(townID).getHotel()!= null) {
-            JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-            addTownTable.clearSelection();
+            
+            if (hotelDAO.getTown(townID).getHotel()!= null) {
+                JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+                addTownTable.clearSelection();
             }
             else
-            townIdTextField.setText(townID);*/
+                townIdTextField.setText(townID);
         }
     }//GEN-LAST:event_addTownTableMouseClicked
 
@@ -561,24 +594,66 @@ public class HotelsWindow extends javax.swing.JFrame {
         editID = ID;
         Hotel h = hotelDAO.isUnique(ID);
         
-       /* if(h != null)   {
+        if(h != null)   {
             edithotelNameTextField1.setText(h.getName());
-            editTownTable1.setSelectedValue(h.getTown().getId(), rootPaneCheckingEnabled);
-            edittourCodeTextField1.setText(edittourCodelist1.getSelectedValue().toString());
-            Tour tour = billDAO.getTour(edittourCodeTextField1.getText());
-            Set<Hotel> hotels = billDAO.getAllHotels(tour);
-            //changeTable(hotels, 0);
-            //edithotelTownTable1.setRowSelectionInterval(edithotelTownTable1.getValueAt(WIDTH, WIDTH).compareToIgnoreCase(String.valueOf(b.getHotel().getId())),0 );
-            edithotelIDtextField1.setText(String.valueOf(b.getHotel().getId()));
-            edittownIDTextField1.setText(String.valueOf(b.getTown().getId()));
+            edittownIdTextField1.setText(String.valueOf(h.getTown().getId()));
             editEnable();
             
         }
         else    {
-             JOptionPane.showMessageDialog(null, "Reference No not exists. Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);
-             editreferenceNoTextField1.setText("");
-        }*/
+             JOptionPane.showMessageDialog(null, "Hote ID not exists. Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);
+             editidTextField1.setText("");
+        }
     }//GEN-LAST:event_editGetButtonActionPerformed
+
+    private void editClear()    {
+        editidTextField1.setText("");
+        edithotelNameTextField1.setText("");
+        edittownIdTextField1.setText("");
+        editTownTable1.clearSelection();
+        editButton1.setEnabled(false);
+        edithotelNameTextField1.setEnabled(false);
+        edittownIdTextField1.setEnabled(false);
+        editTownTable1.setEnabled(false);
+        
+        
+    }
+    
+    private void editclearButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editclearButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editclearButton1ActionPerformed
+
+    private void editexitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editexitButton1ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_editexitButton1ActionPerformed
+
+    private void editButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButton1ActionPerformed
+        String ID = editidTextField1.getText();
+        String hotelName = edithotelNameTextField1.getText();
+        String townID = edittownIdTextField1.getText();
+             
+            if(!hotelValidate.validateNotNull(hotelName)) {
+                JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(!hotelValidate.validateNotNull(townID)){
+                JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            else    {
+                boolean response = hotelDAO.editHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, hotelDAO.getHotel(editID).getBills()));
+             
+                if (response)  {
+                    JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE); 
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+      
+       
+    }//GEN-LAST:event_editButton1ActionPerformed
+
+    private void editTownTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editTownTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editTownTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -867,20 +867,19 @@ public class BillWindow extends javax.swing.JFrame {
             }
             else    {
                 Bill bill = billDAO.isUnique(editReference);
-                boolean response = billDAO.deleteBill(bill);
+                boolean response = true;
+                if(bill != null)
+                    response = billDAO.deleteBill(bill);
       
-             if (response)  {
+                if (response)  {
                  boolean response1 = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
-                 JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
-                 
-                 
+               
                  if(response1)  {
-                 JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
-                 clearEdit();
+                    JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                    clearEdit();
                  }
                  else
                     JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
-       
              }
              else
                  JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
