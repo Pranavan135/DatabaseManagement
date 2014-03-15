@@ -7,7 +7,6 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tourmanagement?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.transaction.auto_close_session">true</property>
     <mapping resource="db/entity/Passenger.hbm.xml"/>
     <mapping resource="db/entity/DriverRoute.hbm.xml"/>
     <mapping resource="db/entity/Coach.hbm.xml"/>
