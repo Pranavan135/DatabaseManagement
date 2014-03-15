@@ -986,7 +986,7 @@ public class RouteWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void routeTownViewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeTownViewButtonActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_routeTownViewButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
