@@ -203,8 +203,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="editRegNoTextField" alignment="0" pref="96" max="32767" attributes="0"/>
-                                      <Component id="regNoEdittextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="regNoEdittextField" alignment="0" pref="96" max="32767" attributes="0"/>
                                       <Component id="capacityEdittextField" alignment="0" max="32767" attributes="0"/>
                                       <Component id="lastServiceMileageEditTextField" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -212,8 +211,9 @@
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                       <Component id="editSaveButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="editRegNoTextField" min="-2" pref="145" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="83" max="32767" attributes="0"/>
+                              <EmptySpace pref="34" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="editGoButton" min="-2" max="-2" attributes="0"/>
                                   <Component id="editExitButton" min="-2" max="-2" attributes="0"/>
