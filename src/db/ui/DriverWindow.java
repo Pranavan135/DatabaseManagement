@@ -39,7 +39,8 @@ public class DriverWindow extends javax.swing.JFrame {
         addressEditTextField.setVisible(false);
         telenoEditLabel.setVisible(false);
         teleNoEditTextField.setVisible(false);
-        deleteTable.setEnabled(false);
+        deleteTable.setColumnSelectionAllowed(false);
+        deleteTable.setRowSelectionAllowed(true);
     }
 
     /**
