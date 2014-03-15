@@ -16,7 +16,7 @@ import db.entity.Route;
 import db.entity.RouteTown;
 import db.entity.Town;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class RouteDAO {
     
-   // private static String QUERY_BASED_ON_ROUTE_ID = "from route r where r.id like '";
+   private static String QUERY_BASED_ON_REFERENCE_NO = "from Route r where r.id like '"; 
     private static RouteDAO routeDAO = null;
   
     public static RouteDAO create(){
@@ -59,9 +59,9 @@ public class RouteDAO {
         return false;
     }
     
-     public boolean addRouteTown(RouteTownId route_town){
+     public boolean addRouteTown(RouteTown route_town){
         
-            Session session = HibernateUtil.getSessionFactory().openSession();
+         Session session = HibernateUtil.getSessionFactory().openSession();
          Transaction transaction = null;
          
          if (session == null) {
@@ -75,7 +75,7 @@ public class RouteDAO {
             return true;
           } 
          catch (HibernateException | HeadlessException ex) {
-              JOptionPane.showMessageDialog(null, "Please select the town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+             ex.printStackTrace();
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
             }
@@ -187,7 +187,7 @@ public class RouteDAO {
         return null;
     }
     
-    public List<Route> getAllRoute(){
+    /*public List<Route> getAllRoute(){
          Session session = HibernateUtil.getSessionFactory().openSession();
          Transaction transaction = null;
     
@@ -210,6 +210,34 @@ public class RouteDAO {
             }
         } finally {
             session.close();
+        }
+        return null;
+    }*/
+    
+     public List searchOnReferenceNo(String referenceNo) {
+          List list = getAllRoute(QUERY_BASED_ON_REFERENCE_NO + referenceNo + "%'");
+        return list;
+    }
+    
+    private List getAllRoute(String hql) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+         Transaction transaction = null;
+    
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+            transaction = session.beginTransaction();
+            Query q = session.createQuery(hql);
+            List resultList = q.list();
+            session.getTransaction().commit();
+              return resultList;
+        }
+        catch (HibernateException|HeadlessException he) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
         }
         return null;
     }
