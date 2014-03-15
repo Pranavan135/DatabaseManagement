@@ -1,5 +1,5 @@
 package db.entity;
-// Generated Mar 12, 2014 5:01:43 PM by Hibernate Tools 3.6.0
+// Generated Mar 15, 2014 11:52:23 AM by Hibernate Tools 3.6.0
 
 
 
@@ -20,11 +20,17 @@ public class RouteTown  implements java.io.Serializable {
        this.townId = townId;
     }
 	
+
   /*  public RouteTown(RouteTownId id) {
         this.routeId = id.getRouteId();
         this.townId = id.getTownId();
     }*/
     
+
+    public RouteTown(RouteTownId id) {
+        this.id = id;
+    }
+
     public RouteTown(RouteTownId id, Route route, Town town) {
        this.id = id;
        this.route = route;

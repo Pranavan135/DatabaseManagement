@@ -535,12 +535,12 @@ public class HotelsWindow extends javax.swing.JFrame {
         if(addTownTable.getSelectedRow() >= 0)   {
             String townID = addTownTable.getValueAt(addTownTable.getSelectedRow(), 0).toString();
             
-            if (hotelDAO.getTown(townID).getHotel()!= null) {
-                JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-                addTownTable.clearSelection();
+            /* if (hotelDAO.getTown(townID).getHotel()!= null) {
+            JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+            addTownTable.clearSelection();
             }
             else
-                townIdTextField.setText(townID);
+            townIdTextField.setText(townID);*/
         }
     }//GEN-LAST:event_addTownTableMouseClicked
 

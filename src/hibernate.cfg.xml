@@ -12,8 +12,8 @@
     <mapping resource="db/entity/Bill.hbm.xml"/>
     <mapping resource="db/entity/Route.hbm.xml"/>
     <mapping resource="db/entity/Tour.hbm.xml"/>
-    <mapping resource="db/entity/Hotel.hbm.xml"/>
     <mapping resource="db/entity/Town.hbm.xml"/>
+    <mapping resource="db/entity/Hotel.hbm.xml"/>
     <mapping resource="db/entity/Driver.hbm.xml"/>
     <mapping resource="db/entity/RouteTown.hbm.xml"/>
   </session-factory>

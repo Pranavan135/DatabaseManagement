@@ -838,7 +838,7 @@ public class RouteWindow extends javax.swing.JFrame {
        distance = routeDistanceEditTextField.getText().trim();
         
         if (  routeValidate.nameValidation(routeName)  && routeValidate.daysValidation(days) && routeValidate.distanceValidation(distance)  ){
-                routeDAO.updateRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
+               // routeDAO.updateRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
                  JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
          } 
          else {
@@ -1001,7 +1001,7 @@ public class RouteWindow extends javax.swing.JFrame {
                && routeValidate.daysValidation(days) && routeValidate.distanceValidation(distance)  ){
          if( routeValidate.isUnique(routeID) )
          {
-                routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
+               // routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
                  JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
          } 
          else {

@@ -250,9 +250,9 @@ public class BillDAO {
         for (RouteTown r : route)   {
             Town t = r.getTown();
             if (t.getOverNightStop()) {
-                if (t.getHotel() != null) {
-                    hotel.add(t.getHotel()); 
-                }
+                /*if (t.getHotel() != null) {
+                hotel.add(t.getHotel());
+                }*/
                 
                 }
         }
