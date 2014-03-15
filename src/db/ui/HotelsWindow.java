@@ -547,7 +547,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         edithotelNameTextField1.setEnabled(true);
         editTownTable1.setEnabled(true);
         editButton1.setEnabled(true);
-        editidTextField1.setEditable(false);
+        //editidTextField1.setEditable(false);
      }
      
     private void edithotelNameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edithotelNameTextField1ActionPerformed
@@ -609,7 +609,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         edithotelNameTextField1.setEnabled(false);
         edittownIdTextField1.setEnabled(false);
         editTownTable1.setEnabled(false);
-        editidTextField1.setEditable(true);
+        //editidTextField1.setEditable(true);
         
         
     }
@@ -657,17 +657,16 @@ public class HotelsWindow extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 else    {
-                    Hotel hotel = hotelDAO.isUnique(ID);
+                    Hotel hotel = hotelDAO.isUnique(editID);
                     boolean response = true;
                     
-                    if(hotel != null)
-                        response = hotelDAO.deleteHotel(hotel);
+                   response = hotelDAO.deleteHotel(hotel);
       
                     if (response)  {
                         boolean response1 = hotelDAO.addHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, null));
                
                         if(response1)  {
-                            JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE);
                             editClear();
                         }
                         else
