@@ -7,6 +7,7 @@ package db.ui;
 
 import db.entity.Driver;
 import db.dao.DriverDAO;
+import db.entity.Bill;
 import db.validate.DriverValidate;
 import java.util.List;
 import java.util.Vector;
@@ -691,6 +692,27 @@ public class DriverWindow extends javax.swing.JFrame {
 
     private void deleteDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDeleteButtonActionPerformed
         // TODO add your handling code here:
+        if(deleteTable.getSelectedRowCount() != 0)  {
+            int response = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record(s) ? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+           
+                    
+            if (response == JOptionPane.YES_OPTION) {
+                 boolean result1 = true;
+                int[] count = deleteTable.getSelectedRows();
+                for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
+                   Driver driver = DriverDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
+                   boolean result = DriverDAO.deleteDriver(driver);
+                   
+                   if(!result)
+                       result1 = false;
+                }
+                 if(result1)
+                       JOptionPane.showConfirmDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                   else
+                       JOptionPane.showConfirmDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERRO", JOptionPane.ERROR_MESSAGE);
+	
+            }
+        }
     }//GEN-LAST:event_deleteDeleteButtonActionPerformed
 
     private void idViewTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idViewTextFieldActionPerformed
