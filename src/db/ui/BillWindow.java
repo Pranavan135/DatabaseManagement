@@ -517,8 +517,6 @@ public class BillWindow extends javax.swing.JFrame {
         String numberOfIndividuals = numberOfIndvidualsTextField.getText();
         String amount = amountTextField.getText();
       
-     
-             
         if (!billValidate.validatReferenceNo(referenceNo)) {
             referenceNoTextField.setText("");
             referenceNo = "";
