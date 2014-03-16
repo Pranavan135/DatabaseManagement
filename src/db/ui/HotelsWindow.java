@@ -434,6 +434,7 @@ public class HotelsWindow extends javax.swing.JFrame {
 
             }
         ));
+        viewTable.setEnabled(false);
         viewScroll.setViewportView(viewTable);
 
         javax.swing.GroupLayout viewHotelsTabLayout = new javax.swing.GroupLayout(viewHotelsTab);
