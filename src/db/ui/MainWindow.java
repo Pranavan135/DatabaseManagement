@@ -16,8 +16,6 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-   
- //   private static final RouteWindow rw = RouteWindow.create();
     /**
      * Creates new form MainWindow
      */
