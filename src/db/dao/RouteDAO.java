@@ -4,6 +4,9 @@
  */
 package db.dao;
 
+import db.entity.Driver;
+import db.entity.DriverRoute;
+import db.entity.DriverRouteId;
 import db.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -15,7 +18,9 @@ import org.hibernate.Query;
 import db.entity.Route;
 import db.entity.RouteTown;
 import db.entity.Town;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 //import javax.swing.JOptionPane;
 
 /**
@@ -341,6 +346,93 @@ public class RouteDAO {
        return false;
    }
     
-   
+  public static Driver getDriver(Integer id) {
+        //Driver driver = new Driver();
+      Session session = HibernateUtil.getSessionFactory().openSession();
+         Transaction transaction = null;
     
+        if (session == null) {
+            return null;
+        }
+     
+            try {
+                transaction = session.beginTransaction();
+                String hql = "FROM Driver d WHERE d.id.id ='"+id+"'";
+                Query query = session.createQuery(hql);
+                //query.setParameter("id", id);
+                
+              
+                List resultList = query.list();
+                session.getTransaction().commit();
+              //*  JOptionPane.showMessageDialog(null, resultList.get(), "Success", JOptionPane.ERROR_MESSAGE);
+              
+                Driver driver = (Driver) resultList.get(0);
+                return driver; 
+            
+                
+            
+            } catch (HibernateException hibernateException) {
+                hibernateException.printStackTrace();
+                return null;
+            }
+       
+       // return driver;
+    }
+    
+  public boolean addDriverRoute(DriverRoute driverRoute){
+        
+         Session session = HibernateUtil.getSessionFactory().openSession();
+         Transaction transaction = null;
+         
+         if (session == null) {
+            return false;
+        }
+         try{
+            transaction = session.beginTransaction();
+            session.save(driverRoute);
+           session.flush();
+            transaction.commit();
+            return true;
+          } 
+         catch (HibernateException | HeadlessException ex) {
+             ex.printStackTrace();
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return false;
+    }
+  
+    
+  public List<Integer> getAllDriverID(){
+      
+    Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+            transaction = session.beginTransaction();
+            String HQLQuery = "select d.id.id From Driver d";
+            Query query = session.createQuery(HQLQuery);
+            List<Integer> result = query.list();
+            session.flush();
+            transaction.commit();
+            return result;
+            
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+        
+  }
 }

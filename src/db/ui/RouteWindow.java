@@ -5,10 +5,14 @@
 package db.ui;
 //import db.validate.RouteVallidate;
 import db.dao.RouteDAO;
+import db.entity.Driver;
+import db.entity.DriverRoute;
+import db.entity.DriverRouteId;
 import db.entity.Route;
 import db.entity.RouteTown;
 import db.entity.RouteTownId;
 import db.entity.Tour;
+import db.entity.Town;
 import db.validate.RouteVallidate;
 import java.awt.EventQueue;
 import static java.awt.image.ImageObserver.ERROR;
@@ -33,17 +37,17 @@ public class RouteWindow extends javax.swing.JFrame {
     private RouteDAO routeDAO = RouteDAO.create();
     private static RouteWindow routeWindow = null;
     private String routeID, routeName, days, distance;
-    private List<Integer> routeIDList , townIDList;
+    private List<Integer> routeIDList , townIDList, driverIDList;
     private Vector<String> tableHeaders;
     /**
      * Creates new form RouteWindow
      */
     public RouteWindow() {
         
-         try {
+        /* try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex){
-            }
+            }*/
         initComponents();
         routeNameEditTextField.setEnabled(false);
         routeDaysEditTextField.setEnabled(false);
@@ -254,9 +258,15 @@ public class RouteWindow extends javax.swing.JFrame {
 
         jLabel11.setText("Select Driver ID");
 
-        driverIDAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        driverIDAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { null }));
+        addDriverIDComboBoxData();
 
         driverRouteAddSaveButton.setText("Save");
+        driverRouteAddSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                driverRouteAddSaveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout driverRouteAddJPanelLayout = new javax.swing.GroupLayout(driverRouteAddJPanel);
         driverRouteAddJPanel.setLayout(driverRouteAddJPanelLayout);
@@ -323,13 +333,10 @@ public class RouteWindow extends javax.swing.JFrame {
                             .addComponent(addAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(95, 329, Short.MAX_VALUE))
             .addGroup(AddJPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddJPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(routeTownAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(AddJPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(driverRouteAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(routeTownAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(driverRouteAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         AddJPanelLayout.setVerticalGroup(
@@ -857,7 +864,7 @@ public class RouteWindow extends javax.swing.JFrame {
                 .addGap(0, 27, Short.MAX_VALUE))
         );
 
-        pack();
+        setBounds(0, 0, 864, 765);
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -984,9 +991,12 @@ public class RouteWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please select the town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
            }
            else{
+               RouteTownId r = new RouteTownId(Integer.parseInt(routeIDAssignComboBox.getSelectedItem().toString()),Integer.parseInt(townIDAssignComboBox.getSelectedItem().toString()));
+               Route route = routeDAO.getRoute(routeIDAssignComboBox.getSelectedItem().toString());
+               Town town = routeDAO.getTown(Integer.parseInt(townIDAssignComboBox.getSelectedItem().toString()));
                
-            //   JOptionPane.showMessageDialog(this, new RouteTown(Integer.valueOf(routeIDAssignComboBox.getSelectedItem().toString()),Integer.valueOf((String)townIDAssignComboBox.getSelectedItem().toString())).getRouteId(), "Success", WIDTH);
-               boolean response =  routeDAO.addRouteTown(new RouteTown(Integer.valueOf(routeIDAssignComboBox.getSelectedItem().toString()),Integer.valueOf((String)townIDAssignComboBox.getSelectedItem().toString())));
+            //OptionPane.showMessageDialog(this, new RouteTown(Integer.valueOf(routeIDAssignComboBox.getSelectedItem().toString()),Integer.valueOf((String)townIDAssignComboBox.getSelectedItem().toString())).getRouteId(), "Success", WIDTH);
+               boolean response =  routeDAO.addRouteTown(new RouteTown(r, route,town));
                if (response)
                 JOptionPane.showMessageDialog(this, "Route_Town Detail is Successfully Added into Database", "Success", WIDTH);
                else
@@ -1004,7 +1014,7 @@ public class RouteWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please select the town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
            }
            else{
-                routeDAO.addRouteTown(new RouteTown((Integer)(routeIDAssignComboBox.getSelectedItem()),(Integer)townIDAssignComboBox.getSelectedItem()));
+//                routeDAO.addRouteTown(new RouteTown(routeID));
                 JOptionPane.showMessageDialog(this, "Town of a particular route is sucessfully updated in Database", "Success", WIDTH);
            }
        
@@ -1058,6 +1068,29 @@ public class RouteWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_routeIDDriverAssignComboBoxActionPerformed
 
+    private void driverRouteAddSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverRouteAddSaveButtonActionPerformed
+        if(routeIDDriverAssignComboBox.getSelectedIndex() == -1){
+             JOptionPane.showMessageDialog(null, "Please select the route ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+           else  if(driverIDAssignComboBox.getSelectedIndex() == -1){
+                JOptionPane.showMessageDialog(null, "Please select the driver ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+           }
+           else{
+               DriverRouteId r = new DriverRouteId(Integer.parseInt(routeIDDriverAssignComboBox.getSelectedItem().toString()), Integer.parseInt(driverIDAssignComboBox.getSelectedItem().toString()));
+               Route route = routeDAO.getRoute(routeIDDriverAssignComboBox.getSelectedItem().toString());
+                Driver driver = routeDAO.getDriver(Integer.parseInt(driverIDAssignComboBox.getSelectedItem().toString()));
+               
+               
+            JOptionPane.showMessageDialog(null,driver.getId().getName(), "Success", JOptionPane.ERROR_MESSAGE);
+               boolean response =  routeDAO.addDriverRoute(new DriverRoute(r, route, driver));
+               if (response)
+                JOptionPane.showMessageDialog(this, "Route_Town Detail is Successfully Added into Database", "Success", WIDTH);
+               else
+                   JOptionPane.showMessageDialog(null, "Database Error!!", "ERROR", JOptionPane.ERROR_MESSAGE);
+           }
+
+    }//GEN-LAST:event_driverRouteAddSaveButtonActionPerformed
+
     
     private void addRouteData(){
       if ( routeValidate.IDValidation(routeID)  && routeValidate.nameValidation(routeName) 
@@ -1098,6 +1131,17 @@ public class RouteWindow extends javax.swing.JFrame {
        }
    }
    
+    public void addDriverIDComboBoxData(){
+         driverIDList = routeDAO.getAllDriverID();
+       DefaultComboBoxModel dcb = new DefaultComboBoxModel();
+     
+        if (driverIDList != null)     {
+        for(int i =0 ; i < driverIDList.size();i++){
+                dcb.addElement(driverIDList.get(i));
+            }     
+            driverIDAssignComboBox.setModel(dcb);
+       }
+   }
     
      private void displayAllRoute(String referenceNo) {
         
