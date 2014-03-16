@@ -75,6 +75,8 @@ public class CoachWindow extends javax.swing.JFrame {
         regNoDeleteTextField = new javax.swing.JTextField();
         deleteGoButton = new javax.swing.JButton();
         deleteExitButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         viewPanel = new javax.swing.JPanel();
         regNoViewLabel = new javax.swing.JLabel();
         regNoViewTextField = new javax.swing.JTextField();
@@ -159,7 +161,7 @@ public class CoachWindow extends javax.swing.JFrame {
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(coachLastServiceMileageAddLabel)
                     .addComponent(coachLastServiceMileageAddTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearAddButton)
                     .addComponent(saveAddButton)
@@ -224,7 +226,7 @@ public class CoachWindow extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(editSaveButton))
                             .addComponent(editRegNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                         .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(editGoButton)
                             .addComponent(editExitButton))
@@ -261,7 +263,7 @@ public class CoachWindow extends javax.swing.JFrame {
                 .addGroup(editPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editExitButton)
                     .addComponent(editSaveButton))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         coachTabbedPane.addTab("Edit", editPanel);
@@ -272,20 +274,43 @@ public class CoachWindow extends javax.swing.JFrame {
 
         deleteExitButton.setText("Exit");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Reg No", "Capacity", "Last Service date", "Last Service Mileage"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+
         javax.swing.GroupLayout deletePanelLayout = new javax.swing.GroupLayout(deletePanel);
         deletePanel.setLayout(deletePanelLayout);
         deletePanelLayout.setHorizontalGroup(
             deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deletePanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(regNoDeleteLabel)
-                .addGap(58, 58, 58)
-                .addComponent(regNoDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(deleteExitButton)
-                    .addComponent(deleteGoButton))
-                .addContainerGap(142, Short.MAX_VALUE))
+                    .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(deletePanelLayout.createSequentialGroup()
+                            .addGap(27, 27, 27)
+                            .addComponent(regNoDeleteLabel)
+                            .addGap(58, 58, 58)
+                            .addComponent(regNoDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteGoButton))
+                        .addGroup(deletePanelLayout.createSequentialGroup()
+                            .addGap(43, 43, 43)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         deletePanelLayout.setVerticalGroup(
             deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,9 +320,11 @@ public class CoachWindow extends javax.swing.JFrame {
                     .addComponent(regNoDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regNoDeleteLabel)
                     .addComponent(deleteGoButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(deleteExitButton)
-                .addGap(78, 78, 78))
+                .addGap(32, 32, 32))
         );
 
         coachTabbedPane.addTab("Delete", deletePanel);
@@ -347,7 +374,7 @@ public class CoachWindow extends javax.swing.JFrame {
                         .addGroup(viewPanelLayout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         viewPanelLayout.setVerticalGroup(
             viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,7 +388,7 @@ public class CoachWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(exitViewButton)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         coachTabbedPane.addTab("View", viewPanel);
@@ -532,6 +559,8 @@ public class CoachWindow extends javax.swing.JFrame {
     private javax.swing.JButton goViewButton;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lastSerDateEditLabel;
     private javax.swing.JTextField lastServiceMileageEditTextField;
     private javax.swing.JLabel lastServiceMileageLabel;

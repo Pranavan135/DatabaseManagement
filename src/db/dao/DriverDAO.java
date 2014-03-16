@@ -9,7 +9,6 @@ import db.entity.Driver;
 import db.entity.DriverId;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
@@ -104,6 +103,12 @@ public class DriverDAO {
         }
     }
 
+    /**
+     *
+     * @param name
+     * @param id
+     * @return
+     */
     public static List viewDrivers(String name, Integer id) {
         String hql = "from Driver d where d.id.name like '" + name + "%' and d.id.id like '" + id + "%'";
 
