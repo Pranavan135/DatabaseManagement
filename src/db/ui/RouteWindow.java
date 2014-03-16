@@ -1083,7 +1083,7 @@ public class RouteWindow extends javax.swing.JFrame {
        }
    }
    
-      protected Vector<Integer> addTownIDComboBoxData(){
+      public Vector<Integer> addTownIDComboBoxData(){
          townIDList = routeDAO.getAllTownID();
          return new Vector<Integer>(townIDList);    
       }
