@@ -12,6 +12,8 @@ import db.entity.Town;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
 import java.util.List;
+import java.util.logging.Level;
+import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -52,14 +54,16 @@ public class HotelDAO {
                 transaction.rollback();
             }
             he.printStackTrace();
+             return null;
         }
         finally {
             session.close();
         }
-        return null;
+       
     }
      
       public List getAllTowns() {
+           
         Session session = HibernateUtil.getSessionFactory().openSession();
         if (session == null) {
             return null;
@@ -97,6 +101,9 @@ public class HotelDAO {
                 transaction.rollback();
             }
             he.printStackTrace();
+        }
+        finally {
+          //  session.close();
         }
         return null;
     }
@@ -142,6 +149,8 @@ public class HotelDAO {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
             }
+             JOptionPane.showMessageDialog(null, ex,"ERROR", JOptionPane.ERROR_MESSAGE);
+            
         } finally {
             session.close();
         }
@@ -163,8 +172,8 @@ public class HotelDAO {
             ex.printStackTrace();
             return false;
         } finally {
-            session.flush();
-            session.close();
+          session.flush();
+           session.close();
         }
     }
       
@@ -187,6 +196,47 @@ public class HotelDAO {
             }
             he.printStackTrace();
         }
+        finally {
+            //session.close();
+        }
         return null;
+    }
+      
+       public List searchOnHotelId(String hotelID) {
+            List list = executeHQLQuery("from Hotel h where h.id like '" + hotelID + "%'");
+            return list;
+       }
+
+       public List searchHotelName(String hotelName) {
+            List list = executeHQLQuery("from Hotel h where h.name like '" + hotelName + "%'");
+            return list;
+        }
+       
+       public List searchTownName(String townName) {
+            List list = executeHQLQuery("from Hotel h where h.town.name like '" + townName + "%'");
+            return list;
+        }
+
+        private List executeHQLQuery(String hql) {
+            Session session = null;
+            Transaction transaction = null;
+            try {
+                session = HibernateUtil.getSessionFactory().openSession();
+                transaction = session.beginTransaction();
+                Query q = session.createQuery(hql);
+                java.util.List resultList = q.list();
+                session.getTransaction().commit();
+                return resultList;
+                
+            } catch (HibernateException he) {
+                 if (transaction != null && transaction.wasCommitted()) {
+                    transaction.rollback();
+                }
+                he.printStackTrace();
+                return null;
+            }
+            finally{
+              //  session.close();
+            }
     }
 }

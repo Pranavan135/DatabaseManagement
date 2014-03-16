@@ -711,7 +711,7 @@ public class DriverWindow extends javax.swing.JFrame {
                  if(result1)
                        JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
                    else
-                       JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERRO", JOptionPane.ERROR_MESSAGE);
+                       JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
 	
             }
         }

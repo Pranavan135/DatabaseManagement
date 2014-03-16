@@ -7,6 +7,7 @@
 package db.ui;
 
 import db.dao.BillDAO;
+import java.util.logging.Level;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -224,7 +225,7 @@ public class MainWindow extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+       
         try {
             UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackMoonLookAndFeel");
         } catch (ClassNotFoundException classNotFoundException) {
@@ -232,7 +233,8 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (IllegalAccessException illegalAccessException) {
         } catch (UnsupportedLookAndFeelException unsupportedLookAndFeelException) {
         }
-
+        //java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+        //java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
