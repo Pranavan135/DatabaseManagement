@@ -87,6 +87,7 @@ public class CoachValidate {
         }
         if (date.after(new Date())) {
             JOptionPane.showMessageDialog(null, "The given date must be a past date!!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
         return true;
     }
