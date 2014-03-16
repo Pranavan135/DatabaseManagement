@@ -16,7 +16,7 @@ import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.DefaultListModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -192,6 +192,7 @@ public class RouteWindow extends javax.swing.JFrame {
         jLabel6.setText("Select Town ID ");
 
         townIDAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { null }));
+        addTownIDComboBoxData();
         townIDAssignComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 townIDAssignComboBoxActionPerformed(evt);
@@ -244,6 +245,7 @@ public class RouteWindow extends javax.swing.JFrame {
         jLabel10.setText("Select Route ID");
 
         routeIDDriverAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { null }));
+        addRouteIDComboBoxData();
         routeIDDriverAssignComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 routeIDDriverAssignComboBoxActionPerformed(evt);
@@ -1048,13 +1050,13 @@ public class RouteWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void routeIDDriverAssignComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeIDDriverAssignComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_routeIDDriverAssignComboBoxActionPerformed
-
     private void routeIDAssignComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeIDAssignComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_routeIDAssignComboBoxActionPerformed
+
+    private void routeIDDriverAssignComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeIDDriverAssignComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_routeIDDriverAssignComboBoxActionPerformed
 
     
     private void addRouteData(){
@@ -1073,21 +1075,29 @@ public class RouteWindow extends javax.swing.JFrame {
     
    public void addRouteIDComboBoxData(){
          routeIDList = routeDAO.getAllRouteID();
-       javax.swing.DefaultComboBoxModel d = new javax.swing.DefaultComboBoxModel();
+       DefaultComboBoxModel dcb = new DefaultComboBoxModel();
      
         if (routeIDList != null)     {
         for(int i =0 ; i < routeIDList.size();i++){
-                d.addElement(routeIDList.get(i));
+                dcb.addElement(routeIDList.get(i));
             }     
-            routeIDAssignComboBox.setModel(d);
+            routeIDAssignComboBox.setModel(dcb);
+            routeIDDriverAssignComboBox.setModel(dcb);
        }
    }
    
-      public Vector<Integer> addTownIDComboBoxData(){
+    public void addTownIDComboBoxData(){
          townIDList = routeDAO.getAllTownID();
-         return new Vector<Integer>(townIDList);    
-      }
-       
+       DefaultComboBoxModel dcb = new DefaultComboBoxModel();
+     
+        if (townIDList != null)     {
+        for(int i =0 ; i < townIDList.size();i++){
+                dcb.addElement(townIDList.get(i));
+            }     
+            townIDAssignComboBox.setModel(dcb);
+       }
+   }
+   
     
      private void displayAllRoute(String referenceNo) {
         
