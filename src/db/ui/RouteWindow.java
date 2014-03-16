@@ -8,6 +8,7 @@ import db.dao.RouteDAO;
 import db.entity.Route;
 import db.entity.RouteTown;
 import db.entity.RouteTownId;
+import db.entity.Tour;
 import db.validate.RouteVallidate;
 import java.awt.EventQueue;
 import static java.awt.image.ImageObserver.ERROR;
@@ -15,6 +16,7 @@ import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -179,14 +181,17 @@ public class RouteWindow extends javax.swing.JFrame {
 
         jLabel5.setText("Select Route ID");
 
-        routeIDAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel<Integer>(addRouteIDComboBoxData())
-        );
+        routeIDAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { null }));
+        addRouteIDComboBoxData();
+        routeIDAssignComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                routeIDAssignComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Select Town ID ");
 
-        townIDAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel<Integer>
-            (addTownIDComboBoxData())
-        );
+        townIDAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { null }));
         townIDAssignComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 townIDAssignComboBoxActionPerformed(evt);
@@ -238,8 +243,7 @@ public class RouteWindow extends javax.swing.JFrame {
 
         jLabel10.setText("Select Route ID");
 
-        routeIDDriverAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel<Integer>(addRouteIDComboBoxData())
-        );
+        routeIDDriverAssignComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { null }));
         routeIDDriverAssignComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 routeIDDriverAssignComboBoxActionPerformed(evt);
@@ -293,10 +297,6 @@ public class RouteWindow extends javax.swing.JFrame {
         AddJPanelLayout.setHorizontalGroup(
             AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(routeTownAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(AddJPanelLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,8 +321,13 @@ public class RouteWindow extends javax.swing.JFrame {
                             .addComponent(addAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(95, 329, Short.MAX_VALUE))
             .addGroup(AddJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(driverRouteAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddJPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(routeTownAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(AddJPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(driverRouteAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         AddJPanelLayout.setVerticalGroup(
@@ -1047,6 +1052,10 @@ public class RouteWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_routeIDDriverAssignComboBoxActionPerformed
 
+    private void routeIDAssignComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeIDAssignComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_routeIDAssignComboBoxActionPerformed
+
     
     private void addRouteData(){
       if ( routeValidate.IDValidation(routeID)  && routeValidate.nameValidation(routeName) 
@@ -1062,16 +1071,23 @@ public class RouteWindow extends javax.swing.JFrame {
        }
     }
     
-   protected Vector<Integer> addRouteIDComboBoxData(){
+   public void addRouteIDComboBoxData(){
          routeIDList = routeDAO.getAllRouteID();
-         return new Vector<Integer>(routeIDList);
+       javax.swing.DefaultComboBoxModel d = new javax.swing.DefaultComboBoxModel();
+     
+        if (routeIDList != null)     {
+        for(int i =0 ; i < routeIDList.size();i++){
+                d.addElement(routeIDList.get(i));
+            }     
+            routeIDAssignComboBox.setModel(d);
+       }
+   }
    
-            }
       protected Vector<Integer> addTownIDComboBoxData(){
          townIDList = routeDAO.getAllTownID();
          return new Vector<Integer>(townIDList);    
       }
-                    
+       
     
      private void displayAllRoute(String referenceNo) {
         
