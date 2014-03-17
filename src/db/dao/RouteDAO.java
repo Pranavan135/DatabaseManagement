@@ -192,7 +192,7 @@ public class RouteDAO {
         return null;
     }
     
-    /*public List<Route> getAllRoute(){
+   /* public List<Route> getAllRoute(){
          Session session = HibernateUtil.getSessionFactory().openSession();
          Transaction transaction = null;
     
@@ -331,6 +331,58 @@ public class RouteDAO {
             session.close();
         }
         return null;
+    }
+     
+    public List getAllTowns() {
+           
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Town t";
+            Query query = session.createQuery(HQLQuery);
+            List towns = query.list();
+            return towns;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+   
+     
+    public boolean isUniqueRouteTown(String routeID, String townID){
+      
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
+        if (session == null) {
+            return false;
+        }
+        
+        try {
+            String HQLQuery = "From RouteTown rt where rt.id.routeId = :r_id and rt.id.townId = :t_id";
+           
+            Query query = session.createQuery(HQLQuery);
+            query.setParameter("r_id",new Integer(routeID) );
+            query.setParameter("t_id",new Integer( townID));
+            Object routeTown = query.uniqueResult();
+            if ( routeTown != null ) {
+                 return false;
+            }
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return true;
     }
     
     public boolean isUnique(String id){
