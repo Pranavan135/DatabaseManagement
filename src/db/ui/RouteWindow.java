@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package db.ui;
-//import db.validate.RouteVallidate;
+
 import db.dao.RouteDAO;
 import db.entity.Driver;
 import db.entity.DriverRoute;
@@ -11,22 +11,16 @@ import db.entity.DriverRouteId;
 import db.entity.Route;
 import db.entity.RouteTown;
 import db.entity.RouteTownId;
-import db.entity.Tour;
 import db.entity.Town;
 import db.validate.RouteVallidate;
-import java.awt.EventQueue;
-import static java.awt.image.ImageObserver.ERROR;
 import static java.awt.image.ImageObserver.WIDTH;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
-//import org.hibernate.type.YesNoType;
+
 /**
  *
  * @author userr
