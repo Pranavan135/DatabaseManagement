@@ -1,5 +1,5 @@
 package db.entity;
-// Generated Mar 15, 2014 11:52:23 AM by Hibernate Tools 3.6.0
+// Generated Mar 12, 2014 5:01:43 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
@@ -96,10 +96,24 @@ public class Tour  implements java.io.Serializable {
     public void setPassengers(Set passengers) {
         this.passengers = passengers;
     }
+    
+    @Override
+    public String toString() {
+        return "" + tourCode;
+    }
 
-
-
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tour other = (Tour) obj;
+        if (this.tourCode != other.tourCode) {
+            return false;
+        }
+        return true;
+    }
 }
-
-

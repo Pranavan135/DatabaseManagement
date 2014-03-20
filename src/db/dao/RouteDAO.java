@@ -192,7 +192,7 @@ public class RouteDAO {
         return null;
     }
     
-    /*public List<Route> getAllRoute(){
+   /* public List<Route> getAllRoute(){
          Session session = HibernateUtil.getSessionFactory().openSession();
          Transaction transaction = null;
     
@@ -219,10 +219,16 @@ public class RouteDAO {
         return null;
     }*/
     
-     public List searchOnReferenceNo(String referenceNo) {
+     public List searchOnRouteID(String referenceNo) {
           List list = getAllRoute(QUERY_BASED_ON_REFERENCE_NO + referenceNo + "%'");
         return list;
     }
+     
+     public List searchOnRouteName(String routeName) {
+            List list = getAllRoute("from Route r where r.name like '" + routeName + "%'");
+            return list;
+        }
+       
     
     private List getAllRoute(String hql) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -314,12 +320,14 @@ public class RouteDAO {
         }
         
         try {
+            transaction = session.beginTransaction();
             String HQLQuery = "FROM Town t WHERE t.id = :idValue";
 
             Query query = session.createQuery(HQLQuery);
             query.setParameter("idValue", id);
             Object town = query.uniqueResult();
-
+             session.flush();
+             transaction.commit();
             if (town != null && town instanceof Town) {
                 return (Town) town;
             }
@@ -331,6 +339,93 @@ public class RouteDAO {
             session.close();
         }
         return null;
+    }
+     
+    public List getRouteTown(String routeID){
+      
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+          transaction = session.beginTransaction();
+            String HQLQuery = "From RouteTown rt where rt.id.routeId like '" + routeID + "%'";
+            Query query = session.createQuery(HQLQuery);
+            
+            List routeTown = query.list();       
+            session.flush();
+            transaction.commit();
+            
+            if ( routeTown != null ) {
+               // JOptionPane.showMessageDialog(null, "Database Error!!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                 return routeTown;
+            }
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    } 
+     
+    public List getAllTowns() {
+           
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Town t";
+            Query query = session.createQuery(HQLQuery);
+            List towns = query.list();
+            return towns;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+   
+     
+    public boolean isUniqueRouteTown(String routeID, String townID){
+      
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
+        if (session == null) {
+            return false;
+        }
+        
+        try {
+            transaction = session.beginTransaction();
+            String HQLQuery = "From RouteTown rt where rt.id.routeId = :r_id and rt.id.townId = :t_id";
+           
+            Query query = session.createQuery(HQLQuery);
+            query.setParameter("r_id",new Integer(routeID) );
+            query.setParameter("t_id",new Integer( townID));
+            Object routeTown = query.uniqueResult();
+            session.flush();
+            transaction.commit();
+            if ( routeTown != null ) {
+                 return false;
+            }
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return true;
     }
     
     public boolean isUnique(String id){

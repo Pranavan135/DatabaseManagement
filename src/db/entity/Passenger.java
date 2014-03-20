@@ -1,5 +1,5 @@
 package db.entity;
-// Generated Mar 15, 2014 11:52:23 AM by Hibernate Tools 3.6.0
+// Generated Mar 12, 2014 5:01:43 PM by Hibernate Tools 3.6.0
 
 
 
@@ -48,10 +48,11 @@ public class Passenger  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-
-
-
+    
+    @Override
+    public String toString() {
+        return "" + id;
+    }
 }
 
 
