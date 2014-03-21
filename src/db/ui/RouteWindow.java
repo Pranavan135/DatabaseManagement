@@ -474,10 +474,9 @@ public class RouteWindow extends javax.swing.JFrame {
                                 .addComponent(clearEditButton)))
                         .addGap(37, 37, 37)
                         .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(routeDistanceEditTextField)
-                                .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(routeDistanceEditTextField)))
                     .addGroup(EditJPanelLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(showEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -855,6 +854,9 @@ public class RouteWindow extends javax.swing.JFrame {
 
     private void showEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEditButtonActionPerformed
         
+        if(routeIDEditTextField.getText().equals(""))
+             JOptionPane.showMessageDialog(null, "Please Enter the Route ID!!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+        else{     
         routeIDEditTextField.setEditable(false);
         routeNameEditTextField.setEnabled(true);
         routeDaysEditTextField.setEnabled(true);
@@ -871,7 +873,7 @@ public class RouteWindow extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Id does not exist!!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        
+        }
     }//GEN-LAST:event_showEditButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
@@ -971,6 +973,8 @@ public class RouteWindow extends javax.swing.JFrame {
         routeNameEditTextField.setText("");
         routeDaysEditTextField.setText("");
         routeDistanceEditTextField.setText("");
+        routeIDEditTextField.setEnabled(true);
+        routeIDEditTextField.setEditable(true);
         routeIDEditTextField.requestFocus();
     }//GEN-LAST:event_clearEditButtonActionPerformed
 
