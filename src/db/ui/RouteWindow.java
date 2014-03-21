@@ -43,8 +43,6 @@ public class RouteWindow extends javax.swing.JFrame {
         routeNameEditTextField.setEnabled(false);
         routeDaysEditTextField.setEnabled(false);
         routeDistanceEditTextField.setEnabled(false);
-        
-          
     }
 
    public static RouteWindow create(){
@@ -557,19 +555,20 @@ public class RouteWindow extends javax.swing.JFrame {
                         .addComponent(showRouteRadioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(121, 121, 121))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(showRouteTownRadioBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(showDriverRouteRadioBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(showDriverRouteRadioBtn)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(showRouteTownRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(showRouteRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(showRouteTownRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
+                .addComponent(showRouteTownRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showDriverRouteRadioBtn)
                 .addContainerGap(10, Short.MAX_VALUE))
         );
@@ -680,11 +679,11 @@ public class RouteWindow extends javax.swing.JFrame {
 
         showDriverRouteViewButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
         showDriverRouteViewButton.setText("Driver of Route");
-        showDriverRouteViewButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        showDriverRouteViewButton.setBorder(null);
 
         showRouteTownButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
         showRouteTownButton.setText("Towns of Route");
-        showRouteTownButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        showRouteTownButton.setBorder(null);
         showRouteTownButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showRouteTownButtonActionPerformed(evt);
@@ -693,7 +692,7 @@ public class RouteWindow extends javax.swing.JFrame {
 
         showRouteVIewButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
         showRouteVIewButton.setText("Route");
-        showRouteVIewButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        showRouteVIewButton.setBorder(null);
         showRouteVIewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showRouteVIewButtonActionPerformed(evt);
@@ -718,7 +717,7 @@ public class RouteWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(showRouteVIewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(showRouteTownButton)
+                .addComponent(showRouteTownButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(showDriverRouteViewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -770,8 +769,8 @@ public class RouteWindow extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8))
         );
@@ -811,7 +810,6 @@ public class RouteWindow extends javax.swing.JFrame {
         routeName = routeNameTextField.getText().trim();
         days = routeDaysTextField.getText().trim();
         distance = routeDistanceTextField.getText().trim();
-
         addRouteData();
     }//GEN-LAST:event_addAddButtonActionPerformed
 
@@ -929,8 +927,7 @@ public class RouteWindow extends javax.swing.JFrame {
                 routeDaysEditTextField.setText(Integer.toString(myroute.getDays()));
                 routeDistanceEditTextField.setText(Integer.toString(myroute.getDistance()));
        }
-        
-        else
+       else
         {
             JOptionPane.showMessageDialog(this, "Id does not exist!!", "ERROR", JOptionPane.ERROR_MESSAGE);  
             routeIDEditTextField.setText("");
@@ -939,7 +936,7 @@ public class RouteWindow extends javax.swing.JFrame {
             routeDaysEditTextField.setEnabled(false);
             routeDistanceEditTextField.setEnabled(false);
         
-        }
+            }
         }  
     }//GEN-LAST:event_showEditButtonActionPerformed
 
@@ -1113,7 +1110,6 @@ public class RouteWindow extends javax.swing.JFrame {
                else
                    JOptionPane.showMessageDialog(null, "Database Error!!", "ERROR", JOptionPane.ERROR_MESSAGE);
            }
-
     }//GEN-LAST:event_driverRouteAddSaveButtonActionPerformed
 
     private void addTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTownTableMouseClicked
@@ -1275,10 +1271,7 @@ public class RouteWindow extends javax.swing.JFrame {
             }
    
             addTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-            }  
-    
-     
-     
+            }     
 }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
