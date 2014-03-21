@@ -179,7 +179,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             Object[] row = new Object[]{passenger.get(i).getId(),
                 passenger.get(i).getName(),
                 passenger.get(i).getTour().getTourCode(),
-                passenger.get(i).getTour().getRoute().getId(),
+                passenger.get(i).getTour().getRoute().getName(),
                 passenger.get(i).getTour().getDriver().getId().getId(),
                 passenger.get(i).getTour().getDriver().getTpNo(),
                 passenger.get(i).getTour().getCoach().getRegNo()
@@ -212,7 +212,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         Object[] row = new Object[]{passenger.getId(),
             passenger.getName(),
             passenger.getTour().getTourCode(),
-            passenger.getTour().getRoute().getId(),
+            passenger.getTour().getRoute().getName(),
             passenger.getTour().getDriver().getId().getId(),
             passenger.getTour().getDriver().getTpNo(),
             passenger.getTour().getCoach().getRegNo()
@@ -245,7 +245,7 @@ public class PassengerWindow extends javax.swing.JFrame {
             Object[] row = new Object[]{passenger.get(i).getId(),
                 passenger.get(i).getName(),
                 passenger.get(i).getTour().getTourCode(),
-                passenger.get(i).getTour().getRoute().getId(),
+                passenger.get(i).getTour().getRoute().getName(),
                 passenger.get(i).getTour().getDriver().getId().getId(),
                 passenger.get(i).getTour().getDriver().getTpNo(),
                 passenger.get(i).getTour().getCoach().getRegNo()
@@ -277,7 +277,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         Object[] row = new Object[]{passenger.getId(),
             passenger.getName(),
             passenger.getTour().getTourCode(),
-            passenger.getTour().getRoute().getId(),
+            passenger.getTour().getRoute().getName(),
             passenger.getTour().getDriver().getId().getId(),
             passenger.getTour().getDriver().getTpNo(),
             passenger.getTour().getCoach().getRegNo()
