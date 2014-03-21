@@ -29,14 +29,15 @@ public class RouteVallidate {
     
     public boolean IDValidation(String id){
         
-        try{
-            int r_id =  Integer.parseInt(id);
-            int length = id.length();
-             if (length == 0){
+        int length = id.length();
+         if (id.isEmpty()){
             JOptionPane.showMessageDialog(null, "Please enter the route ID", "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
-             }
-             else if ( length > 11 || length !=5 ){
+         }
+        else{
+            try{
+            int r_id =  Integer.parseInt(id);
+             if ( length > 11 || length !=5 ){
                  JOptionPane.showMessageDialog(null, "Route ID must be 5 charachters", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return false;
              }
@@ -46,12 +47,15 @@ public class RouteVallidate {
                }
              else 
                  return true;             
+            }
+            catch(NumberFormatException nf){
+                JOptionPane.showMessageDialog(null, "ID should only contain digits", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return false;
         }
-        catch(NumberFormatException nf){
-            JOptionPane.showMessageDialog(null, "ID should only contain digits", "ERROR", JOptionPane.ERROR_MESSAGE);
-                return false;
+    
         }
-    }
+    }      
+         
 
     
     public boolean isUnique(String id){

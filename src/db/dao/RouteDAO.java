@@ -114,7 +114,7 @@ public class RouteDAO {
        
     }
     
-    public boolean deleteRouteTown(RouteTownId route_town){
+    public boolean deleteRouteTown(RouteTown route_town){
         
             Session session = HibernateUtil.getSessionFactory().openSession();
             Transaction transaction = null;
@@ -192,33 +192,7 @@ public class RouteDAO {
         return null;
     }
     
-   /* public List<Route> getAllRoute(){
-         Session session = HibernateUtil.getSessionFactory().openSession();
-         Transaction transaction = null;
-    
-        if (session == null) {
-            return null;
-        }
-        
-        try {
-            transaction = session.beginTransaction();
-            String HQLQuery = "From Route r";
-            Query query = session.createQuery(HQLQuery);
-            List<Route> result = query.list();
-            session.flush();
-            transaction.commit();
-            return result;
-            
-        } catch (HibernateException | HeadlessException ex) {
-            if (transaction != null && transaction.wasCommitted()) {
-                transaction.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        return null;
-    }*/
-    
+   
      public List searchOnRouteID(String referenceNo) {
           List list = getAllRoute(QUERY_BASED_ON_REFERENCE_NO + referenceNo + "%'");
         return list;
@@ -341,7 +315,7 @@ public class RouteDAO {
         return null;
     }
      
-    public List getRouteTown(String routeID){
+   public List getRouteTown(String routeID){
       
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -366,6 +340,42 @@ public class RouteDAO {
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    } 
+     
+    public RouteTown getRouteTown1(String routeID, String townID){
+      
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+          transaction = session.beginTransaction();
+            String HQLQuery = "From RouteTown rt where rt.id.routeId = :r_id and rt.id.townId = :t_id";
+            Query query = session.createQuery(HQLQuery);
+            query.setParameter("t_id",new Integer(townID));
+            query.setParameter("r_id", new Integer(routeID));
+             RouteTown routeTown = (RouteTown)query.uniqueResult();
+           
+            session.flush();
+            transaction.commit();
+              JOptionPane.showMessageDialog(null, "hi", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                 return routeTown;
+        
+        }
+        
+        catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+                ex.printStackTrace();
             }
         } finally {
             session.close();
