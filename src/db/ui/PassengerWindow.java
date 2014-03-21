@@ -69,11 +69,11 @@ public class PassengerWindow extends javax.swing.JFrame {
          java.util.logging.Logger.getLogger(PassengerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          }
 
-        try {
-            UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel");
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException classNotFoundException) {
-        }
-*/
+         try {
+         UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel");
+         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException classNotFoundException) {
+         }
+         */
         //</editor-fold>
 
         /* Create and display the form */
@@ -94,7 +94,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                 + "You can enter charactors from [A-Z], [a-z], and '.' only\n";
         idExistWarningMessage = "Entered ID already exists\nPlease enter new ID";
 
-        columnHeaders = new String[]{"ID", "Name", "Tour"};
+        columnHeaders = new String[]{"ID", "Name", "Tour Code", "Route", "Driver ID", "Driver T.P.no", "Coach Reg.no"};
 
         passengerTableModel = new DefaultTableModel(null, columnHeaders);
         gridColour1 = new Color(104, 136, 170);
@@ -176,7 +176,12 @@ public class PassengerWindow extends javax.swing.JFrame {
 
             Object[] row = new Object[]{passenger.get(i).getId(),
                 passenger.get(i).getName(),
-                passenger.get(i).getTour().getTourCode()};
+                passenger.get(i).getTour().getTourCode(),
+                passenger.get(i).getTour().getRoute().getId(),
+                passenger.get(i).getTour().getDriver().getId().getId(),
+                passenger.get(i).getTour().getDriver().getTpNo(),
+                passenger.get(i).getTour().getCoach().getRegNo()
+            };
             data.add(row);
 
         }
@@ -204,7 +209,12 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         Object[] row = new Object[]{passenger.getId(),
             passenger.getName(),
-            passenger.getTour().getTourCode()};
+            passenger.getTour().getTourCode(),
+            passenger.getTour().getRoute().getId(),
+            passenger.getTour().getDriver().getId().getId(),
+            passenger.getTour().getDriver().getTpNo(),
+            passenger.getTour().getCoach().getRegNo()
+        };
         data.add(row);
 
         Object[][] passengerData = data.toArray(new Object[data.size()][]);
@@ -232,7 +242,12 @@ public class PassengerWindow extends javax.swing.JFrame {
 
             Object[] row = new Object[]{passenger.get(i).getId(),
                 passenger.get(i).getName(),
-                passenger.get(i).getTour().getTourCode()};
+                passenger.get(i).getTour().getTourCode(),
+                passenger.get(i).getTour().getRoute().getId(),
+                passenger.get(i).getTour().getDriver().getId().getId(),
+                passenger.get(i).getTour().getDriver().getTpNo(),
+                passenger.get(i).getTour().getCoach().getRegNo()
+            };
             data.add(row);
         }
 
@@ -259,7 +274,12 @@ public class PassengerWindow extends javax.swing.JFrame {
 
         Object[] row = new Object[]{passenger.getId(),
             passenger.getName(),
-            passenger.getTour().getTourCode()};
+            passenger.getTour().getTourCode(),
+            passenger.getTour().getRoute().getId(),
+            passenger.getTour().getDriver().getId().getId(),
+            passenger.getTour().getDriver().getTpNo(),
+            passenger.getTour().getCoach().getRegNo()
+        };
         data.add(row);
 
         Object[][] passengerData = data.toArray(new Object[data.size()][]);
@@ -1172,13 +1192,13 @@ public class PassengerWindow extends javax.swing.JFrame {
 
     private void tabPanePassengerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPanePassengerMouseClicked
         // TODO add your handling code here:
-        if(tabPassengerAdd.isShowing()){
+        if (tabPassengerAdd.isShowing()) {
             txtAddID.requestFocus();
-        } else if(tabPassengerEdit.isShowing() && txtEditID.isEnabled()){
+        } else if (tabPassengerEdit.isShowing() && txtEditID.isEnabled()) {
             txtEditID.requestFocus();
-        } else if(tabPassengerDelete.isShowing()){
+        } else if (tabPassengerDelete.isShowing()) {
             txtDelKeyword.requestFocus();
-        } else if(tabPassengerView.isShowing()){
+        } else if (tabPassengerView.isShowing()) {
             txtViewKeyword.requestFocus();
         }
     }//GEN-LAST:event_tabPanePassengerMouseClicked

@@ -11,11 +11,11 @@
         <many-to-one name="route" class="db.entity.Route" lazy='false' fetch="select">
             <column name="route_id" />
         </many-to-one>
-        <many-to-one name="driver" class="db.entity.Driver" fetch="select">
+        <many-to-one name="driver" class="db.entity.Driver" lazy='false' fetch="select">
             <column name="driver_id" />
             <column name="driver_name" length="30" not-null="true" />
         </many-to-one>
-        <many-to-one name="coach" class="db.entity.Coach" fetch="select">
+        <many-to-one name="coach" class="db.entity.Coach" lazy='false' fetch="select">
             <column name="coach_id" />
         </many-to-one>
         <property name="startDate" type="date">
