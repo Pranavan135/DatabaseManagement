@@ -12,7 +12,7 @@
                 <column name="town_id" />
             </key-property>
         </composite-id>
-        <many-to-one name="route" class="db.entity.Route" update="false" insert="false" fetch="select">
+        <many-to-one name="route" class="db.entity.Route" update="false" insert="false" lazy="false" fetch="select">
             <column name="route_id" />
         </many-to-one>
         <many-to-one name="town" class="db.entity.Town" update="false" insert="false" fetch="select">

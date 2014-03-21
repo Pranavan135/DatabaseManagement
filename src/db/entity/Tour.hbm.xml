@@ -24,13 +24,13 @@
         <property name="executed" type="string">
             <column name="executed" length="45" />
         </property>
-        <set name="bills" table="bill" inverse="true" lazy="true" fetch="select">
+        <set name="bills" table="bill" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="tour_code" />
             </key>
             <one-to-many class="db.entity.Bill" />
         </set>
-        <set name="passengers" table="passenger" inverse="true" lazy="true" fetch="select">
+        <set name="passengers" table="passenger" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="tour_code" />
             </key>

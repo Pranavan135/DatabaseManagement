@@ -1,7 +1,10 @@
 package db.dao;
 
 import db.entity.Bill;
+import db.entity.Coach;
+import db.entity.Driver;
 import db.entity.Hotel;
+import db.entity.Passenger;
 import db.entity.Route;
 import db.entity.RouteTown;
 import db.entity.Town;
@@ -325,4 +328,66 @@ public class TownDAO {
         return null;
     }
 
+    public List<Driver> getAllDrivers() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Driver d ";
+            Query query = session.createQuery(HQLQuery);
+            List<Driver> drivers = query.list();
+            return drivers;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public List<Coach> getAllCoaches() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Coach c ";
+            Query query = session.createQuery(HQLQuery);
+            List<Coach> coachs = query.list();
+            return coachs;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public Passenger getPassenger(int ID) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        if (session == null) {
+            return null;
+        }
+        Transaction transaction = null;
+        try {
+            String HQLQuery = "FROM Passenger p WHERE p.id= " + ID;
+            Query query = session.createQuery(HQLQuery);
+            Passenger passenger = (Passenger) query.uniqueResult();
+            return passenger;
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    }
 }

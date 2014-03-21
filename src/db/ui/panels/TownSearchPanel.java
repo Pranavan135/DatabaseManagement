@@ -36,6 +36,13 @@ public class TownSearchPanel extends javax.swing.JPanel {
         return instance;
     }
 
+    public void refresh() {
+        tableView.setModel(new javax.swing.table.DefaultTableModel(null, new String[]{"ID", "Name", "Overnight Stop", "No Of Bills", "No Of Route Towns", "No Of Hotels"}));
+        txtTownId.setText("");
+        txtTownName.setText("");
+        txtTownId.requestFocus();
+    }
+
     private void createViewTable(List<Town> towns) {
         ArrayList<Object[]> data = new ArrayList<>();
         try {
@@ -225,10 +232,7 @@ public class TownSearchPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        tableView.setModel(new javax.swing.table.DefaultTableModel(null, new String[]{"ID", "Name", "Overnight Stop", "No Of Bills", "No Of Route Towns", "No Of Hotels"}));
-        txtTownId.setText("");
-        txtTownName.setText("");
-        txtTownId.requestFocus();
+        refresh();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
@@ -247,7 +251,7 @@ public class TownSearchPanel extends javax.swing.JPanel {
             }
         }
         List<Town> result = townDAO.getTowns(id, name);
-        if (result == null) {
+        if (result == null || result.size() == 0) {
             JOptionPane.showMessageDialog(this, "No data found", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             createViewTable(result);
@@ -258,7 +262,7 @@ public class TownSearchPanel extends javax.swing.JPanel {
         if (evt.getClickCount() == 2) {
             int id = Integer.parseInt(tableView.getValueAt(tableView.getSelectedRow(), 0).toString());
             TownEditPanel panel = TownEditPanel.getInstance();
-            panel.refersh(townDAO.getTown(id));
+            panel.refresh(townDAO.getTown(id));
             Container container = this.getParent();
             container.removeAll();
             container.add(panel);
