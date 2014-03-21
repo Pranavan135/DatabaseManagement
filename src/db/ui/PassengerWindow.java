@@ -97,6 +97,8 @@ public class PassengerWindow extends javax.swing.JFrame {
         columnHeaders = new String[]{"ID", "Name", "Tour Code", "Route", "Driver ID", "Driver T.P.no", "Coach Reg.no"};
 
         passengerTableModel = new DefaultTableModel(null, columnHeaders);
+        tableDel.setModel(passengerTableModel);
+        tableView.setModel(passengerTableModel);
         gridColour1 = new Color(104, 136, 170);
         tableCellRenderer = new DefaultTableCellRenderer() {
             @Override
