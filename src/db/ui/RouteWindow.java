@@ -931,8 +931,10 @@ public class RouteWindow extends javax.swing.JFrame {
                       if(result){
                             JOptionPane.showMessageDialog(this, "Route Detail is Successfully Deleted into Database", "Success", WIDTH);
                             DefaultTableModel modelTable = (DefaultTableModel)deleteTable.getModel();
-                           int selectedRow =  deleteTable.getSelectedRow();
-                            modelTable.removeRow(selectedRow);
+                            int[] selectedRow =  deleteTable.getSelectedRows();
+                            while(selectedRow.length > 0){
+                            modelTable.removeRow(deleteTable.convertRowIndexToModel(selectedRow[0]));
+                            selectedRow = deleteTable.getSelectedRows();}
                       }
                             else
                             JOptionPane.showMessageDialog(null, "Database Error!!", "ERROR", JOptionPane.ERROR_MESSAGE);
