@@ -608,6 +608,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editEditButtonActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="editEditButton.setEnabled(false);"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="clearEditButton">
               <Properties>

@@ -409,6 +409,7 @@ public class RouteWindow extends javax.swing.JFrame {
                 editEditButtonActionPerformed(evt);
             }
         });
+        editEditButton.setEnabled(false);
 
         clearEditButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
         clearEditButton.setText("Clear");
@@ -918,6 +919,7 @@ public class RouteWindow extends javax.swing.JFrame {
         {
             if(routeDAO.isExist(routeIDEditTextField.getText()))
             {      
+                editEditButton.setEnabled(true);
                 routeIDEditTextField.setEditable(false);
                 routeNameEditTextField.setEnabled(true);
                 routeDaysEditTextField.setEnabled(true);
@@ -1022,6 +1024,7 @@ public class RouteWindow extends javax.swing.JFrame {
         routeNameEditTextField.setEnabled(false);
         routeDaysEditTextField.setEnabled(false);
         routeDistanceEditTextField.setEnabled(false);
+        editEditButton.setEnabled(false);
         routeIDEditTextField.requestFocus();
     }//GEN-LAST:event_clearEditButtonActionPerformed
 
