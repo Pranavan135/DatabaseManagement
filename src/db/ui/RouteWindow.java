@@ -409,6 +409,7 @@ public class RouteWindow extends javax.swing.JFrame {
                 editEditButtonActionPerformed(evt);
             }
         });
+        editEditButton.setEnabled(false);
 
         clearEditButton.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
         clearEditButton.setText("Clear");
@@ -825,12 +826,33 @@ public class RouteWindow extends javax.swing.JFrame {
        days = routeDaysEditTextField.getText().trim();
        distance = routeDistanceEditTextField.getText().trim();
         
-        if (  routeValidate.nameValidation(routeName)  && routeValidate.daysValidation(days) && routeValidate.distanceValidation(distance)  ){
-                 JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
+        if (  routeValidate.nameValidation(routeName) ){
+            if( routeValidate.daysValidation(days)){
+                if( routeValidate.distanceValidation(distance)  ){
+            boolean response =  routeDAO.updateRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));                               
+            if(response){
+            JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
          } 
          else {
                     JOptionPane.showMessageDialog(this, "Database Error ", "Error", JOptionPane.ERROR_MESSAGE);
-         }          
+         }  
+                }
+                else
+                {
+                    routeDistanceEditTextField.setText("");
+                    routeDistanceEditTextField.requestFocus();
+                }
+            }
+            else{
+                routeDaysEditTextField.setText("");
+                routeDaysEditTextField.requestFocus();
+                }
+            }
+            else
+            {
+                routeNameEditTextField.setText("");
+                routeNameEditTextField.requestFocus();
+            }
     }//GEN-LAST:event_editEditButtonActionPerformed
 
     private void showRouteVIewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRouteVIewButtonActionPerformed
@@ -889,26 +911,36 @@ public class RouteWindow extends javax.swing.JFrame {
    } 
     private void showEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEditButtonActionPerformed
         
-        if(routeIDEditTextField.getText().equals(""))
+        if(routeIDEditTextField.getText().equals("")){
              JOptionPane.showMessageDialog(null, "Please Enter the Route ID!!", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-        else{     
-        routeIDEditTextField.setEditable(false);
-        routeNameEditTextField.setEnabled(true);
-        routeDaysEditTextField.setEnabled(true);
-        routeDistanceEditTextField.setEnabled(true);
-        
-        if (routeDAO.isExist(routeIDEditTextField.getText()))
-        {       
-            Route myroute = routeDAO.getRoute( routeIDEditTextField.getText());
-            routeNameEditTextField.setText(myroute.getName());
-            routeDaysEditTextField.setText(Integer.toString(myroute.getDays()));
-            routeDistanceEditTextField.setText(Integer.toString(myroute.getDistance()));
+             routeIDEditTextField.requestFocus();
+        }
+              else
+        {
+            if(routeDAO.isExist(routeIDEditTextField.getText()))
+            {      
+                editEditButton.setEnabled(true);
+                routeIDEditTextField.setEditable(false);
+                routeNameEditTextField.setEnabled(true);
+                routeDaysEditTextField.setEnabled(true);
+                routeDistanceEditTextField.setEnabled(true);
+                Route myroute = routeDAO.getRoute( routeIDEditTextField.getText());
+                routeNameEditTextField.setText(myroute.getName());
+                routeDaysEditTextField.setText(Integer.toString(myroute.getDays()));
+                routeDistanceEditTextField.setText(Integer.toString(myroute.getDistance()));
        }
+        
         else
         {
-            JOptionPane.showMessageDialog(this, "Id does not exist!!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Id does not exist!!", "ERROR", JOptionPane.ERROR_MESSAGE);  
+            routeIDEditTextField.setText("");
+            routeIDEditTextField.requestFocus();
+            routeNameEditTextField.setEnabled(false);
+            routeDaysEditTextField.setEnabled(false);
+            routeDistanceEditTextField.setEnabled(false);
+        
         }
-        }
+        }  
     }//GEN-LAST:event_showEditButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
@@ -989,6 +1021,10 @@ public class RouteWindow extends javax.swing.JFrame {
         routeDistanceEditTextField.setText("");
         routeIDEditTextField.setEnabled(true);
         routeIDEditTextField.setEditable(true);
+        routeNameEditTextField.setEnabled(false);
+        routeDaysEditTextField.setEnabled(false);
+        routeDistanceEditTextField.setEnabled(false);
+        editEditButton.setEnabled(false);
         routeIDEditTextField.requestFocus();
     }//GEN-LAST:event_clearEditButtonActionPerformed
 
@@ -1159,17 +1195,40 @@ public class RouteWindow extends javax.swing.JFrame {
 
     
     private void addRouteData(){
-      if ( routeValidate.IDValidation(routeID)  && routeValidate.nameValidation(routeName) 
-               && routeValidate.daysValidation(days) && routeValidate.distanceValidation(distance)  ){
-         if( routeValidate.isUnique(routeID) )
-         {
-                 routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
-                 JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
-         } 
-         else {
-                    JOptionPane.showMessageDialog(this, "Database Error ", "Error", JOptionPane.ERROR_MESSAGE);
-         }          
+      if ( routeValidate.IDValidation(routeID)){
+          if( routeValidate.nameValidation(routeName) ){
+              if(routeValidate.daysValidation(days)) {
+                  if(routeValidate.distanceValidation(distance)){
+                       if( routeValidate.isUnique(routeID) )
+                            {
+                                  routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
+                                  JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
+                            } 
+                            else {
+                               JOptionPane.showMessageDialog(this, "Database Error ", "Error", JOptionPane.ERROR_MESSAGE);
+                            }          
        }
+      else
+      {
+          routeDistanceTextField.setText("");
+          routeDistanceTextField.requestFocus();
+        }
+     }
+     else{
+        routeDaysTextField.setText("");
+        routeDaysTextField.setText("");
+                
+             }
+          }
+     else{
+          routeNameTextField.setText("");
+          routeNameTextField.requestFocus();
+           }
+      }
+     else{
+        routeIDTextField.setText("");
+        routeIDTextField.requestFocus();
+      }
     }
     
    public void addRouteIDComboBoxData(){
