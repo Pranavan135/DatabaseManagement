@@ -51,7 +51,7 @@ public class PassengerWindow extends javax.swing.JFrame {
     private final DefaultTableCellRenderer tableCellRenderer;
     private final Dimension scrollableViewportDimension;
     private ArrayList<Object[]> data;
-
+    
     public PassengerWindow() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1200,8 +1200,20 @@ public class PassengerWindow extends javax.swing.JFrame {
             txtEditID.requestFocus();
         } else if (tabPassengerDelete.isShowing()) {
             txtDelKeyword.requestFocus();
+            if(!txtDelKeyword.getText().equals("")){
+                btnDelFind.doClick();
+            } else {
+                passengerTableModel.setDataVector(null, columnHeaders);
+                tableDel.setModel(passengerTableModel);
+            }
         } else if (tabPassengerView.isShowing()) {
             txtViewKeyword.requestFocus();
+            if(!txtViewKeyword.getText().equals("")){
+                btnViewFind.doClick();
+            } else {
+                passengerTableModel.setDataVector(null, columnHeaders);
+                tableView.setModel(passengerTableModel);
+            }
         }
     }//GEN-LAST:event_tabPanePassengerMouseClicked
 
