@@ -39,32 +39,49 @@ public class TownEditPanel extends javax.swing.JPanel {
         return instance;
     }
 
-    public void refersh(Town town) {
+    public void refresh(Town town) {
+        DefaultTableModel modelBills = (DefaultTableModel) tblBillRight.getModel();
+        DefaultTableModel modelRoutes = (DefaultTableModel) tblRouteRight.getModel();
+        DefaultTableModel modelHotels = (DefaultTableModel) tblHotelRight.getModel();
+
+        while (modelBills.getRowCount() != 0) {
+            modelBills.removeRow(0);
+        }
+        while (modelRoutes.getRowCount() != 0) {
+            modelRoutes.removeRow(0);
+        }
+        while (modelHotels.getRowCount() != 0) {
+            modelHotels.removeRow(0);
+        }
         this.town = town;
         if (town == null) {
             btnDelete.setVisible(false);
+            txtTownID.setText("");
+            txtTownName.setText("");
+            chkAllowed.setSelected(false);
+            txtTownID.setEnabled(true);
         } else {
             btnDelete.setVisible(true);
             txtTownID.setText("" + town.getId());
             txtTownName.setText(town.getName());
             chkAllowed.setSelected(town.getOverNightStop());
-
-            DefaultTableModel modelBills = (DefaultTableModel) tblBillRight.getModel();
-            DefaultTableModel modelRoutes = (DefaultTableModel) tblBillRight.getModel();
-            DefaultTableModel modelHotels = (DefaultTableModel) tblBillRight.getModel();
-
-            while (modelBills.getRowCount() != 0) {
-                modelBills.removeRow(0);
-            }
+            txtTownID.setEnabled(false);
             for (Object obj : town.getBills()) {
                 Bill bill = (Bill) obj;
                 modelBills.addRow(new Object[]{bill.getRefNo(), bill.getBillDate()});
             }
 
+            for (Object obj : town.getRouteTowns()) {
+                Route route = ((RouteTown) obj).getRoute();
+                modelRoutes.addRow(new Object[]{route.getId(), route.getName()});
+            }
+
+            for (Object obj : town.getHotels()) {
+                Hotel hotel = (Hotel) obj;
+                modelHotels.addRow(new Object[]{hotel.getId(), hotel.getName()});
+            }
+
         }
-        viewHotels(townDAO.getAllHotels());
-        viewBills(townDAO.getAllBills());
-        viewRoutes(townDAO.getAllRoutes());
     }
 
     private void viewRoutes(List<Route> list) {
@@ -76,7 +93,7 @@ public class TownEditPanel extends javax.swing.JPanel {
                 data.add(row);
             }
             Object[][] passengerData = data.toArray(new Object[0][]);
-            tblRouteLeft.setModel(new javax.swing.table.DefaultTableModel(
+            tblRouteRight.setModel(new javax.swing.table.DefaultTableModel(
                     passengerData,
                     new String[]{
                         "ID", "Name"
@@ -104,7 +121,7 @@ public class TownEditPanel extends javax.swing.JPanel {
                 data.add(row);
             }
             Object[][] passengerData = data.toArray(new Object[0][]);
-            tblBillLeft.setModel(new javax.swing.table.DefaultTableModel(
+            tblBillRight.setModel(new javax.swing.table.DefaultTableModel(
                     passengerData,
                     new String[]{
                         "Reference No", "Date"
@@ -132,7 +149,7 @@ public class TownEditPanel extends javax.swing.JPanel {
                 data.add(row);
             }
             Object[][] passengerData = data.toArray(new Object[0][]);
-            tblHotelLeft.setModel(new javax.swing.table.DefaultTableModel(
+            tblHotelRight.setModel(new javax.swing.table.DefaultTableModel(
                     passengerData,
                     new String[]{
                         "ID", "Name"
@@ -170,18 +187,12 @@ public class TownEditPanel extends javax.swing.JPanel {
         chkAllowed = new javax.swing.JCheckBox();
         txtTownID = new javax.swing.JFormattedTextField();
         panelBills = new javax.swing.JPanel();
-        scrollBillLeft = new javax.swing.JScrollPane();
-        tblBillLeft = new javax.swing.JTable();
         scrollBillRight = new javax.swing.JScrollPane();
         tblBillRight = new javax.swing.JTable();
         panelRouteTowns = new javax.swing.JPanel();
-        scrollRouteLeft = new javax.swing.JScrollPane();
-        tblRouteLeft = new javax.swing.JTable();
         scrollRouteRight = new javax.swing.JScrollPane();
         tblRouteRight = new javax.swing.JTable();
         panelHotels = new javax.swing.JPanel();
-        scrollHotelLeft = new javax.swing.JScrollPane();
-        tblHotelLeft = new javax.swing.JTable();
         scrollHotelRight = new javax.swing.JScrollPane();
         tblHotelRight = new javax.swing.JTable();
         panelControlls = new javax.swing.JPanel();
@@ -244,33 +255,6 @@ public class TownEditPanel extends javax.swing.JPanel {
         panelBills.setName(""); // NOI18N
         panelBills.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
-        scrollBillLeft.setPreferredSize(new java.awt.Dimension(50, 100));
-
-        tblBillLeft.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Reference No", "Date"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblBillLeft.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblBillLeftMouseClicked(evt);
-            }
-        });
-        scrollBillLeft.setViewportView(tblBillLeft);
-
-        panelBills.add(scrollBillLeft);
-
         scrollBillRight.setPreferredSize(new java.awt.Dimension(50, 100));
 
         tblBillRight.setModel(new javax.swing.table.DefaultTableModel(
@@ -289,11 +273,6 @@ public class TownEditPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblBillRight.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblBillRightMouseClicked(evt);
-            }
-        });
         scrollBillRight.setViewportView(tblBillRight);
 
         panelBills.add(scrollBillRight);
@@ -301,33 +280,6 @@ public class TownEditPanel extends javax.swing.JPanel {
         panelRouteTowns.setBorder(javax.swing.BorderFactory.createTitledBorder("Routes"));
         panelRouteTowns.setName(""); // NOI18N
         panelRouteTowns.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
-
-        scrollRouteLeft.setPreferredSize(new java.awt.Dimension(50, 100));
-
-        tblRouteLeft.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Name"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblRouteLeft.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblRouteLeftMouseClicked(evt);
-            }
-        });
-        scrollRouteLeft.setViewportView(tblRouteLeft);
-
-        panelRouteTowns.add(scrollRouteLeft);
 
         scrollRouteRight.setPreferredSize(new java.awt.Dimension(50, 100));
 
@@ -347,11 +299,6 @@ public class TownEditPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblRouteRight.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblRouteRightMouseClicked(evt);
-            }
-        });
         scrollRouteRight.setViewportView(tblRouteRight);
 
         panelRouteTowns.add(scrollRouteRight);
@@ -359,33 +306,6 @@ public class TownEditPanel extends javax.swing.JPanel {
         panelHotels.setBorder(javax.swing.BorderFactory.createTitledBorder("Hotels"));
         panelHotels.setName(""); // NOI18N
         panelHotels.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
-
-        scrollHotelLeft.setPreferredSize(new java.awt.Dimension(50, 100));
-
-        tblHotelLeft.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Name"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblHotelLeft.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblHotelLeftMouseClicked(evt);
-            }
-        });
-        scrollHotelLeft.setViewportView(tblHotelLeft);
-
-        panelHotels.add(scrollHotelLeft);
 
         scrollHotelRight.setPreferredSize(new java.awt.Dimension(50, 100));
 
@@ -405,11 +325,6 @@ public class TownEditPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblHotelRight.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblHotelRightMouseClicked(evt);
-            }
-        });
         scrollHotelRight.setViewportView(tblHotelRight);
 
         panelHotels.add(scrollHotelRight);
@@ -417,6 +332,11 @@ public class TownEditPanel extends javax.swing.JPanel {
         panelControlls.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -491,65 +411,11 @@ public class TownEditPanel extends javax.swing.JPanel {
         add(panelScroll, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblBillLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBillLeftMouseClicked
-        if (evt.getClickCount() == 2) {
-            DefaultTableModel modelLeft = (DefaultTableModel) tblBillLeft.getModel();
-            DefaultTableModel modelRight = (DefaultTableModel) tblBillRight.getModel();
-            modelRight.addRow((Vector) modelLeft.getDataVector().get(tblBillLeft.getSelectedRow()));
-            modelLeft.removeRow(tblBillLeft.getSelectedRow());
-        }
-    }//GEN-LAST:event_tblBillLeftMouseClicked
-
-    private void tblBillRightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBillRightMouseClicked
-        if (evt.getClickCount() == 2) {
-            DefaultTableModel modelLeft = (DefaultTableModel) tblBillLeft.getModel();
-            DefaultTableModel modelRight = (DefaultTableModel) tblBillRight.getModel();
-            modelLeft.addRow((Vector) modelRight.getDataVector().get(tblBillRight.getSelectedRow()));
-            modelRight.removeRow(tblBillRight.getSelectedRow());
-        }
-    }//GEN-LAST:event_tblBillRightMouseClicked
-
-    private void tblRouteLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRouteLeftMouseClicked
-        if (evt.getClickCount() == 2) {
-            DefaultTableModel modelLeft = (DefaultTableModel) tblRouteLeft.getModel();
-            DefaultTableModel modelRight = (DefaultTableModel) tblRouteRight.getModel();
-            modelRight.addRow((Vector) modelLeft.getDataVector().get(tblRouteLeft.getSelectedRow()));
-            modelLeft.removeRow(tblRouteLeft.getSelectedRow());
-        }
-    }//GEN-LAST:event_tblRouteLeftMouseClicked
-
-    private void tblRouteRightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRouteRightMouseClicked
-        if (evt.getClickCount() == 2) {
-            DefaultTableModel modelLeft = (DefaultTableModel) tblRouteLeft.getModel();
-            DefaultTableModel modelRight = (DefaultTableModel) tblRouteRight.getModel();
-            modelLeft.addRow((Vector) modelRight.getDataVector().get(tblRouteRight.getSelectedRow()));
-            modelRight.removeRow(tblRouteRight.getSelectedRow());
-        }
-    }//GEN-LAST:event_tblRouteRightMouseClicked
-
-    private void tblHotelLeftMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHotelLeftMouseClicked
-        if (evt.getClickCount() == 2) {
-            DefaultTableModel modelLeft = (DefaultTableModel) tblHotelLeft.getModel();
-            DefaultTableModel modelRight = (DefaultTableModel) tblHotelRight.getModel();
-            modelRight.addRow((Vector) modelLeft.getDataVector().get(tblHotelLeft.getSelectedRow()));
-            modelLeft.removeRow(tblHotelLeft.getSelectedRow());
-        }
-    }//GEN-LAST:event_tblHotelLeftMouseClicked
-
-    private void tblHotelRightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHotelRightMouseClicked
-        if (evt.getClickCount() == 2) {
-            DefaultTableModel modelLeft = (DefaultTableModel) tblHotelLeft.getModel();
-            DefaultTableModel modelRight = (DefaultTableModel) tblHotelRight.getModel();
-            modelLeft.addRow((Vector) modelRight.getDataVector().get(tblHotelRight.getSelectedRow()));
-            modelRight.removeRow(tblHotelRight.getSelectedRow());
-        }
-    }//GEN-LAST:event_tblHotelRightMouseClicked
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         int id;
         try {
             id = Integer.parseInt(txtTownID.getText());
-            if (townDAO.getTown(id) != null) {
+            if (this.town == null && townDAO.getTown(id) != null) {
                 JOptionPane.showMessageDialog(this, "Entered town id already exists\nPlease enter another id.", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             }
@@ -562,50 +428,67 @@ public class TownEditPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter a valid name.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        int result = JOptionPane.showConfirmDialog(this, "Are you sure to save the record?", "Tour Management", JOptionPane.QUESTION_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(this, "Are you sure to save the record?", "Tour Management", JOptionPane.YES_NO_OPTION);
         if (result != JOptionPane.YES_OPTION) {
             return;
         }
-        DefaultTableModel dtm = (DefaultTableModel) tblBillRight.getModel();
+        DefaultTableModel dtmBill = (DefaultTableModel) tblBillRight.getModel();
         Set<Bill> bills = new HashSet<>();
-        for (Object v : dtm.getDataVector()) {
+        for (Object v : dtmBill.getDataVector()) {
             bills.add(townDAO.getBill(((Vector) v).get(0).toString()));
         }
+
+        DefaultTableModel dtmHotel = (DefaultTableModel) tblHotelRight.getModel();
         Set<Hotel> hotels = new HashSet<>();
-        for (Object v : dtm.getDataVector()) {
+        for (Object v : dtmHotel.getDataVector()) {
             hotels.add(townDAO.getHotel(((Vector) v).get(0).toString()));
         }
         Town town = new Town(id, name, chkAllowed.isSelected(), bills, null, hotels);
 
+        DefaultTableModel dtmRoutes = (DefaultTableModel) tblRouteRight.getModel();
         Set<Route> routes = new HashSet<>();
-        for (Object v : dtm.getDataVector()) {
+        for (Object v : dtmRoutes.getDataVector()) {
             Route route = townDAO.getRoute(((Vector) v).get(0).toString());
-            /*RouteTown routeTown = new RouteTown();
+            RouteTown routeTown = new RouteTown();
             routeTown.setTown(town);
-            routeTown.setRoute(route);*/
+            routeTown.setRoute(route);
             routes.add(route);
         }
         town.setRouteTowns(routes);
 
-        if (townDAO.addTown(town)) {
-            JOptionPane.showMessageDialog(this, "Record is saved successfully.", "Tour Management", JOptionPane.INFORMATION_MESSAGE);
+        if (this.town == null) {
+            if (townDAO.addTown(town)) {
+                JOptionPane.showMessageDialog(this, "Record is saved successfully.", "Tour Management", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to save the record.", "Tour Management", JOptionPane.ERROR_MESSAGE);
+            }
+            refresh(town);
         } else {
-            JOptionPane.showMessageDialog(this, "Failed to save the record.", "Tour Management", JOptionPane.ERROR_MESSAGE);
+            if (townDAO.updateTown(town)) {
+                JOptionPane.showMessageDialog(this, "Record is updated successfully.", "Tour Management", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to update the record.", "Tour Management", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        int result = JOptionPane.showConfirmDialog(this, "Are you sure to delete the record?", "Tour Management", JOptionPane.QUESTION_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(this, "Are you sure to delete the record?", "Tour Management", JOptionPane.YES_NO_OPTION);
         if (result == JOptionPane.YES_OPTION) {
             if (townDAO.deleteTown(town)) {
                 JOptionPane.showMessageDialog(this, "Record is saved successfully.", "Tour Management", JOptionPane.INFORMATION_MESSAGE);
+                refresh(null);
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to save the record.", "Tour Management", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        refresh(town);
+    }//GEN-LAST:event_btnResetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -623,17 +506,11 @@ public class TownEditPanel extends javax.swing.JPanel {
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelRouteTowns;
     private javax.swing.JScrollPane panelScroll;
-    private javax.swing.JScrollPane scrollBillLeft;
     private javax.swing.JScrollPane scrollBillRight;
-    private javax.swing.JScrollPane scrollHotelLeft;
     private javax.swing.JScrollPane scrollHotelRight;
-    private javax.swing.JScrollPane scrollRouteLeft;
     private javax.swing.JScrollPane scrollRouteRight;
-    private javax.swing.JTable tblBillLeft;
     private javax.swing.JTable tblBillRight;
-    private javax.swing.JTable tblHotelLeft;
     private javax.swing.JTable tblHotelRight;
-    private javax.swing.JTable tblRouteLeft;
     private javax.swing.JTable tblRouteRight;
     private javax.swing.JFormattedTextField txtTownID;
     private javax.swing.JTextField txtTownName;

@@ -99,7 +99,7 @@ public class Tour  implements java.io.Serializable {
     
     @Override
     public String toString() {
-        return "" + tourCode;
+        return tourCode + ", Route - " + route.getName() + ", Driver - " + driver.getId().getId() + ", Coach - " + coach.getRegNo();
     }
 
     @Override

@@ -646,7 +646,17 @@ public class DriverWindow extends javax.swing.JFrame {
     private void viewGoButtonFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewGoButtonFieldActionPerformed
         // TODO add your handling code here:
         if (!nameViewTextField.getText().trim().equals("") || !idViewTextField.getText().trim().equals("")) {
-            viewTable(DriverDAO.viewDrivers(nameViewTextField.getText().trim(), Integer.parseInt(idViewTextField.getText().trim())));
+            boolean check = false;
+            
+            try {
+                Integer val = Integer.parseInt(idViewTextField.getText().trim());
+                viewTable(DriverDAO.viewDrivers(nameViewTextField.getText().trim(), Integer.parseInt(idViewTextField.getText().trim())));
+                
+            } catch (NumberFormatException numberFormatException) {
+                JOptionPane.showMessageDialog(rootPane,"Please Input Number For Id ", " ERROR", JOptionPane.ERROR_MESSAGE);
+                idViewTextField.setText("");
+            }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Please Eneter values for Name or ID", "Error", JOptionPane.ERROR_MESSAGE);
         }

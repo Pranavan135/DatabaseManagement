@@ -44,6 +44,7 @@ public class TownWindow extends javax.swing.JFrame {
         panelSearch = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tour Management");
 
         panelAdd.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -85,14 +86,15 @@ public class TownWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelAddComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelAddComponentShown
-        townEditPanel.refersh(null);
+        townEditPanel.refresh(null);
         panelAdd.removeAll();
-        panelAdd.add(TownEditPanel.getInstance());
+        panelAdd.add(townEditPanel.getInstance());
         panelAdd.repaint();
         panelAdd.validate();
     }//GEN-LAST:event_panelAddComponentShown
 
     private void panelSearchComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelSearchComponentShown
+        TownSearchPanel.getInstance().refresh();
         panelSearch.removeAll();
         panelSearch.add(TownSearchPanel.getInstance());
         panelSearch.repaint();
