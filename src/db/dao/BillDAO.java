@@ -136,9 +136,10 @@ public class BillDAO {
         try {
             session =  HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            String HQL = "from Bill b where b.refNo ='" + referenceNo +"'";
+            String HQL = "from Bill b where b.refNo = :refNo";
            
             Query q = session.createQuery(HQL) ;
+            q.setParameter("refNo", Integer.parseInt(referenceNo));
             Bill b= (Bill)q.uniqueResult();
 
             session.getTransaction().commit();
@@ -190,7 +191,8 @@ public class BillDAO {
          try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query q = session.createQuery("from Tour where tourCode ='" + tourCode + "'") ;
+            Query q = session.createQuery("from Tour where tourCode = :code") ;
+            q.setParameter("code", Integer.parseInt(tourCode));
             Tour t = (Tour)q.uniqueResult();
             session.getTransaction().commit();
             return t;
