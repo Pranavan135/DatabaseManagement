@@ -122,6 +122,7 @@ public class BillWindow extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Bill Management");
 
         addBillsTab.setLayout(null);
 
@@ -519,6 +520,7 @@ public class BillWindow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void addData()  {
         String referenceNo = referenceNoTextField.getText();
@@ -908,18 +910,23 @@ public class BillWindow extends javax.swing.JFrame {
            
              if (response == JOptionPane.YES_OPTION) {
                 boolean result1 = true;
+                DefaultTableModel d = (DefaultTableModel)deleteTable.getModel();
                 int[] count = deleteTable.getSelectedRows();
                 for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
                    Bill b = billDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
                    boolean result = billDAO.deleteBill(b);
                    
-                   if(!result)
+                   if(!result)  {
                        result1 = false;
+                   }
+                   else
+                       d.removeRow(i);
+                   
                 }
-                 if(result1)
+                 if(result1)    
                        JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
                  else
-                       JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
+                       JOptionPane.showMessageDialog(null, "Cannot Delete some Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
 	
             }
         }

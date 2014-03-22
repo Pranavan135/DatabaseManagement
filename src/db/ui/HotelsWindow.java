@@ -93,6 +93,8 @@ public class HotelsWindow extends javax.swing.JFrame {
         viewScroll = new javax.swing.JScrollPane();
         viewTable = new javax.swing.JTable();
 
+        setTitle("Hotel Management");
+
         idLabel.setText("ID");
 
         townIdLabel.setText("Town ID");
@@ -332,6 +334,7 @@ public class HotelsWindow extends javax.swing.JFrame {
 
         deleteTownNameLabel.setText("Town Name");
 
+        deleteFetchButton.setFont(new java.awt.Font("Andalus", 1, 12)); // NOI18N
         deleteFetchButton.setText("FETCH");
         deleteFetchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,6 +500,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addData()  {
@@ -553,7 +557,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         else
              resultList = hotelDAO.searchOnHotelId(deleteIDTextField.getText());
         
-        if (resultList != null)     {
+        if (!resultList.isEmpty())     {
             for (Object o : resultList) {
                 Hotel hotel = (Hotel) o;
                 
@@ -569,6 +573,8 @@ public class HotelsWindow extends javax.swing.JFrame {
         }
         else {
             JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            DefaultTableModel d = (DefaultTableModel)deleteTable.getModel();
+            d.setRowCount(0);
         }
      }
         
@@ -592,7 +598,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         else
              resultList = hotelDAO.searchOnHotelId(viewIDTextField.getText());
         
-        if (resultList != null)     {
+        if (!resultList.isEmpty())     {
             for (Object o : resultList) {
                 Hotel hotel = (Hotel) o;
                 
@@ -608,6 +614,8 @@ public class HotelsWindow extends javax.swing.JFrame {
         }
         else {
             JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            DefaultTableModel d = (DefaultTableModel)viewTable.getModel();
+            d.setRowCount(0);
         }
      }
       
@@ -701,7 +709,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         editTownTable1.clearSelection();
         editButton1.setEnabled(false);
         edithotelNameTextField1.setEnabled(false);
-        edittownIdTextField1.setEnabled(false);
+     
         editTownTable1.setEnabled(false);
         //editidTextField1.setEditable(true);
         
@@ -811,15 +819,21 @@ public class HotelsWindow extends javax.swing.JFrame {
              if (response == JOptionPane.YES_OPTION) {
                 boolean result1 = true;
                 int[] count = deleteTable.getSelectedRows();
+                DefaultTableModel d1 = (DefaultTableModel)deleteTable.getModel();
                 for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
                    Hotel h = hotelDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
                    boolean result = hotelDAO.deleteHotel(h);
                    
                    if(!result)
                        result1 = false;
+                   else
+                       d1.removeRow(i);
                 }
-                 if(result1)
+                 if(result1) {
                        JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                       
+   
+                 }
                  else
                        JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
 	

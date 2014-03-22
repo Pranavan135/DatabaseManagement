@@ -17,11 +17,6 @@ public class TownWindow extends javax.swing.JFrame {
      * Creates new form TownWindow
      */
     public TownWindow() {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex){
-            
-        }
         initComponents();
         townEditPanel = TownEditPanel.getInstance();
         townSearchPanel = TownSearchPanel.getInstance();
