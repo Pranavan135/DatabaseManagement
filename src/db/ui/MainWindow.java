@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package db.ui;
 
 import db.dao.BillDAO;
@@ -161,13 +160,16 @@ public class MainWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void coachesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coachesTextFieldActionPerformed
         new CoachWindow().setVisible(true);
     }//GEN-LAST:event_coachesTextFieldActionPerformed
 
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
-        BillWindow.create().setVisible(true);
+        try {
+            BillWindow.create().setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_billsTextFieldActionPerformed
 
     private void driversTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driversTextFieldActionPerformed
@@ -177,7 +179,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void hotelsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelsTextFieldActionPerformed
         // TODO add your handling code here:
-          HotelsWindow.create().setVisible(true);
+        try {
+            HotelsWindow.create().setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_hotelsTextFieldActionPerformed
 
     private void townsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townsTextFieldActionPerformed
@@ -185,7 +190,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_townsTextFieldActionPerformed
 
     private void toursTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toursTextFieldActionPerformed
-      new TourWindow().setVisible(true);
+        new TourWindow().setVisible(true);
     }//GEN-LAST:event_toursTextFieldActionPerformed
 
     private void passengersTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengersTextFieldActionPerformed
@@ -196,7 +201,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void routesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesTextFieldActionPerformed
         RouteWindow.create().setVisible(true);
        // rw.addRouteIDComboBoxData();
-      //  rw.addTownIDComboBoxData();
+        //  rw.addTownIDComboBoxData();
     }//GEN-LAST:event_routesTextFieldActionPerformed
 
     /**
@@ -225,7 +230,7 @@ public class MainWindow extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-       
+
         try {
             UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackMoonLookAndFeel");
         } catch (ClassNotFoundException classNotFoundException) {
