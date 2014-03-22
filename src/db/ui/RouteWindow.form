@@ -322,6 +322,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="routeTownAddButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Andalus" size="18" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Save"/>
                   </Properties>
                   <Events>
@@ -447,6 +450,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="driverRouteAddSaveButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Andalus" size="18" style="1"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Save"/>
                   </Properties>
                   <Events>
@@ -800,7 +806,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="showRouteTownRadioBtn" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jRadioButton1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="showDriverRouteRadioBtn" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -816,7 +822,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="showRouteTownRadioBtn" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="showDriverRouteRadioBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="10" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -845,13 +851,16 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showRouteTownRadioBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                <Component class="javax.swing.JRadioButton" name="showDriverRouteRadioBtn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Andalus" size="14" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Driver For Route Detials"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showDriverRouteRadioBtnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1025,7 +1034,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="showRouteVIewButton" max="32767" attributes="0"/>
                               <Component id="showRouteTownButton" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jButton3" alignment="0" pref="166" max="32767" attributes="0"/>
+                              <Component id="showDriverRouteViewButton" alignment="0" pref="166" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="22" max="32767" attributes="0"/>
                       </Group>
@@ -1039,14 +1048,14 @@
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="showRouteTownButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="showDriverRouteViewButton" min="-2" pref="27" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton3">
+                <Component class="javax.swing.JButton" name="showDriverRouteViewButton">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Andalus" size="14" style="1"/>
