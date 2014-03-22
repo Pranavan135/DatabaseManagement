@@ -21,7 +21,6 @@ import db.entity.Town;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-//import javax.swing.JOptionPane;
 
 /**
  *
@@ -480,8 +479,7 @@ public class RouteDAO {
                 hibernateException.printStackTrace();
                 return null;
             }
-       
-       // return driver;
+ 
     }
     
   public boolean addDriverRoute(DriverRoute driverRoute){
