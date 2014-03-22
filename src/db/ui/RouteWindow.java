@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author userr
+ * @author Annet
  */
 public class RouteWindow extends javax.swing.JFrame {
 
@@ -39,10 +39,6 @@ public class RouteWindow extends javax.swing.JFrame {
      */
     public RouteWindow() {
         
-        /* try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex){
-            }*/
         initComponents();
         routeNameEditTextField.setEnabled(false);
         routeDaysEditTextField.setEnabled(false);
@@ -342,9 +338,9 @@ public class RouteWindow extends javax.swing.JFrame {
         AddJPanelLayout.setVerticalGroup(
             AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AddJPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AddJPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(routeIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(routeIDLabel))
@@ -361,7 +357,6 @@ public class RouteWindow extends javax.swing.JFrame {
                             .addComponent(routeDistanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(routeDistanceLabel)))
                     .addGroup(AddJPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addComponent(addAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cleaAddrButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -446,41 +441,40 @@ public class RouteWindow extends javax.swing.JFrame {
                 .addGap(99, 99, 99)
                 .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(showEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(clearEditButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         EditJPanelLayout.setVerticalGroup(
             EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditJPanelLayout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(routeIDEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(routeNameEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editEditButton))
+                .addGap(31, 31, 31)
+                .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(routeDaysEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clearEditButton)))
                 .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditJPanelLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(routeIDEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(routeNameEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editEditButton))
-                        .addGap(31, 31, 31)
-                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(routeDaysEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(clearEditButton)))
                         .addGap(37, 37, 37)
-                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(routeDistanceEditTextField)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(EditJPanelLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(showEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27))
+                        .addGap(28, 28, 28)
+                        .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(routeDistanceEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(exitEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
 
         RoutePane.addTab("Edit", EditJPanel);
@@ -623,12 +617,6 @@ public class RouteWindow extends javax.swing.JFrame {
         RoutePane.addTab("Delete", DeleteJPanel);
 
         ViewJPanel.setPreferredSize(new java.awt.Dimension(700, 500));
-
-        routeIDViewTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                routeIDViewTextFieldActionPerformed(evt);
-            }
-        });
 
         routeIDViewLabel.setText("Enter Route ID");
 
@@ -785,7 +773,6 @@ public class RouteWindow extends javax.swing.JFrame {
        distance = routeDistanceEditTextField.getText().trim();
         
         if (  routeValidate.nameValidation(routeName)  && routeValidate.daysValidation(days) && routeValidate.distanceValidation(distance)  ){
-               // routeDAO.updateRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
                  JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
          } 
          else {
@@ -827,15 +814,14 @@ public class RouteWindow extends javax.swing.JFrame {
          
          }
         if (!resultList.isEmpty())     {
-          //  JOptionPane.showMessageDialog(null, "Nh", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-       for(Object o : resultList) {
-        Route route = (Route)o;
-        Vector<Object> oneRow = new Vector<Object>();
-        oneRow.add(route.getId());
-        oneRow.add(route.getName());
-        oneRow.add(route.getDays());
-        oneRow.add(route.getDistance());
-        tableData.add(oneRow);
+            for(Object o : resultList) {
+            Route route = (Route)o;
+            Vector<Object> oneRow = new Vector<Object>();
+            oneRow.add(route.getId());
+            oneRow.add(route.getName());
+            oneRow.add(route.getDays());
+            oneRow.add(route.getDistance());
+            tableData.add(oneRow);
           }
          if(num == 1)
             resultTable.setModel(new DefaultTableModel(tableData, tableHeaders));
@@ -848,10 +834,6 @@ public class RouteWindow extends javax.swing.JFrame {
             routeNameViewTextField.setText("");
         }
    } 
-    private void routeIDViewTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeIDViewTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_routeIDViewTextFieldActionPerformed
-
     private void showEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showEditButtonActionPerformed
         
         if(routeIDEditTextField.getText().equals(""))
@@ -944,30 +926,7 @@ public class RouteWindow extends javax.swing.JFrame {
         }
         else
             JOptionPane.showMessageDialog(null,"Please select the table using radio button","ERROR", JOptionPane.ERROR_MESSAGE);
-        
-        
-    
-        
-        
-    /*    JDialog.setDefaultLookAndFeelDecorated(true);
-    int response = JOptionPane.showConfirmDialog(null, "Do you want to delete?", "Confirm",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-    if (response == JOptionPane.YES_OPTION) {
-        if(routeDAO.isExist(routeIDDeleteTextField.getText())){
-       Route myroute =  routeDAO.getRoute(routeIDDeleteTextField.getText());
-       
-       boolean response1 = routeDAO.deleteRoute(myroute);
-       if(response1)
-           JOptionPane.showMessageDialog(this, "Route Detail is Successfully Deleted into Database", "Success", WIDTH);
-               else
-                   JOptionPane.showMessageDialog(null, "Database Error!!", "ERROR", JOptionPane.ERROR_MESSAGE);
-      } 
-        else{
-            JOptionPane.showMessageDialog(null, "Please enter the existing id!!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            routeIDDeleteTextField.setText("");
-            routeIDDeleteTextField.requestFocus();
-        }   
-    }*/
+  
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void clearEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearEditButtonActionPerformed
@@ -1019,35 +978,9 @@ public class RouteWindow extends javax.swing.JFrame {
                 addTownTable.clearSelection();
            }
          }
-    }   
-         
-        
-   /*     if(routeIDAssignComboBox.getSelectedIndex() == -1){
-             JOptionPane.showMessageDialog(null, "Please select the route ID", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-           else  if(townIDAssignComboBox.getSelectedIndex() == -1){
-                JOptionPane.showMessageDialog(null, "Please select the town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
-           }
-           
-           else{
-               if(routeDAO.isUniqueRouteTown(routeData, townData)){
-               //     JOptionPane.showMessageDialog(null, "Hi", "ERROR", JOptionPane.ERROR_MESSAGE);
-               RouteTownId r = new RouteTownId(Integer.parseInt(routeIDAssignComboBox.getSelectedItem().toString()),Integer.parseInt(townIDAssignComboBox.getSelectedItem().toString()));
-               Route route = routeDAO.getRoute(routeIDAssignComboBox.getSelectedItem().toString());
-               Town town = routeDAO.getTown(Integer.parseInt(townIDAssignComboBox.getSelectedItem().toString()));
-               
-            //OptionPane.showMessageDialog(this, new RouteTown(Integer.valueOf(routeIDAssignComboBox.getSelectedItem().toString()),Integer.valueOf((String)townIDAssignComboBox.getSelectedItem().toString())).getRouteId(), "Success", WIDTH);
-               boolean response =  routeDAO.addRouteTown(new RouteTown(r, route,town));
-               if (response)
-                JOptionPane.showMessageDialog(this, "Route_Town Detail is Successfully Added into Database", "Success", WIDTH);
-               else
-                   JOptionPane.showMessageDialog(null, "Database Error!!", "ERROR", JOptionPane.ERROR_MESSAGE);
-               }
-               else
-                   JOptionPane.showMessageDialog(null, "Route_Town Details already exist in database!!", "ERROR", JOptionPane.ERROR_MESSAGE);
-           }  
+    
     }//GEN-LAST:event_routeTownAddButtonActionPerformed
-*/
+
     private void routeNameEditTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeNameEditTextFieldActionPerformed
         
     }//GEN-LAST:event_routeNameEditTextFieldActionPerformed
@@ -1109,11 +1042,8 @@ public class RouteWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addTownTableMouseClicked
 
     private void showRouteTownButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRouteTownButtonActionPerformed
-  //     if( routeDAO.isExist(routeIDViewTextField.getText())){
-        displayRouteTown(1);
- //      }
-   //    else
-     //       JOptionPane.showMessageDialog(null, "Route ID does not exist Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);  
+    displayRouteTown(1);
+ 
     }//GEN-LAST:event_showRouteTownButtonActionPerformed
 
     private void displayRouteTown(int num) {
@@ -1163,7 +1093,6 @@ public class RouteWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_showRouteTownRadioBtnActionPerformed
 
     private void showRouteRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showRouteRadioBtnActionPerformed
-      //  if(showRouteRadioBtn)
         displayAllRoute(0);
     }//GEN-LAST:event_showRouteRadioBtnActionPerformed
 
