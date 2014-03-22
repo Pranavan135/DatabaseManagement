@@ -8,10 +8,9 @@ import javax.swing.JOptionPane;
 import db.dao.RouteDAO;
 import javax.swing.JDialog;
 
-
 /**
  *
- * @author userr
+ * @author Annet
  */
 public class RouteVallidate {
     
@@ -56,8 +55,6 @@ public class RouteVallidate {
         }
     }      
          
-
-    
     public boolean isUnique(String id){
          if (routeDAO.isUnique(id)){
                        return true;
@@ -68,6 +65,7 @@ public class RouteVallidate {
                         return false;
                     }
     }
+    
     public boolean isExit(String id){
          if (routeDAO.isExist(id)){
                        return true;
@@ -87,7 +85,7 @@ public class RouteVallidate {
             return false;
         }
         else if (!isAlphabet(name)){
-            JOptionPane.showMessageDialog(null, "Name should contain only alphabets and underscore", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Name should contain only alphabets and space", "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         else
@@ -110,13 +108,14 @@ public class RouteVallidate {
     } 
     
     public boolean daysValidation(String days){
-        try{
-           int r_days =  Integer.parseInt(days);
-           if (r_days == 0){
+        
+        if (days.isEmpty()){
                JOptionPane.showMessageDialog(null, "Please enter the route days", "ERROR", JOptionPane.ERROR_MESSAGE);
                return false;
            }
-               if (r_days > 0){
+        try{
+           int r_days =  Integer.parseInt(days);
+              if (r_days > 0){
                    return true;
                 }
                else{
@@ -141,12 +140,12 @@ public class RouteVallidate {
                    return true;
                 }
                else{
-               JOptionPane.showMessageDialog(null, "Route Length must be greater than zero", "ERROR", JOptionPane.ERROR_MESSAGE);
+               JOptionPane.showMessageDialog(null, "Route Distance only takes positive value", "ERROR", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
            }
         catch(NumberFormatException nfe ){
-            JOptionPane.showMessageDialog(null, "Route Length must only contain digits", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Route Distance must only contain digits", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return false;
         }
     }
