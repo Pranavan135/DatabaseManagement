@@ -122,6 +122,7 @@ public class BillWindow extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Bill Management");
 
         addBillsTab.setLayout(null);
 
@@ -519,6 +520,7 @@ public class BillWindow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void addData()  {
         String referenceNo = referenceNoTextField.getText();

@@ -93,6 +93,8 @@ public class HotelsWindow extends javax.swing.JFrame {
         viewScroll = new javax.swing.JScrollPane();
         viewTable = new javax.swing.JTable();
 
+        setTitle("Hotel Management");
+
         idLabel.setText("ID");
 
         townIdLabel.setText("Town ID");
@@ -498,6 +500,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addData()  {

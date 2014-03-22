@@ -43,6 +43,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tour Management System");
 
         driversTextField.setText("Drivers");
         driversTextField.addActionListener(new java.awt.event.ActionListener() {
