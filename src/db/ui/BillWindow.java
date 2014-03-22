@@ -17,6 +17,7 @@ import java.util.Set;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -672,7 +673,7 @@ public class BillWindow extends javax.swing.JFrame {
         
         List resultList = billDAO.searchOnReferenceNo(referenceNo);
         
-        if (resultList != null)     {
+        if (!resultList.isEmpty())     {
             for (Object o : resultList) {
                 Bill bill = (Bill) o;
                 
@@ -694,6 +695,16 @@ public class BillWindow extends javax.swing.JFrame {
         }
         else {
             JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+            
+            if(num == 1){
+                DefaultTableModel d = (DefaultTableModel)viewTable.getModel();
+                d.setRowCount(0);
+            }
+            else    {
+                DefaultTableModel d = (DefaultTableModel)deleteTable.getModel();
+                d.setRowCount(0);
+            }
+           
         }
     }
     

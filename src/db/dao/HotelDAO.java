@@ -40,9 +40,10 @@ public class HotelDAO {
         try {
             session =  HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            String HQL = "from Hotel h where h.id ='" + ID +"'";
+            String HQL = "from Hotel h where h.id = :ID";
            
             Query q = session.createQuery(HQL) ;
+            q.setParameter("ID", Integer.parseInt(ID));
             Hotel h = (Hotel)q.uniqueResult();
 
             session.getTransaction().commit();
