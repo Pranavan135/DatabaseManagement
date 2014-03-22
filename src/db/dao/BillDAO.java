@@ -216,7 +216,8 @@ public class BillDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query q = session.createQuery("from Hotel where id = '" +hotelId+"'") ;
+            Query q = session.createQuery("from Hotel where id = :ID") ;
+            q.setParameter("ID", Integer.parseInt(hotelId));
             Hotel t = (Hotel)q.uniqueResult();
             session.getTransaction().commit();
             
