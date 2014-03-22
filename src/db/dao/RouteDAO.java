@@ -6,25 +6,20 @@ package db.dao;
 
 import db.entity.Driver;
 import db.entity.DriverRoute;
-import db.entity.DriverRouteId;
 import db.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import db.entity.RouteTownId;
 import java.awt.HeadlessException;
 import java.util.List;
 import org.hibernate.Query;
 import db.entity.Route;
 import db.entity.RouteTown;
 import db.entity.Town;
-import static java.awt.image.ImageObserver.WIDTH;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
- * @author userr
+ * @author Annet
  */
 public class RouteDAO {
     
@@ -215,18 +210,16 @@ public class RouteDAO {
         }
         return null;
     }
-    
-   
-     public List searchOnRouteID(String referenceNo) {
+  
+    public List searchOnRouteID(String referenceNo) {
           List list = getAllRoute(QUERY_BASED_ON_REFERENCE_NO + referenceNo + "%'");
         return list;
     }
      
-     public List searchOnRouteName(String routeName) {
+    public List searchOnRouteName(String routeName) {
             List list = getAllRoute("from Route r where r.name like '" + routeName + "%'");
             return list;
         }
-       
     
     private List getAllRoute(String hql) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -279,37 +272,8 @@ public class RouteDAO {
         return null;
         
     }
-    
-    public ArrayList<Integer> getAllTownID(){
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = null;
-    
-        if (session == null) {
-            return null;
-        }
-        
-        try {
-            transaction = session.beginTransaction();
-            String HQLQuery = "select town.id From Town town";
-            Query query = session.createQuery(HQLQuery);
-            ArrayList<Integer> result = new ArrayList(query.list());
-            session.flush();
-            transaction.commit();
-            return result;
-            
-        } catch (HibernateException | HeadlessException ex) {
-            if (transaction != null && transaction.wasCommitted()) {
-                transaction.rollback();
-            }
-        } finally {
-            session.close();
-        }
-        return null;
-        
-    }
-    
-     public Town getTown(int id) {
+   
+    public Town getTown(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
     
@@ -339,7 +303,7 @@ public class RouteDAO {
         return null;
     }
      
-   public List getRouteTown(String routeID){
+    public List getRouteTown(String routeID){
       
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -370,7 +334,7 @@ public class RouteDAO {
         return null;
     } 
    
-   public List getDriverRoute(String routeID){
+    public List getDriverRoute(String routeID){
       
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -435,7 +399,7 @@ public class RouteDAO {
         return null;
     } 
      
-     public DriverRoute getDriverRoute1(int routeID, int driverID){
+    public DriverRoute getDriverRoute1(int routeID, int driverID){
       
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -491,7 +455,6 @@ public class RouteDAO {
         return null;
     }
    
-     
     public boolean isUniqueRouteTown(String routeID, String townID){
       
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -524,7 +487,7 @@ public class RouteDAO {
         return true;
     }
     
-     public boolean isUniqueDriverRoute(int routeID, int driverID){
+    public boolean isUniqueDriverRoute(int routeID, int driverID){
       
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -561,7 +524,7 @@ public class RouteDAO {
         return output == null;  
     }
     
-   public boolean isExist(String id){
+    public boolean isExist(String id){
        Route output = getRoute(id);
        if (output != null)
            return true;
@@ -569,7 +532,7 @@ public class RouteDAO {
        return false;
    }
     
-  public  Driver getDriver(int id) {
+    public  Driver getDriver(int id) {
       
        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -601,7 +564,7 @@ public class RouteDAO {
         return null;
     }
     
-  public boolean addDriverRoute(DriverRoute driverRoute){
+    public boolean addDriverRoute(DriverRoute driverRoute){
         
          Session session = HibernateUtil.getSessionFactory().openSession();
          Transaction transaction = null;
@@ -627,9 +590,8 @@ public class RouteDAO {
         }
         return false;
     }
-  
     
-  public List<Integer> getAllDriverID(){
+    public List<Integer> getAllDriverID(){
       
     Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
