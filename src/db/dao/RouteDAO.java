@@ -138,6 +138,31 @@ public class RouteDAO {
             return false;
     }
     
+    public boolean deleteDriverRoute(DriverRoute driver_route){
+        
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Transaction transaction = null;
+    
+            if (session == null)
+                return false;
+            try{
+                transaction =  session.beginTransaction();
+                session.delete(driver_route);
+                session.flush();
+                transaction.commit();
+                return true;
+            }
+            
+        catch(HibernateException he){
+            if (transaction != null && transaction.wasCommitted())
+                transaction.rollback();
+        }
+            finally{
+                session.close();
+            }
+            return false;
+    }
+    
     public boolean deleteRoute(Route route) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -333,8 +358,38 @@ public class RouteDAO {
             transaction.commit();
             
             if ( routeTown != null ) {
-               // JOptionPane.showMessageDialog(null, "Database Error!!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                 return routeTown;
+                return routeTown;
+            }
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    } 
+   
+   public List getDriverRoute(String routeID){
+      
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+          transaction = session.beginTransaction();
+            String HQLQuery = "From DriverRoute dr where dr.id.routeId like '" + routeID + "%'";
+            Query query = session.createQuery(HQLQuery);
+            
+            List driverRoute = query.list();       
+            session.flush();
+            transaction.commit();
+            
+            if ( driverRoute != null ) {
+                return driverRoute;
             }
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
@@ -365,9 +420,41 @@ public class RouteDAO {
            
             session.flush();
             transaction.commit();
-              JOptionPane.showMessageDialog(null, "hi", "ERROR", JOptionPane.ERROR_MESSAGE);
-
-                 return routeTown;
+            return routeTown;
+        
+        }
+        
+        catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+                ex.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
+    } 
+     
+     public DriverRoute getDriverRoute1(int routeID, int driverID){
+      
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
+        if (session == null) {
+            return null;
+        }
+        
+        try {
+          transaction = session.beginTransaction();
+            String HQLQuery = "From DriverRoute dr where dr.id.routeId = :r_id and dr.id.driverId = :d_id";
+            Query query = session.createQuery(HQLQuery);
+            query.setParameter("r_id", routeID);
+            query.setParameter("d_id", driverID);
+            DriverRoute driverRoute = (DriverRoute)query.uniqueResult();
+           
+            session.flush();
+            transaction.commit();
+            return driverRoute;
         
         }
         
@@ -437,6 +524,38 @@ public class RouteDAO {
         return true;
     }
     
+     public boolean isUniqueDriverRoute(int routeID, int driverID){
+      
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+    
+        if (session == null) {
+            return false;
+        }
+        
+        try {
+            transaction = session.beginTransaction();
+            String HQLQuery = "From DriverRoute dr where dr.id.routeId = :r_id and dr.id.driverId = :d_id";
+           
+            Query query = session.createQuery(HQLQuery);
+            query.setParameter("r_id",routeID);
+            query.setParameter("d_id",driverID);
+            Object routeTown = query.uniqueResult();
+            session.flush();
+            transaction.commit();
+            if ( routeTown != null ) {
+              return false;
+            }
+        } catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+            }
+        } finally {
+            session.close();
+        }
+        return true;
+    }
+    
     public boolean isUnique(String id){
        Route output =  getRoute(id);
         return output == null;  
@@ -450,36 +569,36 @@ public class RouteDAO {
        return false;
    }
     
-  public static Driver getDriver(Integer id) {
-        //Driver driver = new Driver();
-      Session session = HibernateUtil.getSessionFactory().openSession();
-         Transaction transaction = null;
+  public  Driver getDriver(int id) {
+      
+       Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
     
-        if (session == null) {
+        if (session == null){
             return null;
         }
-     
-            try {
-                transaction = session.beginTransaction();
-                String hql = "FROM Driver d WHERE d.id.id ='"+id+"'";
-                Query query = session.createQuery(hql);
-                //query.setParameter("id", id);
-                
-              
-                List resultList = query.list();
-                session.getTransaction().commit();
-              //*  JOptionPane.showMessageDialog(null, resultList.get(), "Success", JOptionPane.ERROR_MESSAGE);
-              
-                Driver driver = (Driver) resultList.get(0);
-                return driver; 
+       
+        try{
+            transaction =  session.beginTransaction();
+            String hql = "From Driver d where d.id.id = :idValue";
+            Query query = session.createQuery(hql);
+            query.setParameter("idValue", id);
+           
+            Driver driver = (Driver)query.uniqueResult();
+            session.flush();
+            transaction.commit();
+            return driver; 
             
-                
-            
-            } catch (HibernateException hibernateException) {
-                hibernateException.printStackTrace();
-                return null;
             }
- 
+        catch (HibernateException | HeadlessException ex) {
+            if (transaction != null && transaction.wasCommitted()) {
+                transaction.rollback();
+                ex.printStackTrace();
+            }
+        } finally {
+            session.close();
+        }
+        return null;
     }
     
   public boolean addDriverRoute(DriverRoute driverRoute){
