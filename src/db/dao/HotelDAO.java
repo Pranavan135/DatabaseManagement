@@ -40,9 +40,14 @@ public class HotelDAO {
         try {
             session =  HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            String HQL = "from Hotel h where h.id ='" + ID +"'";
+            String HQL = "from Hotel h where h.id = :ID";
            
             Query q = session.createQuery(HQL) ;
+            
+            try{
+                q.setParameter("ID", Integer.parseInt(ID));
+            }
+            catch(NumberFormatException n){ return null;}
             Hotel h = (Hotel)q.uniqueResult();
 
             session.getTransaction().commit();
@@ -91,7 +96,11 @@ public class HotelDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query q = session.createQuery("from Town where id = '" + townId +"'") ;
+            Query q = session.createQuery("from Town where id = :ID") ;
+            try{
+                q.setParameter("ID", Integer.parseInt(townId));
+            }
+            catch(NumberFormatException n){return null;}
             Town t = (Town) q.uniqueResult();
             session.getTransaction().commit();
             return t;
@@ -103,7 +112,7 @@ public class HotelDAO {
             he.printStackTrace();
         }
         finally {
-          //  session.close();
+          session.close();
         }
         return null;
     }
@@ -184,7 +193,12 @@ public class HotelDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query q = session.createQuery("from Hotel where id = '" +hotelId+"'") ;
+            Query q = session.createQuery("from Hotel where id = :ID") ;
+            
+            try{
+                q.setParameter("ID", Integer.parseInt(hotelId));
+            }
+            catch(NumberFormatException n){ return null;}
             Hotel t = (Hotel)q.uniqueResult();
             session.getTransaction().commit();
             
@@ -197,7 +211,7 @@ public class HotelDAO {
             he.printStackTrace();
         }
         finally {
-            //session.close();
+            session.close();
         }
         return null;
     }
