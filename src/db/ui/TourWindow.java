@@ -17,11 +17,6 @@ public class TourWindow extends javax.swing.JFrame {
      * Creates new form TourWindow
      */
     public TourWindow() {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }catch(ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex){
-            
-        }
         initComponents();
         tourEditPanel = TourEditPanel.getInstance();
         tourSearchPanel = TourSearchPanel.getInstance();
