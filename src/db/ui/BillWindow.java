@@ -123,6 +123,7 @@ public class BillWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Bill Management");
+        setResizable(false);
 
         addBillsTab.setLayout(null);
 

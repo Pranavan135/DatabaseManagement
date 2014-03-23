@@ -45,7 +45,7 @@ public class CoachDAO {
             
             session.save(coach);
             transaction.commit();
-            JOptionPane.showMessageDialog(null, "Record Added", "Details", JOptionPane.INFORMATION_MESSAGE);
+           
             return true;
         } catch (Exception ex) {
             return false;
@@ -63,7 +63,10 @@ public class CoachDAO {
                 transaction = session.beginTransaction();
                 String hql = "FROM Coach c WHERE c.regNo = :regNo";
                 Query query = session.createQuery(hql);
-                query.setParameter("regNo", regNo);
+                try{
+                    query.setParameter("regNo", regNo);
+                }
+                catch(NumberFormatException n){return null;};
                 List resultList = query.list();
                 session.getTransaction().commit();
                 coach = (Coach) resultList.get(0);
@@ -81,10 +84,13 @@ public class CoachDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            count = (Long) session.createQuery("select count(*) from Coach c where c.regNo = :regNo")
-                    .setInteger("regNo", regNo)
-                    .uniqueResult();
-            session.getTransaction().commit();
+            try{
+                count = (Long) session.createQuery("select count(*) from Coach c where c.regNo = :regNo")
+                        .setInteger("regNo", regNo)
+                        .uniqueResult();
+                session.getTransaction().commit();
+            }
+            catch(NumberFormatException n){return false;}
         } catch (Exception ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
@@ -100,9 +106,9 @@ public class CoachDAO {
             sessFact = new Configuration().configure().buildSessionFactory();
             session = sessFact.openSession();
             transaction = session.beginTransaction();
-            System.out.println("I ma here Pranavan!!!!");
+            
             String hql = "UPDATE Coach c set c.capacity = :capacity, c.lastServiceDate = :lastServicedate, c.lastServiceMileage = :lastServiceMileage WHERE c.regNo = :regNo";
-              System.out.println("I ma here Jeya!!!!");
+            
             Query query = session.createQuery(hql);
             query.setParameter("regNo", regNo);
             query.setParameter("capacity",capacity );
@@ -148,7 +154,11 @@ public class CoachDAO {
     public static Coach isUnique(String regNo)    {
         Session session = null;
         Transaction transaction = null;
-        Integer regno = Integer.parseInt(regNo);
+        Integer regno = 0;
+        try{
+             regno = Integer.parseInt(regNo);
+        }
+        catch(NumberFormatException n){ return null;}
         
         try {
             session =  HibernateUtil.getSessionFactory().openSession();

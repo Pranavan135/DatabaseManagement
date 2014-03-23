@@ -94,6 +94,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         viewTable = new javax.swing.JTable();
 
         setTitle("Hotel Management");
+        setResizable(false);
 
         idLabel.setText("ID");
 

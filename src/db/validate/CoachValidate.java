@@ -35,8 +35,8 @@ public class CoachValidate {
             return false;
         }
 
-        if (regno.length() != 10) {
-            JOptionPane.showMessageDialog(null, "Please enter 10 digit Reg No", "Error", JOptionPane.ERROR_MESSAGE);
+        if (regno.length() != 4) {
+            JOptionPane.showMessageDialog(null, "Please enter 4 digit Reg No", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
@@ -84,9 +84,6 @@ public class CoachValidate {
     public static boolean dateValidate(Date date) {
         if (date == null) {
             JOptionPane.showMessageDialog(null, "Please Enter Date", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        if (date.after(new Date())) {
-            JOptionPane.showMessageDialog(null, "The given date must be a past date!!", "ERROR", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
