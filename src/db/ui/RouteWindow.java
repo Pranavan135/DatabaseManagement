@@ -766,7 +766,8 @@ public class RouteWindow extends javax.swing.JFrame {
             .addComponent(RoutePane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
         );
 
-        setBounds(0, 0, 677, 660);
+        setSize(new java.awt.Dimension(677, 660));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
