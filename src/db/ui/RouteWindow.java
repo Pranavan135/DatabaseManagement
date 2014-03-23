@@ -122,7 +122,7 @@ public class RouteWindow extends javax.swing.JFrame {
         buttonGroup3.add(showRouteTownRadioBtn);
         buttonGroup3.add(showDriverRouteRadioBtn);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         RoutePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RoutePane.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
