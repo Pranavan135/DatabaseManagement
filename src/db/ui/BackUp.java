@@ -28,7 +28,6 @@ public class BackUp extends javax.swing.JFrame {
      * Creates new form BackUp
      */
     private static SessionFactory sessions;
-
     public BackUp() {
         initComponents();
     }
@@ -148,129 +147,94 @@ public class BackUp extends javax.swing.JFrame {
     protected String getDumpFile(String path, String tableName) {
         return path + "/" + tableName + ".xml";
     }
-
-    public void restore(String path) {
-        File[] files = getDumpFiles(path);
-        if (files != null) {
-            restoreTables(files);
-        } else {
-            System.out.println("[ERROR] Database restore | Backup folder '" + path + "' does not exist.");
-        }
+    
+    public void restore(String path)
+{
+    File[] files = getDumpFiles(path);
+    if (files != null) {
+        restoreTables(files);
+    } else {
+        System.out.println("[ERROR] Database restore | Backup folder '" + path + "' does not exist.");
     }
-
-    /**
-     * Restore database tables
-     *
-     * @param files backup files
-     */
-    protected void restoreTables(File[] files) {
-        Session session = sessions.openSession();
-        Session dom4jSession = session.getSession(EntityMode.DOM4J);
-        Transaction tx = null;
-
-        try {
-            tx = session.beginTransaction();
-            restoreTables(dom4jSession, files);
-            session.flush();
-            tx.commit();
+}
+/**
+ * Restore database tables
+ * @param files backup files
+ */
+protected void restoreTables(File[] files)
+{
+    Session session = sessions.openSession();
+    Session dom4jSession = session.getSession(EntityMode.DOM4J);
+    Transaction tx = null;
+ 
+    try {
+        tx = session.beginTransaction();
+        restoreTables(dom4jSession, files);
+        session.flush();
+        tx.commit();
+        session.close();
+    } catch (Exception e) {
+        if (tx != null) {
+            tx.rollback();
             session.close();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-                session.close();
-            }
-            e.printStackTrace();
         }
+        e.printStackTrace();
     }
-
-    /**
-     * Restore database tables
-     *
-     * @param session
-     * @param files backup files
-     * @throws DocumentException
-     */
-    @SuppressWarnings("unchecked")
-    protected void restoreTables(Session session, File[] files) throws DocumentException {
-        for (File file : files) {
-            SAXReader reader = new SAXReader();
-            Document document = reader.read(file);
-
-            Iterator<Object> it = document.getRootElement().nodeIterator();
-            while (it.hasNext()) {
-                Object obj = it.next();
-                if (obj instanceof DefaultElement) {
-                    session.replicate(obj, ReplicationMode.OVERWRITE);
-                }
+}
+/**
+ * Restore database tables
+ * @param session
+ * @param files backup files
+ * @throws DocumentException
+ */
+@SuppressWarnings("unchecked")
+protected void restoreTables(Session session, File[] files) throws DocumentException
+{
+    for (File file : files) {
+        SAXReader reader = new SAXReader();
+        Document document = reader.read(file);
+ 
+        Iterator<Object> it = document.getRootElement().nodeIterator();
+        while (it.hasNext()) {
+            Object obj = it.next();
+            if (obj instanceof DefaultElement) {
+                session.replicate(obj, ReplicationMode.OVERWRITE);
             }
         }
     }
-
-    /**
-     * Get a list of files from specified folder
-     *
-     * @param path backup folder
-     * @return list of backup files or null if path folder does not exist
-     */
-    protected File[] getDumpFiles(String path) {
-        File dir = new File(path);
-        if (dir.exists()) {
-            return dir.listFiles();
-        }
-        return null;
+}
+/**
+ * Get a list of files from specified folder
+ * @param path backup folder
+ * @return list of backup files or null if path folder does not exist
+ */
+protected File[] getDumpFiles(String path)
+{
+    File dir = new File(path);
+    if (dir.exists()) {
+        return dir.listFiles();
     }
+    return null;
+}
 
     /**
      * @param args the command line arguments
      */
-    /*public static void main(String args[]) {
-     /* Set the Nimbus look and feel */
-//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-     */
-    
-    /*try {
-    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-    if ("Nimbus".equals(info.getName())) {
-    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-    break;
-    }
-    }
-    }
-    catch (ClassNotFoundException ex
-    
-    
-    ) {
-    java.util.logging.Logger.getLogger(BackUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    catch (InstantiationException ex
-    
-    
-    ) {
-    java.util.logging.Logger.getLogger(BackUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    catch (IllegalAccessException ex
-    
-    
-    ) {
-    java.util.logging.Logger.getLogger(BackUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    catch (javax.swing.UnsupportedLookAndFeelException ex
-    
-    
-    ) {
-    java.util.logging.Logger.getLogger(BackUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }*/
-//</editor-fold>
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        //</editor-fold>
 
-    /* Create and display the form */
-    /*java.awt.EventQueue.invokeLater(new Runnable() {
-     public void run() {
-     new BackUp().setVisible(true);
-     }
-     });
-     }*/
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BackUp().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backUp;
