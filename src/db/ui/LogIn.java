@@ -7,6 +7,7 @@ package db.ui;
 
 import db.dao.UserDAO;
 import db.util.HibernateUtil;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -23,6 +24,7 @@ public class LogIn extends javax.swing.JFrame {
      * Creates new form LogIn
      */
     public LogIn() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
     }
 
@@ -110,6 +112,7 @@ public class LogIn extends javax.swing.JFrame {
         if ( UserDAO.isExist(userName)){
             if( UserDAO.logIn(userName,pass)){
                 JOptionPane.showMessageDialog(null,"Login Success","Details", JOptionPane.INFORMATION_MESSAGE);
+               // new MainWindow().setVisible(true);
             }
             
         } else{
@@ -151,7 +154,6 @@ public class LogIn extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException unsupportedLookAndFeelException) {
         }
         
-        new MainWindow().setVisible(true);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
