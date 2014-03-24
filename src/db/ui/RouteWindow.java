@@ -782,8 +782,6 @@ public class RouteWindow extends javax.swing.JFrame {
         RoutePane.setIconAt(2, delete);
         RoutePane.setIconAt(3, view);
 
-        getAccessibleContext().setAccessibleName("Route Management");
-
         setSize(new java.awt.Dimension(677, 660));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -1379,7 +1377,6 @@ public class RouteWindow extends javax.swing.JFrame {
          addTownTable.setModel(new DefaultTableModel(tableData, tableHeaders1));
             }     
 }
-   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AddJPanel;
     private javax.swing.JButton DeleteButton;
