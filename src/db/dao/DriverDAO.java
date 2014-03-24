@@ -59,18 +59,16 @@ public class DriverDAO {
             sessFact = new Configuration().configure().buildSessionFactory();
             session = sessFact.openSession();
             transaction = session.beginTransaction();
-            String hql = "UPDATE Driver d set d.id.name = :name, d.address = :address, d.tpNo = :teleno WHERE d.id.id = :id";
+            DriverId driverId = new DriverId(id, name);
+            Driver driver = new Driver(driverId, address, teleno);
+            /*String hql = "UPDATE Driver d set d.id.name = :name, d.address = :address, d.tpNo = :teleno WHERE d.id.id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
             query.setParameter("name", name);
             query.setParameter("address", address);
-            query.setParameter("teleno", teleno);
-
-            /*String hql = "from Driver d where d.id.id = :id";
-             Query query = session.createQuery(hql);
-             query.setParameter("id", id);
-             Driver driver = (Driver) query.uniqueResult();*/
-            query.executeUpdate();
+            query.setParameter("teleno", teleno);*/
+             session.update(driver);
+            //query.executeUpdate();
             transaction.commit();
             JOptionPane.showMessageDialog(null, "Record Updated", "Details", JOptionPane.INFORMATION_MESSAGE);
             return true;
