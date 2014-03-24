@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 24, 2014 9:30:15 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="db.Entity.User" table="user" catalog="tourmanagement">
+    <class name="db.entity.User" table="user" catalog="tourmanagement">
         <id name="name" type="string">
             <column name="name" length="30" />
             <generator class="assigned" />

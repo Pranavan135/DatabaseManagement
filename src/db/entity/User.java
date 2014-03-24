@@ -1,4 +1,4 @@
-package db.Entity;
+package db.entity;
 // Generated Mar 24, 2014 9:30:15 AM by Hibernate Tools 3.6.0
 
 
