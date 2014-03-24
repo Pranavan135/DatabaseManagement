@@ -141,7 +141,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="billDateLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Bill date (dd-MM-yyyy)"/>
+                <Property name="text" type="java.lang.String" value="Bill date"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -151,7 +151,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="numberOfIndvidualsLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Number of Individuals"/>
+                <Property name="text" type="java.lang.String" value="Individual count"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

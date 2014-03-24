@@ -154,11 +154,11 @@ public class BillWindow extends javax.swing.JFrame {
         addBillsTab.add(hotelIDLabel);
         hotelIDLabel.setBounds(30, 260, 110, 30);
 
-        billDateLabel.setText("Bill date (dd-MM-yyyy)");
+        billDateLabel.setText("Bill date");
         addBillsTab.add(billDateLabel);
         billDateLabel.setBounds(350, 30, 110, 30);
 
-        numberOfIndvidualsLabel.setText("Number of Individuals");
+        numberOfIndvidualsLabel.setText("Individual count");
         addBillsTab.add(numberOfIndvidualsLabel);
         numberOfIndvidualsLabel.setBounds(350, 90, 110, 14);
 
