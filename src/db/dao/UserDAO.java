@@ -7,10 +7,12 @@ package db.dao;
 
 import db.entity.User;
 import db.util.HibernateUtil;
+import javax.swing.JOptionPane;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -60,6 +62,28 @@ public class UserDAO {
             ex.printStackTrace();
             return null;
         }
-
+ 
+    }
+   
+    
+    public static boolean addUser(String name,String password,Integer privilegeCode){
+        try {
+            sessFact = new Configuration().configure().buildSessionFactory();
+            session = sessFact.openSession();
+            transaction = session.beginTransaction();
+            User user = new User();
+            user.setName(name);
+            user.setPassword(password);
+            user.setPrivilege(privilegeCode);
+            session.save(user);
+            transaction.commit();
+            JOptionPane.showMessageDialog(null, "Record Added", "Details", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        } finally {
+            session.flush();
+            session.close();
+        }
     }
 }

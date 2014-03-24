@@ -136,7 +136,7 @@ public class LogIn extends javax.swing.JFrame {
         if ( UserDAO.isExist(userName)){
             if( !UserDAO.logIn(userName,pass).equals(null)){
                 JOptionPane.showMessageDialog(null,"Login Success","Details", JOptionPane.INFORMATION_MESSAGE);
-               // new MainWindow().setVisible(true);
+               MainWindow.create().changeValue(userName,UserDAO.logIn(userName,pass).getPrivilege()/1000 );
             }
             
         } else{
