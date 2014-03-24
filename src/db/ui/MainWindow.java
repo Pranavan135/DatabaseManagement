@@ -220,9 +220,9 @@ public class MainWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         try {
-        //UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackStarLookAndFeel");
+        UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackMoonLookAndFeel");
            // UIManager.setLookAndFeel ( "com.alee.laf.WebLookAndFeel" );
-             UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+            // UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
         } catch (ClassNotFoundException classNotFoundException) {
         } catch (InstantiationException instantiationException) {
         } catch (IllegalAccessException illegalAccessException) {
