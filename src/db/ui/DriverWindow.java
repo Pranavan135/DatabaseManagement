@@ -103,6 +103,7 @@ public class DriverWindow extends javax.swing.JFrame {
         viewExitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Driver Management");
 
         driverTab.setPreferredSize(new java.awt.Dimension(613, 400));
 
@@ -565,6 +566,7 @@ public class DriverWindow extends javax.swing.JFrame {
         driverTab.setIconAt(3, view);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addressTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextFieldActionPerformed
@@ -726,15 +728,21 @@ public class DriverWindow extends javax.swing.JFrame {
             if (response == JOptionPane.YES_OPTION) {
                  boolean result1 = true;
                 int[] count = deleteTable.getSelectedRows();
+                
+                DefaultTableModel d = (DefaultTableModel)deleteTable.getModel();
                 for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
                    Driver driver = DriverDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
                    boolean result = DriverDAO.deleteDriver(driver);
-                   
+                   //System.out.println(i); 
                    if(!result)
                        result1 = false;
+                                  
+                                   
                 }
-                 if(result1)
+                 if(result1){
                        JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
+                       d.setRowCount(0);
+                 }
                    else
                        JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
 	

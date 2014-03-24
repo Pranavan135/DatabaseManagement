@@ -843,12 +843,11 @@ public class HotelsWindow extends javax.swing.JFrame {
                    
                    if(!result)
                        result1 = false;
-                   else
-                       d1.removeRow(i);
+                   
                 }
                  if(result1) {
                        JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
-                       
+                       d1.setRowCount(0);
    
                  }
                  else
