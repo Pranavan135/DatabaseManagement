@@ -53,7 +53,6 @@ public class DriverDAO {
         }
     }
 
-
     public static boolean updateData(Integer id, String name, String address, String teleno) {
         try {
             sessFact = new Configuration().configure().buildSessionFactory();
@@ -61,14 +60,7 @@ public class DriverDAO {
             transaction = session.beginTransaction();
             DriverId driverId = new DriverId(id, name);
             Driver driver = new Driver(driverId, address, teleno);
-            /*String hql = "UPDATE Driver d set d.id.name = :name, d.address = :address, d.tpNo = :teleno WHERE d.id.id = :id";
-            Query query = session.createQuery(hql);
-            query.setParameter("id", id);
-            query.setParameter("name", name);
-            query.setParameter("address", address);
-            query.setParameter("teleno", teleno);*/
-             session.update(driver);
-            //query.executeUpdate();
+            session.update(driver);
             transaction.commit();
             JOptionPane.showMessageDialog(null, "Record Updated", "Details", JOptionPane.INFORMATION_MESSAGE);
             return true;
@@ -165,9 +157,9 @@ public class DriverDAO {
         }
         return count > 0;
     }
-    
+
     public static boolean deleteDriver(Driver driver) {
-        
+
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
@@ -183,32 +175,30 @@ public class DriverDAO {
             session.close();
         }
     }
-    
-    public static Driver isUnique(String id)    {
+
+    public static Driver isUnique(String id) {
         Session session = null;
         Transaction transaction = null;
         Integer iD = Integer.parseInt(id);
-        
+
         try {
-            session =  HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             String HQL = "from Driver d where d.id.id =:id";
-           
-            Query q = session.createQuery(HQL) ;
+
+            Query q = session.createQuery(HQL);
             q.setParameter("id", iD);
-            Driver driver= (Driver)q.uniqueResult();
+            Driver driver = (Driver) q.uniqueResult();
 
             session.getTransaction().commit();
-            
-           return driver;
-        }
-        catch (HibernateException|HeadlessException he) {
+
+            return driver;
+        } catch (HibernateException | HeadlessException he) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();
             }
             he.printStackTrace();
-        }
-        finally {
+        } finally {
             session.close();
         }
         return null;

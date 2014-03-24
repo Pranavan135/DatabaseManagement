@@ -24,18 +24,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="driverTab" min="-2" pref="636" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="driverTab" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
-          </Group>
+          <Component id="driverTab" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -46,6 +42,9 @@
           <Dimension value="[613, 400]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon add = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/add.png&quot;));&#xa;ImageIcon edit = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/edit.png&quot;));&#xa;ImageIcon delete = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/delete.png&quot;));&#xa;ImageIcon view = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/view.png&quot;));&#xa;driverTab.setIconAt(0, add);&#xa;driverTab.setIconAt(1, edit);&#xa;driverTab.setIconAt(2, delete);&#xa;driverTab.setIconAt(3, view);"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -427,8 +426,8 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="deleteDeleteButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="exitDeleteButton" min="-2" pref="85" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+                      <Component id="exitDeleteButton" min="-2" pref="71" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -451,12 +450,15 @@
                           <Component id="nameDeleteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="deleteGoButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="48" max="32767" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="157" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="exitDeleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteDeleteButton" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="deleteDeleteButton" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="exitDeleteButton" max="32767" attributes="0"/>
+                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   </Group>
