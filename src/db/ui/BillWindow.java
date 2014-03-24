@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package db.ui;
 
 import db.entity.Bill;
@@ -22,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
@@ -35,17 +35,18 @@ public class BillWindow extends javax.swing.JFrame {
     private BillValidate billValidate = BillValidate.create();
     private static BillWindow billWindow = null;
     private String editReference = "";
-    
+
     public BillWindow() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
+        this.setResizable(false);
     }
-    
-    public static BillWindow create()  {
+
+    public static BillWindow create() {
         if (billWindow == null) {
-             billWindow = new BillWindow();
+            billWindow = new BillWindow();
         }
-            return billWindow;
+        return billWindow;
     }
 
     @SuppressWarnings("unchecked")
@@ -539,7 +540,7 @@ public class BillWindow extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    private void addData()  {
+    private void addData() {
         String referenceNo = referenceNoTextField.getText();
         String tourCode = tourCodeTextField.getText();
         String townID = townIDTextField.getText();
@@ -547,62 +548,54 @@ public class BillWindow extends javax.swing.JFrame {
         String numberOfIndividuals = numberOfIndvidualsTextField.getText();
         String amount = amountTextField.getText();
         Boolean paid = paidCheckBox.isSelected();
-      
+
         if (!billValidate.validatReferenceNo(referenceNo)) {
             referenceNoTextField.setText("");
             referenceNo = "";
-        }
-        else if ( billDateChooser.getDate() == null )   {
-             JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
-             billDateChooser.cleanup();
-        }
-        else if (!billValidate.validateAmount(amount)) { 
+        } else if (billDateChooser.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
+            billDateChooser.cleanup();
+        } else if (!billValidate.validateAmount(amount)) {
             amountTextField.setText("");
             amount = "";
-        }
-        else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
+        } else if (!billValidate.validateIndividuals(numberOfIndividuals)) {
             numberOfIndvidualsTextField.setText("");
             numberOfIndividuals = "";
-        }
-        else if (!billValidate.validateNotNull(tourCode))   {
-             JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-         else if (!billValidate.validateNotNull(townID))   {
-             JOptionPane.showMessageDialog(null, "Please Select a town", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-         else if (!billValidate.validateNotNull(hotelID))   {
-             JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        else    {
-             boolean response = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), billDateChooser.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
-             
-             if (response)  {
+        } else if (!billValidate.validateNotNull(tourCode)) {
+            JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if (!billValidate.validateNotNull(townID)) {
+            JOptionPane.showMessageDialog(null, "Please Select a town", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if (!billValidate.validateNotNull(hotelID)) {
+            JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            boolean response = billDAO.addBill(new Bill(Integer.parseInt(referenceNo), billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), billDateChooser.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
+
+            if (response) {
                 JOptionPane.showMessageDialog(null, "You have successfully added the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
                 clearAdd();
-             }
-             else
-             JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
-        
+
     private void getTours() {
         List resultList = billDAO.getAllTours();
         DefaultListModel listModel = new DefaultListModel();
-        if (resultList != null)     {
+        if (resultList != null) {
             for (Object o : resultList) {
                 Tour tour = (Tour) o;
-                listModel.addElement(tour.getTourCode());       
+                listModel.addElement(tour.getTourCode());
             }
-        tourCodelist.setModel(listModel);
-        edittourCodelist1.setModel(listModel);
-        }
-        else {
-            
+            tourCodelist.setModel(listModel);
+            edittourCodelist1.setModel(listModel);
+        } else {
+
         }
     }
-   
+
     private void clearAdd() {
-         referenceNoTextField.setText("");
+        referenceNoTextField.setText("");
         townIDTextField.setText("");
         tourCodeTextField.setText("");
         numberOfIndvidualsTextField.setText("");
@@ -614,20 +607,19 @@ public class BillWindow extends javax.swing.JFrame {
         billDateChooser.cleanup();
         paidCheckBox.setSelected(false);
     }
-    
+
     private void changeTable(Set<Hotel> hotels, int a) {
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
-        
+
         tableHeaders.add("Hotel ID");
         tableHeaders.add("Hotel Name");
         tableHeaders.add("Town ID");
         tableHeaders.add("Town Name");
-      
-        
+
         if (!hotels.isEmpty()) {
             for (Hotel h : hotels) {
-               
+
                 Vector<Object> oneRow = new Vector<Object>();
                 oneRow.add(h.getId());
                 oneRow.add(h.getName());
@@ -635,23 +627,22 @@ public class BillWindow extends javax.swing.JFrame {
                 oneRow.add(h.getTown().getName());
                 tableData.add(oneRow);
             }
-       if (a == 1) {
-            hotelTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-            hotelTownTable.setEnabled(true);
-       }
-       else
-           edithotelTownTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
-           edithotelTownTable1.setEnabled(true);
-        }
-        else {
+            if (a == 1) {
+                hotelTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+                hotelTownTable.setEnabled(true);
+            } else {
+                edithotelTownTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
+            }
+            edithotelTownTable1.setEnabled(true);
+        } else {
             JOptionPane.showMessageDialog(null, "There are no overnight stops / No hotels assigned please try again with another tour code", "ERROR", JOptionPane.ERROR_MESSAGE);
             tourCodelist.clearSelection();
             tourCodeTextField.setText("");
         }
-        
-    }  
-    
-    private void clearEdit()    {
+
+    }
+
+    private void clearEdit() {
         editreferenceNoTextField1.setText("");
         edittownIDTextField1.setText("");
         edittourCodeTextField1.setText("");
@@ -667,8 +658,8 @@ public class BillWindow extends javax.swing.JFrame {
         edithotelTownTable1.clearSelection();
         edithotelTownTable1.setEnabled(false);
     }
-    
-    private void editEnable()   {
+
+    private void editEnable() {
         editamountTextField1.setEnabled(true);
         editnumberOfIndvidualsTextField1.setEnabled(true);
         editbillDateChooser1.setEnabled(true);
@@ -676,11 +667,11 @@ public class BillWindow extends javax.swing.JFrame {
         editButton.setEnabled(true);
         edithotelTownTable1.setEnabled(true);
     }
-    
-     private void viewBills(String referenceNo, int num) {
+
+    private void viewBills(String referenceNo, int num) {
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
-        
+
         tableHeaders.add("Reference No");
         tableHeaders.add("Tour Code");
         tableHeaders.add("Town Name");
@@ -689,13 +680,13 @@ public class BillWindow extends javax.swing.JFrame {
         tableHeaders.add("Person Count");
         tableHeaders.add("Amount");
         tableHeaders.add("Paid");
-        
+
         List resultList = billDAO.searchOnReferenceNo(referenceNo);
-        
-        if (!resultList.isEmpty())     {
+
+        if (!resultList.isEmpty()) {
             for (Object o : resultList) {
                 Bill bill = (Bill) o;
-                
+
                 Vector<Object> oneRow = new Vector<Object>();
                 oneRow.add(bill.getRefNo());
                 oneRow.add(bill.getTour().getTourCode());
@@ -707,32 +698,31 @@ public class BillWindow extends javax.swing.JFrame {
                 oneRow.add(bill.getPaid());
                 tableData.add(oneRow);
             }
-        if (num == 1)   
-            viewTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-        else 
-            deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-        }
-        else {
+            if (num == 1) {
+                viewTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+            } else {
+                deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-            
-            if(num == 1){
-                DefaultTableModel d = (DefaultTableModel)viewTable.getModel();
+
+            if (num == 1) {
+                DefaultTableModel d = (DefaultTableModel) viewTable.getModel();
+                d.setRowCount(0);
+            } else {
+                DefaultTableModel d = (DefaultTableModel) deleteTable.getModel();
                 d.setRowCount(0);
             }
-            else    {
-                DefaultTableModel d = (DefaultTableModel)deleteTable.getModel();
-                d.setRowCount(0);
-            }
-           
+
         }
     }
-    
+
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         addData();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        viewBills(viewReferenceTextField.getText(),1 );
+        viewBills(viewReferenceTextField.getText(), 1);
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -740,18 +730,18 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-       clearAdd();
+        clearAdd();
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void tourCodelistValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_tourCodelistValueChanged
-        if (!tourCodelist.isSelectionEmpty()) { 
+        if (!tourCodelist.isSelectionEmpty()) {
             tourCodeTextField.setText(tourCodelist.getSelectedValue().toString());
             hotelIDtextField.setText("");
             townIDTextField.setText("");
             hotelTownTable.clearSelection();
             hotelTownTable.setEnabled(false);
-            
-          //  if (hotelTownTable.getRowCount() > 0)
+
+            //  if (hotelTownTable.getRowCount() > 0)
             //    hotelTownTable.setModel(null);
             Tour tour = billDAO.getTour(tourCodeTextField.getText());
             Set<Hotel> hotels = billDAO.getAllHotels(tour);
@@ -760,10 +750,10 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_tourCodelistValueChanged
 
     private void hotelTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hotelTownTableMouseClicked
-       if(hotelTownTable.isEnabled()) {
-        hotelIDtextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 0).toString());
-        townIDTextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 2).toString());
-       }
+        if (hotelTownTable.isEnabled()) {
+            hotelIDtextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 0).toString());
+            townIDTextField.setText(hotelTownTable.getValueAt(hotelTownTable.getSelectedRow(), 2).toString());
+        }
     }//GEN-LAST:event_hotelTownTableMouseClicked
 
     private void editexitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editexitButton1ActionPerformed
@@ -774,8 +764,8 @@ public class BillWindow extends javax.swing.JFrame {
         String referenceNo = editreferenceNoTextField1.getText();
         editReference = referenceNo;
         Bill b = billDAO.isUnique(referenceNo);
-        
-        if(b != null)   {
+
+        if (b != null) {
             editamountTextField1.setText(b.getAmount().toString());
             editnumberOfIndvidualsTextField1.setText(String.valueOf(b.getNumberOfIndividuals()));
             editbillDateChooser1.setDate(b.getBillDate());
@@ -789,13 +779,12 @@ public class BillWindow extends javax.swing.JFrame {
             edithotelIDtextField1.setText(String.valueOf(b.getHotel().getId()));
             edittownIDTextField1.setText(String.valueOf(b.getTown().getId()));
             editEnable();
-            
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Reference No not exists. Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);
+            editreferenceNoTextField1.setText("");
         }
-        else    {
-             JOptionPane.showMessageDialog(null, "Reference No not exists. Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);
-             editreferenceNoTextField1.setText("");
-        }
-        
+
     }//GEN-LAST:event_fetchButtonActionPerformed
 
     private void editclearButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editclearButton1ActionPerformed
@@ -803,14 +792,14 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_editclearButton1ActionPerformed
 
     private void edithotelTownTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edithotelTownTable1MouseClicked
-        if(edithotelTownTable1.isEnabled()) {
+        if (edithotelTownTable1.isEnabled()) {
             edithotelIDtextField1.setText(edithotelTownTable1.getValueAt(edithotelTownTable1.getSelectedRow(), 0).toString());
             edittownIDTextField1.setText(edithotelTownTable1.getValueAt(edithotelTownTable1.getSelectedRow(), 2).toString());
-       }
+        }
     }//GEN-LAST:event_edithotelTownTable1MouseClicked
 
     private void edittourCodelist1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_edittourCodelist1ValueChanged
-        if (!edittourCodelist1.isSelectionEmpty()) { 
+        if (!edittourCodelist1.isSelectionEmpty()) {
             edittourCodeTextField1.setText(edittourCodelist1.getSelectedValue().toString());
             edithotelIDtextField1.setText("");
             edittownIDTextField1.setText("");
@@ -835,86 +824,73 @@ public class BillWindow extends javax.swing.JFrame {
         String numberOfIndividuals = editnumberOfIndvidualsTextField1.getText();
         String amount = editamountTextField1.getText();
         boolean paid = editPaid.isSelected();
-        
-       if (referenceNo.equalsIgnoreCase(editReference)) {
-        if (!billValidate.validateNotNull(date))   {
-             JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
-             editbillDateChooser1.cleanup();
-        }
-        else if (!billValidate.validateAmount(amount)) { 
-            editamountTextField1.setText("");
-            amount = "";
-        }
-        else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
-            editnumberOfIndvidualsTextField1.setText("");
-            numberOfIndividuals = "";
-        }
-        else if (!billValidate.validateNotNull(tourCode))   {
-             JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-         else if (!billValidate.validateNotNull(townID))   {
-             JOptionPane.showMessageDialog(null, "Please Select a town", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-         else if (!billValidate.validateNotNull(hotelID))   {
-             JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        else    {
-             boolean response = billDAO.editBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
-      
-             if (response)  {
-                JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
-                clearEdit();
-             }
-             else
-                JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-       }
-       else  {
-           if (!billValidate.validatReferenceNo(referenceNo))   {
-               editreferenceNoTextField1.setText("");
-               referenceNo = "";
-           }
-           else if (!billValidate.validateNotNull(date))   {
-             JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
-             editbillDateChooser1.cleanup();
-            }
-            else if (!billValidate.validateAmount(amount)) { 
-               editamountTextField1.setText("");
-               amount = "";
-            }
-            else if (!billValidate.validateIndividuals(numberOfIndividuals))    {
+
+        if (referenceNo.equalsIgnoreCase(editReference)) {
+            if (!billValidate.validateNotNull(date)) {
+                JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
+                editbillDateChooser1.cleanup();
+            } else if (!billValidate.validateAmount(amount)) {
+                editamountTextField1.setText("");
+                amount = "";
+            } else if (!billValidate.validateIndividuals(numberOfIndividuals)) {
                 editnumberOfIndvidualsTextField1.setText("");
                 numberOfIndividuals = "";
-            }
-            else if (!billValidate.validateNotNull(tourCode))   {
-                 JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            else if (!billValidate.validateNotNull(townID))   {
+            } else if (!billValidate.validateNotNull(tourCode)) {
+                JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (!billValidate.validateNotNull(townID)) {
                 JOptionPane.showMessageDialog(null, "Please Select a town", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            else if (!billValidate.validateNotNull(hotelID))   {
+            } else if (!billValidate.validateNotNull(hotelID)) {
                 JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            else    {
-                Bill bill = billDAO.isUnique(editReference);
-                boolean response = true;
-                if(bill != null)
-                    response = billDAO.deleteBill(bill);
-      
-                if (response)  {
-                 boolean response1 = billDAO.addBill(new Bill(Integer.parseInt(referenceNo),billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
-               
-                 if(response1)  {
+            } else {
+                boolean response = billDAO.editBill(new Bill(Integer.parseInt(referenceNo), billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
+
+                if (response) {
                     JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
                     clearEdit();
-                 }
-                 else
+                } else {
                     JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
-             }
-             else
-                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            if (!billValidate.validatReferenceNo(referenceNo)) {
+                editreferenceNoTextField1.setText("");
+                referenceNo = "";
+            } else if (!billValidate.validateNotNull(date)) {
+                JOptionPane.showMessageDialog(null, "Please Select a date", "ERROR", JOptionPane.ERROR_MESSAGE);
+                editbillDateChooser1.cleanup();
+            } else if (!billValidate.validateAmount(amount)) {
+                editamountTextField1.setText("");
+                amount = "";
+            } else if (!billValidate.validateIndividuals(numberOfIndividuals)) {
+                editnumberOfIndvidualsTextField1.setText("");
+                numberOfIndividuals = "";
+            } else if (!billValidate.validateNotNull(tourCode)) {
+                JOptionPane.showMessageDialog(null, "Please select a TourCode", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (!billValidate.validateNotNull(townID)) {
+                JOptionPane.showMessageDialog(null, "Please Select a town", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (!billValidate.validateNotNull(hotelID)) {
+                JOptionPane.showMessageDialog(null, "Please Select a hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Bill bill = billDAO.isUnique(editReference);
+                boolean response = true;
+                if (bill != null) {
+                    response = billDAO.deleteBill(bill);
+                }
+
+                if (response) {
+                    boolean response1 = billDAO.addBill(new Bill(Integer.parseInt(referenceNo), billDAO.getTown(townID), billDAO.getTour(tourCode), billDAO.getHotel(hotelID), editbillDateChooser1.getDate(), Integer.parseInt(numberOfIndividuals), Double.parseDouble(amount), paid));
+
+                    if (response1) {
+                        JOptionPane.showMessageDialog(null, "You have successfully edited the bill", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                        clearEdit();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add tha bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
-       }
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteFetchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteFetchButtonActionPerformed
@@ -922,39 +898,38 @@ public class BillWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteFetchButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        if(deleteTable.getSelectedRowCount() != 0)  {
+        if (deleteTable.getSelectedRowCount() != 0) {
             int response = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record(s) ? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-           
-             if (response == JOptionPane.YES_OPTION) {
+
+            if (response == JOptionPane.YES_OPTION) {
                 boolean result1 = true;
-                DefaultTableModel d = (DefaultTableModel)deleteTable.getModel();
+                DefaultTableModel d = (DefaultTableModel) deleteTable.getModel();
                 int[] count = deleteTable.getSelectedRows();
                 int num = deleteTable.getSelectedRowCount();
                 for (int i = 0; i < num; i++) {
-                    
-                   Bill b = billDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
-                   boolean result = billDAO.deleteBill(b);
-                   
-                   if(!result)  {
-                       result1 = false;
-                   }
-                
-                    
+
+                    Bill b = billDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
+                    boolean result = billDAO.deleteBill(b);
+
+                    if (!result) {
+                        result1 = false;
+                    }
+
                 }
-                 if(result1)    {
-                       JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
-                       
-                       d.setRowCount(0);
-                       
-                 }
-                 else
-                       JOptionPane.showMessageDialog(null, "Cannot Delete some Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
-	
+                if (result1) {
+                    JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+
+                    d.setRowCount(0);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cannot Delete some Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
         }
-            
+
     }//GEN-LAST:event_deleteButtonActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */

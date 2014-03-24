@@ -34,6 +34,7 @@ public class DriverWindow extends javax.swing.JFrame {
     public DriverWindow() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
+        this.setResizable(false);
         idEditLabel.setVisible(false);
         idEditTextField.setVisible(false);
         nameEditLabel.setVisible(false);

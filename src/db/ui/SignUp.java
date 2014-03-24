@@ -47,7 +47,7 @@ public class SignUp extends javax.swing.JFrame {
 
         jButton1.setText("SignUp");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Clear");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

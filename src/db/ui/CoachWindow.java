@@ -30,6 +30,7 @@ public class CoachWindow extends javax.swing.JFrame {
     public CoachWindow() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
+        this.setResizable(false);
         regNoEditLabel.setVisible(false);
         regNoEdittextField.setVisible(false);
         capacityEditLabel.setVisible(false);
