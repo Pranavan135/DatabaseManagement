@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package db.ui;
 
 import db.dao.HotelDAO;
@@ -23,25 +22,28 @@ import javax.swing.table.DefaultTableModel;
  * @author DELL
  */
 public class HotelsWindow extends javax.swing.JFrame {
+
     private HotelDAO hotelDAO = HotelDAO.create();
     private HotelValidate hotelValidate = HotelValidate.create();
     private static HotelsWindow hotelWindow = null;
     private int SINGLE;
     private String editID = "";
     private String editTownID = "";
+
     /**
      * Creates new form HotelsWindow
      */
     public HotelsWindow() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
+        this.setResizable(false);
     }
-    
-    public static HotelsWindow create()  {
+
+    public static HotelsWindow create() {
         if (hotelWindow == null) {
-             hotelWindow = new HotelsWindow();
+            hotelWindow = new HotelsWindow();
         }
-            return hotelWindow;
+        return hotelWindow;
     }
 
     @SuppressWarnings("unchecked")
@@ -518,64 +520,61 @@ public class HotelsWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addData()  {
+    private void addData() {
         String ID = idTextField.getText();
         String hotelName = hotelNameTextField.getText();
         String townID = townIdTextField.getText();
-        
+
         if (!hotelValidate.validatID(ID)) {
             idTextField.setText("");
             ID = "";
-        }
-        else if(!hotelValidate.validateNotNull(hotelName)) {
+        } else if (!hotelValidate.validateNotNull(hotelName)) {
             JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        else if(!hotelValidate.validateNotNull(townID)){
+        } else if (!hotelValidate.validateNotNull(townID)) {
             JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        else    {
-            boolean response = hotelDAO.addHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, null));
-             
-             if (response)  {
-                 JOptionPane.showMessageDialog(null, "You have successfully added the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE);
-                 clearAdd();
-             }
-             else
-                 JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            boolean response = hotelDAO.addHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID), hotelName, null));
+
+            if (response) {
+                JOptionPane.showMessageDialog(null, "You have successfully added the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                clearAdd();
+            } else {
+                JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot add the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
-    
-     private void clearAdd() {
+
+    private void clearAdd() {
         idTextField.setText("");
         hotelNameTextField.setText("");
         addTownTable.clearSelection();
         townIdTextField.setText("");
     }
-     
-     private void viewHotels() {
+
+    private void viewHotels() {
         List resultList = null;
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
-        
+
         tableHeaders.add("Hotel ID");
         tableHeaders.add("Hotel Name");
         tableHeaders.add("Town ID");
         tableHeaders.add("Town Name");
- 
-        
-        if(!deleteIDTextField.getText().isEmpty())   
-             resultList = hotelDAO.searchOnHotelId(deleteIDTextField.getText());
-        else if(!deleteHotelNameTextField.getText().isEmpty())
-             resultList = hotelDAO.searchHotelName(deleteHotelNameTextField.getText());
-        else if(!deleteTownNameTextField.getText().isEmpty())
-             resultList = hotelDAO.searchTownName(deleteTownNameTextField.getText());
-        else
-             resultList = hotelDAO.searchOnHotelId(deleteIDTextField.getText());
-        
-        if (!resultList.isEmpty())     {
+
+        if (!deleteIDTextField.getText().isEmpty()) {
+            resultList = hotelDAO.searchOnHotelId(deleteIDTextField.getText());
+        } else if (!deleteHotelNameTextField.getText().isEmpty()) {
+            resultList = hotelDAO.searchHotelName(deleteHotelNameTextField.getText());
+        } else if (!deleteTownNameTextField.getText().isEmpty()) {
+            resultList = hotelDAO.searchTownName(deleteTownNameTextField.getText());
+        } else {
+            resultList = hotelDAO.searchOnHotelId(deleteIDTextField.getText());
+        }
+
+        if (!resultList.isEmpty()) {
             for (Object o : resultList) {
                 Hotel hotel = (Hotel) o;
-                
+
                 Vector<Object> oneRow = new Vector<Object>();
                 oneRow.add(hotel.getId());
                 oneRow.add(hotel.getName());
@@ -583,40 +582,39 @@ public class HotelsWindow extends javax.swing.JFrame {
                 oneRow.add(hotel.getTown().getName());
                 tableData.add(oneRow);
             }
-        
+
             deleteTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-            DefaultTableModel d = (DefaultTableModel)deleteTable.getModel();
+            DefaultTableModel d = (DefaultTableModel) deleteTable.getModel();
             d.setRowCount(0);
         }
-     }
-        
-     private void view() {
+    }
+
+    private void view() {
         List resultList = null;
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
-        
+
         tableHeaders.add("Hotel ID");
         tableHeaders.add("Hotel Name");
         tableHeaders.add("Town ID");
         tableHeaders.add("Town Name");
- 
-        
-        if(!viewIDTextField.getText().isEmpty())   
-             resultList = hotelDAO.searchOnHotelId(viewIDTextField.getText());
-        else if(!viewHotelNameTextField.getText().isEmpty())
-             resultList = hotelDAO.searchHotelName(viewHotelNameTextField.getText());
-        else if(!viewTownNameTextField.getText().isEmpty())
-             resultList = hotelDAO.searchTownName(viewTownNameTextField.getText());
-        else
-             resultList = hotelDAO.searchOnHotelId(viewIDTextField.getText());
-        
-        if (!resultList.isEmpty())     {
+
+        if (!viewIDTextField.getText().isEmpty()) {
+            resultList = hotelDAO.searchOnHotelId(viewIDTextField.getText());
+        } else if (!viewHotelNameTextField.getText().isEmpty()) {
+            resultList = hotelDAO.searchHotelName(viewHotelNameTextField.getText());
+        } else if (!viewTownNameTextField.getText().isEmpty()) {
+            resultList = hotelDAO.searchTownName(viewTownNameTextField.getText());
+        } else {
+            resultList = hotelDAO.searchOnHotelId(viewIDTextField.getText());
+        }
+
+        if (!resultList.isEmpty()) {
             for (Object o : resultList) {
                 Hotel hotel = (Hotel) o;
-                
+
                 Vector<Object> oneRow = new Vector<Object>();
                 oneRow.add(hotel.getId());
                 oneRow.add(hotel.getName());
@@ -624,75 +622,72 @@ public class HotelsWindow extends javax.swing.JFrame {
                 oneRow.add(hotel.getTown().getName());
                 tableData.add(oneRow);
             }
-        
+
             viewTable.setModel(new DefaultTableModel(tableData, tableHeaders));
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "No matches found. Please try again", "ERROR", JOptionPane.INFORMATION_MESSAGE);
-            DefaultTableModel d = (DefaultTableModel)viewTable.getModel();
+            DefaultTableModel d = (DefaultTableModel) viewTable.getModel();
             d.setRowCount(0);
         }
-     }
-      
+    }
+
     private void getTowns() {
         List resultList = hotelDAO.getAllTowns();
         Vector<String> tableHeaders = new Vector<String>();
         Vector tableData = new Vector();
-        
+
         tableHeaders.add("Town ID");
         tableHeaders.add("Town Name");
-        
-        if (resultList != null)     {
+
+        if (resultList != null) {
             for (Object o : resultList) {
                 Town town = (Town) o;
-                
+
                 Vector<Object> oneRow = new Vector<Object>();
                 oneRow.add(town.getId());
                 oneRow.add(town.getName());
                 tableData.add(oneRow);
             }
-   
+
             addTownTable.setModel(new DefaultTableModel(tableData, tableHeaders));
             editTownTable1.setModel(new DefaultTableModel(tableData, tableHeaders));
-            }
-        else {
-             JOptionPane.showMessageDialog(null, "No overnight stops found", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "No overnight stops found", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-     private void editEnable() {
+
+    private void editEnable() {
         edithotelNameTextField1.setEnabled(true);
         editTownTable1.setEnabled(true);
         editButton1.setEnabled(true);
         //editidTextField1.setEditable(false);
-     }
-     
+    }
+
     private void edithotelNameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edithotelNameTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edithotelNameTextField1ActionPerformed
 
     private void addTownTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTownTableMouseClicked
         townIdTextField.setText("");
-        if(addTownTable.getSelectedRow() >= 0)   {
+        if (addTownTable.getSelectedRow() >= 0) {
             String townID = addTownTable.getValueAt(addTownTable.getSelectedRow(), 0).toString();
-            
-            if (hotelDAO.getTown(townID).getHotel()!= null) {
+
+            if (hotelDAO.getTown(townID).getHotel() != null) {
                 JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
                 addTownTable.clearSelection();
-            }
-            else    {
-                
+            } else {
+
                 townIdTextField.setText(townID);
             }
         }
     }//GEN-LAST:event_addTownTableMouseClicked
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-       addData();
+        addData();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-       clearAdd();
+        clearAdd();
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -703,34 +698,32 @@ public class HotelsWindow extends javax.swing.JFrame {
         String ID = editidTextField1.getText();
         editID = ID;
         Hotel h = hotelDAO.isUnique(ID);
-        
-        if(h != null)   {
+
+        if (h != null) {
             edithotelNameTextField1.setText(h.getName());
             edittownIdTextField1.setText(String.valueOf(h.getTown().getId()));
             editTownID = edittownIdTextField1.getText();
             editEnable();
-            
-        }
-        else    {
-             JOptionPane.showMessageDialog(null, "Hote ID not exists. Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);
-             editidTextField1.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Hote ID not exists. Please try again", "ERROR", JOptionPane.ERROR_MESSAGE);
+            editidTextField1.setText("");
         }
     }//GEN-LAST:event_editGetButtonActionPerformed
 
-    private void editClear()    {
+    private void editClear() {
         editidTextField1.setText("");
         edithotelNameTextField1.setText("");
         edittownIdTextField1.setText("");
         editTownTable1.clearSelection();
         editButton1.setEnabled(false);
         edithotelNameTextField1.setEnabled(false);
-     
+
         editTownTable1.setEnabled(false);
         //editidTextField1.setEditable(true);
-        
-        
+
     }
-    
+
     private void editclearButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editclearButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editclearButton1ActionPerformed
@@ -743,77 +736,70 @@ public class HotelsWindow extends javax.swing.JFrame {
         String ID = editidTextField1.getText();
         String hotelName = edithotelNameTextField1.getText();
         String townID = edittownIdTextField1.getText();
-             
-            if(ID.equalsIgnoreCase(editID))  { 
-                if(!hotelValidate.validateNotNull(hotelName)) {
-                    JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+        if (ID.equalsIgnoreCase(editID)) {
+            if (!hotelValidate.validateNotNull(hotelName)) {
+                JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (!hotelValidate.validateNotNull(townID)) {
+                JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Set bills = hotelDAO.getHotel(editID).getBills();
+
+                boolean response = hotelDAO.editHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID), hotelName, bills));
+
+                if (response) {
+                    JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE);
+                    editClear();
+                } else {
+                    JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-                else if(!hotelValidate.validateNotNull(townID)){
-                    JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-                else    {
-                    Set bills = hotelDAO.getHotel(editID).getBills();
-             
-                    boolean response = hotelDAO.editHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, bills));
-             
-                    if (response)  {
-                        JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE); 
+            }
+        } else {
+            if (!hotelValidate.validatID(ID)) {
+                editidTextField1.setText(editID);
+            }
+            if (!hotelValidate.validateNotNull(hotelName)) {
+                JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else if (!hotelValidate.validateNotNull(townID)) {
+                JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Hotel hotel = hotelDAO.isUnique(editID);
+                boolean response = true;
+
+                response = hotelDAO.deleteHotel(hotel);
+
+                if (response) {
+                    boolean response1 = hotelDAO.addHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID), hotelName, null));
+
+                    if (response1) {
+                        JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE);
                         editClear();
-                    }
-                    else
-                        JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the bill", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            else{
-                if(!hotelValidate.validatID(ID)){
-                     editidTextField1.setText(editID);
-                }
-                if(!hotelValidate.validateNotNull(hotelName)) {
-                    JOptionPane.showMessageDialog(null, "Please type the hotel name", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-                else if(!hotelValidate.validateNotNull(townID)){
-                    JOptionPane.showMessageDialog(null, "Please select a town ID", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-                else    {
-                    Hotel hotel = hotelDAO.isUnique(editID);
-                    boolean response = true;
-                    
-                   response = hotelDAO.deleteHotel(hotel);
-      
-                    if (response)  {
-                        boolean response1 = hotelDAO.addHotel(new Hotel(Integer.parseInt(ID), hotelDAO.getTown(townID),hotelName, null));
-               
-                        if(response1)  {
-                            JOptionPane.showMessageDialog(null, "You have successfully edited the hotel", "Confimation", JOptionPane.INFORMATION_MESSAGE);
-                            editClear();
-                        }
-                        else
-                            JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
-                      }
-                     else
+                    } else {
                         JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
- 
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "There is error in connection with database. Cannot edit the hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-            
+
             }
-      
-       
+
+        }
+
+
     }//GEN-LAST:event_editButton1ActionPerformed
 
     private void editTownTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editTownTable1MouseClicked
-       edittownIdTextField1.setText("");
-        if(editTownTable1.getSelectedRow() >= 0)   {
+        edittownIdTextField1.setText("");
+        if (editTownTable1.getSelectedRow() >= 0) {
             String townID = editTownTable1.getValueAt(editTownTable1.getSelectedRow(), 0).toString();
-            
-            if(townID.equalsIgnoreCase(editTownID)) 
+
+            if (townID.equalsIgnoreCase(editTownID)) {
                 edittownIdTextField1.setText(townID);
-                
-            else if (hotelDAO.getTown(townID).getHotel()!= null) {
+            } else if (hotelDAO.getTown(townID).getHotel() != null) {
                 JOptionPane.showMessageDialog(null, "This town already have a hotel. Cannot assign new hotel", "ERROR", JOptionPane.ERROR_MESSAGE);
                 editTownTable1.clearSelection();
-            }
-            else    {
-                
+            } else {
+
                 edittownIdTextField1.setText(townID);
             }
         }
@@ -828,29 +814,30 @@ public class HotelsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteFetchButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-       if(deleteTable.getSelectedRowCount() != 0)  {
+        if (deleteTable.getSelectedRowCount() != 0) {
             int response = JOptionPane.showConfirmDialog(null, "Do you want to delete the selected record(s) ? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-           
-             if (response == JOptionPane.YES_OPTION) {
+
+            if (response == JOptionPane.YES_OPTION) {
                 boolean result1 = true;
                 int[] count = deleteTable.getSelectedRows();
-                DefaultTableModel d1 = (DefaultTableModel)deleteTable.getModel();
+                DefaultTableModel d1 = (DefaultTableModel) deleteTable.getModel();
                 for (int i = 0; i < deleteTable.getSelectedRowCount(); i++) {
-                   Hotel h = hotelDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
-                   boolean result = hotelDAO.deleteHotel(h);
-                   
-                   if(!result)
-                       result1 = false;
-                   
+                    Hotel h = hotelDAO.isUnique(deleteTable.getValueAt(count[i], 0).toString());
+                    boolean result = hotelDAO.deleteHotel(h);
+
+                    if (!result) {
+                        result1 = false;
+                    }
+
                 }
-                 if(result1) {
-                       JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation",JOptionPane.INFORMATION_MESSAGE);
-                       d1.setRowCount(0);
-   
-                 }
-                 else
-                       JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
-	
+                if (result1) {
+                    JOptionPane.showMessageDialog(null, "Successfully deleted the record(s)", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                    d1.setRowCount(0);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cannot Delete Records. Problem with the database connection ", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
