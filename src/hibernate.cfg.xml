@@ -16,6 +16,5 @@
         <mapping resource="db/entity/Hotel.hbm.xml"/>
         <mapping resource="db/entity/Driver.hbm.xml"/>
         <mapping resource="db/entity/RouteTown.hbm.xml"/>
-        <mapping resource="hibernate.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
