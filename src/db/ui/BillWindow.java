@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import static javax.swing.ListSelectionModel.SINGLE_SELECTION;
@@ -521,6 +522,19 @@ public class BillWindow extends javax.swing.JFrame {
                 .addComponent(billsTab, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        ImageIcon add = new ImageIcon(
+            this.getClass().getResource("/db/Image/add.png"));
+        ImageIcon edit = new ImageIcon(
+            this.getClass().getResource("/db/Image/edit.png"));
+        ImageIcon delete = new ImageIcon(
+            this.getClass().getResource("/db/Image/delete.png"));
+        ImageIcon view = new ImageIcon(
+            this.getClass().getResource("/db/Image/view.png"));
+        billsTab.setIconAt(0, add);
+        billsTab.setIconAt(1, edit);
+        billsTab.setIconAt(2, delete);
+        billsTab.setIconAt(3, view);
 
         pack();
         setLocationRelativeTo(null);

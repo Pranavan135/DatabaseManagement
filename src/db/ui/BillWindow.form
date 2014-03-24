@@ -56,6 +56,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="billsTab">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon add = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/add.png&quot;));&#xa;ImageIcon edit = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/edit.png&quot;));&#xa;ImageIcon delete = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/delete.png&quot;));&#xa;ImageIcon view = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/view.png&quot;));&#xa;billsTab.setIconAt(0, add);&#xa;billsTab.setIconAt(1, edit);&#xa;billsTab.setIconAt(2, delete);&#xa;billsTab.setIconAt(3, view);"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
