@@ -9,7 +9,6 @@
         <mapping resource="db/entity/Passenger.hbm.xml"/>
         <mapping resource="db/entity/DriverRoute.hbm.xml"/>
         <mapping resource="db/entity/Coach.hbm.xml"/>
-        <mapping resource="db/Entity/User.hbm.xml"/>
         <mapping resource="db/entity/Bill.hbm.xml"/>
         <mapping resource="db/entity/Route.hbm.xml"/>
         <mapping resource="db/entity/Tour.hbm.xml"/>
