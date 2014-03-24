@@ -98,6 +98,7 @@ public class HotelsWindow extends javax.swing.JFrame {
         viewScroll = new javax.swing.JScrollPane();
         viewTable = new javax.swing.JTable();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Hotel Management");
         setResizable(false);
 
