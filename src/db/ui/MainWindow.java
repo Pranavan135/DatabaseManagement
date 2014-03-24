@@ -401,7 +401,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_coachesTextFieldActionPerformed
 
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
-        if (status == 1 || status == 2 || status == 4)
+        if (status == 1 || status == 4)
             BillWindow.create().setVisible(true);
         else if(status == 0)
             JOptionPane.showMessageDialog(null, "INFORMATION", "You must log in to the system first, to access this",JOptionPane.ERROR_MESSAGE);
@@ -413,7 +413,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void driversTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driversTextFieldActionPerformed
         // TODO add your handling code here:
-        if (status == 1 || status == 2 || status == 4)
+        if (status == 1 || status == 2)
             new DriverWindow().setVisible(true);
         
         else if(status == 0)
@@ -455,7 +455,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void passengersTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengersTextFieldActionPerformed
         // TODO add your handling code here:
-        if(status == 1 || status == 3)
+        if(status == 1 || status == 2|| status == 3)
             new PassengerWindow().setVisible(true);
         else if(status == 0)
             JOptionPane.showMessageDialog(null, "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
@@ -477,7 +477,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_routesTextFieldActionPerformed
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
-        new LogIn().setVisible(true);
+        if(status == 0)
+            new LogIn().setVisible(true);
+        else    {
+            status = 0;
+            logInButton.setText("LOG IN");
+        }
     }//GEN-LAST:event_logInButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
