@@ -35,6 +35,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="HotelsTab">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="ImageIcon add = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/add.png&quot;));&#xa;ImageIcon edit = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/edit.png&quot;));&#xa;ImageIcon delete = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/delete.png&quot;));&#xa;ImageIcon view = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/view.png&quot;));&#xa;HotelsTab.setIconAt(0, add);&#xa;HotelsTab.setIconAt(1, edit);&#xa;HotelsTab.setIconAt(2, delete);&#xa;HotelsTab.setIconAt(3, view);"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>

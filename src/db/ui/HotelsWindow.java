@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -501,6 +502,19 @@ public class HotelsWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(HotelsTab)
         );
+
+        ImageIcon add = new ImageIcon(
+            this.getClass().getResource("/db/Image/add.png"));
+        ImageIcon edit = new ImageIcon(
+            this.getClass().getResource("/db/Image/edit.png"));
+        ImageIcon delete = new ImageIcon(
+            this.getClass().getResource("/db/Image/delete.png"));
+        ImageIcon view = new ImageIcon(
+            this.getClass().getResource("/db/Image/view.png"));
+        HotelsTab.setIconAt(0, add);
+        HotelsTab.setIconAt(1, edit);
+        HotelsTab.setIconAt(2, delete);
+        HotelsTab.setIconAt(3, view);
 
         pack();
         setLocationRelativeTo(null);
