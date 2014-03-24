@@ -822,7 +822,7 @@ public class RouteWindow extends javax.swing.JFrame {
                 if( routeValidate.distanceValidation(distance)  ){
             boolean response =  routeDAO.updateRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));                               
             if(response){
-            JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
+            JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated into Database!!", "Success", WIDTH);
          } 
          else {
                     JOptionPane.showMessageDialog(this, "Database Error ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1294,7 +1294,7 @@ public class RouteWindow extends javax.swing.JFrame {
                                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                                 if (response == JOptionPane.YES_OPTION) {
                                   routeDAO.addRoute(new Route(Integer.parseInt(routeID), routeName,Integer.parseInt(days),Integer.parseInt(distance)));
-                                  JOptionPane.showMessageDialog(this, "Route Data is Successfully Updated", "Success", WIDTH);
+                                  JOptionPane.showMessageDialog(this, "Route Data is Successfully Added to Database!!", "Success", WIDTH);
                                   routeIDTextField.setText("");
                                   routeIDTextField.setText("");
                                   routeNameTextField.setText("");
