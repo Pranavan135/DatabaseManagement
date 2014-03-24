@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -389,7 +390,7 @@ public class CoachWindow extends javax.swing.JFrame {
                 .addGroup(deletePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(deleteExitButton)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         coachTabbedPane.addTab("Delete", deletePanel);
@@ -477,6 +478,19 @@ public class CoachWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(coachTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        ImageIcon add = new ImageIcon(
+            this.getClass().getResource("/db/Image/add.png"));
+        ImageIcon edit = new ImageIcon(
+            this.getClass().getResource("/db/Image/edit.png"));
+        ImageIcon delete = new ImageIcon(
+            this.getClass().getResource("/db/Image/delete.png"));
+        ImageIcon view = new ImageIcon(
+            this.getClass().getResource("/db/Image/view.png"));
+        coachTabbedPane.setIconAt(0, add);
+        coachTabbedPane.setIconAt(1, edit);
+        coachTabbedPane.setIconAt(2, delete);
+        coachTabbedPane.setIconAt(3, view);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

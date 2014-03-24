@@ -5,6 +5,7 @@
  */
 package db.ui;
 
+import db.dao.UserDAO;
 import db.util.HibernateUtil;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -106,7 +107,14 @@ public class LogIn extends javax.swing.JFrame {
         String userName = name.getText().trim();
         String pass = password.getText().trim();
 
-        
+        if ( UserDAO.isExist(userName)){
+            if( UserDAO.logIn(userName,pass)){
+                JOptionPane.showMessageDialog(null,"Login Success","Details", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } else{
+            JOptionPane.showMessageDialog(null,"The user Name does not exist","Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     /**
