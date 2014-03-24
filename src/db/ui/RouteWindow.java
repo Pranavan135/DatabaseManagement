@@ -13,6 +13,7 @@ import db.entity.RouteTown;
 import db.entity.RouteTownId;
 import db.entity.Town;
 import db.validate.RouteVallidate;
+import java.awt.Toolkit;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.List;
 import java.util.Vector;
@@ -38,6 +39,8 @@ public class RouteWindow extends javax.swing.JFrame {
      */
     public RouteWindow() {
         
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
+        this.setResizable(false);
         initComponents();
         routeNameEditTextField.setEnabled(false);
         routeDaysEditTextField.setEnabled(false);
@@ -123,6 +126,8 @@ public class RouteWindow extends javax.swing.JFrame {
         buttonGroup3.add(showDriverRouteRadioBtn);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Route Management");
+        setFont(new java.awt.Font("Andalus", 1, 12)); // NOI18N
 
         RoutePane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         RoutePane.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -455,7 +460,7 @@ public class RouteWindow extends javax.swing.JFrame {
                 .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(routeIDEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(showEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -466,7 +471,7 @@ public class RouteWindow extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(routeDaysEditTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(clearEditButton)))
+                        .addComponent(clearEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(EditJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditJPanelLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -508,14 +513,14 @@ public class RouteWindow extends javax.swing.JFrame {
 
             }
         ));
-        deleteTable.setShowHorizontalLines(false);
-        deleteTable.setShowVerticalLines(false);
         jScrollPane2.setViewportView(deleteTable);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 51), null, null), "Select the View", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Andalus", 1, 14))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
 
+        showRouteRadioBtn.setBackground(new java.awt.Color(0, 0, 51));
         showRouteRadioBtn.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
+        showRouteRadioBtn.setForeground(new java.awt.Color(255, 255, 255));
         showRouteRadioBtn.setText("Route Details");
         showRouteRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -523,7 +528,9 @@ public class RouteWindow extends javax.swing.JFrame {
             }
         });
 
+        showRouteTownRadioBtn.setBackground(new java.awt.Color(0, 0, 51));
         showRouteTownRadioBtn.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
+        showRouteTownRadioBtn.setForeground(new java.awt.Color(255, 255, 255));
         showRouteTownRadioBtn.setText("Towns For Route Details");
         showRouteTownRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -531,7 +538,9 @@ public class RouteWindow extends javax.swing.JFrame {
             }
         });
 
+        showDriverRouteRadioBtn.setBackground(new java.awt.Color(0, 0, 51));
         showDriverRouteRadioBtn.setFont(new java.awt.Font("Andalus", 1, 14)); // NOI18N
+        showDriverRouteRadioBtn.setForeground(new java.awt.Color(255, 255, 255));
         showDriverRouteRadioBtn.setText("Driver For Route Detials");
         showDriverRouteRadioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -545,16 +554,11 @@ public class RouteWindow extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(showRouteRadioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(121, 121, 121))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(showDriverRouteRadioBtn)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(showRouteTownRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(showRouteRadioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(showRouteTownRadioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(showDriverRouteRadioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -563,8 +567,8 @@ public class RouteWindow extends javax.swing.JFrame {
                 .addComponent(showRouteRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showRouteTownRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(showDriverRouteRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(showDriverRouteRadioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -588,7 +592,7 @@ public class RouteWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(routeIDDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addGroup(DeleteJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DeleteButton)
@@ -610,12 +614,12 @@ public class RouteWindow extends javax.swing.JFrame {
                             .addComponent(routeIDDeleteTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(routeIDDeleteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(DeleteJPanelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(clearDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(clearDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)))
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(12, Short.MAX_VALUE))
@@ -628,7 +632,7 @@ public class RouteWindow extends javax.swing.JFrame {
         routeIDViewLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         routeIDViewLabel.setText("Enter Route ID");
 
-        jButton1.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
         jButton1.setText("Clear");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -636,7 +640,7 @@ public class RouteWindow extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Andalus", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Andalus", 1, 24)); // NOI18N
         jButton2.setText("Exit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -655,8 +659,6 @@ public class RouteWindow extends javax.swing.JFrame {
 
             }
         ));
-        resultTable.setShowHorizontalLines(false);
-        resultTable.setShowVerticalLines(false);
         jScrollPane1.setViewportView(resultTable);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 51), null, null), "Display the Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Andalus", 1, 14), new java.awt.Color(0, 0, 51))); // NOI18N
@@ -739,9 +741,9 @@ public class RouteWindow extends javax.swing.JFrame {
                 .addGroup(ViewJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ViewJPanelLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jButton1)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ViewJPanelLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -765,6 +767,8 @@ public class RouteWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(RoutePane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
         );
+
+        getAccessibleContext().setAccessibleName("Route Management");
 
         setSize(new java.awt.Dimension(677, 660));
         setLocationRelativeTo(null);
