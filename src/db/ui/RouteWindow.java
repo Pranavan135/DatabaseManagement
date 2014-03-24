@@ -14,6 +14,7 @@ import db.entity.RouteTownId;
 import db.entity.Town;
 import db.validate.RouteVallidate;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.List;
 import java.util.Vector;
@@ -344,7 +345,7 @@ public class RouteWindow extends javax.swing.JFrame {
                         .addGroup(AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(routeTownAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(driverRouteAddJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         AddJPanelLayout.setVerticalGroup(
             AddJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,7 +602,7 @@ public class RouteWindow extends javax.swing.JFrame {
                     .addGroup(DeleteJPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         DeleteJPanelLayout.setVerticalGroup(
             DeleteJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -767,6 +768,19 @@ public class RouteWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(RoutePane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
         );
+
+        ImageIcon add = new ImageIcon(
+            this.getClass().getResource("/db/Image/add.png"));
+        ImageIcon edit = new ImageIcon(
+            this.getClass().getResource("/db/Image/edit.png"));
+        ImageIcon delete = new ImageIcon(
+            this.getClass().getResource("/db/Image/delete.png"));
+        ImageIcon view = new ImageIcon(
+            this.getClass().getResource("/db/Image/view.png"));
+        RoutePane.setIconAt(0, add);
+        RoutePane.setIconAt(1, edit);
+        RoutePane.setIconAt(2, delete);
+        RoutePane.setIconAt(3, view);
 
         getAccessibleContext().setAccessibleName("Route Management");
 

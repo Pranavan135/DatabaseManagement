@@ -65,6 +65,9 @@
           <Dimension value="[700, 500]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value=" ImageIcon add = new ImageIcon(             &#xa;this.getClass().getResource(&quot;/db/Image/add.png&quot;));&#xa;ImageIcon edit = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/edit.png&quot;));&#xa;ImageIcon delete = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/delete.png&quot;));&#xa;ImageIcon view = new ImageIcon(&#xa;                this.getClass().getResource(&quot;/db/Image/view.png&quot;));&#xa;RoutePane.setIconAt(0, add);&#xa;RoutePane.setIconAt(1, edit);&#xa;RoutePane.setIconAt(2, delete);&#xa;RoutePane.setIconAt(3, view);"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -129,7 +132,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="31" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -677,7 +680,7 @@
                               <Component id="jScrollPane2" min="-2" pref="627" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace pref="31" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
