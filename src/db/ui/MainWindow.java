@@ -508,28 +508,14 @@ public class MainWindow extends javax.swing.JFrame {
 
         try {
         UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaBlackStarLookAndFeel");
-          // UIManager.setLookAndFeel ( "com.alee.laf.WebLookAndFeel" );
-            // UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+          
         } catch (ClassNotFoundException classNotFoundException) {
         } catch (InstantiationException instantiationException) {
         } catch (IllegalAccessException illegalAccessException) {
         } catch (UnsupportedLookAndFeelException unsupportedLookAndFeelException) {
         }
         
-         /* try {
-         UIManager.setLookAndFeel("ch.randelshofer.quaqua.QuaquaLookAndFeel");
-         } catch (ClassNotFoundException classNotFoundException) {
-         classNotFoundException.printStackTrace();
-         } catch (InstantiationException instantiationException) {
-         instantiationException.printStackTrace();
-         } catch (IllegalAccessException illegalAccessException) {
-         illegalAccessException.printStackTrace();
-         } catch (UnsupportedLookAndFeelException unsupportedLookAndFeelException) {
-         unsupportedLookAndFeelException.printStackTrace();
-         }*/
-        //java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
-        //java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainWindow().setVisible(true);
