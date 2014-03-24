@@ -6,6 +6,7 @@
 package db.ui;
 
 import db.dao.BillDAO;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -20,6 +21,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     public MainWindow() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
     }
 
