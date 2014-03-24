@@ -283,10 +283,12 @@ public class BillDAO {
         Set<Hotel> hotel = new HashSet<Hotel>();
         
         for (RouteTown r : route)   {
+            
             Town t = r.getTown();
+            
             if (t.getOverNightStop()) {
                 if(t.getHotel() != null) {
-                hotel.add(t.getHotel());
+                   hotel.add(t.getHotel());
                 }
                 
             }

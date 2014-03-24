@@ -644,7 +644,7 @@ public class BillWindow extends javax.swing.JFrame {
            edithotelTownTable1.setEnabled(true);
         }
         else {
-            JOptionPane.showMessageDialog(null, "There are no overnight stops please try again with another tour code", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "There are no overnight stops / No hotels assigned please try again with another tour code", "ERROR", JOptionPane.ERROR_MESSAGE);
             tourCodelist.clearSelection();
             tourCodeTextField.setText("");
         }
