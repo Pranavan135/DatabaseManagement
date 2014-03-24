@@ -141,19 +141,24 @@ public class SignUp extends javax.swing.JFrame {
                             UserDAO.addUser(name.getText().trim(), password.getText().trim(), num);
                             status = 1;
                             MainWindow.create().changeValue(name.getText().trim(), status);
+                            this.dispose();
+                                    
                         } else if (num == 2222) {
                             UserDAO.addUser(name.getText().trim(), password.getText().trim(), num);
                             status = 2;
                             MainWindow.create().changeValue(name.getText().trim(), status);
+                            this.dispose();
 
                         } else if (num == 3333) {
                             UserDAO.addUser(name.getText().trim(), password.getText().trim(), num);
                             status = 3;
                             MainWindow.create().changeValue(name.getText().trim(), status);
+                            this.dispose();
                         } else if (num == 4444) {
                             UserDAO.addUser(name.getText().trim(), password.getText().trim(), num);
                             status = 3;
                             MainWindow.create().changeValue(name.getText().trim(), status);
+                            this.dispose();
                         } else {
                             JOptionPane.showMessageDialog(null, "Privilege Code Error", "Error", JOptionPane.ERROR_MESSAGE);
                             privilegeCode.setText("");
