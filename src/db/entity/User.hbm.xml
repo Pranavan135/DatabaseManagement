@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 24, 2014 9:30:15 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="db.Entity.User" table="user" catalog="tourmanagement">
+        <id name="name" type="string">
+            <column name="name" length="30" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="string">
+            <column name="password" length="30" not-null="true" />
+        </property>
+        <property name="privilege" type="int">
+            <column name="privilege" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

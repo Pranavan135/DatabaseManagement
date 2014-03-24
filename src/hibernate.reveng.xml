@@ -12,4 +12,5 @@
   <table-filter match-name="town"/>
   <table-filter match-name="bill"/>
   <table-filter match-name="passenger"/>
+  <table-filter match-name="user"/>
 </hibernate-reverse-engineering>
