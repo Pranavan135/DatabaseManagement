@@ -502,7 +502,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_logInButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        new SignUp().setVisible(true);
+        if(status == 0)
+            new SignUp().setVisible(true);
+        else
+            JOptionPane.showMessageDialog(null,  "You are already logged in to the system. Log out first,to register ","NFORMATION",JOptionPane.ERROR_MESSAGE);
+   
     }//GEN-LAST:event_registerButtonActionPerformed
 
     public void changeValue(String name, int status)   {
