@@ -44,7 +44,7 @@ public class SignUp extends javax.swing.JFrame {
         clear = new javax.swing.JButton();
         exit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("User name");
 
@@ -140,16 +140,20 @@ public class SignUp extends javax.swing.JFrame {
                         if (num == 1111) {
                             UserDAO.addUser(name.getText().trim(), password.getText().trim(), num);
                             status = 1;
-                            MainWindow.create().changeValue(name, status)
+                            MainWindow.create().changeValue(name.getText().trim(), status);
                         } else if (num == 2222) {
                             UserDAO.addUser(name.getText().trim(), password.getText().trim(), num);
                             status = 2;
-                            MainWindow.create().changeValue(name, status)
+                            MainWindow.create().changeValue(name.getText().trim(), status);
 
                         } else if (num == 3333) {
                             UserDAO.addUser(name.getText().trim(), password.getText().trim(), num);
                             status = 3;
-                            MainWindow.create().changeValue(name, status)
+                            MainWindow.create().changeValue(name.getText().trim(), status);
+                        } else if (num == 4444) {
+                            UserDAO.addUser(name.getText().trim(), password.getText().trim(), num);
+                            status = 3;
+                            MainWindow.create().changeValue(name.getText().trim(), status);
                         } else {
                             JOptionPane.showMessageDialog(null, "Privilege Code Error", "Error", JOptionPane.ERROR_MESSAGE);
                             privilegeCode.setText("");
