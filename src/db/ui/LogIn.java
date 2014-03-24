@@ -157,9 +157,14 @@ public class LogIn extends javax.swing.JFrame {
                MainWindow.create().changeValue(userName,UserDAO.logIn(userName,pass).getPrivilege()/1000 );
                this.dispose();
             }
+            else{
+                JOptionPane.showMessageDialog(null,"Password","Error", JOptionPane.ERROR_MESSAGE);
+                
+            }
             
         } else{
             JOptionPane.showMessageDialog(null,"The user Name does not exist","Error", JOptionPane.ERROR_MESSAGE);
+            name.setText("");
         }
     }//GEN-LAST:event_loginActionPerformed
 
