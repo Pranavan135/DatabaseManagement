@@ -9,6 +9,7 @@ import db.entity.Driver;
 import db.dao.DriverDAO;
 import db.entity.Bill;
 import db.validate.DriverValidate;
+import java.awt.Toolkit;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class DriverWindow extends javax.swing.JFrame {
     private static Driver driver;
 
     public DriverWindow() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
         idEditLabel.setVisible(false);
         idEditTextField.setVisible(false);

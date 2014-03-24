@@ -11,6 +11,7 @@ import db.dao.BillDAO;
 import db.entity.Hotel;
 import db.entity.Tour;
 import db.validate.BillValidate;
+import java.awt.Toolkit;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +36,7 @@ public class BillWindow extends javax.swing.JFrame {
     private String editReference = "";
     
     public BillWindow() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
     }
     

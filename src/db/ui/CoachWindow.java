@@ -8,6 +8,7 @@ package db.ui;
 import db.dao.CoachDAO;
 import db.entity.Coach;
 import db.validate.CoachValidate;
+import java.awt.Toolkit;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -26,6 +27,7 @@ public class CoachWindow extends javax.swing.JFrame {
     public static Coach coach;
 
     public CoachWindow() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
         regNoEditLabel.setVisible(false);
         regNoEdittextField.setVisible(false);

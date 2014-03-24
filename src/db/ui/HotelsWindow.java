@@ -10,6 +10,7 @@ import db.dao.HotelDAO;
 import db.entity.Hotel;
 import db.entity.Town;
 import db.validate.HotelValidate;
+import java.awt.Toolkit;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
@@ -31,6 +32,7 @@ public class HotelsWindow extends javax.swing.JFrame {
      * Creates new form HotelsWindow
      */
     public HotelsWindow() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         initComponents();
     }
     
