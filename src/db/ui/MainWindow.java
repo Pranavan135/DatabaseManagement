@@ -31,6 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
          Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension windowsize = getSize();
         this.setBounds((screensize.width - windowsize.width) / 2, 0, windowsize.width, windowsize.height);
+        mainWindow = this;
     }
     
     public static MainWindow create() {
@@ -67,6 +68,7 @@ public class MainWindow extends javax.swing.JFrame {
         Pic = new javax.swing.JLabel();
         logInButton = new javax.swing.JButton();
         registerButton = new javax.swing.JButton();
+        nameLabel = new javax.swing.JLabel();
         aboutUsTab = new javax.swing.JPanel();
         aboutUsPanel = new javax.swing.JPanel();
         aboutLabel1 = new javax.swing.JLabel();
@@ -189,6 +191,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        nameLabel.setFont(new java.awt.Font("Andalus", 1, 12)); // NOI18N
+        nameLabel.setText("userNAme");
+
         javax.swing.GroupLayout homeTabLayout = new javax.swing.GroupLayout(homeTab);
         homeTab.setLayout(homeTabLayout);
         homeTabLayout.setHorizontalGroup(
@@ -211,10 +216,11 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(hotelsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(passengersTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(billsTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(89, 89, 89)
-                .addGroup(homeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
+                .addGroup(homeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(registerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(logInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         homeTabLayout.setVerticalGroup(
@@ -245,11 +251,15 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(Pic)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, homeTabLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nameLabel)
+                        .addGap(24, 24, 24)
+                        .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
+
+        nameLabel.setVisible(false);
 
         MainTab.addTab("Home", homeTab);
 
@@ -404,9 +414,9 @@ public class MainWindow extends javax.swing.JFrame {
         if (status == 1 || status == 4)
             BillWindow.create().setVisible(true);
         else if(status == 0)
-            JOptionPane.showMessageDialog(null, "INFORMATION", "You must log in to the system first, to access this",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,  "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
         else
-            JOptionPane.showMessageDialog(null, "INFORMATION", "You don`t have enough privilleges, to access this",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "You don`t have enough privilleges, to access this", "INFORMATION",JOptionPane.ERROR_MESSAGE);
         
        
     }//GEN-LAST:event_billsTextFieldActionPerformed
@@ -480,8 +490,14 @@ public class MainWindow extends javax.swing.JFrame {
         if(status == 0)
             new LogIn().setVisible(true);
         else    {
-            status = 0;
-            logInButton.setText("LOG IN");
+            int response = JOptionPane.showConfirmDialog(null, "Do you want to LOG OUT of the system ? ", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (response == JOptionPane.YES_OPTION) {
+            
+                status = 0;
+                logInButton.setText("LOG IN");
+                nameLabel.setVisible(false);
+            }
         }
     }//GEN-LAST:event_logInButtonActionPerformed
 
@@ -492,7 +508,9 @@ public class MainWindow extends javax.swing.JFrame {
     public void changeValue(String name, int status)   {
         loginSuccess = true;
         this.status = status;
-        logInButton.setText("LOG OUT (user : " + name + " )");
+        logInButton.setText("LOG OUT ");
+        nameLabel.setText("user : " + name);
+        nameLabel.setVisible(true);
     }
     /**
      * @param args the command line arguments
@@ -548,6 +566,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel homeTab;
     private javax.swing.JButton hotelsTextField;
     private javax.swing.JButton logInButton;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JButton passengersTextField;
     private javax.swing.JButton registerButton;
     private javax.swing.JButton routesTextField;
