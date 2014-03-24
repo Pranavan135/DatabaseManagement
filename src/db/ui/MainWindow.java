@@ -9,6 +9,7 @@ import db.dao.BillDAO;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -182,6 +183,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         registerButton.setFont(new java.awt.Font("Andalus", 1, 12)); // NOI18N
         registerButton.setText("REGISTER");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout homeTabLayout = new javax.swing.GroupLayout(homeTab);
         homeTab.setLayout(homeTabLayout);
@@ -385,51 +391,98 @@ public class MainWindow extends javax.swing.JFrame {
 
 
     private void coachesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coachesTextFieldActionPerformed
-        new CoachWindow().setVisible(true);
+        if (status == 1 || status == 2)
+            new CoachWindow().setVisible(true);
+        else if(status == 0)
+            JOptionPane.showMessageDialog(null, "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null, "You don`t have enough privilleges, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        
     }//GEN-LAST:event_coachesTextFieldActionPerformed
 
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
-        try {
+        if (status == 1 || status == 2 || status == 4)
             BillWindow.create().setVisible(true);
-        } catch (Exception e) {
-        }
+        else if(status == 0)
+            JOptionPane.showMessageDialog(null, "INFORMATION", "You must log in to the system first, to access this",JOptionPane.ERROR_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null, "INFORMATION", "You don`t have enough privilleges, to access this",JOptionPane.ERROR_MESSAGE);
+        
+       
     }//GEN-LAST:event_billsTextFieldActionPerformed
 
     private void driversTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driversTextFieldActionPerformed
         // TODO add your handling code here:
-        new DriverWindow().setVisible(true);
+        if (status == 1 || status == 2 || status == 4)
+            new DriverWindow().setVisible(true);
+        
+        else if(status == 0)
+            JOptionPane.showMessageDialog(null,"You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null,  "You don`t have enough privilleges, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        
     }//GEN-LAST:event_driversTextFieldActionPerformed
 
     private void hotelsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelsTextFieldActionPerformed
         // TODO add your handling code here:
-        try {
+        if (status == 1 || status == 4)
             HotelsWindow.create().setVisible(true);
-        } catch (Exception e) {
-        }
+        else if(status == 0)
+            JOptionPane.showMessageDialog(null, "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null,  "You don`t have enough privilleges, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+      
     }//GEN-LAST:event_hotelsTextFieldActionPerformed
 
     private void townsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townsTextFieldActionPerformed
-        new TownWindow().setVisible(true);
+        if(status == 1)
+            new TownWindow().setVisible(true);
+         else if(status == 0)
+            JOptionPane.showMessageDialog(null, "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null, "You don`t have enough privilleges, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_townsTextFieldActionPerformed
 
     private void toursTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toursTextFieldActionPerformed
-        new TourWindow().setVisible(true);
+        if (status == 1 || status == 2 || status == 3)
+            new TourWindow().setVisible(true);
+        else if(status == 0)
+            JOptionPane.showMessageDialog(null,  "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null,  "You don`t have enough privilleges, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+   
     }//GEN-LAST:event_toursTextFieldActionPerformed
 
     private void passengersTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengersTextFieldActionPerformed
         // TODO add your handling code here:
-        new PassengerWindow().setVisible(true);
+        if(status == 1 || status == 3)
+            new PassengerWindow().setVisible(true);
+        else if(status == 0)
+            JOptionPane.showMessageDialog(null, "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null,  "You don`t have enough privilleges, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+   
+        
     }//GEN-LAST:event_passengersTextFieldActionPerformed
 
     private void routesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesTextFieldActionPerformed
-        RouteWindow.create().setVisible(true);
-       // rw.addRouteIDComboBoxData();
-        //  rw.addTownIDComboBoxData();
+        if(status == 1 || status == 2)
+            RouteWindow.create().setVisible(true);
+        else if(status == 0)
+            JOptionPane.showMessageDialog(null,  "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+        else
+            JOptionPane.showMessageDialog(null,  "You don`t have enough privilleges, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
+   
+       
     }//GEN-LAST:event_routesTextFieldActionPerformed
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
         new LogIn().setVisible(true);
     }//GEN-LAST:event_logInButtonActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        new SignUp().setVisible(true);
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     public void changeValue(String name, int status)   {
         loginSuccess = true;
