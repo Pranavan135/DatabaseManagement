@@ -1307,10 +1307,20 @@ public class RouteWindow extends javax.swing.JFrame {
                                   routeDistanceTextField.setText("");
                                   routeIDTextField.requestFocus();   
                                 }
-                            }
-                            else {
+                              else {
                                JOptionPane.showMessageDialog(this, "Database Error!!", "Error", JOptionPane.ERROR_MESSAGE);
-                            }          
+                            }    
+                            }
+                       else
+                       {
+                                  routeIDTextField.setText("");
+                                  routeIDTextField.setText("");
+                                  routeNameTextField.setText("");
+                                  routeDaysTextField.setText("");
+                                  routeDistanceTextField.setText("");
+                                  routeIDTextField.requestFocus();   
+                       }
+                                  
        }
       else
       {
