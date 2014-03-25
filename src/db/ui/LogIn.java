@@ -152,7 +152,7 @@ public class LogIn extends javax.swing.JFrame {
         String pass = password.getText().trim();
 
         if ( UserDAO.isExist(userName)){
-            if( !UserDAO.logIn(userName,pass).equals(null)){
+            if( UserDAO.logIn(userName,pass)!= null){
                 JOptionPane.showMessageDialog(null,"Login Success","Details", JOptionPane.INFORMATION_MESSAGE);
                MainWindow.create().changeValue(userName,UserDAO.logIn(userName,pass).getPrivilege()/1000 );
                this.dispose();
