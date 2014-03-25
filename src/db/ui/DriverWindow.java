@@ -675,7 +675,8 @@ public class DriverWindow extends javax.swing.JFrame {
             }
             
         } else {
-            JOptionPane.showMessageDialog(null, "Please Eneter values for Name or ID", "Error", JOptionPane.ERROR_MESSAGE);
+            //resultTable.setModel(null);
+            JOptionPane.showMessageDialog(null, "Please Enter values for Name or ID", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_viewGoButtonFieldActionPerformed
 
