@@ -35,8 +35,8 @@ public class DriverValidate {
             return false;
         }
 
-        if (id.length() != 10) {
-            JOptionPane.showMessageDialog(null, "Please enter 10 digit ID", "Error", JOptionPane.ERROR_MESSAGE);
+        if (id.length() != 6) {
+            JOptionPane.showMessageDialog(null, "Please enter 6 digit ID", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
