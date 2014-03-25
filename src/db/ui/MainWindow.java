@@ -412,7 +412,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void billsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billsTextFieldActionPerformed
         if (status == 1 || status == 4)
-            BillWindow.create().setVisible(true);
+            new BillWindow().setVisible(true);
         else if(status == 0)
             JOptionPane.showMessageDialog(null,  "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
         else
@@ -436,7 +436,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void hotelsTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelsTextFieldActionPerformed
         // TODO add your handling code here:
         if (status == 1 || status == 4)
-            HotelsWindow.create().setVisible(true);
+            new HotelsWindow().setVisible(true);
         else if(status == 0)
             JOptionPane.showMessageDialog(null, "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
         else
