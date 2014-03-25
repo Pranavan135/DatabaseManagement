@@ -49,7 +49,7 @@ public class DriverValidate {
 
     public static boolean nameValidate(String name) {
         if (!name.equals("")) {
-            if (name.matches("[A-Z][a-zA-Z]*")) {
+            if (name.matches("[a-zA-Z]*")) {
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Please enter Name with alphabets", name, JOptionPane.ERROR_MESSAGE);
