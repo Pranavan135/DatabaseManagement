@@ -10,7 +10,9 @@ import db.entity.RouteTown;
 import db.entity.Town;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -335,9 +337,13 @@ public class TownDAO {
         }
         Transaction transaction = null;
         try {
-            String HQLQuery = "FROM Driver d ";
-            Query query = session.createQuery(HQLQuery);
-            List<Driver> drivers = query.list();
+            String HQLQuery = "SELECT * FROM driver_availability";
+            Query query = session.createSQLQuery(HQLQuery);
+            List<Integer> driverIds = query.list();
+            List<Driver> drivers = new ArrayList<>();
+            for (int id : driverIds) {
+                drivers.add(DriverDAO.getDriver(id));
+            }
             return drivers;
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
@@ -356,10 +362,18 @@ public class TownDAO {
         }
         Transaction transaction = null;
         try {
-            String HQLQuery = "FROM Coach c ";
-            Query query = session.createQuery(HQLQuery);
-            List<Coach> coachs = query.list();
-            return coachs;
+            /*String HQLQuery = "FROM Coach c ";
+             Query query = session.createQuery(HQLQuery);
+             List<Coach> coachs = query.list();
+             return coachs;*/
+            String HQLQuery = "SELECT * FROM coach_availability";
+            Query query = session.createSQLQuery(HQLQuery);
+            List<Integer> coachIds = query.list();
+            List<Coach> coaches = new ArrayList<>();
+            for (int id : coachIds) {
+                coaches.add(CoachDAO.getCoach(id));
+            }
+            return coaches;
         } catch (HibernateException | HeadlessException ex) {
             if (transaction != null && transaction.wasCommitted()) {
                 transaction.rollback();

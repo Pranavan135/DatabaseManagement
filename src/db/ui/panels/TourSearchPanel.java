@@ -15,6 +15,11 @@ public class TourSearchPanel extends javax.swing.JPanel {
 
     private final TourDAO tourDAO;
     private static TourSearchPanel instance;
+    private final int IdLength = 6;
+
+    public boolean validateID(int ID) {
+        return String.valueOf(ID).length() == IdLength;
+    }
 
     /**
      * Creates new form TownEditPanel
@@ -193,6 +198,10 @@ public class TourSearchPanel extends javax.swing.JPanel {
         if (!strID.equals("")) {
             try {
                 id = Integer.valueOf(strID);
+                if (!validateID(id)) {
+                    JOptionPane.showMessageDialog(this, "Device id must contains exactly " + IdLength + " digits.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Please enter valid tour code", "Warning", JOptionPane.WARNING_MESSAGE);
                 txtTourCode.selectAll();

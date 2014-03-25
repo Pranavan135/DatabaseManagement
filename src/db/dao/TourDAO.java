@@ -1,19 +1,5 @@
-/*
- tour_code	INT,
- start_date	DATE,
- driver_id	INT,
- driver_name		VARCHAR(30) NOT NULL,
- route_id	INT,
- coach_id	INT,
- executed	VARCHAR(45),
- PRIMARY KEY	(tour_code),
- FOREIGN KEY (route_id) REFERENCES route (id) ON DELETE CASCADE ON UPDATE CASCADE,
- FOREIGN KEY (driver_id,driver_name) REFERENCES driver (id,name) ON DELETE CASCADE ON UPDATE CASCADE,
- FOREIGN KEY (coach_id) REFERENCES coach (reg_no) ON DELETE CASCADE ON UPDATE CASCADE
- */
 package db.dao;
 
-import db.entity.Hotel;
 import db.entity.Tour;
 import db.util.HibernateUtil;
 import java.awt.HeadlessException;
@@ -141,8 +127,8 @@ public class TourDAO {
         }
         return null;
     }
-    
-     public List<Tour> getTours(int code) {
+
+    public List<Tour> getTours(int code) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         if (session == null) {
             return null;

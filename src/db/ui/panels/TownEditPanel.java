@@ -23,6 +23,27 @@ public class TownEditPanel extends javax.swing.JPanel {
     private Town town;
     private TownDAO townDAO;
     private static TownEditPanel instance;
+    private final int IdLength = 6;
+    private final int minNameLength = 3;
+    private final int maxNameLength = 45;
+
+    public boolean validateID(int ID) {
+        return String.valueOf(ID).length() == IdLength;
+    }
+
+    public boolean isValidName(String name) {
+        return (name.length() >= minNameLength && name.length() <= maxNameLength && isAlphabet(name));
+    }
+
+    private boolean isAlphabet(String name) {
+        for (int i = 0; i < name.length(); i++) {
+            char c = name.charAt(i);
+            if (!(Character.isLetter(c) || c == 0x2e || c == 0x20)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Creates new form TownEditPanel
@@ -415,6 +436,10 @@ public class TownEditPanel extends javax.swing.JPanel {
         int id;
         try {
             id = Integer.parseInt(txtTownID.getText());
+            if (!validateID(id)) {
+                JOptionPane.showMessageDialog(this, "Town id must contains exactly " + IdLength + " digits.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             if (this.town == null && townDAO.getTown(id) != null) {
                 JOptionPane.showMessageDialog(this, "Entered town id already exists\nPlease enter another id.", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
@@ -424,7 +449,7 @@ public class TownEditPanel extends javax.swing.JPanel {
             return;
         }
         String name = txtTownName.getText();
-        if (name.equals("")) {
+        if (!isValidName(name)) {
             JOptionPane.showMessageDialog(this, "Please enter a valid name.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }

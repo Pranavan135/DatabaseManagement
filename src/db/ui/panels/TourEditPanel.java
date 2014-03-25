@@ -10,6 +10,7 @@ import db.entity.Passenger;
 import db.entity.Route;
 import db.entity.Tour;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,28 @@ public class TourEditPanel extends javax.swing.JPanel {
     private final TourDAO tourDAO;
     private final TownDAO townDAO;
     private final PassengerDAO passengerDAO;
+
+    private final int IdLength = 6;
+    private final int minNameLength = 3;
+    private final int maxNameLength = 45;
+
+    public boolean validateID(int ID) {
+        return String.valueOf(ID).length() == IdLength;
+    }
+
+    public boolean isValidName(String name) {
+        return (name.length() >= minNameLength && name.length() <= maxNameLength && isAlphabet(name));
+    }
+
+    private boolean isAlphabet(String name) {
+        for (int i = 0; i < name.length(); i++) {
+            char c = name.charAt(i);
+            if (!(Character.isLetter(c) || c == 0x2e || c == 0x20)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Creates new form TownEditPanel
@@ -55,15 +78,18 @@ public class TourEditPanel extends javax.swing.JPanel {
 
         this.tour = tour;
 
-        DefaultComboBoxModel<Coach> coachModel = new DefaultComboBoxModel<>(coachs.toArray(new Coach[0]));
-        comboCoach.setModel(coachModel);
-
-        DefaultComboBoxModel<Route> routeModel = new DefaultComboBoxModel<>(routes.toArray(new Route[0]));
-        comboRoute.setModel(routeModel);
-
-        DefaultComboBoxModel<Driver> driverModel = new DefaultComboBoxModel<>(drivers.toArray(new Driver[0]));
-        comboDriver.setModel(driverModel);
-
+        if (coachs != null) {
+            DefaultComboBoxModel<Coach> coachModel = new DefaultComboBoxModel<>(coachs.toArray(new Coach[0]));
+            comboCoach.setModel(coachModel);
+        }
+        if (routes != null) {
+            DefaultComboBoxModel<Route> routeModel = new DefaultComboBoxModel<>(routes.toArray(new Route[0]));
+            comboRoute.setModel(routeModel);
+        }
+        if (drivers != null) {
+            DefaultComboBoxModel<Driver> driverModel = new DefaultComboBoxModel<>(drivers.toArray(new Driver[0]));
+            comboDriver.setModel(driverModel);
+        }
         DefaultTableModel modelBills = (DefaultTableModel) tblBill.getModel();
         DefaultTableModel modelPassengers = (DefaultTableModel) tblPassenger.getModel();
 
@@ -369,6 +395,10 @@ public class TourEditPanel extends javax.swing.JPanel {
         int id;
         try {
             id = Integer.parseInt(txtTourCode.getText());
+            if (!validateID(id)) {
+                JOptionPane.showMessageDialog(this, "Device id must contains exactly " + IdLength + " digits.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             if (this.tour == null && tourDAO.getTour(id) != null) {
                 JOptionPane.showMessageDialog(this, "Entered tour code already exists\nPlease enter another code.", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
@@ -396,8 +426,15 @@ public class TourEditPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter a valid executed details.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        Date date = new Date();
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
         if (dateChooser.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Please select a valid date.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (tour == null && dateChooser.getDate().compareTo(date) < 0) {
+            JOptionPane.showMessageDialog(this, "Date cannot be a past date.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         int result = JOptionPane.showConfirmDialog(this, "Are you sure to save the record?", "Tour Management", JOptionPane.YES_NO_OPTION);

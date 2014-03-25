@@ -20,6 +20,11 @@ public class TownSearchPanel extends javax.swing.JPanel {
 
     private TownDAO townDAO;
     private static TownSearchPanel instance;
+    private final int IdLength = 6;
+
+    public boolean validateID(int ID) {
+        return String.valueOf(ID).length() == IdLength;
+    }
 
     /**
      * Creates new form TownSearchPanel
@@ -243,6 +248,10 @@ public class TownSearchPanel extends javax.swing.JPanel {
         if (!strID.equals("")) {
             try {
                 id = Integer.valueOf(strID);
+                if (!validateID(id)) {
+                    JOptionPane.showMessageDialog(this, "Town id must contains exactly " + IdLength + " digits.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Please enter valid numbers", "Warning", JOptionPane.WARNING_MESSAGE);
                 txtTownId.selectAll();
