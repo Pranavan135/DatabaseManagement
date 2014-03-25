@@ -2,8 +2,7 @@ package db.ui;
 
 import db.ui.panels.TownEditPanel;
 import db.ui.panels.TownSearchPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.Toolkit;
 
 /**
  *
@@ -18,11 +17,12 @@ public class TownWindow extends javax.swing.JFrame {
      */
     public TownWindow() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         townEditPanel = TownEditPanel.getInstance();
         townSearchPanel = TownSearchPanel.getInstance();
         panelAdd.add(townEditPanel);
         panelSearch.add(townSearchPanel);
-        setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
+        //setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
     }
 
     /**
@@ -39,7 +39,9 @@ public class TownWindow extends javax.swing.JFrame {
         panelSearch = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Tour Management");
+        setTitle("Town Management");
+        setMinimumSize(new java.awt.Dimension(700, 550));
+        setPreferredSize(new java.awt.Dimension(700, 550));
 
         panelAdd.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -47,7 +49,7 @@ public class TownWindow extends javax.swing.JFrame {
             }
         });
         panelAdd.setLayout(new javax.swing.BoxLayout(panelAdd, javax.swing.BoxLayout.LINE_AXIS));
-        tabbedPanelMain.addTab("Add New Town", panelAdd);
+        tabbedPanelMain.addTab("Add New Town", new javax.swing.ImageIcon(getClass().getResource("/db/Image/add.png")), panelAdd); // NOI18N
 
         panelSearch.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -55,7 +57,7 @@ public class TownWindow extends javax.swing.JFrame {
             }
         });
         panelSearch.setLayout(new javax.swing.BoxLayout(panelSearch, javax.swing.BoxLayout.LINE_AXIS));
-        tabbedPanelMain.addTab("Search & Edit", panelSearch);
+        tabbedPanelMain.addTab("Search & Edit", new javax.swing.ImageIcon(getClass().getResource("/db/Image/view.png")), panelSearch); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,14 +65,14 @@ public class TownWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(tabbedPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                .addComponent(tabbedPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(tabbedPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addComponent(tabbedPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 

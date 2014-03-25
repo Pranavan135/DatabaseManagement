@@ -187,6 +187,8 @@ public class TourEditPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
+        panelMain.setPreferredSize(new java.awt.Dimension(600, 400));
+
         panelDetails.setBorder(javax.swing.BorderFactory.createTitledBorder("Details"));
         panelDetails.setName(""); // NOI18N
         panelDetails.setPreferredSize(new java.awt.Dimension(400, 219));
@@ -340,8 +342,8 @@ public class TourEditPanel extends javax.swing.JPanel {
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelControlls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelPassengers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-                    .addComponent(panelBills, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE))
+                    .addComponent(panelDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addComponent(panelBills, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         panelMainLayout.setVerticalGroup(
@@ -349,11 +351,11 @@ public class TourEditPanel extends javax.swing.JPanel {
             .addGroup(panelMainLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(panelDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelBills, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addGap(5, 5, 5)
-                .addComponent(panelPassengers, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelBills, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
+                .addComponent(panelPassengers, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(panelControlls, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5))
         );
@@ -377,9 +379,25 @@ public class TourEditPanel extends javax.swing.JPanel {
             txtTourCode.requestFocus();
             return;
         }
+        if (comboRoute.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a Route to continue.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (comboDriver.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a Driver to continue.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (comboCoach.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a Coach to continue.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String executed = txtExecuted.getText();
         if (executed.equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter a valid executed details.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (dateChooser.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Please select a valid date.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         int result = JOptionPane.showConfirmDialog(this, "Are you sure to save the record?", "Tour Management", JOptionPane.YES_NO_OPTION);
@@ -397,7 +415,6 @@ public class TourEditPanel extends javax.swing.JPanel {
         for (Object v : dtmPassenger.getDataVector()) {
             passengers.add(townDAO.getPassenger(Integer.parseInt(((Vector) v).get(0).toString())));
         }
-
         Tour tour = new Tour(id, (Route) comboRoute.getSelectedItem(), (Driver) comboDriver.getSelectedItem(), (Coach) comboCoach.getSelectedItem(), dateChooser.getDate(), executed, bills, passengers);
 
         if (this.tour == null) {

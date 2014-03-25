@@ -2,8 +2,7 @@ package db.ui;
 
 import db.ui.panels.TourEditPanel;
 import db.ui.panels.TourSearchPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.Toolkit;
 
 /**
  *
@@ -18,11 +17,12 @@ public class TourWindow extends javax.swing.JFrame {
      */
     public TourWindow() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
         tourEditPanel = TourEditPanel.getInstance();
         tourSearchPanel = TourSearchPanel.getInstance();
         panelAdd.add(tourEditPanel);
         panelSearch.add(tourSearchPanel);
-        setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
+        //setExtendedState(getExtendedState() | MAXIMIZED_BOTH);
     }
 
     /**
@@ -40,6 +40,8 @@ public class TourWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tour Management");
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         panelAdd.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -48,7 +50,7 @@ public class TourWindow extends javax.swing.JFrame {
             }
         });
         panelAdd.setLayout(new javax.swing.BoxLayout(panelAdd, javax.swing.BoxLayout.LINE_AXIS));
-        tabbedPanelMain.addTab("Add New Tour", panelAdd);
+        tabbedPanelMain.addTab("Add New Tour", new javax.swing.ImageIcon(getClass().getResource("/db/Image/add.png")), panelAdd); // NOI18N
 
         panelSearch.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -56,11 +58,12 @@ public class TourWindow extends javax.swing.JFrame {
             }
         });
         panelSearch.setLayout(new javax.swing.BoxLayout(panelSearch, javax.swing.BoxLayout.LINE_AXIS));
-        tabbedPanelMain.addTab("Search & Edit", panelSearch);
+        tabbedPanelMain.addTab("Search & Edit", new javax.swing.ImageIcon(getClass().getResource("/db/Image/view.png")), panelSearch); // NOI18N
 
         getContentPane().add(tabbedPanelMain);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelAddComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelAddComponentShown

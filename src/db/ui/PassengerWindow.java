@@ -13,6 +13,7 @@ import db.validate.PassengerValidator;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,31 +54,8 @@ public class PassengerWindow extends javax.swing.JFrame {
     private ArrayList<Object[]> data;
     
     public PassengerWindow() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-                 
-         try {
-         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-         if ("Nimbus".equals(info.getName())) {
-         javax.swing.UIManager.setLookAndFeel(info.getClassName());
-         break;
-         }
-         }
-         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-         java.util.logging.Logger.getLogger(PassengerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-         }
-
-         try {
-         UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel");
-         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException classNotFoundException) {
-         }
-         */
-        //</editor-fold>
-
-        /* Create and display the form */
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/db/Image/Bus.png")));
 
         passengerDAO = new PassengerDAO();
         tourDAO = new TourDAO();
@@ -402,7 +380,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         txtAddName.setForeground(new java.awt.Color(51, 51, 0));
 
         btnAddAdd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAddAdd.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAddAdd.setText("ADD");
         btnAddAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -411,7 +389,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnAddClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnAddClear.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddClear.setForeground(new java.awt.Color(255, 255, 255));
         btnAddClear.setText("Clear");
         btnAddClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,7 +398,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnAddExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnAddExit.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddExit.setForeground(new java.awt.Color(255, 255, 255));
         btnAddExit.setText("Exit");
         btnAddExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -479,7 +457,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabPanePassenger.addTab("ADD", tabPassengerAdd);
+        tabPanePassenger.addTab("ADD", new javax.swing.ImageIcon(getClass().getResource("/db/Image/add.png")), tabPassengerAdd); // NOI18N
         tabPassengerAdd.getAccessibleContext().setAccessibleName("tabPassengerAdd");
 
         tabPassengerEdit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -513,7 +491,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         lblEditID.setText("ID");
 
         btnEditUpdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEditUpdate.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnEditUpdate.setText("UPDATE");
         btnEditUpdate.setEnabled(false);
         btnEditUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -523,7 +501,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnEditClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnEditClear.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditClear.setForeground(new java.awt.Color(255, 255, 255));
         btnEditClear.setText("Clear");
         btnEditClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -532,7 +510,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnEditExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnEditExit.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditExit.setForeground(new java.awt.Color(255, 255, 255));
         btnEditExit.setText("Exit");
         btnEditExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -541,7 +519,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnEditGet.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnEditGet.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditGet.setForeground(new java.awt.Color(255, 255, 255));
         btnEditGet.setText("Get");
         btnEditGet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -604,7 +582,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabPanePassenger.addTab("EDIT", tabPassengerEdit);
+        tabPanePassenger.addTab("EDIT", new javax.swing.ImageIcon(getClass().getResource("/db/Image/edit.png")), tabPassengerEdit); // NOI18N
         tabPassengerEdit.getAccessibleContext().setAccessibleName("tabPassengerEdit");
 
         tabPassengerDelete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -630,7 +608,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnDelFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnDelFind.setForeground(new java.awt.Color(51, 51, 51));
+        btnDelFind.setForeground(new java.awt.Color(255, 255, 255));
         btnDelFind.setText("Find");
         btnDelFind.setPreferredSize(new java.awt.Dimension(60, 30));
         btnDelFind.addActionListener(new java.awt.event.ActionListener() {
@@ -665,7 +643,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         tableDel.getAccessibleContext().setAccessibleName("tableDelList");
 
         btnDelClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnDelClear.setForeground(new java.awt.Color(51, 51, 51));
+        btnDelClear.setForeground(new java.awt.Color(255, 255, 255));
         btnDelClear.setText("Clear");
         btnDelClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -674,7 +652,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnDelDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDelDelete.setForeground(new java.awt.Color(51, 51, 51));
+        btnDelDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelDelete.setText("DELETE");
         btnDelDelete.setEnabled(false);
         btnDelDelete.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -689,7 +667,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnDelExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnDelExit.setForeground(new java.awt.Color(51, 51, 51));
+        btnDelExit.setForeground(new java.awt.Color(255, 255, 255));
         btnDelExit.setText("Exit");
         btnDelExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -745,7 +723,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabPanePassenger.addTab("DELETE", tabPassengerDelete);
+        tabPanePassenger.addTab("DELETE", new javax.swing.ImageIcon(getClass().getResource("/db/Image/delete.png")), tabPassengerDelete); // NOI18N
         tabPassengerDelete.getAccessibleContext().setAccessibleName("tabPassengerDelete");
 
         tabPassengerView.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -771,7 +749,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnViewFind.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnViewFind.setForeground(new java.awt.Color(51, 51, 51));
+        btnViewFind.setForeground(new java.awt.Color(255, 255, 255));
         btnViewFind.setText("Find");
         btnViewFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -803,7 +781,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         tableView.getAccessibleContext().setAccessibleName("tableViewList");
 
         btnViewClear.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnViewClear.setForeground(new java.awt.Color(51, 51, 51));
+        btnViewClear.setForeground(new java.awt.Color(255, 255, 255));
         btnViewClear.setText("Clear");
         btnViewClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -812,7 +790,7 @@ public class PassengerWindow extends javax.swing.JFrame {
         });
 
         btnViewExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnViewExit.setForeground(new java.awt.Color(51, 51, 51));
+        btnViewExit.setForeground(new java.awt.Color(255, 255, 255));
         btnViewExit.setText("Exit");
         btnViewExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -864,7 +842,7 @@ public class PassengerWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabPanePassenger.addTab("VIEW", tabPassengerView);
+        tabPanePassenger.addTab("VIEW", new javax.swing.ImageIcon(getClass().getResource("/db/Image/view.png")), tabPassengerView); // NOI18N
         tabPassengerView.getAccessibleContext().setAccessibleName("tabPassengerView");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
