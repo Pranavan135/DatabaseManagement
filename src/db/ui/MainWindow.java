@@ -477,7 +477,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void routesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routesTextFieldActionPerformed
         if(status == 1 || status == 2)
-            RouteWindow.create().setVisible(true);
+            new RouteWindow().setVisible(true);
         else if(status == 0)
             JOptionPane.showMessageDialog(null,  "You must log in to the system first, to access this","INFORMATION",JOptionPane.ERROR_MESSAGE);
         else
