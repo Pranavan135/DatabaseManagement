@@ -606,6 +606,9 @@ public class BillWindow extends javax.swing.JFrame {
         hotelTownTable.clearSelection();
         billDateChooser.cleanup();
         paidCheckBox.setSelected(false);
+        
+        DefaultTableModel d = (DefaultTableModel)hotelTownTable.getModel();
+        d.setRowCount(0);
     }
 
     private void changeTable(Set<Hotel> hotels, int a) {
