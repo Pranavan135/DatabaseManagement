@@ -460,7 +460,7 @@ public class TourEditPanel extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to save the record.", "Tour Management", JOptionPane.ERROR_MESSAGE);
             }
-            refresh(tour);
+            refresh(null);
         } else {
             if (tourDAO.updateTour(tour)) {
                 JOptionPane.showMessageDialog(this, "Record is updated successfully.", "Tour Management", JOptionPane.INFORMATION_MESSAGE);

@@ -487,7 +487,7 @@ public class TownEditPanel extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "Failed to save the record.", "Tour Management", JOptionPane.ERROR_MESSAGE);
             }
-            refresh(town);
+            refresh(null);
         } else {
             if (townDAO.updateTown(town)) {
                 JOptionPane.showMessageDialog(this, "Record is updated successfully.", "Tour Management", JOptionPane.INFORMATION_MESSAGE);
